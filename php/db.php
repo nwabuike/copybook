@@ -2,7 +2,7 @@
 $host = "localhost";
 $userName = "root";
 $password = "";
-$dbName = "prep50_affilate";
+$dbName = "copybook";
 // Create database connection
 $conn = new mysqli($host, $userName, $password, $dbName);
 // Check connection

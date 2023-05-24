@@ -878,11 +878,10 @@
                         <!-- Notification -->
                         <p class="success qf text-center"><i class="fa fa-check"></i> <strong>Your order has
                                 successfully been sent.</strong></p>
-                        <p class="failed qf text-center"><i class="fa fa-exclamation-circle"></i><strong> Something went
-                                wrong!</strong></p>
+                        <p class="failed qf text-center"><i class="fa fa-exclamation-circle"></i><strong> Please fill all the requried field!</strong></p>
 
                         <div class="form-group">
-                            <input type="text" class="form-control" id="qName" placeholder="Enter Your FullName" required>
+                            <input type="text" class="form-control" id="qName" minlength="3" maxlength="40" placeholder="Enter Your FullName" required>
                         </div>
                         <div class="form-group">
                             <input type="email" class="form-control" id="qEmail" placeholder="Email">
@@ -891,7 +890,7 @@
                             <input type="tel" class="form-control" minlength="11" maxlength="11" id="qPhone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
+                            <input type="text" class="form-control" minlength="11" maxlength="11" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
                         </div>
                         <div class="form-group">
                             <select class="form-control form-control-lg" name="qState" class="state" id="qState" required>
@@ -942,7 +941,7 @@
                         </div>
                         <div class="form-group">
                             <select class="form-control form-control-lg" name="pack" id="qPack">
-                                <option value="" disabled>
+                                <option disabled selected>
                                     Choose Your pack
                                 </option>
                                 <option value="1set">
@@ -1030,7 +1029,7 @@
     <script src="js/plugins/bootstrap.min.js"></script>
     <script src="js/plugins/jquery.easing.1.3.min.js"></script>
     <script src="js/plugins/jquery.countTo.js"></script>
-    <script src="js/plugins/jquery.formchimp.min.js"></script>
+    <!-- <script src="js/plugins/jquery.formchimp.min.js"></script> -->
     <script src="js/plugins/jquery.jCounter-0.1.4.js"></script>
     <script src="js/plugins/jquery.magnific-popup.min.js"></script>
     <script src="js/plugins/jquery.vide.min.js"></script>

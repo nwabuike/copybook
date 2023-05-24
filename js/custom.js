@@ -412,36 +412,44 @@ $("#ticketForm").on('submit', function(e) {
 /* ==========================================
    QUOTE FORM
 ============================================= */
-$("#quoteForm").on('submit', function(e) {
-    e.preventDefault();
-    var data = {
-      name: $("#qName").val(),
-      email: $("#qEmail").val(),
-      phone: $("#qPhone").val(),
-      altphone: $("#qAltPhone").val(),
-      address: $("#qAddress").val(),
-      state: $("#qState").val(),
-      pack: $("#qPack").val(),
-      message: $("#qMessage").val(),
-    };
-
-    if ( isValidEmail(data['pack']) && (data['state'].length > 1) && (data['address'].length > 1) && isValidPhoneNumber(data['phone']) ) {
-        $.ajax({
-            type: "POST",
-            url: "php/order.php",
-            data: data,
-            success: function() {
-                $('.success.qf').delay(500).fadeIn(1000);
-                $('.failed.qf').fadeOut(500);
-                window.location.href = "thankYou.php";
-            }
-        });
+$("#quoteForm").on("submit", function (e) {
+  e.preventDefault();
+  var data = {
+    name: $("#qName").val(),
+    email: $("#qEmail").val(),
+    phone: $("#qPhone").val(),
+    altphone: $("#qAltPhone").val(),
+    address: $("#qAddress").val(),
+    state: $("#qState").val(),
+    pack: $("#qPack").val(),
+    // message: $("#qMessage").val(),
+  };
+  console.log(data);
+  if (data["pack"].length > 1)
+    // if (
+    //   isValidEmail(data["pack"]) &&
+    //   data["state"].length > 1 &&
+    //   data["address"].length > 1 &&
+    //   isValidPhoneNumber(data["phone"])
+    // )
+     {
+      console.log("is here");
+      $.ajax({
+        type: "POST",
+        url: "../php/order.php",
+        data: data,
+        success: function () {
+          $(".success.qf").delay(500).fadeIn(1000);
+          $(".failed.qf").fadeOut(500);
+        //   window.location.href = "thankYou.php";
+        },
+      });
     } else {
-        $('.failed.qf').delay(500).fadeIn(1000);
-        $('.success.qf').fadeOut(500);
+      $(".failed.qf").delay(500).fadeIn(1000);
+      $(".success.qf").fadeOut(500);
     }
 
-    return false;
+  return false;
 });
 
 
