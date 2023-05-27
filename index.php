@@ -13,7 +13,7 @@
 
     <meta name="description" content="Sank magic copy book - E-learning/smart kids" />
     <meta name="keywords" content="kids, learning, e-learning, magic copy, sank, copy book, education, smart kid, grown kids, primary schools, one page" />
-    <meta name="author" content="Themedept">
+    <meta name="author" content="Emerald">
 
     <!-- FAVICON  -->
     <!-- Place your favicon.ico in the images directory -->
@@ -838,7 +838,7 @@
                     <p class="lead text-white m-r-md f-w-700">NOTE: Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf….</p>
                     <p class="lead text-white m-r-md f-w-700">Also, Please give us an accurate mobile phone number and precise address for delivery (Use of landmarks is encouraged example Church, bank, eatery and so on)</p>
                     <p class="lead text-white m-r-md f-w-700">For More Information & Enquiry , Whatsapp/Call</p>
-                    <i class="fa fa-whatsapp" style="font-size:36px"></i><a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll">09029026782<i class="fa fa-arrow-right m-l"></i></a>
+                    <a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a>
                 </div>
             </div>
         </div>
@@ -866,7 +866,7 @@
                 <div class="col-md-8 col-md-offset-2">
                     <div class="section-header text-center text-white wow fadeIn">
                         <h2>Please Fill the form below Correctly</h2>
-                        <p class="lead">PLEASE DO NOT FILL THE FORM IF YOU ARE NOT READY TO RECEIVE AND PAY FOR YOUR PACKAGE OR IF YOU WILL BE TRAVELING OUT OF TOWN.</p>
+                        <p class="lead">PLEASE DO NOT FILL THE FORM IF YOU ARE NOT READY TO RECEIVE AND PAY FOR YOUR PACKAGE OR IF YOU WILL BE TRAVELING OUT OF TOWN. SAVE OUR NUMBER OR OUR WEBSITE URL TO ORDER WHEN YOU ARE AVAILBLE.</p>
                     </div>
                 </div>
             </div>
@@ -890,7 +890,7 @@
                             <input type="tel" class="form-control" minlength="11" maxlength="11" id="qPhone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" minlength="11" maxlength="11" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
+                            <input type="tel" class="form-control" minlength="11" maxlength="11" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
                         </div>
                         <div class="form-group">
                             <select class="form-control form-control-lg" name="qState" class="state" id="qState" required>
@@ -965,9 +965,9 @@
                 </div>
                 <!-- Contact Info -->
                 <div class="col-md-6 center-md m-b-md text-white features-block">
-                    <h4 class="f-w-900 m-t-0">NOTE: Our customer care will contact you via Whatsapp/ Call to confirm your order. </h4>
-                    <p>Please Don't Order Twice Thanks!!
-                    </p>
+                    <h4 class="f-w-900 m-t-0">NOTE: Our customer care will contact you via Whatsapp / Call to confirm your order. </h4>
+                    <p class="text-white"><a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a></p>
+
 
                     <!-- <div class="c3 contact-divider text-white text-center">
                         <div class="col-sm-4">

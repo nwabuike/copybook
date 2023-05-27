@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- TITLE OF SITE -->
-    <title>Yoga | GetLeads - Landing Page with Page Builder</title>
+    <title>Copy Book | Sank - Magic Copy Book</title>
 
-    <meta name="description" content="Multipurpose Landing Page with Page Builder - Yoga/Fitness/Gym Landing Page" />
-    <meta name="keywords" content="getleads, html theme, yoga landing page, yoga theme, yoga template, fitness theme, gym theme, html landing page, one page, responsive landing page" />
-    <meta name="author" content="Themedept">
+    <meta name="description" content="Sank magic copy book - E-learning/smart kids" />
+    <meta name="keywords" content="kids, learning, e-learning, magic copy, sank, copy book, education, smart kid, grown kids, primary schools, one page" />
+    <meta name="author" content="Emerald">
 
     <!-- FAVICON  -->
     <!-- Place your favicon.ico in the images directory -->
@@ -59,13 +59,13 @@
 <body data-spy="scroll" data-target="#main-navbar">
 
     <!-- Preloader -->
-    <div class="loader bg-purple">
+    <!-- <div class="loader bg-purple">
         <div class="loader-inner ball-scale-ripple-multiple vh-center">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> -->
 
 
 
@@ -80,7 +80,7 @@
                 <div class="container">
                     <!-- Call Us -->
                     <div class="col-md-4 hidden-sm hidden-xs text-left text-white nav-3cols nav-callus p-l-0">
-                        Call us at <span class="phone-number"> 090 290 26782 </span>
+                        Call us at <span class="phone-number"><a href="https://wa.me/9029026782/?text=Greetings!!, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a> </span>
                     </div>
                     <!-- Logo -->
                     <div class="col-md-4 col-xs-6 nav-3cols-logo">
@@ -131,12 +131,12 @@
                             <!-- <h3 class="f-w-900 m-b-md wow slideInRight"></h3> -->
                             <p class="m-b-md">We will send out your package and expect payment on delivery.</p>
                             <p class="m-b-md">Contact us with any questions: If you have any questions or concerns about your order, please don't hesitate to contact us. We are always here to help and want to ensure that your experience with us is a positive one.</p>
-                            <p class="m-b-md">Thank you again for your business. We look forward to serving you and hope you enjoy your purchase!</p>
+                            <p class="m-b-md">We look forward to serving you and hope you enjoy your purchase!</p>
 
                             <p class="m-b-md">To ensure that your order is processed smoothly and efficiently, we recommend that you click on the phone number below to confirm your order in Whatsapp</p>
                             <!-- <a href="#timetable1-1" class="btn btn-ghost smooth-scroll text-uppercase">See Timetable</a> -->
 
-                            <a href="https://wa.me/9029026782/?text=Greetings!!, I Ordered for sank magic copy books,i will be available for delivery within 24 to 48hrs. Please am i will be waiting for my order confirmation and expecting delivery soonest." class="btn btn-ghost smooth-scroll text-uppercase"><i class="fa fa-whatsapp" style="font-size:36px"></i> 09029026782</a>
+                            <a href="https://wa.me/9029026782/?text=Greetings!!, I Ordered for sank magic copy books,i will be available for delivery within 24 to 48hrs. I will be waiting for my order confirmation and expecting delivery soonest." class="btn btn-ghost smooth-scroll text-uppercase"><i class="fa fa-whatsapp" style="font-size:36px"></i> 09029026782</a>
                             <p class="m-b-md">Best regards.</p>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                 <div class="row">
                     <!-- Copy -->
                     <div class="col-sm-8 text-white">
-                        <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global</a></p>
+                        <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global Ltd.</a></p>
                     </div>
                     <!-- Social Links -->
                     <div class="col-sm-4">
