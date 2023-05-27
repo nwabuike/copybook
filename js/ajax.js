@@ -20,15 +20,9 @@
 	});
 	$(document).on('click','.update',function(e) {
 		var id=$(this).attr("data-id");
-		var name=$(this).attr("data-name");
-		var email=$(this).attr("data-email");
-		var phone=$(this).attr("data-phone");
-		var city=$(this).attr("data-city");
+		var delivery_status = $(this).attr("data-delivery_status");
 		$('#id_u').val(id);
-		$('#name_u').val(name);
-		$('#email_u').val(email);
-		$('#phone_u').val(phone);
-		$('#city_u').val(city);
+		$("#delivery_status").val(delivery_status);
 	});
 	// Update 
 	$(document).on('click','#update',function(e) {
@@ -40,7 +34,7 @@
 			success: function(dataResult){
 					var dataResult = JSON.parse(dataResult);
 					if(dataResult.statusCode==200){
-						$('#editEmployeeModal').modal('hide');
+						// $('#editEmployeeModal').form('hide');
 						alert('Deliver Status updated successfully !'); 
                         location.reload();						
 					}
@@ -103,23 +97,23 @@
 			}  
 		} 
 	});
-	$(document).ready(function(){
-		$('[data-toggle="tooltip"]').tooltip();
-		var checkbox = $('table tbody input[type="checkbox"]');
-		$("#selectAll").click(function(){
-			if(this.checked){
-				checkbox.each(function(){
-					this.checked = true;                        
-				});
-			} else{
-				checkbox.each(function(){
-					this.checked = false;                        
-				});
-			} 
-		});
-		checkbox.click(function(){
-			if(!this.checked){
-				$("#selectAll").prop("checked", false);
-			}
-		});
-	});
+	// $(document).ready(function(){
+	// 	$('[data-toggle="tooltip"]').tooltip();
+	// 	var checkbox = $('table tbody input[type="checkbox"]');
+	// 	$("#selectAll").click(function(){
+	// 		if(this.checked){
+	// 			checkbox.each(function(){
+	// 				this.checked = true;                        
+	// 			});
+	// 		} else{
+	// 			checkbox.each(function(){
+	// 				this.checked = false;                        
+	// 			});
+	// 		} 
+	// 	});
+	// 	checkbox.click(function(){
+	// 		if(!this.checked){
+	// 			$("#selectAll").prop("checked", false);
+	// 		}
+	// 	});
+	// });

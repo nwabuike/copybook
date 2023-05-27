@@ -28,7 +28,7 @@
 
     <!-- FONT ICONS -->
     <link rel="stylesheet" href="css/icons/iconfont.css">
-    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- GOOGLE FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -884,7 +884,7 @@
                             <input type="text" class="form-control" id="qName" minlength="3" maxlength="40" placeholder="Enter Your FullName" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="qEmail" placeholder="Email">
+                            <input type="email" class="form-control" id="qEmail" placeholder=" Enter your Email for your E-recipt">
                         </div>
                         <div class="form-group">
                             <input type="tel" class="form-control" minlength="11" maxlength="11" id="qPhone" placeholder="Phone Number" required>

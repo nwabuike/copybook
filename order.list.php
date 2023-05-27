@@ -31,7 +31,7 @@ include 'php/db.php';
 
     <!-- FONT ICONS -->
     <link rel="stylesheet" href="css/icons/iconfont.css">
-    <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- GOOGLE FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
@@ -121,7 +121,7 @@ include 'php/db.php';
                     <div class="col-md-10 col-md-offset-1">
                         <div class="section-header text-center wow fadeIn">
                             <h2>Customers Order List</h2>
-                            <p class="lead">Choose the classes you want to join and book your free week at our studio.</p>
+                            <p class="lead">Please update the deliver Status here.</p>
                         </div>
                     </div>
                 </div>
@@ -158,7 +158,7 @@ include 'php/db.php';
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $result = mysqli_query($conn, "SELECT * FROM orders");
+                                            $result = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
                                             $i = 1;
                                             while ($row = mysqli_fetch_array($result)) {
                                             ?>
@@ -169,17 +169,20 @@ include 'php/db.php';
                                                             <label for="checkbox2"></label>
                                                         </span>
                                                     </td>
-                                                    <td><?php echo $i; ?></td>
+                                                    
+                                                    <th scope="row"><?php echo $row['id']; ?></th>
                                                     <td><?php echo $row["fullname"]; ?></td>
                                                     <td><?php echo $row["pack"]; ?></td>
                                                     <td><?php echo $row["phone"]; ?></td>
                                                     <td><?php echo $row["address"]; ?></td>
                                                     <td><?php echo $row["state"]; ?></td>
                                                     <td><?php echo $row["created_at"]; ?></td>
-                                                    <td><?php echo $row["delivery_status"]; ?></td>
+                                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                                        <td data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>"><?php echo $row["delivery_status"]; ?></td>
+                                                    </a>
                                                     <td>
                                                         <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                            <i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["id"]; ?>" data-name="<?php echo $row["name"]; ?>" data-email="<?php echo $row["email"]; ?>" data-phone="<?php echo $row["phone"]; ?>" data-city="<?php echo $row["city"]; ?>" title="Edit">&#xE254;</i>
+                                                            <i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>" title="Edit">Edit Delivery Status</i>
                                                         </a>
 
                                                     </td>
@@ -215,16 +218,27 @@ include 'php/db.php';
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="update_form">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Update deliver report</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <input type="hidden" id="id_u" name="id" class="form-control" required>
+                                <label>Delivery Status/Report</label>
+                                <input type="text" class="form-control" id="delivery_status" name="delivery_status">
+                            </div>
+                        </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Delivery Status/Report</label>
                             <input type="text" id="delivery_status" name="delivery_status" class="form-control" required>
-                        </div>
+                        </div> -->
                 </div>
                 <div class="modal-footer">
                     <input type="hidden" value="2" name="type">
-                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                    <button type="button" class="btn btn-info" id="update">Update</button>
+                    <input type="button" class="btn btn-red btn-shadow text-uppercase" data-dismiss="modal" value="Cancel">
+                    <button type="button" class="btn btn-shadow btn-purple text-uppercase" id="update">Update</button>
                 </div>
                 </form>
             </div>
