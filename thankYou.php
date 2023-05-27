@@ -112,7 +112,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="section-header text-center wow fadeIn">
                             <h2 class="m-b-md">Thank for Your Patronage!!!</h2>
-                            <p class="lead m-b-md">Thank you for placing your order with us! We appreciate your business and are excited to fulfill your request.</p>
+                            <p class="lead m-b-md">Thank you for placing your order with us! We appreciate your Order and are excited to fulfill your request.</p>
                         </div>
                     </div>
                 </div>
