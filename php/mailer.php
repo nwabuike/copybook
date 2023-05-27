@@ -11,7 +11,7 @@ $mailBody .= "Pack: " . $user_pack . "\n";
 $mailBody .= "Order  Date: " . $user_date . "\n";
 // $file = "files/codexworld.pdf";
 
-if (mail($toEmail, "Book Order form $user_name ", $mailBody, $mailHeaders)) {
+if (mail($toEmail, "Magic Copy Book form $user_name ", $mailBody, $mailHeaders)) {
     // $output = json_encode(array('type'=>'message', 'text' => 'Hi '.$user_name .', thank you for the message. We will get back to you shortly.'));
     // die($output);
     echo "Thank you";

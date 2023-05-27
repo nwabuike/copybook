@@ -1001,7 +1001,7 @@
             <div class="row">
                 <!-- Copy -->
                 <div class="col-sm-8 text-white">
-                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> EmeraldStore by <a href="#" class="f-w-900 inverse">Themedept</a></p>
+                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global</a></p>
                 </div>
                 <!-- Social Links -->
                 <div class="col-sm-4">

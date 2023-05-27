@@ -441,7 +441,7 @@ $("#quoteForm").on("submit", function (e) {
         success: function () {
           $(".success.qf").delay(500).fadeIn(1000);
           $(".failed.qf").fadeOut(500);
-        //   window.location.href = "thankYou.php";
+          window.location.href = "thankYou.php";
         },
       });
     } else {
