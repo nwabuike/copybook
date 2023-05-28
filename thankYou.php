@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- GOOGLE FONTS -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
     <!-- <link rel="stylesheet" href="fonts/font.css"> -->
 
     <!-- PLUGINS STYLESHEET -->
@@ -118,7 +118,7 @@
                     <div class="col-md-8 col-md-offset-2">
                         <div class="section-header text-center wow fadeIn">
                             <h2 class="m-b-md">Thank for Your Patronage!!!</h2>
-                            <p class="lead m-b-md">Thank you for placing your order with us! We appreciate your Order and are excited to fulfill your request.</p>
+                            <p class="lead m-b-md">Thank you for placing your order with us! We appreciate your Order and excited to fulfill your request.</p>
                         </div>
                     </div>
                 </div>
