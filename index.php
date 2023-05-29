@@ -855,7 +855,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center single-line">
-                    <p class="lead text-white m-r-md f-w-700">NOTE: Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf….</p>
+                    <p class="lead text-white m-r-md f-w-700">NOTE: <strong>Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf.</strong></p>
                     <p class="lead text-white m-r-md f-w-700">Also, Please give us an accurate mobile phone number and precise address for delivery (Use of landmarks is encouraged example Church, bank, eatery and so on)</p>
                     <p class="lead text-white m-r-md f-w-700">For More Information & Enquiry , Whatsapp/Call</p>
                     <a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a>
@@ -964,13 +964,13 @@
                                 <option disabled selected>
                                     Choose Your pack
                                 </option>
-                                <option value="1set">
+                                <option value="1 set of copy book">
                                     1 Copybook Regular Set (4 books+ free gifts)@ &#8358;15,000
                                 </option>
-                                <option value="2set">
+                                <option value="2 set of copy book">
                                     2 Copybook Super pack Set (8 books+ free gifts)@ &#8358;27,500
                                 </option>
-                                <option value="3set">
+                                <option value="3 set of copy book">
                                     3 Copybook Gold Set (12 books+ free gifts)@ &#8358;39,500
                                 </option>
                             </select>
