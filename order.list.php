@@ -34,7 +34,9 @@ include 'php/db.php';
     <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- GOOGLE FONTS -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700" rel="stylesheet" />
 
     <!-- PLUGINS STYLESHEET -->
     <link rel="stylesheet" href="css/plugins/magnific-popup.css">
@@ -169,7 +171,7 @@ include 'php/db.php';
                                                             <label for="checkbox2"></label>
                                                         </span>
                                                     </td>
-                                                    
+
                                                     <th scope="row"><?php echo $row['id']; ?></th>
                                                     <td><?php echo $row["fullname"]; ?></td>
                                                     <td><?php echo $row["pack"]; ?></td>
