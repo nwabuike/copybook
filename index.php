@@ -81,13 +81,13 @@
 <body data-spy="scroll" data-target="#main-navbar">
 
     <!-- Preloader -->
-    <div class="loader bg-orange">
+    <!-- <div class="loader bg-orange">
         <div class="loader-inner ball-scale-ripple-multiple vh-center">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
+    </div> -->
 
 
     <div class="main-container" id="page">
