@@ -35,6 +35,9 @@
     <!-- <link rel="stylesheet" href="fonts/font.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700" rel="stylesheet" />
+    <link rel="stylesheet" href="fonts/fonts/font-awesome.min.css" />
+    <!-- Font css-->
+    <link rel="stylesheet" href="fonts/fonts/font.css" />
 
     <!-- PLUGINS STYLESHEET -->
     <link rel="stylesheet" href="css/plugins/magnific-popup.css">
