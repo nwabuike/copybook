@@ -1,5 +1,6 @@
 <?php
 include 'db.php';
+date_default_timezone_set("Africa/Lagos");
 
 if(count($_POST)>0){
 	if($_POST['type']==1){
@@ -22,7 +23,8 @@ if(count($_POST)>0){
 	if($_POST['type']==2){
 		$id=$_POST['id'];
         $delivery_status=$_POST['delivery_status'];
-		$sql = "UPDATE `orders` SET `delivery_status`='$delivery_status' WHERE id=$id";
+		$user_date = date("M d, Y h:i a");
+		$sql = "UPDATE `orders` SET `delivery_status`='$delivery_status', `updated_at`='$user_date' WHERE id=$id";
 		if (mysqli_query($conn, $sql)) {
 			echo json_encode(array("statusCode"=>200));
 		} 

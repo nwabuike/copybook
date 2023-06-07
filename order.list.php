@@ -155,6 +155,7 @@ include 'php/db.php';
                                                 <th class="text-edit">STATE</th>
                                                 <th class="text-edit">ORDER DATE & TIME</th>
                                                 <th class="text-edit">DELIVERY STATUS</th>
+                                                <th class="text-edit">UPDATED DELIVERY STATUS</th>
                                                 <th>ACTION</th>
                                             </tr>
                                         </thead>
@@ -182,12 +183,14 @@ include 'php/db.php';
                                                     <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                         <td data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>"><?php echo $row["delivery_status"]; ?></td>
                                                     </a>
+                                                    <td><?php echo $row["updated_at"]; ?></td>
                                                     <td>
                                                         <a href="#editEmployeeModal" class="edit" data-toggle="modal">
                                                             <i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>" title="Edit">Edit Delivery Status</i>
                                                         </a>
 
                                                     </td>
+
 
                                                 </tr>
                                             <?php
