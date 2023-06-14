@@ -748,7 +748,7 @@
                             <p class="lead"> 1 DRAWING Sank Magic Copy Book</p>
                         </li>
                         <li>
-                            <p class="lead"> 1 DISAPPEARING PEN with 8 refills</p>
+                            <p class="lead"> 1 DISAPPEARING PEN with 4 refills</p>
                         </li>
                         <li>
                             <p class="lead"> 1 PEN HOLDER</p>
@@ -788,7 +788,7 @@
                 <div class="col-md-4">
                     <div class="">
                         <h3>Water Game Pad Toy</h3>
-                        <img src="images/magic-book-3-1024x1024.jpg" class="img-responsive img-rounded" />
+                        <img src="images/4322-1.jpg" class="img-responsive img-rounded" />
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
                 </div>
