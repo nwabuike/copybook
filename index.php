@@ -818,11 +818,16 @@
 
             </div>
         </div><!-- /End Col-12 -->
+        <br />
+        <br />
+        <br />
+        <br />
         <div class="row">
             <div class="">
+                <h3>Kids U Shape Toothbrush</h3>
                 <div class="col-md-4">
                     <div class="" style="margin-bottom: 10px;">
-                        <h3>Kids U Shape Toothbrush</h3>
+
                         <img src="images/u brush.jpg" class="img-responsive img-rounded" />
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
@@ -846,13 +851,17 @@
                         </li>
 
                     </ul>
-                    <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;15,000</strong> Right Now.</p>
+
                 </div>
 
 
+
             </div>
+
         </div><!-- /End Col-12 -->
+        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;15,000</strong> Right Now.</p>
         </div><!-- /End Row -->
+       
         </div><!-- /End Container -->
 
     </section>
