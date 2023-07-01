@@ -1001,6 +1001,7 @@
                 <!-- Contact Info -->
                 <div class="col-md-6 center-md m-b-md text-white features-block">
                     <h4 class="f-w-900 m-t-0">NOTE: Our customer care will contact you via Whatsapp / Call to confirm your order. </h4>
+                    <p>Dear Valued Customer, Your might experience a slight delay in the delivery of your order due to this rainy season that affect our transportation and logistics network causing unavoidable delays in the delivery process, the estimated delivery date is 1-7 days maximum</p>
                     <p class="text-white"><a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a></p>
 
 
