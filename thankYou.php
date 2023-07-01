@@ -141,6 +141,7 @@
                             <p class="m-b-md">We look forward to serving you and hope you enjoy your purchase!</p>
 
                             <p class="m-b-md">To ensure that your order is processed smoothly and efficiently, we recommend that you click on the phone number below to confirm your order in Whatsapp</p>
+                            <p>Dear Valued Customer, Your might experience a slight delay in the  delivery of your order due to this rainy season that affect our transportation and logistics network causing unavoidable delays in the delivery process, the estimated delivery date is 1-7 days maximum</p>
                             <!-- <a href="#timetable1-1" class="btn btn-ghost smooth-scroll text-uppercase">See Timetable</a> -->
 
                             <a href="https://wa.me/9029026782/?text=Greetings!!, I Ordered for sank magic copy books,i will be available for delivery within 24 to 48hrs. I will be waiting for my order confirmation and expecting delivery soonest." class="btn btn-ghost smooth-scroll text-uppercase"><i class="fa fa-whatsapp" style="font-size:36px"></i> 09029026782</a>

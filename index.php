@@ -861,7 +861,7 @@
         </div><!-- /End Col-12 -->
         <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;15,000</strong> Right Now.</p>
         </div><!-- /End Row -->
-       
+
         </div><!-- /End Container -->
 
     </section>
@@ -1036,7 +1036,7 @@
             <div class="row">
                 <!-- Copy -->
                 <div class="col-sm-8 text-white">
-                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global</a></p>
+                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Digital Prime Tech Global</a></p>
                 </div>
                 <!-- Social Links -->
                 <div class="col-sm-4">

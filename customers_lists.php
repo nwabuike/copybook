@@ -258,7 +258,9 @@ include 'php/db.php';
             <div class="row">
                 <!-- Copy -->
                 <div class="col-sm-8 text-white">
-                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global Ltd.</a></p>
+                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">
+                    
+                    </a></p>
                 </div>
                 <!-- Social Links -->
                 <div class="col-sm-4">
