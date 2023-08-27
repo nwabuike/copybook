@@ -1,5 +1,19 @@
 <?php
-include 'php/db.php';
+
+// Import the file where we defined the connection to Database.     
+require_once "php/db.php";
+
+$per_page_record = 100;  // Number of entries to show in a page.   
+// Look for a GET variable page if not found default is 1.        
+if (isset($_GET["page"])) {
+    $page  = $_GET["page"];
+} else {
+    $page = 1;
+}
+$start_from = ($page - 1) * $per_page_record;
+
+$query = "SELECT * FROM orders ORDER BY id DESC LIMIT $start_from, $per_page_record";
+$result = mysqli_query($conn, $query);
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,6 +65,44 @@ include 'php/db.php';
 
     <!-- RESPONSIVE FIXES -->
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        .search-box {
+            width: 100%;
+            position: relative;
+            display: inline-block;
+            font-size: 25px;
+        }
+
+        .search-box input[type="text"] {
+            height: 32px;
+            padding: 5px 10px;
+            margin-bottom: 30px;
+            border: 1px solid #CCCCCC;
+            font-size: 25px;
+        }
+
+        .pagination {
+            display: inline-block;
+        }
+
+        .pagination a {
+            font-weight: bold;
+            font-size: 18px;
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid black;
+        }
+
+        .pagination a.active {
+            background-color: #FFB606;
+        }
+
+        .pagination a:hover:not(.active) {
+            background-color: skyblue;
+        }
+    </style>
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -130,6 +182,11 @@ include 'php/db.php';
                 <!-- Timetable Tab -->
                 <div class="row">
                     <div class="col-md-12 timetable">
+                        <!-- <div class="col-xs-12 search-box">
+                            <label>Search Customer Details</label>
+                            <input type="text" name="search" id="search" placeholder="Enter Customer Details" class="form-control" />
+                            <div id="result"></div>
+                        </div> -->
 
 
                         <!-- Tab Content -->
@@ -137,70 +194,106 @@ include 'php/db.php';
                             <!-- Tab Panel 1 -->
                             <div role="tabpanel" class="tab-pane fade in active" id="monday">
                                 <div class="table-responsive text-center">
+                                    <?php
+                                    if (
+                                        mysqli_num_rows($result) >
+                                        0
+                                    ) { ?>
 
-                                    <table class="table text-uppercase table-striped">
-                                        <thead class="bg-purple text-white">
-                                            <tr>
-                                                <th>
-                                                    <span class="custom-checkbox">
-                                                        <input type="checkbox" id="selectAll">
-                                                        <label for="selectAll"></label>
-                                                    </span>
-                                                </th>
-                                                <th class="text-edit">S/N</th>
-                                                <th class="text-edit">CUSTOMER NAME</th>
-                                                <th class="text-edit">ORDER PACK</th>
-                                                <th class="text-edit">PHONE NUMBER</th>
-                                                <th class="text-edit">ADDRESS</th>
-                                                <th class="text-edit">STATE</th>
-                                                <th class="text-edit">ORDER DATE & TIME</th>
-                                                <th class="text-edit">DELIVERY STATUS</th>
-                                                <th class="text-edit">UPDATED DELIVERY STATUS</th>
-                                                <th>ACTION</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
-                                            $result = mysqli_query($conn, "SELECT * FROM orders ORDER BY id DESC");
-                                            $i = 1;
-                                            while ($row = mysqli_fetch_array($result)) {
-                                            ?>
-                                                <tr id="<?php echo $row["id"]; ?>">
-                                                    <td>
+                                        <table class="table text-uppercase table-striped">
+                                            <thead class="bg-purple text-white">
+                                                <tr>
+                                                    <th>
                                                         <span class="custom-checkbox">
-                                                            <input type="checkbox" class="user_checkbox" data-user-id="<?php echo $row["id"]; ?>">
-                                                            <label for="checkbox2"></label>
+                                                            <input type="checkbox" id="selectAll">
+                                                            <label for="selectAll"></label>
                                                         </span>
-                                                    </td>
-
-                                                    <th scope="row"><?php echo $row['id']; ?></th>
-                                                    <td><?php echo $row["fullname"]; ?></td>
-                                                    <td><?php echo $row["pack"]; ?></td>
-                                                    <td><?php echo $row["phone"]; ?></td>
-                                                    <td><?php echo $row["address"]; ?></td>
-                                                    <td><?php echo $row["state"]; ?></td>
-                                                    <td><?php echo $row["created_at"]; ?></td>
-                                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                        <td data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>"><?php echo $row["delivery_status"]; ?></td>
-                                                    </a>
-                                                    <td><?php echo $row["updated_at"]; ?></td>
-                                                    <td>
-                                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal">
-                                                            <i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>" title="Edit">Edit Delivery Status</i>
-                                                        </a>
-
-                                                    </td>
-
-
+                                                    </th>
+                                                    <th class="text-edit">S/N</th>
+                                                    <th class="text-edit">CUSTOMER NAME</th>
+                                                    <th class="text-edit">ORDER PACK</th>
+                                                    <th class="text-edit">PHONE NUMBER</th>
+                                                    <th class="text-edit">ALTERNATIVE NUMBER</th>
+                                                    <th class="text-edit">ADDRESS</th>
+                                                    <th class="text-edit">STATE</th>
+                                                    <th class="text-edit">ORDER DATE & TIME</th>
+                                                    <th class="text-edit">UPDATED DELIVERY STATUS</th>
+                                                    <th class="text-edit">DELIVERY STATUS</th>
+                                                    <th>ACTION</th>
                                                 </tr>
-                                            <?php
-                                                $i++;
-                                            }
-                                            ?>
+                                            </thead>
+                                            <tbody>
+                                                <?php foreach ($result as $row) { ?>
+                                                    <tr id="<?php echo $row["id"]; ?>">
+                                                        <td>
+                                                            <span class="custom-checkbox">
+                                                                <input type="checkbox" class="user_checkbox" data-user-id="<?php echo $row["id"]; ?>">
+                                                                <label for="checkbox2"></label>
+                                                            </span>
+                                                        </td>
 
-                                        </tbody>
-                                    </table>
+                                                        <th scope="row"><?php echo $row['id']; ?></th>
+                                                        <td><?php echo $row["fullname"]; ?></td>
+                                                        <td><?php echo $row["pack"]; ?></td>
+                                                        <td><?php echo $row["phone"]; ?></td>
+                                                        <td><?php echo $row["altphone"]; ?></td>
+                                                        <td><?php echo $row["address"]; ?></td>
+                                                        <td><?php echo $row["state"]; ?></td>
+                                                        <td><?php echo $row["created_at"]; ?></td>
+                                                        <td><?php echo $row["updated_at"]; ?></td>
+                                                        <td><?php echo $row["delivery_status"]; ?></td>
+                                                        <td>
+                                                            <a href="#editEmployeeModal" class="edit" data-toggle="modal">
+                                                                <i class="material-icons update" data-toggle="tooltip" data-id="<?php echo $row["id"]; ?>" data-pack="<?php echo $row["delivery_status"]; ?>" title="Edit">Edit Delivery Status</i>
+                                                            </a>
 
+                                                        </td>
+
+
+                                                    </tr>
+                                                <?php } ?>
+
+                                            </tbody>
+                                        </table>
+                                    <?php
+                                    } else {
+                                        echo "<h3>No record found</h3>";
+                                    }
+                                    ?>
+
+                                </div>
+                                <div class="pagination">
+                                    <?php
+                                    $query = "SELECT COUNT(*) FROM orders";
+                                    $result = mysqli_query($conn, $query);
+                                    $row = mysqli_fetch_row($result);
+                                    $total_records = $row[0];
+
+                                    echo "</br>";
+                                    // Number of pages required.   
+                                    $total_pages = ceil($total_records / $per_page_record);
+                                    $pagLink = "";
+
+                                    if ($page >= 2) {
+                                        echo "<a href='customers_lists.php?page=" . ($page - 1) . "'>  Prev </a>";
+                                    }
+
+                                    for ($i = 1; $i <= $total_pages; $i++) {
+                                        if ($i == $page) {
+                                            $pagLink .= "<a class = 'active' href='customers_lists.php?page="
+                                                . $i . "'>" . $i . " </a>";
+                                        } else {
+                                            $pagLink .= "<a href='customers_lists.php?page=" . $i . "'>   
+                                                " . $i . " </a>";
+                                        }
+                                    };
+                                    echo $pagLink;
+
+                                    if ($page < $total_pages) {
+                                        echo "<a href='customers_lists.php?page=" . ($page + 1) . "'>  Next </a>";
+                                    }
+
+                                    ?>
                                 </div>
                             </div><!-- /End Tab-Panel 1 -->
 
@@ -258,9 +351,9 @@ include 'php/db.php';
             <div class="row">
                 <!-- Copy -->
                 <div class="col-sm-8 text-white">
-                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">
-                    
-                    </a></p>
+                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse"> Emerald Digital Prime Tech Global
+
+                        </a></p>
                 </div>
                 <!-- Social Links -->
                 <div class="col-sm-4">

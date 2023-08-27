@@ -980,13 +980,13 @@
                                     Choose Your pack
                                 </option>
                                 <option value="1 set of copy book">
-                                    1 Copybook Regular Set (4 books+ free gifts)@ &#8358;15,000
+                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;15,000
                                 </option>
                                 <option value="2 set of copy book">
-                                    2 Copybook Super pack Set (8 books+ free gifts)@ &#8358;27,500
+                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;27,500
                                 </option>
                                 <option value="3 set of copy book">
-                                    3 Copybook Gold Set (12 books+ free gifts)@ &#8358;39,500
+                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;39,500
                                 </option>
                             </select>
                         </div>

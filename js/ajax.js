@@ -1,4 +1,30 @@
 	// <!-- Add user -->
+
+	$(document).ready(function () {
+    load_data();
+
+    function load_data(query) {
+      $.ajax({
+        url: "php/search.php",
+        method: "POST",
+        data: {
+          query: query,
+        },
+        success: function (data) {
+          $("#result").html(data);
+        },
+      });
+    }
+    $("#search").keyup(function () {
+      var search = $(this).val();
+      if (search != "") {
+        load_data(search);
+      } else {
+        load_data();
+      }
+    });
+  });
+
 	$(document).on('click','#btn-add',function(e) {
 		var data = $("#user_form").serialize();
 		$.ajax({
@@ -24,6 +50,8 @@
 		$('#id_u').val(id);
 		$("#delivery_status").val(delivery_status);
 	});
+
+	
 	// Update 
 	$(document).on('click','#update',function(e) {
 		var data = $("#update_form").serialize();
