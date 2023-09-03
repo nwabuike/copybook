@@ -130,29 +130,34 @@
                     <!-- Image Block -->
                     <figure class="col-md-4 p-a-0">
                         <div class="img-wrap" style="background-image:url('images/cart.png')"></div>
+                        <!-- <img class="responsive-img" src="images/cart.png" width="100%" height="auto"/> -->
                     </figure>
+
                     <!-- Text Block -->
-                    <div class="col-md-8 bg-edit bg-purple text-white spotlight-text center-md">
-                        <div class="vertical-center-rel">
-                            <h6 class="text-uppercase f-w-900 wow slideInRight">Dear Valued Customer,</h6>
+                    <div class="col-md-12 bg-edit bg-purple text-white spotlight-text">
+                        <div class="">
+                            <h3 class="text-uppercase f-w-900 wow slideInRight">Dear Valued Customer,</h3>
+                            <br />
                             <!-- <h3 class="f-w-900 m-b-md wow slideInRight"></h3> -->
-                            <p>Your might experience a slight delay in the delivery of your order due to this rainy season that affect our transportation and logistics network causing unavoidable delays in the delivery process, the estimated delivery date is 1-7 days maximum</p>
+                            <p class="m-b-md">Your might experience a slight delay in the delivery of your order due to this rainy season that affect our transportation and logistics network causing unavoidable delays in the delivery process, the estimated delivery date is 1-7 days maximum</p>
                             <p class="m-b-md">We will send out your package and expect payment on delivery.</p>
-                            <p class="m-b-md">Contact us with any questions: If you have any questions or concerns about your order, please don't hesitate to contact us. We are always here to help and want to ensure that your experience with us is a positive one.</p>
-                            <p class="m-b-md">We look forward to serving you and hope you enjoy your purchase!</p>
+                            <!-- <p class="m-b-md">Contact us with any questions: If you have any questions or concerns about your order, please don't hesitate to contact us. We are always here to help and want to ensure that your experience with us is a positive one.</p>
+                            <p class="m-b-md">We look forward to serving you and hope you enjoy your purchase!</p> -->
 
                             <p class="m-b-md">To ensure that your order is processed smoothly and efficiently, we recommend that you click on the phone number below to confirm your order in Whatsapp</p>
 
                             <!-- <a href="#timetable1-1" class="btn btn-ghost smooth-scroll text-uppercase">See Timetable</a> -->
 
-                            <a href="https://wa.me/9029026782/?text=Greetings!!, I Ordered for sank magic copy books,i will be available for delivery within 24 to 48hrs. I will be waiting for my order confirmation and expecting delivery soonest." class="btn btn-ghost smooth-scroll text-uppercase"><i class="fa fa-whatsapp" style="font-size:36px"></i> 09029026782</a>
+                            <a href="https://wa.me/9029026782/?text=Good day!!, I Ordered for an amazing sank magic copy book, i will be available for delivery within 24 to 48hrs. I will be waiting for my order confirmation and expecting delivery soonest." class="btn btn-ghost smooth-scroll text-uppercase"><i class="fa fa-whatsapp" style="font-size:36px"></i> 09029026782</a>
                             <p class="m-b-md">Best regards.</p>
                         </div>
+                        <!-- <div style="margin-top: 40px;"> </div> -->
                     </div>
                 </div><!-- /End Row -->
 
             </div><!-- /End Container  -->
         </section>
+
         <!-- /End Content Intro -->
         <!-- =========================
              FOOTER
@@ -162,7 +167,7 @@
                 <div class="row">
                     <!-- Copy -->
                     <div class="col-sm-8 text-white">
-                        <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Golden Global Ltd.</a></p>
+                        <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Digital Prime Tech Global.</a></p>
                     </div>
                     <!-- Social Links -->
                     <div class="col-sm-4">

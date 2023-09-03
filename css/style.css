@@ -1481,7 +1481,7 @@ textarea {
 .m-a-md { margin:        25px !important; }
 .m-t-md { margin-top:    25px !important; }
 .m-r-md { margin-right:  25px !important; }
-.m-b-md { margin-bottom: 25px !important; }
+.m-b-md { margin-bottom: 15px !important; }
 .m-l-md { margin-left:   25px !important; }
 .m-x-md { margin-right:  25px !important; margin-left:   25px !important; }
 .m-y-md { margin-top:    25px !important; margin-bottom: 25px !important; }
