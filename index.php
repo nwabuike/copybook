@@ -120,7 +120,7 @@
                             width: 150px;
                             height: 35px;
                         -->
-                        <a href="#" class="navbar-brand smooth-scroll"><img src="images/logo-black.png" alt="logo" /></a>
+                        <a href="#" class="navbar-brand smooth-scroll"><img src="images/logo10.JPG" alt="logo" /></a>
                         <!-- Image Logo For Background Transparent -->
                         <!--
                             <a href="#" class="navbar-brand logo-black smooth-scroll"><img src="images/logo-black.png" alt="logo" /></a>
@@ -154,7 +154,7 @@
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0">
                         <h1 class="text-white m-b-md p-t-md">&#128293;Big Offer &#128293;&#128293; ! Special promo sales !
-                            Get more than 40% off today + free delivery + payment on delivery
+                            free delivery + payment on delivery
                             Grab this special offer today as stock is limited</h1>
                         <p class="lead text-white m-b-md">Enhance your kids cognitive and writing skills by gifting them
                             this amazing magic reusable practice book.</p>
@@ -656,14 +656,14 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Regular Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>15,000</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>17,000</span></li>
 
 
                                     <li class="text-edit">Get 1 Set <b>(4 Books + 1 PEN + 4 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE TWO GIFTS</li>
-                                    <li class="text-edit">Pay on Delivery</li>
-                                    <li class="text-edit" style="color:#ef7c46">SAVE &#8358;4,388.54</li>
+                                    <li class="text-edit">FREE THREE GIFTS</li>
+                                    <li class="text-edit">PAY ON DELIVERY</li>
+                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;7,388.54</li>
                                     <li class="text-edit">For 1 Child</li>
                                     <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
                                     </li>
@@ -675,12 +675,12 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Super Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>27,500</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>29,500</span></li>
                                     <li class="text-edit">Get 2 Set <b>(8 Books + 2 PEN + 8 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE FOUR GIFTS</li>
-                                    <li class="text-edit">Pay on Delivery</li>
-                                    <li class="text-edit" style="color:#ef7c46">SAVE &#8358;8,388.54</li>
+                                    <li class="text-edit">FREE SIX GIFTS</li>
+                                    <li class="text-edit">PAY ON DELIVERY</li>
+                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;15,388.54</li>
                                     <li class="text-edit">For 2 Child</li>
                                     <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
                                     </li>
@@ -692,12 +692,12 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Gold Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>39,500</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>40,000</span></li>
                                     <li class="text-edit">Get 1 Set <b>(12 Books + 3 PEN + 12 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE SIX GIFTS</li>
-                                    <li class="text-edit">Pay on Delivery</li>
-                                    <li class="text-edit" style="color:#ef7c46">SAVE &#8358;12,388.54</li>
+                                    <li class="text-edit">FREE EIGHT GIFTS</li>
+                                    <li class="text-edit">PAY ON DELIVERY</li>
+                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;24,548.54</li>
                                     <li class="text-edit">For 3 Child</li>
                                     <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
                                     </li>
@@ -765,12 +765,16 @@
                                 Teeth Brush Silicon Finger Teether Training</p>
 
                         </li>
+                        <li>
+                            <p class="lead"> Skipping Rope</p>
+
+                        </li>
                     </ul>
                 </div>
 
                 <div class="col-md-4 col-md-offset-2">
                     <div class="">
-                        <img src="images/IMG_20230522_134155.jpg" class="img-responsive img-rounded" />
+                        <img src="images/copyr.jpg" class="img-responsive img-rounded" />
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
                 </div>
@@ -792,7 +796,7 @@
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
                 </div>
-                <div class="col-md-6 text-black center-md">
+                <div class="col-md-8 text-black center-md">
                     <ul>
                         <li>
                             <p class="lead"> This item will bring back memories from the past and can be enjoyed by all family members.</p>
@@ -828,11 +832,13 @@
                 <div class="col-md-4">
                     <div class="" style="margin-bottom: 10px;">
 
+                        <!-- <img src="images/u brush.jpg" class="img-responsive img-rounded" /> -->
+                        <iframe width="100%" height="300" src="https://www.youtube.com/watch?v=SR9xCb9j0Cs" title="U shape Toothbrush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
                         <img src="images/u brush.jpg" class="img-responsive img-rounded" />
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
                 </div>
-                <div class="col-md-6 text-black ">
+                <div class="col-md-8 text-black ">
                     <ul>
                         <li>
                             <p class="lead"> it can also help prevent cavities, tooth decay, and gum disease, and instill good oral hygiene habits in your child.</p>
@@ -859,7 +865,48 @@
             </div>
 
         </div><!-- /End Col-12 -->
-        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;15,000</strong> Right Now.</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="row">
+            <div class="">
+                <h3>Skipping Rope</h3>
+                <div class="col-md-4">
+                    <div class="" style="margin-bottom: 10px;">
+
+                        <img src="images/skipp_rope.jpg" class="img-responsive img-rounded" />
+                        <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
+                    </div>
+                </div>
+                <div class="col-md-8 text-black ">
+                    <ul>
+                        <li>
+                            <p class="lead"> <b> Reasons Why Jumping Rope Is Good For Your Child:-</b>
+                                Jumping rope is a classic kids’ activity that has been around for generations. There is a reason why it is still popular and relevant today. Jumping rope offers your child a wide variety of different benefits. In today’s world where children are increasingly glued to electronic devices, like smartphones, laptops and video gaming devices, it is important to encourage them to participate in more physical activity to maintain their heath and well-being and to promote good physical development. Below are some of the advantages that jumping rope provides for young children.</p>
+                        </li>
+                        <li>
+                            <p class="lead"> <b> Self-Esteem:-</b>
+
+                                As your child improves their skills at jumping rope, their self-image will improve as well. It also gives them something to show off to their peers, allowing them to boost their self-esteem. It is important for young children to feel confident about themselves as this will give them the confidence to make friends with other children their age and to try new things, both of which are crucial for their personal development.</p>
+                        </li>
+                        <li>
+                            <p class="lead"> <b> Muscular strength and endurance:-</b>
+
+                                Jumping rope is a fantastic way to build muscular strength and endurance. It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+
+        </div><!-- /End Col-12 -->
+
+        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;17,000</strong> Right Now.</p>
         </div><!-- /End Row -->
 
         </div><!-- /End Container -->
@@ -979,14 +1026,14 @@
                                 <option disabled selected>
                                     Choose Your pack
                                 </option>
-                                <option value="1 set of copy book">
-                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;15,000
+                                <option value="1 set of copy book @ &#8358;17,000">
+                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;17,000
                                 </option>
-                                <option value="2 set of copy book">
-                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;27,500
+                                <option value="2 set of copy book @ &#8358;29,500">
+                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;29,500
                                 </option>
-                                <option value="3 set of copy book">
-                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;39,500
+                                <option value="3 set of copy book @ &#8358;40,000">
+                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;40,000
                                 </option>
                             </select>
                         </div>
