@@ -893,7 +893,7 @@
                         <li>
                             <p class="lead"> <b> Muscular strength and endurance:-</b>
 
-                                Jumping rope is a fantastic way to build muscular strength and endurance. It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
+                               It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
                         </li>
 
                     </ul>
@@ -1026,13 +1026,13 @@
                                 <option disabled selected>
                                     Choose Your pack
                                 </option>
-                                <option value="1 set of copy book @ &#8358;17,000">
+                                <option value="1 set of copy book @ N17,000">
                                     1 Copybook Regular Set (4 books + free gifts)@ &#8358;17,000
                                 </option>
-                                <option value="2 set of copy book @ &#8358;29,500">
+                                <option value="2 set of copy book @ N29,500">
                                     2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;29,500
                                 </option>
-                                <option value="3 set of copy book @ &#8358;40,000">
+                                <option value="3 set of copy book @ N40,000">
                                     3 Copybook Gold Sets (12 books + free gifts)@ &#8358;40,000
                                 </option>
                             </select>
