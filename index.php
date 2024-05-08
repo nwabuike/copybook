@@ -263,11 +263,10 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="section-header text-center wow fadeIn">
-                            <h2 style="color:#ef7c46">
-                                This Amazing Sank magic practice copybook will improve child’s learning while having Fun
-                                just in weeks of practice.</h2>
-                            <h3 style="color:dodgerblue; font-size: 30px !important"><b>Give your child’s learning a
-                                    boost and see them make you a happy and proud parent!</b></h3>
+                            <h2 style="color:#ef7c46">Order Now & Get High-Value Free Gifts! of &#8358;15,000 and above
+                            </h2>
+                            <h3 style="color:dodgerblue; font-size: 30px !important"><b>This Amazing Sank magic practice copybook will improve child’s learning while having Fun
+                                    just in weeks of practice.</b></h3>
                         </div>
                     </div>
                 </div>
@@ -742,7 +741,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Regular Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>17,000</span></li>
+                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>17,000</span></li>
 
 
                                     <li class="text-edit">Get 1 Set <b>(4 Books + 1 PEN + 4 Refill)</b></li>
@@ -875,6 +874,10 @@
     <div class=" container" style="margin-top: 40px;">
         <div class="row">
             <div class="">
+                <div class="section-header text-center wow fadeIn">
+                    <h2 style="color:#ef7c46;">Our Free Gifts And It's Benfits</h2>
+
+                </div>
                 <div class="col-md-4">
                     <div class="">
                         <h3>Water Game Pad Toy</h3>
