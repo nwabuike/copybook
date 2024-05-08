@@ -216,7 +216,7 @@
             <div class="container vertical-center-rel">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0">
-                        <h1 class="text-white m-b-md p-t-md">&#128293; Limited Time Offer &#128293;&#128293; +
+                        <h1 class="text-white m-b-md p-t-md">⏳ Limited Time Offer +
                             Free delivery + Payment on delivery
                         </h1>
                         <p class="lead text-white m-b-md">The Sank Magic Copybook is the solution! Fun, reusable handwriting practice = Captivated young audiences primed for your brand..♻️</p>
@@ -263,7 +263,7 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="section-header text-center wow fadeIn">
-                            <h2 style="color:#ef7c46">Order Now & Get High-Value Free Gifts! of &#8358;15,000 and above
+                            <h2 style="color:#ef7c46">&#128293;&#128293;Order Now & Get High-Value Free Gifts! of &#8358;15,000 and above..&#128293;&#128293;
                             </h2>
                             <h3 style="color:dodgerblue; font-size: 30px !important"><b>This Amazing Sank magic practice copybook will improve child’s learning while having Fun
                                     just in weeks of practice.</b></h3>
