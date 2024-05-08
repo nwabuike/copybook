@@ -54,6 +54,20 @@
     <!-- RESPONSIVE FIXES -->
     <link rel="stylesheet" href="css/responsive.css">
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54PRKH52XY">
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-54PRKH52XY');
+    </script>
+
     <!-- Meta Pixel Code -->
     <script>
         ! function(f, b, e, v, n, t, s) {
@@ -79,6 +93,55 @@
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478749616293388&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
+
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player;
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '300',
+                width: '100%',
+                videoId: 'SR9xCb9j0Cs',
+                playerVars: {
+                    'playsinline': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        var done = false;
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 6000);
+                done = true;
+            }
+        }
+
+        function stopVideo() {
+            player.stopVideo();
+        }
+    </script>
 
 </head>
 
@@ -153,14 +216,13 @@
             <div class="container vertical-center-rel">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0">
-                        <h1 class="text-white m-b-md p-t-md">&#128293;Big Offer &#128293;&#128293; ! Special promo sales !
-                            free delivery + payment on delivery
-                            Grab this special offer today as stock is limited</h1>
-                        <p class="lead text-white m-b-md">Enhance your kids cognitive and writing skills by gifting them
-                            this amazing magic reusable practice book.</p>
+                        <h1 class="text-white m-b-md p-t-md">&#128293; Limited Time Offer &#128293;&#128293; +
+                            Free delivery + Payment on delivery
+                        </h1>
+                        <p class="lead text-white m-b-md">The Sank Magic Copybook is the solution! Fun, reusable handwriting practice = Captivated young audiences primed for your brand..♻️</p>
 
 
-                        <p class="lead text-white">"Perfect for kids 3years and Above"</p>
+                        <p class="lead text-white">"Perfect for kids <b>3 years</b> and above..."</p>
                     </div><!-- /End Col -->
 
                 </div><!-- /End Row -->
@@ -274,7 +336,7 @@
             </div>
             <div class="row" style="text-align: center;">
                 <div class="" style="margin-bottom: 20px;">
-                    <iframe width="100%" height="350" src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="97%" height="350" src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
                 <h2 style="color:#147bf1"><b>PLEASE WATCH THE VIDEO ABOVE</b></h2>
             </div>
@@ -313,15 +375,28 @@
                 <div class="row">
                     <div class="col-md-10 col-md-offset-1">
                         <div class="section-header text-center wow fadeIn">
-                            <h2>Benefits of This magic Reusable practice book</h2>
+                            <h2 style="color:#ef7c46;">Benefits of This magic Reusable practice book</h2>
                             <p class="lead">Copy book can help children or adult practice different font of Hand writing
                                 and build their own style.</p>
                         </div>
+
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 content-block c3">
+                        <ul>
+                            <li>
+                                <p style="color:#ef7c46;"> Practice Makes Perfect: Reusable Copybook for Growing Minds</p>
+                            </li>
+                            <li>
+                                <p style="color:#ef7c46;"> Sank Magic: Make Learning Letters & Numbers Disappear (Like Magic!).</p>
+                            </li>
+                            <li>
+                                <p style="color:#ef7c46;"> A Magical Start: Develop Fine Motor Skills & Confidence with Sank Magic.</p>
+                            </li>
+                        </ul>
+                        <br />
                         <div class="col-sm-4">
                             <a href="#"><img src="images/number_magic.jpg" alt="" class="img-responsive img-rounded"></a>
                             <div class="post-info">
@@ -505,7 +580,7 @@
                     <!-- Right Col: Highlight Text+Image -->
                     <div class="col-md-6">
                         <div class="lead-block bg-edit bg-orange">
-                            <p class="lead text-white m-b-0 wow zoomIn">Normally the price is $25.99 which is ₦19,388.54
+                            <p class="lead text-white m-b-0 wow zoomIn">Normally the price is $25.99 which is ₦28,388.54
                                 as show in the picture below</p>
                         </div>
                         <div class="img-block" style="background-image:url('images/amazon-price-728x321.png')"></div>
@@ -572,11 +647,13 @@
 
                 <div class="row">
                     <div class="col-md-12 c3 testimonials">
+
+
                         <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
+                        <div class="col-md-4">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/amazon-testimonial1.png" />
+                                    <img src="images/amazon-testimonial1.png" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
@@ -584,7 +661,7 @@
                         <div class="col-md-4 clearfix">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/Amazon-review-sank-3-728x267.png" />
+                                    <img src="images/Amazon-review-sank-3-728x267.png" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
@@ -592,10 +669,11 @@
                         <div class="col-md-4 clearfix">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/amazon-review-sank-2-728x229.png" />
+                                    <img src="images/amazon-review-sank-2-728x229.png" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
+
                     </div>
                 </div><!-- /End Row -->
                 <div class="row">
@@ -604,7 +682,7 @@
                         <div class="col-md-4 clearfix">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/1testimo.JPG" />
+                                    <img src="images/1testimo.JPG" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
@@ -612,7 +690,7 @@
                         <div class="col-md-4 clearfix">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/2testimo.JPG" />
+                                    <img src="images/2testimo.JPG" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
@@ -620,7 +698,15 @@
                         <div class="col-md-4 clearfix">
                             <div class="embed-tweet-item">
                                 <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/3testimo.JPG" />
+                                    <img src="images/3testimo.JPG" class="responsive" />
+                                </blockquote>
+                            </div>
+                        </div>
+                        <!-- Twitter Testimonials -->
+                        <div class="col-md-4 clearfix">
+                            <div class="embed-tweet-item">
+                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
+                                    <img src="images/review_1.JPG" class="responsive" />
                                 </blockquote>
                             </div>
                         </div>
@@ -833,7 +919,8 @@
                     <div class="" style="margin-bottom: 10px;">
 
                         <!-- <img src="images/u brush.jpg" class="img-responsive img-rounded" /> -->
-                        <iframe width="100%" height="300" src="https://www.youtube.com/watch?v=SR9xCb9j0Cs" title="U shape Toothbrush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+                        <div id="player"></div>
+                        <!-- <iframe width="100%" height="200" src="https://www.youtube.com/watch?v=SR9xCb9j0Cs" title="U shape Toothbrush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe> -->
                         <img src="images/u brush.jpg" class="img-responsive img-rounded" />
                         <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
                     </div>
@@ -893,7 +980,7 @@
                         <li>
                             <p class="lead"> <b> Muscular strength and endurance:-</b>
 
-                               It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
+                                It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
                         </li>
 
                     </ul>
