@@ -230,7 +230,7 @@
 
             <!-- Closeup Image on Left -->
             <div class="closeup-box closeup-right">
-                <img src="images/learningg.jpg" alt="">
+                <img class="responsive" src="images/learningg.jpg" alt="">
             </div>
 
         </section>
