@@ -41,12 +41,12 @@
     <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
 
     <!-- PLUGINS STYLESHEET -->
-    <link rel="stylesheet" href="css/plugins/magnific-popup.css">
+    <!-- <link rel="stylesheet" href="css/plugins/magnific-popup.css"> -->
     <link rel="stylesheet" href="css/plugins/owl.carousel.css">
-    <link rel="stylesheet" href="css/plugins/loaders.css">
+    <!-- <link rel="stylesheet" href="css/plugins/loaders.css"> -->
     <link rel="stylesheet" href="css/plugins/animate.css">
-    <link rel="stylesheet" href="css/plugins/pickadate-default.css">
-    <link rel="stylesheet" href="css/plugins/pickadate-default.date.css">
+    <!-- <link rel="stylesheet" href="css/plugins/pickadate-default.css">
+    <link rel="stylesheet" href="css/plugins/pickadate-default.date.css"> -->
 
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="css/style.css">
@@ -216,9 +216,8 @@
             <div class="container vertical-center-rel">
                 <div class="row">
                     <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0">
-                        <h1 class="text-white m-b-md p-t-md">⏳ Limited Time Offer +
-                            Free delivery + Payment on delivery
-                        </h1>
+                        <h3 class="text-white">⏳ Limited Time Offer !!
+                        </h3>
                         <p class="lead text-white m-b-md">The Sank Magic Copybook is the solution! Fun, reusable handwriting practice = Captivated young audiences primed for your brand..♻️</p>
 
 
@@ -1200,18 +1199,18 @@
     ============================== -->
     <script src="js/plugins/jquery1.11.2.min.js"></script>
     <script src="js/plugins/bootstrap.min.js"></script>
-    <script src="js/plugins/jquery.easing.1.3.min.js"></script>
-    <script src="js/plugins/jquery.countTo.js"></script>
+    <!-- <script src="js/plugins/jquery.easing.1.3.min.js"></script>
+    <script src="js/plugins/jquery.countTo.js"></script> -->
     <!-- <script src="js/plugins/jquery.formchimp.min.js"></script> -->
     <script src="js/plugins/jquery.jCounter-0.1.4.js"></script>
-    <script src="js/plugins/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins/jquery.vide.min.js"></script>
+    <!-- <script src="js/plugins/jquery.magnific-popup.min.js"></script> -->
+    <!-- <script src="js/plugins/jquery.vide.min.js"></script> -->
     <script src="js/plugins/owl.carousel.min.js"></script>
-    <script src="js/plugins/spectragram.min.js"></script>
-    <script src="js/plugins/twitterFetcher_min.js"></script>
-    <script src="js/plugins/wow.min.js"></script>
-    <script src="js/plugins/picker.js"></script>
-    <script src="js/plugins/picker.date.js"></script>
+    <!-- <script src="js/plugins/spectragram.min.js"></script> -->
+    <!-- <script src="js/plugins/twitterFetcher_min.js"></script> -->
+    <!-- <script src="js/plugins/wow.min.js"></script> -->
+    <!-- <script src="js/plugins/picker.js"></script>
+    <script src="js/plugins/picker.date.js"></script> -->
     <!-- Custom Script -->
     <script src="js/custom.js"></script>
 
