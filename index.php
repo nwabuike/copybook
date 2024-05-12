@@ -31,8 +31,8 @@
     <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <!-- GOOGLE FONTS -->
-    <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700" rel="stylesheet" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700" rel="stylesheet" />
 
     <link rel="stylesheet" href="fonts/fonts/font-awesome.min.css" />
     <!-- Font css-->
@@ -41,12 +41,12 @@
     <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
 
     <!-- PLUGINS STYLESHEET -->
-    <!-- <link rel="stylesheet" href="css/plugins/magnific-popup.css"> -->
+    <link rel="stylesheet" href="css/plugins/magnific-popup.css">
     <link rel="stylesheet" href="css/plugins/owl.carousel.css">
-    <!-- <link rel="stylesheet" href="css/plugins/loaders.css"> -->
+    <link rel="stylesheet" href="css/plugins/loaders.css">
     <link rel="stylesheet" href="css/plugins/animate.css">
-    <!-- <link rel="stylesheet" href="css/plugins/pickadate-default.css">
-    <link rel="stylesheet" href="css/plugins/pickadate-default.date.css"> -->
+    <link rel="stylesheet" href="css/plugins/pickadate-default.css">
+    <link rel="stylesheet" href="css/plugins/pickadate-default.date.css">
 
     <!-- CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="css/style.css">
@@ -1199,18 +1199,18 @@
     ============================== -->
     <script src="js/plugins/jquery1.11.2.min.js"></script>
     <script src="js/plugins/bootstrap.min.js"></script>
-    <!-- <script src="js/plugins/jquery.easing.1.3.min.js"></script>
-    <script src="js/plugins/jquery.countTo.js"></script> -->
-    <!-- <script src="js/plugins/jquery.formchimp.min.js"></script> -->
+    <script src="js/plugins/jquery.easing.1.3.min.js"></script>
+    <script src="js/plugins/jquery.countTo.js"></script>
+    <script src="js/plugins/jquery.formchimp.min.js"></script>
     <script src="js/plugins/jquery.jCounter-0.1.4.js"></script>
-    <!-- <script src="js/plugins/jquery.magnific-popup.min.js"></script> -->
-    <!-- <script src="js/plugins/jquery.vide.min.js"></script> -->
+    <script src="js/plugins/jquery.magnific-popup.min.js"></script>
+    <script src="js/plugins/jquery.vide.min.js"></script>
     <script src="js/plugins/owl.carousel.min.js"></script>
-    <!-- <script src="js/plugins/spectragram.min.js"></script> -->
-    <!-- <script src="js/plugins/twitterFetcher_min.js"></script> -->
-    <!-- <script src="js/plugins/wow.min.js"></script> -->
-    <!-- <script src="js/plugins/picker.js"></script>
-    <script src="js/plugins/picker.date.js"></script> -->
+    <script src="js/plugins/spectragram.min.js"></script>
+    <script src="js/plugins/twitterFetcher_min.js"></script>
+    <script src="js/plugins/wow.min.js"></script>
+    <script src="js/plugins/picker.js"></script>
+    <script src="js/plugins/picker.date.js"></script>
     <!-- Custom Script -->
     <script src="js/custom.js"></script>
 
