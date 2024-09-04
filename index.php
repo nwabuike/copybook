@@ -740,7 +740,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Regular Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>17,000</span></li>
+                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>18,000</span></li>
 
 
                                     <li class="text-edit">Get 1 Set <b>(4 Books + 1 PEN + 4 Refill)</b></li>
@@ -759,7 +759,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Super Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>29,500</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>31,500</span></li>
                                     <li class="text-edit">Get 2 Set <b>(8 Books + 2 PEN + 8 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE SIX GIFTS</li>
@@ -776,7 +776,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Gold Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>40,000</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>43,000</span></li>
                                     <li class="text-edit">Get 1 Set <b>(12 Books + 3 PEN + 12 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE EIGHT GIFTS</li>
@@ -1061,7 +1061,7 @@
                             <input type="tel" class="form-control" minlength="11" maxlength="11" id="qPhone" placeholder="Phone Number" required>
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-control" minlength="11" maxlength="11" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
+                            <input type="tel" class="form-control" minlength="11" maxlength="14" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
                         </div>
                         <div class="form-group">
                             <select class="form-control form-control-lg" name="qState" class="state" id="qState" required>
@@ -1115,14 +1115,14 @@
                                 <option disabled selected>
                                     Choose Your pack
                                 </option>
-                                <option value="1 set of copy book @ N17,000">
-                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;17,000
+                                <option value="1 set of copy book @ N18,000">
+                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;18,000
                                 </option>
-                                <option value="2 set of copy book @ N29,500">
-                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;29,500
+                                <option value="2 set of copy book @ N31,500">
+                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;31,500
                                 </option>
-                                <option value="3 set of copy book @ N40,000">
-                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;40,000
+                                <option value="3 set of copy book @ N43,000">
+                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;43,000
                                 </option>
                             </select>
                         </div>
