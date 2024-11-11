@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 
-<!-- Mirrored from themes.netivo.it/getleads/consulting.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 May 2023 15:45:06 GMT -->
+
 
 <head>
     <meta charset="utf-8">
@@ -148,13 +148,13 @@
 <body data-spy="scroll" data-target="#main-navbar">
 
     <!-- Preloader -->
-    <!-- <div class="loader bg-orange">
+    <div class="loader bg-orange">
         <div class="loader-inner ball-scale-ripple-multiple vh-center">
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div> -->
+    </div>
 
 
     <div class="main-container" id="page">
@@ -460,7 +460,7 @@
                                 </a>
 
                             </div>
-                            <p class="lead"> <b>The special magic pen’s Ink gradually fade over a time</b> ,
+                            <p class="lead"> <b>The special magic pen’s Ink gradually fade over a time,</b>
                                 disappearing within some minutes of writing. This allows the books to be used over and
                                 over without the need for extra paper and new books every time your child would like to
                                 start again.</p>
@@ -578,10 +578,10 @@
                     <!-- Right Col: Highlight Text+Image -->
                     <div class="col-md-6">
                         <div class="lead-block bg-edit bg-orange">
-                            <p class="lead text-white m-b-0 wow zoomIn">Normally the price is $25.99 which is ₦28,388.54
+                            <p class="lead text-white m-b-0 wow zoomIn">Normally the price is $25.99 which is ₦38,388.54
                                 as show in the picture below</p>
                         </div>
-                        <div class="img-block" style="background-image:url('images/amazon-price-728x321.png')"></div>
+                        <div class="img-block col-sm-12" style=" object-fit: contain; width: 100%; background-image:url('images/amazon-price-728x321.png')"></div>
                     </div>
                 </div><!-- /End Row -->
             </div><!-- /End Container -->
@@ -740,7 +740,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Regular Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>18,000</span></li>
+                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>19,500</span></li>
 
 
                                     <li class="text-edit">Get 1 Set <b>(4 Books + 1 PEN + 4 Refill)</b></li>
@@ -759,7 +759,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Super Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>31,500</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>33,000</span></li>
                                     <li class="text-edit">Get 2 Set <b>(8 Books + 2 PEN + 8 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE SIX GIFTS</li>
@@ -776,7 +776,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Gold Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>43,000</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>44,500</span></li>
                                     <li class="text-edit">Get 1 Set <b>(12 Books + 3 PEN + 12 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE EIGHT GIFTS</li>
@@ -995,7 +995,7 @@
 
         </div><!-- /End Col-12 -->
 
-        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;17,000</strong> Right Now.</p>
+        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;19,500</strong> Right Now.</p>
         </div><!-- /End Row -->
 
         </div><!-- /End Container -->
@@ -1115,14 +1115,14 @@
                                 <option disabled selected>
                                     Choose Your pack
                                 </option>
-                                <option value="1 set of copy book @ N18,000">
-                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;18,000
+                                <option value="1 set of copy book @ N19,500">
+                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;19,500
                                 </option>
-                                <option value="2 set of copy book @ N31,500">
-                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;31,500
+                                <option value="2 set of copy book @ N33,000">
+                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;33,000
                                 </option>
-                                <option value="3 set of copy book @ N43,000">
-                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;43,000
+                                <option value="3 set of copy book @ N44,500">
+                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;44,500
                                 </option>
                             </select>
                         </div>
