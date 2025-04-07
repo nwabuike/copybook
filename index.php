@@ -759,7 +759,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Super Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>33,000</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>35,000</span></li>
                                     <li class="text-edit">Get 2 Set <b>(8 Books + 2 PEN + 8 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE SIX GIFTS</li>
@@ -776,7 +776,7 @@
                             <div class="pricing-table" style="text-align: center;">
                                 <h3>Gold Pack</h3>
                                 <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>44,500</span></li>
+                                    <li class="price text-edit"><i>&#8358;</i><span>51,000</span></li>
                                     <li class="text-edit">Get 1 Set <b>(12 Books + 3 PEN + 12 Refill)</b></li>
                                     <li class="text-edit"> FREE DELIVERY</li>
                                     <li class="text-edit">FREE EIGHT GIFTS</li>
@@ -1118,11 +1118,11 @@
                                 <option value="1 set of copy book @ N19,500">
                                     1 Copybook Regular Set (4 books + free gifts)@ &#8358;19,500
                                 </option>
-                                <option value="2 set of copy book @ N33,000">
-                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;33,000
+                                <option value="2 set of copy book @ N35,000">
+                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;35,000
                                 </option>
-                                <option value="3 set of copy book @ N44,500">
-                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;44,500
+                                <option value="3 set of copy book @ N51,000">
+                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;51,000
                                 </option>
                             </select>
                         </div>
