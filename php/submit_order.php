@@ -1,0 +1,105 @@
+<?php
+// submit_order.php
+// Receives POST from form, inserts order into DB, generates referral code, sends emails, returns JSON
+
+require_once 'db.php';
+date_default_timezone_set('Africa/Lagos');
+
+header('Content-Type: application/json');
+
+function json_error($msg) {
+    echo json_encode(['type'=>'error','text'=>$msg]);
+    exit;
+}
+
+// Read POST
+$fullname = isset($_POST['name']) ? trim($_POST['name']) : '';
+$pack = isset($_POST['pack']) ? trim($_POST['pack']) : '';
+$email = isset($_POST['email']) ? trim($_POST['email']) : '';
+$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
+$altphone = isset($_POST['altphone']) ? trim($_POST['altphone']) : '';
+$address = isset($_POST['address']) ? trim($_POST['address']) : '';
+$state = isset($_POST['state']) ? trim($_POST['state']) : '';
+
+if ($fullname === '' || $phone === '' || $address === '') {
+    json_error('Please complete the required fields (name, phone, address).');
+}
+
+// sanitize for DB
+$fullname_db = $conn->real_escape_string($fullname);
+$pack_db = $conn->real_escape_string($pack);
+$email_db = $conn->real_escape_string($email);
+$phone_db = $conn->real_escape_string($phone);
+$altphone_db = $conn->real_escape_string($altphone);
+$address_db = $conn->real_escape_string($address);
+$state_db = $conn->real_escape_string($state);
+
+// generate unique referral code
+function generate_referral($conn) {
+    $try = 0;
+    do {
+        $code = 'REF' . strtoupper(substr(md5(uniqid(rand(), true)), 0, 8));
+        $sql = "SELECT id FROM orders WHERE referral_code = '" . $conn->real_escape_string($code) . "' LIMIT 1";
+        $res = $conn->query($sql);
+        $exists = ($res && $res->num_rows > 0);
+        $try++;
+    } while ($exists && $try < 5);
+    return $code;
+}
+
+$referral_code = generate_referral($conn);
+$created_at = date('Y-m-d H:i:s');
+
+// Insert order
+$insert = "INSERT INTO orders (fullname, email, phone, altphone, address, state, pack, referral_code, created_at) VALUES ('{$fullname_db}','{$email_db}','{$phone_db}','{$altphone_db}','{$address_db}','{$state_db}','{$pack_db}','{$referral_code}','{$created_at}')";
+if (!$conn->query($insert)) {
+    json_error('Database error: ' . $conn->error);
+}
+$order_id = $conn->insert_id;
+
+// Send emails
+$adminEmail = 'goldenemeraldglobal@gmail.com';
+$siteFrom = 'no-reply@smartkids-edu.local';
+
+// Admin email
+$subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
+$bodyAdmin = "New order received:\n\n";
+$bodyAdmin .= "Order ID: {$order_id}\n";
+$bodyAdmin .= "Fullname: {$fullname}\n";
+$bodyAdmin .= "Email: {$email}\n";
+$bodyAdmin .= "Phone: {$phone}\n";
+$bodyAdmin .= "Alt Phone: {$altphone}\n";
+$bodyAdmin .= "Address: {$address}\n";
+$bodyAdmin .= "State: {$state}\n";
+$bodyAdmin .= "Package: {$pack}\n";
+$bodyAdmin .= "Referral Code: {$referral_code}\n";
+$bodyAdmin .= "Created At: {$created_at}\n";
+$headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\n";
+@$adminMailSent = mail($adminEmail, $subjectAdmin, $bodyAdmin, $headersAdmin);
+
+// Customer email (if provided)
+$customerMailSent = false;
+if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $subjectCustomer = "Your Smartkids Edu Order #{$order_id}";
+    $bodyCustomer = "Hi {$fullname},\n\nThank you for your order. Here are your order details:\n\n";
+    $bodyCustomer .= "Order ID: {$order_id}\n";
+    $bodyCustomer .= "Package: {$pack}\n";
+    $bodyCustomer .= "Delivery to: {$state}\n";
+    $bodyCustomer .= "Address: {$address}\n";
+    $bodyCustomer .= "Referral Code: {$referral_code}\n\n";
+    $bodyCustomer .= "We will contact you shortly to confirm delivery details.\n\nRegards,\nSmartkids Edu";
+    $headersCustomer = "From: Smartkids Edu <{$siteFrom}>\r\n";
+    @$customerMailSent = mail($email, $subjectCustomer, $bodyCustomer, $headersCustomer);
+}
+
+// Return JSON with order info
+echo json_encode([
+    'type' => 'message',
+    'text' => 'Order received',
+    'order_id' => $order_id,
+    'referral_code' => $referral_code,
+    'admin_mail' => $adminMailSent ? 'sent' : 'failed',
+    'customer_mail' => $customerMailSent ? 'sent' : 'failed'
+]);
+
+exit;
