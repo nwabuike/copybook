@@ -1075,8 +1075,142 @@
             .content-grid .img-block figcaption { font-size: 0.9rem; }
             .gift-image { height: 140px; }
         }
+
+        /* Demo order toast notifications */
+        #order-toast-container {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+            max-width: 320px;
+        }
+
+        .order-toast {
+            background: rgba(255,255,255,0.98);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            align-items: center;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: transform 420ms cubic-bezier(.22,.9,.25,1), opacity 300ms ease;
+            pointer-events: auto;
+        }
+
+        .order-toast.show { transform: translateX(0); opacity: 1; }
+
+        .order-toast img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; flex-shrink:0; }
+
+        .order-toast .ot-body { font-size: 0.92rem; color: #333; }
+        .order-toast .ot-body strong { display:block; font-weight:700; color:var(--dark); }
+        .order-toast .ot-meta { font-size:0.8rem; color:#666; margin-top:4px; }
+        .order-toast .ot-pkg { font-size:0.85rem; color:var(--primary); font-weight:700; margin-top:6px; }
+
+        @media (max-width:480px){
+            #order-toast-container { left: 12px; right: 12px; bottom: 12px; max-width:calc(100% - 24px); }
+            .order-toast img { width:48px; height:48px; }
+        }
+
+        /* Fireworks canvas styling */
+        .fireworks-canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        /* ensure hero is positioning context for the fireworks canvas */
+        .hero { position: relative; overflow: visible; }
+
+        /* Payment success overlay */
+        .payment-success-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+        }
+
+        .payment-success-card {
+            background: #fff;
+            padding: 28px 28px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            max-width: 520px;
+            width: 90%;
+            transform: translateY(8px);
+        }
+
+        .payment-success-card h2 { margin: 6px 0 4px; color: #0a7c42; }
+        .payment-success-card p { color: #444; margin: 0 0 12px; }
+        .success-check {
+            font-size: 56px;
+            width: 84px;
+            height: 84px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: linear-gradient(135deg,#2dd4bf,#06b6d4);
+            color: white;
+            box-shadow: 0 8px 20px rgba(6,182,212,0.25);
+            margin-bottom: 8px;
+        }
     </style>
-</head>
+    <!-- Meta Pixel Code (copied from index.php) -->
+    <script>
+        !function(f,b,e,v,n,t,s){if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[]; t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1478749616293388');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478749616293388&ev=PageView&noscript=1"/></noscript>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54PRKH52XY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);} 
+        gtag('js', new Date());
+        gtag('config', 'G-54PRKH52XY');
+    </script>
+    <style>
+        /* Testimonial cards layout and basic look */
+        .testimonial-cards{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}
+        .testimonial-card{flex:1 1 calc(25% - 18px);background:#fff;border:1px solid #ececec;border-radius:10px;padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06);color:#111;min-width:220px}
+        .testimonial-text{font-size:15px;line-height:1.45;color:#263238}
+        .testimonial-author{display:flex;align-items:center;gap:12px;margin-top:12px}
+        .author-avatar{width:44px;height:44px;border-radius:50%;background:#147bf1;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .author-info h4{margin:0;font-size:15px}
+        .author-info p{margin:0;font-size:13px;color:#555}
+
+        /* WhatsApp and Facebook snippet accents */
+        .testimonial-card.whatsapp{background:#f6ffed;border-color:#e6fbb7}
+        .testimonial-card.fb{background:#f0f2f5;border-color:#d8dde3}
+        .testimonial-card a{color:#147bf1;text-decoration:underline}
+
+        /* Rotating hero phrases (large caption style) */
+        .rotating-phrases{margin:18px 0 22px;text-align:center}
+        .rotating-phrases #rotatingWord{display:inline-block;padding:6px 18px;border-radius:10px;background:linear-gradient(90deg,#ffffff,#f8fafc);box-shadow:0 12px 36px rgba(11,54,83,0.08);font-weight:800;color:#0b3653;font-size:32px;line-height:1.05;letter-spacing:0.2px}
+        .rotating-phrases.fade{opacity:0;transition:opacity 320ms ease}
+        @media (max-width:900px){.rotating-phrases #rotatingWord{font-size:26px;padding:6px 14px}}
+        @media (max-width:520px){.rotating-phrases #rotatingWord{font-size:20px;padding:6px 12px}}
+
+        /* Responsive adjustments */
+        @media (max-width:900px){.testimonial-card{flex:1 1 calc(50% - 18px)}}
+        @media (max-width:520px){.testimonial-card{flex:1 1 100%}}
+    </style>
+ </head>
 <body>
     <!-- Header -->
     <header>
@@ -1107,6 +1241,11 @@
             <p>Perfect for kids <strong>3 years and above</strong> — compact, easy-to-follow activities that build pen control, confidence and neat handwriting fast.</p>
             <p>Each purchase includes a value-packed <strong>4-in-1 set</strong> that grows with your child. Help your child develop beautiful handwriting with our fun, educational Magic Groove copybooks. Limited stock — grab yours before they're gone!</p>
 
+            <!-- Rotating benefit phrases -->
+            <div class="rotating-phrases" aria-live="polite">
+                <span id="rotatingWord">Reusable sank copybook</span>
+            </div>
+
             <div class="hero-pricing" aria-hidden="false">
                 <div class="price-chip" data-package="Starter">
                     <div class="chip-title">Starter Set</div>
@@ -1130,6 +1269,8 @@
                     <div class="default-perks">Pay on Delivery • Free delivery • 9 Free Gifts</div>
                 </div>
             </div>
+            <!-- Fireworks canvas (decorative around Black Friday promotion) -->
+            <canvas id="fireworks-canvas" class="fireworks-canvas" aria-hidden="true"></canvas>
             
             <div class="countdown">
                 <h3>HURRY! OFFER ENDS IN:</h3>
@@ -1333,6 +1474,9 @@
             </div>
     </div>
 
+    <!-- Demo Order Toasts Container -->
+    <div id="order-toast-container" aria-live="polite" aria-atomic="true"></div>
+
     <!-- Testimonials Section -->
     <section class="testimonials" id="testimonials">
         <div class="container">
@@ -1344,13 +1488,13 @@
             <div class="testimonial-cards">
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "My daughter's handwriting improved dramatically after just two weeks with these copybooks. The fun illustrations kept her engaged and motivated to practice daily."
+                        "My daughter's handwriting improved so much after just a few weeks. The books are fun and very effective — we practice every evening now."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">S</div>
+                        <div class="author-avatar">C</div>
                         <div class="author-info">
-                            <h4>Sarah Johnson</h4>
-                            <p>Parent of a 7-year-old</p>
+                            <h4>Chinelo Okafor</h4>
+                            <p>Parent, Enugu</p>
                             <div class="rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1361,16 +1505,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "As a kindergarten teacher, I've tried many handwriting resources. These copybooks are by far the most effective. The progression from tracing to independent writing is perfectly structured."
+                        "Excellent learning resource. My KG pupils enjoyed the tracing activities and their fine motor skills have improved. Delivery was prompt too."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">M</div>
+                        <div class="author-avatar">I</div>
                         <div class="author-info">
-                            <h4>Michael Chen</h4>
-                            <p>Elementary School Teacher</p>
+                            <h4>Ibrahim Abdullahi</h4>
+                            <p>Teacher, Kano</p>
                             <div class="rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1381,16 +1525,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "I bought the 3-set package for my twins. They actually look forward to handwriting practice now! The paper quality is excellent and the activities are age-appropriate."
+                        "Bought the bundle for my two kids — they both love it and practise without complaints. Great value and lovely free gifts."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">R</div>
+                        <div class="author-avatar">N</div>
                         <div class="author-info">
-                            <h4>Rachel Williams</h4>
-                            <p>Parent of 6-year-old twins</p>
+                            <h4>Ngozi Nwosu</h4>
+                            <p>Parent, Lagos</p>
                             <div class="rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1401,16 +1545,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="testimonial-card">
                     <div class="testimonial-text">
-                        "The Black Friday discount made these already affordable copybooks an absolute steal. My son has shown remarkable improvement in just a month."
+                        "Fast delivery and friendly support. My son's handwriting is noticeably neater after 3 weeks. Very happy with the purchase."
                     </div>
                     <div class="testimonial-author">
-                        <div class="author-avatar">D</div>
+                        <div class="author-avatar">A</div>
                         <div class="author-info">
-                            <h4>David Miller</h4>
-                            <p>Parent of an 8-year-old</p>
+                            <h4>Adewale Bakare</h4>
+                            <p>Parent, Ibadan</p>
                             <div class="rating">
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
@@ -1418,6 +1562,31 @@
                                 <i class="fas fa-star"></i>
                                 <i class="fas fa-star"></i>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp happy-customer snippet -->
+                <div class="testimonial-card" style="background: #f6ffed; border: 1px solid #e6fbb7;">
+                    <div class="testimonial-text">
+                        <div style="display:flex;align-items:flex-start;gap:12px;">
+                            <div style="font-size:20px;color:#25D366;">📱</div>
+                            <div>
+                                <strong>WhatsApp message</strong>
+                                <p style="margin:6px 0 0;">"Received my order today — the books are excellent and my daughter loves them. Thank you Smartkids Edu!"</p>
+                                <p style="margin:6px 0 0;font-size:13px;color:#666;">— Chinedu, Lagos • <a href="https://wa.me/2348163778265" target="_blank" rel="noopener">Message Seller</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facebook comment style snippet -->
+                <div class="testimonial-card" style="background:#f0f2f5;border:1px solid #d8dde3;">
+                    <div class="testimonial-text" style="display:flex;gap:12px;align-items:flex-start;">
+                        <div class="author-avatar" style="background:#fff;color:#333;">AM</div>
+                        <div>
+                            <div style="font-weight:600;color:#1d2129;">Amaka Obi <span style="font-weight:400;color:#606770;font-size:13px;margin-left:8px;">2w</span></div>
+                            <div style="margin-top:6px;color:#1d2129;">Five stars! My child's handwriting has improved so much. The activities are clear and engaging — highly recommend.</div>
                         </div>
                     </div>
                 </div>
@@ -1924,12 +2093,23 @@
             }).then(r => r.json()).then(res => {
                 console.log('Server response', res);
                 if (res.type === 'message') {
-                    // Redirect to thank you page by referral code (safer than exposing numeric order_id)
-                    if (res.referral_code) {
-                        window.location = 'thank-You.new.php?ref=' + encodeURIComponent(res.referral_code);
-                    } else {
-                        window.location = 'thank-You.new.php?order_id=' + encodeURIComponent(res.order_id);
-                    }
+                    // Play payment-success animation, then redirect to thank you page
+                    const targetUrl = res.referral_code ? ('thank-You.new.php?ref=' + encodeURIComponent(res.referral_code)) : ('thank-You.new.php?order_id=' + encodeURIComponent(res.order_id));
+                    // optional: pass order meta to showSuccessMessage if desired
+                            try {
+                                // Track Purchase via Facebook Pixel (if available)
+                                try {
+                                    const pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
+                                    const priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                                    const purchaseValue = priceMap[pkg] || null;
+                                    if(window.fbq && purchaseValue){ fbq('track', 'Purchase', { currency: 'NGN', value: purchaseValue }); }
+                                } catch(e){ /* ignore pixel errors */ }
+
+                                playPaymentSuccessAnimation(function(){ window.location = targetUrl; });
+                            } catch (e) {
+                                // fallback: if animation fails, redirect immediately
+                                window.location = targetUrl;
+                            }
                 } else if (res.type === 'error') {
                     showFormMessage(res.text || 'There was an error processing your order.', 'error');
                 } else {
@@ -2002,6 +2182,82 @@
             });
         }
 
+        /* Payment success animation (confetti) and overlay
+           callback is called when animation completes (use to redirect)
+        */
+        function playPaymentSuccessAnimation(callback){
+            // create overlay
+            const overlay = document.createElement('div'); overlay.className = 'payment-success-overlay';
+            overlay.setAttribute('role','dialog'); overlay.setAttribute('aria-live','polite');
+
+            const card = document.createElement('div'); card.className = 'payment-success-card';
+            const check = document.createElement('div'); check.className = 'success-check'; check.innerHTML = '&#10003;';
+            const title = document.createElement('h2'); title.textContent = 'Order Successful!';
+            const text = document.createElement('p'); text.textContent = 'Thank you — your order was placed successfully. Redirecting to the thank you page...';
+
+            // confetti canvas
+            const cvs = document.createElement('canvas'); cvs.style.width = '100%'; cvs.style.height = '160px';
+            cvs.width = 900; cvs.height = 200; cvs.style.display = 'block';
+
+            card.appendChild(check);
+            card.appendChild(title);
+            card.appendChild(text);
+            card.appendChild(cvs);
+            overlay.appendChild(card);
+            document.body.appendChild(overlay);
+
+            // simple confetti particle system
+            const ctx = cvs.getContext('2d');
+            let particles = [];
+            function rand(min,max){ return Math.random()*(max-min)+min; }
+            function spawnConfetti(count){
+                for(let i=0;i<count;i++){
+                    particles.push({
+                        x: rand(20, cvs.width-20),
+                        y: rand(20, 60),
+                        vx: rand(-3,3),
+                        vy: rand(1,5),
+                        size: rand(6,12),
+                        color: ['#ff595e','#ffca3a','#8ac926','#1982c4','#6a4c93'][Math.floor(Math.random()*5)],
+                        rot: rand(0,Math.PI*2),
+                        rotSpeed: rand(-0.2,0.2),
+                        ttl: Math.floor(rand(60,140))
+                    });
+                }
+            }
+
+            function update(){
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                for(let i=particles.length-1;i>=0;i--){
+                    const p = particles[i];
+                    p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.rot += p.rotSpeed; p.ttl--;
+                    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+                    ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+                    ctx.restore();
+                    if(p.ttl<=0 || p.y>cvs.height+50) particles.splice(i,1);
+                }
+            }
+
+            let frames = 0; const duration = 3000; // ms (longer for more celebration)
+            let raf;
+            function loop(){
+                update();
+                frames += 16; // approximate
+                // spawn a larger burst periodically for a stronger effect
+                if(frames % 160 === 0) spawnConfetti(18);
+                if(frames < duration){ raf = requestAnimationFrame(loop); }
+                else { cancelAnimationFrame(raf); overlay.classList.add('hide'); setTimeout(()=>{ document.body.removeChild(overlay); if(typeof callback === 'function') callback(); }, 280); }
+            }
+
+            // size canvas for crisp rendering
+            function fit(){
+                const rect = cvs.getBoundingClientRect();
+                cvs.width = Math.max(320, Math.floor(rect.width));
+                cvs.height = Math.max(120, Math.floor(rect.height));
+            }
+            fit(); spawnConfetti(80); loop();
+        }
+
         // Lightbox: open gallery images in modal with prev/next
         (function(){
             const thumbnails = Array.from(document.querySelectorAll('.gallery-thumb'));
@@ -2031,6 +2287,121 @@
             if(nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); show(current+1); });
         })();
 
+        /* Fireworks controller: start/stop and mobile-disable toggle
+           - Respects localStorage 'fireworksEnabled' (string 'false' disables)
+           - Automatically disabled on narrow screens (<480px)
+        */
+        (function(){
+            const cvs = document.getElementById('fireworks-canvas');
+            if(!cvs) return;
+            const ctx = cvs.getContext('2d');
+            let W = 0, H = 0, rafId = null;
+            let fireworks = [];
+
+            function rand(min,max){ return Math.random()*(max-min)+min; }
+
+            function resize(){
+                const rect = cvs.getBoundingClientRect();
+                W = Math.max(300, Math.floor(rect.width));
+                H = Math.max(200, Math.floor(rect.height));
+                const dpr = window.devicePixelRatio || 1;
+                cvs.width = Math.max(300, Math.floor(rect.width * dpr));
+                cvs.height = Math.max(200, Math.floor(rect.height * dpr));
+                cvs.style.width = rect.width + 'px';
+                cvs.style.height = rect.height + 'px';
+                ctx.setTransform(dpr,0,0,dpr,0,0);
+            }
+
+            window.addEventListener('resize', resize);
+
+            function spawnFirework(){
+                const x = rand(40, W-40);
+                const y = rand(H*0.06, H*0.6);
+                const hue = Math.floor(rand(0,360));
+                const sparks = [];
+                const count = Math.floor(rand(28,60));
+                for(let i=0;i<count;i++){
+                    const angle = (Math.PI*2) * (i/count) + rand(-0.06,0.06);
+                    const speed = rand(3.2,8.0);
+                    sparks.push({ x, y, vx: Math.cos(angle)*speed + rand(-1.2,1.2), vy: Math.sin(angle)*speed + rand(-1.2,1.2), life: Math.floor(rand(70,180)), age:0, hue, size: rand(4,12) });
+                }
+                fireworks.push({ sparks });
+            }
+
+            function update(){
+                ctx.clearRect(0,0,W,H);
+                for(let i=fireworks.length-1;i>=0;i--){
+                    const f = fireworks[i];
+                    for(let j=f.sparks.length-1;j>=0;j--){
+                        const s = f.sparks[j];
+                        s.x += s.vx; s.y += s.vy; s.vy += 0.06; s.vx *= 0.997; s.age++;
+                        const alpha = Math.max(0, 1 - s.age/s.life);
+                        const r = s.size || 5;
+                        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r*2);
+                        g.addColorStop(0, `rgba(255,255,255,${Math.min(1, alpha+0.3)})`);
+                        g.addColorStop(0.2, `hsla(${s.hue},90%,60%,${alpha})`);
+                        g.addColorStop(1, `hsla(${s.hue},90%,45%,${alpha*0.02})`);
+                        ctx.globalCompositeOperation = 'lighter';
+                        ctx.fillStyle = g;
+                        ctx.fillRect(s.x - r, s.y - r, r*2, r*2);
+                    }
+                    f.sparks = f.sparks.filter(s=> s.age < s.life && s.y < H + 50);
+                    if(f.sparks.length === 0) fireworks.splice(i,1);
+                }
+            }
+
+            let next = Date.now() + 600;
+            function loop(){
+                const now = Date.now();
+                if(now > next){ spawnFirework(); next = now + rand(400, 1700); }
+                update();
+                rafId = requestAnimationFrame(loop);
+            }
+
+            // controller exposed to window for toggle
+            window._fireworksController = {
+                start: function(){ if(rafId) return; resize(); next = Date.now() + 300; loop(); },
+                stop: function(){ if(rafId){ cancelAnimationFrame(rafId); rafId = null; fireworks = []; ctx.clearRect(0,0,W,H); } },
+                isRunning: function(){ return !!rafId; }
+            };
+
+            // toggle UI (small floating control)
+            (function installToggle(){
+                const control = document.createElement('button');
+                control.type = 'button';
+                control.id = 'fireworks-toggle';
+                control.setAttribute('aria-pressed','false');
+                control.style.position = 'fixed';
+                control.style.left = '12px';
+                control.style.bottom = '12px';
+                control.style.zIndex = '2500';
+                control.style.background = 'rgba(0,0,0,0.6)';
+                control.style.color = '#fff';
+                control.style.border = 'none';
+                control.style.padding = '8px 10px';
+                control.style.borderRadius = '8px';
+                control.style.fontSize = '13px';
+                control.style.cursor = 'pointer';
+                control.textContent = 'Fireworks: On';
+                document.body.appendChild(control);
+
+                function updateLabel(){ const enabled = (localStorage.getItem('fireworksEnabled') !== 'false'); control.textContent = enabled ? 'Fireworks: On' : 'Fireworks: Off'; control.setAttribute('aria-pressed', enabled ? 'true' : 'false'); }
+
+                control.addEventListener('click', function(){
+                    const enabled = (localStorage.getItem('fireworksEnabled') !== 'false');
+                    if(enabled){ localStorage.setItem('fireworksEnabled','false'); window._fireworksController.stop(); }
+                    else { localStorage.removeItem('fireworksEnabled'); if(window.innerWidth >= 480) window._fireworksController.start(); }
+                    updateLabel();
+                });
+
+                updateLabel();
+            })();
+
+            const userDisabled = (localStorage.getItem('fireworksEnabled') === 'false');
+            if(!userDisabled && window.innerWidth >= 480){ window._fireworksController.start(); }
+
+        })();
+
         // Auto-select package when gallery CTA is clicked
         (function(){
             document.querySelectorAll('.cta-button.small[data-package]').forEach(function(btn){
@@ -2057,6 +2428,99 @@
                     // let the default anchor behavior scroll to #order
                 });
             });
+        })();
+
+        // Demo order slide-in notifications (generate 20 fake orders and cycle them)
+        (function(){
+            const first = ['Ada','Emeka','Chinelo','Ifeanyi','Sade','Kunle','Ngozi','Tunde','Aisha','Olu','Maya','Ijeoma','Amaka','Ibrahim','Zainab','Uche','Kemi','Bola','Ikenna','Opeyemi'];
+            const last = ['Nwosu','Okonkwo','Adetunji','Eze','Olawale','Ibrahim','Abiodun','Onyeka','Balogun','Chukwu','Afolabi','Odenigbo','Ejiro','Madu','Ilesanmi','Ogunleye','Suleiman','Ojo','Obi','Omotayo'];
+            const packages = ['Starter','Learning Bundle','Mastery Collection'];
+            const states = ['Lagos','Abuja','Rivers','Enugu','Oyo','Delta','Kaduna','Anambra','Kano','Katsina'];
+            const thumbs = ['images/number_magic.jpg','images/letter_magic.jpg','images/magic_sank.jpg','images/maths_magic.jpg','images/paint_magi.jpg','images/1.jpg'];
+
+            function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+            function genName(i){ return first[i%first.length] + ' ' + last[(i*3)%last.length]; }
+
+            const demoOrders = [];
+            for(let i=0;i<20;i++){
+                demoOrders.push({
+                    name: genName(i),
+                    pkg: rnd(packages),
+                    state: rnd(states),
+                    time: (Math.floor(Math.random()*50)+1) + 'm ago',
+                    img: thumbs[i % thumbs.length]
+                });
+            }
+
+            const container = document.getElementById('order-toast-container');
+            let idx = 0;
+
+            function showOrder(o){
+                const el = document.createElement('div'); el.className = 'order-toast';
+                el.innerHTML = `<img src="${o.img}" loading="lazy" alt="order thumbnail"><div class="ot-body"><strong>${o.name}</strong><div class="ot-pkg">${o.pkg}</div><div class="ot-meta">${o.time} • ${o.state}</div></div>`;
+                container.appendChild(el);
+                // animate in
+                requestAnimationFrame(()=> el.classList.add('show') );
+                // remove after show duration
+                setTimeout(()=>{ el.classList.remove('show'); setTimeout(()=> el.remove(), 420); }, 4200);
+            }
+
+            // cycle through demo orders every 3.8s
+            function cycle(){
+                showOrder(demoOrders[idx]);
+                idx = (idx + 1) % demoOrders.length;
+            }
+
+            // start immediately with a few seeds
+            cycle();
+            setTimeout(cycle, 1800);
+            const interval = setInterval(cycle, 3800);
+
+            // expose for debugging
+            window._demoOrders = { orders: demoOrders, stop: ()=> clearInterval(interval) };
+        })();
+
+        // Facebook addToCart / quick Purchase tracking
+        (function(){
+            function getPurchaseValue(){
+                try{
+                    var pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
+                    var priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                    return priceMap[pkg] || 18000;
+                }catch(e){ return 18000; }
+            }
+
+            var btn = document.getElementById('addToCartButton');
+            if(btn){
+                btn.addEventListener('click', function(e){
+                    try{
+                        var value = getPurchaseValue();
+                        if(window.fbq){ fbq('track', 'Purchase', { currency: 'NGN', value: value }); }
+                    }catch(err){ /* ignore */ }
+                });
+            }
+        })();
+
+        // Rotating hero benefit phrases
+        (function(){
+            const phrases = [
+                'Reusable sank copybook',
+                'The ink disappears after 5mins',
+                'Perfect for kids 3 years and above'
+            ];
+            const el = document.getElementById('rotatingWord');
+            if(!el) return;
+            let idx = 0;
+            function showNext(){
+                el.classList.add('fade');
+                setTimeout(()=>{
+                    idx = (idx + 1) % phrases.length;
+                    el.textContent = phrases[idx];
+                    el.classList.remove('fade');
+                }, 320);
+            }
+            el.textContent = phrases[0];
+            setInterval(showNext, 2600);
         })();
     </script>
 </body>
