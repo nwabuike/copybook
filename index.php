@@ -1,1286 +1,2527 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- TITLE OF SITE -->
-    <title>Copy Book | Sank - Magic Copy Book</title>
-
-    <meta name="description" content="Sank magic copy book - E-learning/smart kids" />
-    <meta name="keywords" content="kids, learning, e-learning, magic copy, sank, copy book, education, smart kid, grown kids, primary schools, one page" />
-    <meta name="author" content="Emerald">
-
-    <!-- FAVICON  -->
-    <!-- Place your favicon.ico in the images directory -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-
-    <!-- =========================
-       STYLESHEETS 
-    ============================== -->
-    <!-- BOOTSTRAP CSS -->
-    <link rel="stylesheet" href="css/plugins/bootstrap.min.css">
-
-    <!-- FONT ICONS -->
-    <link rel="stylesheet" href="css/icons/iconfont.css">
-    <link rel="stylesheet" href="maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Jura:300,400,500,600,700" rel="stylesheet" />
-
-    <link rel="stylesheet" href="fonts/fonts/font-awesome.min.css" />
-    <!-- Font css-->
-    <link rel="stylesheet" href="fonts/fonts/font.css" />
-    <!-- <link rel="stylesheet" href="fonts/font.css"> -->
-    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'> -->
-
-    <!-- PLUGINS STYLESHEET -->
-    <link rel="stylesheet" href="css/plugins/magnific-popup.css">
-    <link rel="stylesheet" href="css/plugins/owl.carousel.css">
-    <link rel="stylesheet" href="css/plugins/loaders.css">
-    <link rel="stylesheet" href="css/plugins/animate.css">
-    <link rel="stylesheet" href="css/plugins/pickadate-default.css">
-    <link rel="stylesheet" href="css/plugins/pickadate-default.date.css">
-
-    <!-- CUSTOM STYLESHEET -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- RESPONSIVE FIXES -->
-    <link rel="stylesheet" href="css/responsive.css">
-
-    <!-- TikTok Pixel Code Start -->
-    <script>
-        ! function(w, d, t) {
-            w.TiktokAnalyticsObject = t;
-            var ttq = w[t] = w[t] || [];
-            ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie", "holdConsent", "revokeConsent", "grantConsent"], ttq.setAndDefer = function(t, e) {
-                t[e] = function() {
-                    t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
-                }
-            };
-            for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-            ttq.instance = function(t) {
-                for (
-                    var e = ttq._i[t] || [], n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
-                return e
-            }, ttq.load = function(e, n) {
-                var r = "https://analytics.tiktok.com/i18n/pixel/events.js",
-                    o = n && n.partner;
-                ttq._i = ttq._i || {}, ttq._i[e] = [], ttq._i[e]._u = r, ttq._t = ttq._t || {}, ttq._t[e] = +new Date, ttq._o = ttq._o || {}, ttq._o[e] = n || {};
-                n = document.createElement("script");
-                n.type = "text/javascript", n.async = !0, n.src = r + "?sdkid=" + e + "&lib=" + t;
-                e = document.getElementsByTagName("script")[0];
-                e.parentNode.insertBefore(n, e)
-            };
-
-
-            ttq.load('D3VDUJ3C77UD89P2JFKG');
-            ttq.page();
-        }(window, document, 'ttq');
-    </script>
-    <!-- TikTok Pixel Code End -->
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54PRKH52XY">
-    </script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerald Tech Hub | Kids Copybooks - Black Friday Special</title>
+    <meta name="description" content="Black Friday deals on Sank Magic copybooks — reusable 4-in-1 practice books for kids 3+. Free delivery & gifts. Order Starter, Bundle or Mastery packages today.">
+    <meta name="keywords" content="kids copybooks, handwriting practice, Sank Magic, reusable copybook, black friday, free delivery, pay on delivery">
+    <link rel="canonical" href="/magicbook/copybook-blackfridaysales.php">
+    <meta property="og:title" content="Black Friday: Sank Magic Copybooks — Free Gifts & Delivery" />
+    <meta property="og:description" content="Limited Black Friday offer on reusable Sank Magic copybooks for kids (3+). Free delivery across Nigeria and multiple free gifts with every order." />
+    <meta property="og:image" content="images/copybooks.jpg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Black Friday: Sank Magic Copybooks" />
+    <meta name="twitter:description" content="Limited Black Friday offer on reusable Sank Magic copybooks for kids. Free delivery & gifts." />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0a7c42;
+            --primary-dark: #066633;
+            --primary-light: #e8f5e9;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #2d3047;
+            --light: #f7f9fc;
+            --text: #333333;
+            --transition: all 0.3s ease;
         }
-        gtag('js', new Date());
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Neue', cursive, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 28px;
+            color: white;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: #ffc145;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-light) 0%, #c8e6c9 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M20,20 Q40,5 50,30 T80,20" stroke="%230a7c42" fill="none" stroke-width="2"/><path d="M30,50 Q15,65 40,80 T50,50" stroke="%230a7c42" fill="none" stroke-width="2"/><circle cx="70" cy="70" r="5" fill="%230a7c42"/><circle cx="20" cy="80" r="3" fill="%230a7c42"/></svg>');
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--dark);
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+        }
 
-        gtag('config', 'G-54PRKH52XY');
-    </script>
+        /* Animated badges for hero */
+        .hero-badge { display:inline-block; padding:6px 14px; border-radius:999px; color:white; font-weight:800; margin-right:10px; font-size:0.9rem; }
+        .bf-badge { background: linear-gradient(90deg,#ff3b3b,#ff6b6b); animation: float 2.8s ease-in-out infinite, glow 2.5s ease-in-out infinite; }
+        .md-badge { background: #000; color: #fff; animation: pop 1.8s ease-in-out infinite; padding:8px 16px; font-size:1.05rem; box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 
-    <!-- Meta Pixel Code -->
+        @keyframes float { 0%{ transform: translateY(0);} 50%{ transform: translateY(-6px);} 100%{ transform: translateY(0);} }
+        @keyframes glow { 0%{ box-shadow:0 0 6px rgba(255,59,59,0.12);} 50%{ box-shadow:0 14px 40px rgba(255,59,59,0.14);} 100%{ box-shadow:0 0 6px rgba(255,59,59,0.12);} }
+        @keyframes pop { 0%{ transform: scale(1);} 50%{ transform: scale(1.06);} 100%{ transform: scale(1);} }
+
+        /* Hero pricing chips */
+        .hero-pricing { display:flex; gap:14px; justify-content:center; margin:18px 0 26px; flex-wrap:wrap; }
+        .price-chip { background: white; border-radius:12px; padding:12px 16px; min-width:160px; box-shadow:0 8px 30px rgba(10,124,66,0.06); text-align:center; border:1px solid rgba(10,124,66,0.06); position:relative; cursor:pointer; transition: transform 220ms ease, box-shadow 220ms ease; }
+        .price-chip:hover { transform: translateY(-8px) scale(1.02); box-shadow:0 24px 60px rgba(10,124,66,0.12); }
+        .price-chip.featured { transform: translateY(-6px); border:2px solid rgba(10,124,66,0.12); box-shadow:0 18px 48px rgba(10,124,66,0.12); }
+        .price-chip .ribbon { position:absolute; left:-18px; top:12px; background:#ff3b3b; color:white; padding:6px 10px; font-weight:800; font-size:0.78rem; transform:rotate(-14deg); box-shadow:0 6px 18px rgba(0,0,0,0.12); border-radius:4px; }
+        .chip-title { font-weight:700; color:var(--dark); margin-bottom:6px; }
+        .chip-prices { margin-bottom:6px; }
+        .old-price { text-decoration:line-through; color:#888; margin-right:8px; }
+        .new-price { font-weight:800; color:var(--primary); font-size:1.2rem; }
+        .chip-note { font-size:0.85rem; color:#666; }
+        /* default perks line used in pricing cards */
+        .default-perks { margin-top:8px; font-weight:700; color:var(--primary); font-size:0.95rem; }
+
+        @media (max-width:768px){ .hero h1{font-size:2rem;} .hero-pricing{gap:10px} .price-chip{min-width:140px;padding:10px;} }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--dark);
+        }
+        
+        .countdown {
+            background-color: rgba(10, 124, 66, 0.1);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .countdown h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .timer-item {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+        }
+        
+        .timer-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .timer-label {
+            font-size: 0.8rem;
+            color: var(--dark);
+        }
+        
+        /* Free Gifts Section */
+        .free-gifts {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .gifts-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .gift-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .gift-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gift-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--primary-light);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--primary);
+            overflow: hidden;
+        }
+
+        /* make images inside gift cards responsive */
+        .gift-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        .gift-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .gift-card p {
+            color: #666;
+        }
+        
+        /* Video / Content7 Section */
+        .video-section {
+            padding: 100px 0;
+            background-color: var(--primary-light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Responsive video container and image grid used for content7-1 */
+        #content7-1 .video-wrap { max-width: 980px; margin: 0 auto 18px; padding: 8px; border-radius: 14px; background: #ffffff; box-shadow: 0 10px 30px rgba(0,0,0,0.10); }
+        #content7-1 .video-embed { position: relative; padding-top: 56.25%; /* 16:9 ratio */ height: 0; border-radius:8px; overflow: hidden; background:#000; }
+        #content7-1 .video-embed iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; display: block; }
+        .content-grid { display:flex; flex-wrap:wrap; gap:18px; margin-top:18px; }
+        .content-grid figure.img-block { flex: 1 1 calc(50% - 18px); margin:0; border-radius:10px; overflow:hidden; background:white; display:flex; flex-direction:column; }
+        .content-grid .img-block img { width:100%; height:100%; object-fit:cover; display:block; }
+        .content-grid .img-block figcaption { padding:10px; background: #fff; color:#2b6cb0; font-weight:700; text-align:center; font-size:0.95rem; }
+
+        /* Mobile adjustments for the content7-1 area */
+        @media (max-width: 768px) {
+            #content7-1 { padding: 40px 0; }
+            #content7-1 .section-title h2 { font-size: 1.4rem; }
+            #content7-1 iframe { height: 200px; }
+            .content-grid .img-block { min-height: 120px; flex-basis: 100%; }
+        }
+        
+        /* Gallery Section */
+        .gallery-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-image img {
+            transform: scale(1.05);
+        }
+        
+        .gallery-info {
+            padding: 20px;
+        }
+        
+        .gallery-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .gallery-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* small CTA for gallery items */
+        .cta-button.small {
+            display: inline-block;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            background: var(--primary);
+            color: #fff;
+            text-decoration: none;
+            margin-top: 8px;
+        }
+        .cta-button.small:hover { background: var(--primary-dark); }
+        
+        .product-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .free-gift-tag {
+            background: var(--secondary);
+        }
+        
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-nav button:hover {
+            background: var(--primary);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+        }
+        
+        .testimonial-cards {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: thin;
+        }
+        
+        .testimonial-card {
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .rating {
+            color: var(--accent);
+            margin-top: 5px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 3rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .product-info p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+        
+        .discount-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background-color: var(--primary-light);
+        }
+        
+        .pricing-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            transition: var(--transition);
+            border: 2px solid #f0f0f0;
+            position: relative;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .price {
+            margin-bottom: 30px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.2rem;
+        }
+        
+        .discount-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        
+        .savings {
+            background-color: rgba(10, 124, 66, 0.1);
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .features {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        /* Order Form Section */
+        .order-form-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);
+        }
+        
+        .order-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .order-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .order-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .order-info p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .benefits {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .benefits li {
+            margin-bottom: 15px;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .benefits li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .form-container {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(10, 124, 66, 0.2);
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .payment-info {
+            background: var(--primary-light);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .payment-info i {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+        
+        .submit-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(10, 124, 66, 0.4);
+        }
+        
+        /* Referral Section */
+        .referral {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--dark) 0%, #3a3e5c 100%);
+            color: white;
+        }
+        
+        .referral-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        
+        .referral-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .referral-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .referral-text h2 span {
+            color: var(--accent);
+        }
+        
+        .referral-text p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+        
+        .referral-steps {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            background-color: var(--accent);
+            color: var(--dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 5px;
+            color: white;
+        }
+        
+        .step-content p {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp Section */
+        .whatsapp-section {
+            padding: 80px 0;
+            background-color: white;
+            text-align: center;
+        }
+        
+        .whatsapp-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 15px;
+            padding: 40px;
+            color: white;
+        }
+        
+        .whatsapp-container h2 {
+            margin-bottom: 20px;
+        }
+        
+        .whatsapp-numbers {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .whatsapp-number {
+            background: white;
+            color: #25D366;
+            padding: 15px 25px;
+            border-radius: 30px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .whatsapp-number:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            padding: 60px 0 30px;
+            color: white;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-column h4 {
+            margin-bottom: 20px;
+            color: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .container { width: 94%; padding: 0 16px; }
+            .hero { padding: 60px 0; }
+            .hero h1 { font-size: 2.25rem; }
+            .section-title h2 { font-size: 2rem; }
+            .gallery-image { height: 200px; }
+            .product-image { height: 180px; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.9rem; }
+            .nav-links { display: none; }
+            .header-content { flex-wrap: wrap; gap: 10px; }
+            .cta-button { width: 100%; text-align: center; }
+            .gifts-container { flex-direction: column; align-items: center; }
+            .gallery-container { grid-template-columns: 1fr; }
+            .timer { flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; }
+            .timer-item { min-width: 70px; padding: 10px; }
+            .order-container { flex-direction: column; }
+            .form-row { flex-direction: column; gap: 0; }
+        }
+
+        @media (max-width: 480px) {
+            /* reduce vertical padding on small phones */
+            #content7-1 .video-wrap { padding: 6px; }
+            .content-grid .img-block figcaption { font-size: 0.9rem; }
+            .gift-image { height: 140px; }
+        }
+
+        /* Demo order toast notifications */
+        #order-toast-container {
+            position: fixed;
+            right: 20px;
+            bottom: 24px;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            pointer-events: none;
+            max-width: 320px;
+        }
+
+        .order-toast {
+            background: rgba(255,255,255,0.98);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            display: flex;
+            gap: 10px;
+            padding: 10px;
+            align-items: center;
+            transform: translateX(120%);
+            opacity: 0;
+            transition: transform 420ms cubic-bezier(.22,.9,.25,1), opacity 300ms ease;
+            pointer-events: auto;
+        }
+
+        .order-toast.show { transform: translateX(0); opacity: 1; }
+
+        .order-toast img { width: 56px; height: 56px; object-fit: cover; border-radius: 8px; flex-shrink:0; }
+
+        .order-toast .ot-body { font-size: 0.92rem; color: #333; }
+        .order-toast .ot-body strong { display:block; font-weight:700; color:var(--dark); }
+        .order-toast .ot-meta { font-size:0.8rem; color:#666; margin-top:4px; }
+        .order-toast .ot-pkg { font-size:0.85rem; color:var(--primary); font-weight:700; margin-top:6px; }
+
+        @media (max-width:480px){
+            #order-toast-container { left: 12px; right: 12px; bottom: 12px; max-width:calc(100% - 24px); }
+            .order-toast img { width:48px; height:48px; }
+        }
+
+        /* Fireworks canvas styling */
+        .fireworks-canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 500;
+        }
+
+        /* ensure hero is positioning context for the fireworks canvas */
+        .hero { position: relative; overflow: visible; }
+
+        /* Payment success overlay */
+        .payment-success-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.5);
+            z-index: 3000;
+        }
+
+        .payment-success-card {
+            background: #fff;
+            padding: 28px 28px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+            max-width: 520px;
+            width: 90%;
+            transform: translateY(8px);
+        }
+
+        .payment-success-card h2 { margin: 6px 0 4px; color: #0a7c42; }
+        .payment-success-card p { color: #444; margin: 0 0 12px; }
+        .success-check {
+            font-size: 56px;
+            width: 84px;
+            height: 84px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: linear-gradient(135deg,#2dd4bf,#06b6d4);
+            color: white;
+            box-shadow: 0 8px 20px rgba(6,182,212,0.25);
+            margin-bottom: 8px;
+        }
+    </style>
+    <!-- Meta Pixel Code (copied from index.php) -->
     <script>
-        ! function(f, b, e, v, n, t, s) {
-            if (f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ?
-                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
-            };
-            if (!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t, s)
-        }(window, document, 'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
+        !function(f,b,e,v,n,t,s){if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)}; if(!f._fbq) f._fbq=n; n.push=n; n.loaded=!0; n.version='2.0'; n.queue=[]; t=b.createElement(e); t.async=!0; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s)}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
         fbq('init', '1478749616293388');
         fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478749616293388&ev=PageView&noscript=1" /></noscript>
-    <!-- End Meta Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478749616293388&ev=PageView&noscript=1"/></noscript>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-54PRKH52XY"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);} 
+        gtag('js', new Date());
+        gtag('config', 'G-54PRKH52XY');
+    </script>
+    <style>
+        /* Testimonial cards layout and basic look */
+        .testimonial-cards{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px}
+        .testimonial-card{flex:1 1 calc(25% - 18px);background:#fff;border:1px solid #ececec;border-radius:10px;padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06);color:#111;min-width:220px}
+        .testimonial-text{font-size:15px;line-height:1.45;color:#263238}
+        .testimonial-author{display:flex;align-items:center;gap:12px;margin-top:12px}
+        .author-avatar{width:44px;height:44px;border-radius:50%;background:#147bf1;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700}
+        .author-info h4{margin:0;font-size:15px}
+        .author-info p{margin:0;font-size:13px;color:#555}
+
+        /* WhatsApp and Facebook snippet accents */
+        .testimonial-card.whatsapp{background:#f6ffed;border-color:#e6fbb7}
+        .testimonial-card.fb{background:#f0f2f5;border-color:#d8dde3}
+        .testimonial-card a{color:#147bf1;text-decoration:underline}
+
+        /* Rotating hero phrases (large caption style) */
+        .rotating-phrases{margin:18px 0 22px;text-align:center}
+        .rotating-phrases #rotatingWord{display:inline-block;padding:6px 18px;border-radius:10px;background:linear-gradient(90deg,#ffffff,#f8fafc);box-shadow:0 12px 36px rgba(11,54,83,0.08);font-weight:800;color:#0b3653;font-size:32px;line-height:1.05;letter-spacing:0.2px}
+        .rotating-phrases.fade{opacity:0;transition:opacity 320ms ease}
+        @media (max-width:900px){.rotating-phrases #rotatingWord{font-size:26px;padding:6px 14px}}
+        @media (max-width:520px){.rotating-phrases #rotatingWord{font-size:20px;padding:6px 12px}}
+
+        /* Responsive adjustments */
+        @media (max-width:900px){.testimonial-card{flex:1 1 calc(50% - 18px)}}
+        @media (max-width:520px){.testimonial-card{flex:1 1 100%}}
+    </style>
+ </head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                        <div class="logo-text">Smartkids Edu</div>
+                </div>
+                <nav class="nav-links">
+                    <a href="#products">Products</a>
+                    <a href="#pricing">Pricing</a>
+                    <a href="#testimonials">Reviews</a>
+                    <a href="#order">Order Now</a>
+                </nav>
+                <button class="cta-button" data-scroll-to="#order">Buy Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Black Friday Massive Discount on Kids Copybooks
+            </h1>
+            <p>Perfect for kids <strong>3 years and above</strong> — compact, easy-to-follow activities that build pen control, confidence and neat handwriting fast.</p>
+            <p>Each purchase includes a value-packed <strong>4-in-1 set</strong> that grows with your child. Help your child develop beautiful handwriting with our fun, educational Magic Groove copybooks. Limited stock — grab yours before they're gone!</p>
+
+            <!-- Rotating benefit phrases -->
+            <div class="rotating-phrases" aria-live="polite">
+                <span id="rotatingWord">Reusable sank copybook</span>
+            </div>
+
+            <div class="hero-pricing" aria-hidden="false">
+                <div class="price-chip" data-package="Starter">
+                    <div class="chip-title">Starter Set</div>
+                    <div class="chip-prices"><span class="old-price">₦22,500</span><span class="new-price">₦18,000</span></div>
+                    <div class="chip-note">4-in-1 Book</div>
+                    <div class="default-perks">Pay on Delivery • Free delivery • 3 Free Gifts</div>
+                </div>
+
+                <div class="price-chip featured" data-package="Bundle">
+                    <span class="ribbon">-29% OFF</span>
+                    <div class="chip-title">Learning Bundle</div>
+                    <div class="chip-prices"><span class="old-price">₦45,000</span><span class="new-price">₦32,000</span></div>
+                    <div class="chip-note">2 Sets (4-in-1 Book)</div>
+                    <div class="default-perks">Pay on Delivery • Free delivery • 6 Free Gifts</div>
+                </div>
+
+                <div class="price-chip" data-package="Collection">
+                    <div class="chip-title">Mastery Collection</div>
+                    <div class="chip-prices"><span class="old-price">₦67,500</span><span class="new-price">₦45,000</span></div>
+                    <div class="chip-note">3 Sets (4-in-1 Book)</div>
+                    <div class="default-perks">Pay on Delivery • Free delivery • 9 Free Gifts</div>
+                </div>
+            </div>
+            <!-- Fireworks canvas (decorative around Black Friday promotion) -->
+            <canvas id="fireworks-canvas" class="fireworks-canvas" aria-hidden="true"></canvas>
+            
+            <div class="countdown">
+                <h3>HURRY! OFFER ENDS IN:</h3>
+                <div class="timer">
+                    <div class="timer-item">
+                        <div class="timer-number" id="days">10</div>
+                        <div class="timer-label">DAYS</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="hours">23</div>
+                        <div class="timer-label">HOURS</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="minutes">59</div>
+                        <div class="timer-label">MINUTES</div>
+                    </div>
+                    <div class="timer-item">
+                        <div class="timer-number" id="seconds">59</div>
+                        <div class="timer-label">SECONDS</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="cta-button" data-scroll-to="#order">Claim Your Discount Now</button>
+        </div>
+    </section>
+
+  
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefits of This magic Reusable practice book</h2>
+                <p>Practice Makes Perfect: Reusable Copybook for Growing Minds</p>
+                <p>Sank Magic: Make Learning Letters & Numbers Disappear (Like Magic!).</p>
+                <p>A Magical Start: Develop Fine Motor Skills & Confidence with Sank Magic.</p>
+                
+            </div>
+            
+            <div class="gallery-container">
+                <!-- Replaced gallery items with images and write-ups from index.php #blog2-1 -->
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/number_magic.jpg" alt="Number Magic" data-index="0" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">This magic practice copy book lets kids practice writing letters and numbers that they often struggle with in school right at home in their own space.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Starter">Order Starter Set</a></p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/letter_magic.jpg" alt="Letter Magic" data-index="1" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">The books are designed with grooved Letters and Numbers that guides your child’s hand resulting in improved muscle memory and beautiful handwriting.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Bundle">Order Learning Bundle</a></p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/magic_sank.jpg" alt="Magic Sank" data-index="2" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">Kids will love this fun way to develop their skills, while parents can breathe a sigh of relief knowing they are developing important life skills without any mess or fuss.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Collection">Order Mastery Collection</a></p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/maths_magic.jpg" alt="Maths Magic" data-index="3" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">The special magic pen’s ink gradually fades over time, disappearing within minutes of writing. This allows the books to be used over and over without the need for extra paper and new books every time your child would like to start again.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Starter">Order Starter Set</a></p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/paint_magi.jpg" alt="Paint Magic" data-index="4" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">Thinking of the perfect gift for kids on occasions such as Birthday, children’s day or any other special occasion then you just found one.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Bundle">Order Learning Bundle</a></p>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="gallery-image">
+                        <img src="images/1.jpg" alt="Durable Paper" data-index="5" class="gallery-thumb" loading="lazy" />
+                    </div>
+                    <div class="gallery-info">
+                        <p class="lead">The paper of this practice copybook is also durable because it is made to be thicker than normal. Thus, it does not easily smudge, squeeze or tear. It will last for every child.</p>
+                        <p><a class="cta-button small" href="#order" data-package="Collection">Order Mastery Collection</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content7-1: Video + Image Grid (combined, with H2 header) -->
+    <section id="content7-1" class="video-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Watch & See How Sank Magic Copybooks Work</h2>
+                <p>Short demo showing how the grooves guide young learners to form letters and numbers — then reuse the pages again and again.</p>
+            </div>
+
+            <div class="video-wrap">
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:14px;margin-bottom:8px;">
+                <h2 style="color:#147bf1;"><b>PLEASE WATCH THE VIDEO ABOVE</b></h2>
+            </div>
+
+            <div class="content-grid">
+                <figure class="img-block">
+                    <img src="images/slider1.jpg" alt="Magic copybook demo" loading="lazy">
+                    <figcaption>See the Magic Copybook in action</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/sliddd.jpg" alt="Practice activities" loading="lazy">
+                    <figcaption>Fun practice activities for early learners</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/slidde.jpg" alt="Reusable pages" loading="lazy">
+                    <figcaption>Reusable pages — write, watch fade, and repeat</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/magic-book-3-1024x1024.jpg" alt="Durable copybook" loading="lazy">
+                    <figcaption>Durable, kid-friendly materials</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+      <!-- Free Gifts Section -->
+    <section class="free-gifts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Free  Gifts With Every Order! and It's Benfits</h2>
+                <p>Order any copybook package during our Black Friday sale and receive these amazing free gifts</p>
+
+            </div>
+            
+            <div class="gifts-container">
+                <div class="gift-card">
+                    <div class="gift-image">
+                            <img src="images/4322-1.jpg" alt="Water Game Pad Toy" loading="lazy" />
+                        </div>
+                    <h3>Water Game Pad Toy</h3>
+                    <p>Reusable water gaming pad for endless creative fun without the mess!</p>
+                    <p>This item will bring back memories from the past and can be enjoyed by all family members.</p>
+                    <p>This game encourages hand eye coordination, encourages concentration and will keep your kids entertained while learning to count and differentiating colour and shapes.</p>
+                    <p>Promotes problem solving skills in Kids</p>
+                </div>
+                
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <img src="images/u brush.jpg" alt="U-Shaped Toothbrush" loading="lazy" />
+                    </div>
+                    <h3>U-Shaped Toothbrush</h3>
+                    <p>Make brushing fun with our kid-friendly U-shaped toothbrush design!</p>
+                    <p>it can also help prevent cavities, tooth decay, and gum disease, and instill good oral hygiene habits in your child.</p>
+                    <p>These 360-degree u shape toothbrushes are special designed for kids, the bristle is soft and hygienic for massaging toddlers’ gum and sensitive teeth.</p>
+                    <p>Easy to Use: Apply an appropriate amount of Children's Foam Toothpaste on both sides of the toothbrush, and then brush the teeth with repeated swings from side to side.</P>
+                    <p></p>
+                </div>
+                
+                <div class="gift-card">
+                          <div class="gift-image">
+                              <img src="images/skipp_rope.jpg" alt="Adjustable Skipping Rope" loading="lazy" />
+                          </div>
+                    <h3>Adjustable Skipping Rope</h3>
+                    <p>Muscular strength and endurance:- It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+                <span class="lightbox-close" id="lightbox-close" role="button" aria-label="Close gallery" tabindex="0">&times;</span>
+                <img id="lightbox-image" src="" alt="">
+                <div class="lightbox-nav">
+                    <button id="lightbox-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
+                    <button id="lightbox-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+    </div>
+
+    <!-- Demo Order Toasts Container -->
+    <div id="order-toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Parents & Teachers Say</h2>
+                <p>Don't just take our word for it - hear from those who have used our copybooks</p>
+            </div>
+            
+            <div class="testimonial-cards">
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "My daughter's handwriting improved so much after just a few weeks. The books are fun and very effective — we practice every evening now."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div class="author-info">
+                            <h4>Chinelo Okafor</h4>
+                            <p>Parent, Enugu</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Excellent learning resource. My KG pupils enjoyed the tracing activities and their fine motor skills have improved. Delivery was prompt too."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">I</div>
+                        <div class="author-info">
+                            <h4>Ibrahim Abdullahi</h4>
+                            <p>Teacher, Kano</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Bought the bundle for my two kids — they both love it and practise without complaints. Great value and lovely free gifts."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">N</div>
+                        <div class="author-info">
+                            <h4>Ngozi Nwosu</h4>
+                            <p>Parent, Lagos</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        "Fast delivery and friendly support. My son's handwriting is noticeably neater after 3 weeks. Very happy with the purchase."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">A</div>
+                        <div class="author-info">
+                            <h4>Adewale Bakare</h4>
+                            <p>Parent, Ibadan</p>
+                            <div class="rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp happy-customer snippet -->
+                <div class="testimonial-card" style="background: #f6ffed; border: 1px solid #e6fbb7;">
+                    <div class="testimonial-text">
+                        <div style="display:flex;align-items:flex-start;gap:12px;">
+                            <div style="font-size:20px;color:#25D366;">📱</div>
+                            <div>
+                                <strong>WhatsApp message</strong>
+                                <p style="margin:6px 0 0;">"Received my order today — the books are excellent and my daughter loves them. Thank you Smartkids Edu!"</p>
+                                <p style="margin:6px 0 0;font-size:13px;color:#666;">— Chinedu, Lagos • <a href="https://wa.me/2348163778265" target="_blank" rel="noopener">Message Seller</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facebook comment style snippet -->
+                <div class="testimonial-card" style="background:#f0f2f5;border:1px solid #d8dde3;">
+                    <div class="testimonial-text" style="display:flex;gap:12px;align-items:flex-start;">
+                        <div class="author-avatar" style="background:#fff;color:#333;">AM</div>
+                        <div>
+                            <div style="font-weight:600;color:#1d2129;">Amaka Obi <span style="font-weight:400;color:#606770;font-size:13px;margin-left:8px;">2w</span></div>
+                            <div style="margin-top:6px;color:#1d2129;">Five stars! My child's handwriting has improved so much. The activities are clear and engaging — highly recommend.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Incredible Black Friday Pricing</h2>
+                <p>Choose the perfect package for your child's handwriting journey. All sets include progressive exercises.</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <!-- 1 Set Package -->
+                <div class="pricing-card">
+                    <h3>Starter Set</h3>
+                    <div class="price">
+                        <div class="original-price">₦22,500</div>
+                        <div class="discount-price">₦18,000</div>
+                        <div class="savings">Save ₦4,500</div>
+                    </div>
+                    <ul class="features">
+                        <li>1 Comprehensive Copybook</li>
+                        <li>Letters A-Z (uppercase & lowercase)</li>
+                        <li>Numbers 1-20</li>
+                        <li>Basic words and sentences</li>
+                        <li>Fun practice activities</li>
+                        <li>Free pencil grip helper</li>
+                        <li>10 Premium Refill Pens</li>
+                        <li>+ 3 Free Gifts</li>
+                    </ul>
+                    <button class="cta-button" data-scroll-to="#order">Buy Now</button>
+                </div>
+                
+                <!-- 2 Sets Package -->
+                <div class="pricing-card featured">
+                    <h3>Learning Bundle</h3>
+                    <div class="price">
+                        <div class="original-price">₦45,000</div>
+                        <div class="discount-price">₦32,000</div>
+                        <div class="savings">Save ₦13,000</div>
+                    </div>
+                    <ul class="features">
+                        <li>2 Progressive Copybooks</li>
+                        <li>Book 1: Letters & Numbers</li>
+                        <li>Book 2: Words & Sentences</li>
+                        <li>10 Premium Refill Pens</li>
+                        <li>Free pencil grip helper</li>
+                        <li>+ 6 Free Gifts</li>
+                    </ul>
+                    <button class="cta-button" data-scroll-to="#order">Buy Now</button>
+                </div>
+                
+                <!-- 3 Sets Package -->
+                <div class="pricing-card">
+                    <h3>Mastery Collection</h3>
+                    <div class="price">
+                        <div class="original-price">₦67,500</div>
+                        <div class="discount-price">₦45,000</div>
+                        <div class="savings">Save ₦22,500</div>
+                    </div>
+                    <ul class="features">
+                        <li>3 Comprehensive Copybooks</li>
+                        <li>Book 1: Foundation</li>
+                        <li>Book 2: Development</li>
+                        <li>Book 3: Mastery</li>
+                        <li>Free pencil grip helper</li>
+                        <li>10 Premium Refill Pens</li>
+                        <li>+ 9 Free Gifts</li>
+                    </ul>
+                    <button class="cta-button" data-scroll-to="#order">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form Section -->
+    <section class="order-form-section" id="order">
+        <div class="container">
+            <div class="order-container">
+                <div class="order-info">
+                    <h2>Order Your Copybooks Today!</h2>
+                    <p>Take advantage of our Black Friday sale and give your child the gift of beautiful handwriting. Limited stock available at these prices!</p>
+                    
+                    <ul class="benefits">
+                        <li>Developed by handwriting experts</li>
+                        <li>Progressive learning approach</li>
+                        <li>Fun, engaging activities</li>
+                        <li>High-quality, durable paper</li>
+                        <li>Age-appropriate content</li>
+                        <li>Money-back guarantee</li>
+                        <li>3 Free Gifts with every order</li>
+                        <li><strong>FREE DELIVERY</strong> to all Nigeria states</li>
+                    </ul>
+                    
+                    <div class="countdown" style="max-width: 100%;">
+                        <h3>OFFER EXPIRES IN:</h3>
+                        <div class="timer">
+                            <div class="timer-item">
+                                <div class="timer-number" id="order-days">10</div>
+                                <div class="timer-label">DAYS</div>
+                            </div>
+                            <div class="timer-item">
+                                <div class="timer-number" id="order-hours">23</div>
+                                <div class="timer-label">HOURS</div>
+                            </div>
+                            <div class="timer-item">
+                                <div class="timer-number" id="order-minutes">59</div>
+                                <div class="timer-label">MINUTES</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <h3>Place Your Order</h3>
+                    <p>NOTE: Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf. Also, Please give us an accurate mobile phone number and precise address for delivery (Use of landmarks is encouraged example Church, bank, eatery and so on)</p>
+                    <div id="formMessage" style="display:none;margin-bottom:12px;padding:12px;border-radius:8px;"></div>
+                    <form id="orderForm" method="post" action="php/order.php">
+                        <div class="form-group">
+                            <label for="package">Select Package</label>
+                            <select class="form-control" id="package" name="pack" required>
+                                <option value="">Choose a package</option>
+                                <option value="Starter">Starter 1Set(4 in 1 Book) - ₦18,000</option>
+                                <option value="Bundle">Learning Bundle 2Sets(4 in 1 Book) - ₦32,000</option>
+                                <option value="Collection">Mastery Collection 3Sets(4 in 1 Book) - ₦45,000</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">First Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                    
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" name="email" class="form-control" id="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" name="phone" class="form-control" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="altphone">Alternate Phone (Optional)</label>
+                            <input type="tel" name="altphone" class="form-control" id="altphone" placeholder="Alternate phone number">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="state">State</label>
+                            <select class="form-control" name="state" id="state" required>
+                                <option value="">Select your state</option>
+                                <option value="Abia">Abia</option>
+                                <option value="Adamawa">Adamawa</option>
+                                <option value="Akwa Ibom">Akwa Ibom</option>
+                                <option value="Anambra">Anambra</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bayelsa">Bayelsa</option>
+                                <option value="Benue">Benue</option>
+                                <option value="Borno">Borno</option>
+                                <option value="Cross River">Cross River</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Ebonyi">Ebonyi</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Ekiti">Ekiti</option>
+                                <option value="Enugu">Enugu</option>
+                                <option value="FCT">Federal Capital Territory</option>
+                                <option value="Gombe">Gombe</option>
+                                <option value="Imo">Imo</option>
+                                <option value="Jigawa">Jigawa</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Katsina">Katsina</option>
+                                <option value="Kebbi">Kebbi</option>
+                                <option value="Kogi">Kogi</option>
+                                <option value="Kwara">Kwara</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Nasarawa">Nasarawa</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Ogun">Ogun</option>
+                                <option value="Ondo">Ondo</option>
+                                <option value="Osun">Osun</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Plateau">Plateau</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Sokoto">Sokoto</option>
+                                <option value="Taraba">Taraba</option>
+                                <option value="Yobe">Yobe</option>
+                                <option value="Zamfara">Zamfara</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Delivery Address</label>
+                            <textarea class="form-control" name="address" id="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="childAge">Child's Age (Optional)</label>
+                            <input type="number" class="form-control" id="childAge" min="3" max="12">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="referralCode">Referral Code (If any)</label>
+                            <input type="text" name="referral" class="form-control" id="referralCode" placeholder="Enter referral code if you have one">
+                        </div>
+                        
+                        <div class="payment-info">
+                            <i class="fas fa-truck"></i>
+                            <h3>Pay on Delivery</h3>
+                            <p>Free delivery to all Nigeria states</p>
+                            <p>Pay when your order arrives</p>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Complete Order</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral Section -->
+    <section class="referral" id="referral">
+        <div class="container">
+            <div class="referral-content">
+                <div class="referral-text">
+                    <h2>Earn <span>₦10,000 Cashback</span> With Our Referral Program</h2>
+                    <p>Refer friends and earn cashback when they purchase using your unique referral code. The more you refer, the more you earn!</p>
+                    <p>After making a purchase, you'll receive a unique referral code on your thank you page. Share this code with up to 3 friends, and when they make a purchase, you'll get ₦10,000 cashback credited to your account.</p>
+                    <button class="cta-button" data-scroll-to="#order">Start Referring Now</button>
+                </div>
+                
+                <div class="referral-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Make a Purchase</h4>
+                            <p>Buy any of our kids copybook packages during the Black Friday sale.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Get Your Referral Code</h4>
+                            <p>After purchase, you'll find your unique referral code on the thank you page.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Share With Friends</h4>
+                            <p>Share your code with up to 3 friends and encourage them to purchase.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Earn Cashback</h4>
+                            <p>When your friends purchase using your code, you'll get ₦10,000 cashback per referral.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Section -->
+    <section class="whatsapp-section">
+        <div class="container">
+            <div class="whatsapp-container">
+                <h2>Have Questions? Chat With Us on WhatsApp!</h2>
+                <p>Our customer service team is available to answer any questions you may have about our products.</p>
+                
+                <div class="whatsapp-numbers">
+                    <a href="https://wa.me/2348163778265" class="whatsapp-number" target="_blank">
+                        <i class="fab fa-whatsapp"></i> 08163778265
+                    </a>
+                    <a href="https://wa.me/2348102609396" class="whatsapp-number" target="_blank">
+                        <i class="fab fa-whatsapp"></i> 08102609396
+                    </a>
+                </div>
+                
+                <p>We're here to help you choose the right copybook for your child!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>Smartkids Edu</h4>
+                    <p>Helping children develop beautiful handwriting through fun, educational copybooks since 2015.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Shop</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">All Products</a></li>
+                        <li><a href="#">Starter Set</a></li>
+                        <li><a href="#">Learning Bundle</a></li>
+                        <li><a href="#">Mastery Collection</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Emerald Tech Hub. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
     <script>
-        // 2. This code loads the IFrame Player API code asynchronously.
-        var tag = document.createElement('script');
+        // Countdown Timer - fixed calendar deadline (today -> tomorrow end of day)
+        (function() {
+            // You can change FIXED_DEADLINE to a fixed ISO datetime string (e.g. '2025-11-30T23:59:59')
+            // If null, we compute a fixed deadline of tomorrow at 23:59:59 (same for all users).
+            const FIXED_DEADLINE = null; // set to null to use tomorrow 23:59:59
 
-        tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            function getFixedDeadline() {
+                if (FIXED_DEADLINE) return new Date(FIXED_DEADLINE);
+                const d = new Date();
+                d.setDate(d.getDate() + 1);
+                d.setHours(23,59,59,999);
+                return d;
+            }
 
-        // 3. This function creates an <iframe> (and YouTube player)
-        //    after the API code downloads.
-        var player;
+            const deadline = getFixedDeadline();
 
-        function onYouTubeIframeAPIReady() {
-            player = new YT.Player('player', {
-                height: '300',
-                width: '100%',
-                videoId: 'SR9xCb9j0Cs',
-                playerVars: {
-                    'playsinline': 1
-                },
-                events: {
-                    'onReady': onPlayerReady,
-                    'onStateChange': onPlayerStateChange
+            function updateCountdown() {
+                const now = new Date();
+                const diff = deadline - now;
+                if (diff <= 0) {
+                    ['days','hours','minutes','seconds','order-days','order-hours','order-minutes'].forEach(id=>{
+                        const el = document.getElementById(id);
+                        if(el) el.textContent = '00';
+                    });
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                if (document.getElementById('days')) document.getElementById('days').textContent = String(days).padStart(2,'0');
+                if (document.getElementById('hours')) document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+                if (document.getElementById('minutes')) document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+                if (document.getElementById('seconds')) document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+
+                if (document.getElementById('order-days')) document.getElementById('order-days').textContent = String(days).padStart(2,'0');
+                if (document.getElementById('order-hours')) document.getElementById('order-hours').textContent = String(hours).padStart(2,'0');
+                if (document.getElementById('order-minutes')) document.getElementById('order-minutes').textContent = String(minutes).padStart(2,'0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // CTA buttons: scroll to order section when clicked
+        document.querySelectorAll('.cta-button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                const target = this.getAttribute('data-scroll-to') || this.getAttribute('href');
+                if (target && target.startsWith('#')) {
+                    e.preventDefault();
+                    const el = document.querySelector(target);
+                    if (el) {
+                        window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Price chip clicks: auto-select package and jump to order form
+        document.querySelectorAll('.price-chip').forEach(function(chip){
+            chip.addEventListener('click', function(e){
+                const pkg = chip.getAttribute('data-package');
+                if(!pkg) return;
+                const select = document.getElementById('package');
+                if(select){
+                    // try to pick matching option (case-insensitive compare)
+                    let matched = false;
+                    for(let i=0;i<select.options.length;i++){
+                        if(select.options[i].value.toLowerCase() === pkg.toLowerCase()){
+                            select.selectedIndex = i; matched = true; break;
+                        }
+                    }
+                    // if not exact match, try partial match by text
+                    if(!matched){
+                        for(let i=0;i<select.options.length;i++){
+                            if(select.options[i].text.toLowerCase().indexOf(pkg.toLowerCase()) !== -1){
+                                select.selectedIndex = i; matched = true; break;
+                            }
+                        }
+                    }
+                    // dispatch change if any
+                    select.dispatchEvent(new Event('change'));
+                }
+
+                // scroll to order
+                const orderEl = document.getElementById('order');
+                if(orderEl){
+                    window.scrollTo({ top: orderEl.offsetTop - 60, behavior: 'smooth' });
+                    // focus first input after a short delay
+                    setTimeout(function(){ const name = document.getElementById('name'); if(name) name.focus(); }, 700);
+                }
+            });
+        });
+
+        // Form submission (AJAX to php/order.php)
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const submitButton = document.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            submitButton.textContent = 'Processing...';
+            submitButton.disabled = true;
+
+            // helper: show inline messages above the form
+            function showFormMessage(text, type){
+                const el = document.getElementById('formMessage');
+                if(!el) return;
+                el.style.display = 'block';
+                el.textContent = text;
+                el.style.color = type === 'error' ? '#7f1d1d' : '#064e3b';
+                el.style.background = type === 'error' ? '#fff1f2' : '#ecfdf5';
+                el.style.border = type === 'error' ? '1px solid #fecaca' : '1px solid #bbf7d0';
+            }
+
+            // Build form data expected by php/order.php
+            const fd = new FormData();
+            // Use the single 'name' input (site uses one name field)
+            const nameEl = document.getElementById('name');
+            const fullName = nameEl ? nameEl.value.trim() : '';
+            fd.append('name', fullName);
+            // order.php expects 'pack'
+            fd.append('pack', document.getElementById('package').value || 'starter');
+            fd.append('email', document.getElementById('email').value || '');
+            fd.append('phone', document.getElementById('phone').value || '');
+            // include altphone if provided
+            fd.append('altphone', document.getElementById('altphone') ? document.getElementById('altphone').value : '');
+            fd.append('address', document.getElementById('address').value || '');
+            fd.append('state', document.getElementById('state').value || '');
+
+            console.log('Submitting order...', {name: fullName, pack: document.getElementById('package').value});
+            showFormMessage('Processing your order — please wait...', 'info');
+
+            fetch('php/submit_order.php', {
+                method: 'POST',
+                body: fd
+            }).then(r => r.json()).then(res => {
+                console.log('Server response', res);
+                if (res.type === 'message') {
+                    // Play payment-success animation, then redirect to thank you page
+                    const targetUrl = res.referral_code ? ('thank-You.new.php?ref=' + encodeURIComponent(res.referral_code)) : ('thank-You.new.php?order_id=' + encodeURIComponent(res.order_id));
+                    // optional: pass order meta to showSuccessMessage if desired
+                            try {
+                                // Track Purchase via Facebook Pixel (if available)
+                                try {
+                                    const pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
+                                    const priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                                    const purchaseValue = priceMap[pkg] || null;
+                                    if(window.fbq && purchaseValue){ fbq('track', 'Purchase', { currency: 'NGN', value: purchaseValue }); }
+                                } catch(e){ /* ignore pixel errors */ }
+
+                                playPaymentSuccessAnimation(function(){ window.location = targetUrl; });
+                            } catch (e) {
+                                // fallback: if animation fails, redirect immediately
+                                window.location = targetUrl;
+                            }
+                } else if (res.type === 'error') {
+                    showFormMessage(res.text || 'There was an error processing your order.', 'error');
+                } else {
+                    showFormMessage(res.text || 'Unexpected response from server.', 'error');
+                }
+            }).catch(err => {
+                console.error(err);
+                showFormMessage('Network error — please check your connection and try again.', 'error');
+            }).finally(() => {
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            });
+        });
+        
+        // Function to show success message
+        function showSuccessMessage(orderId, referralCode, formData) {
+            const packageNames = {
+                'starter': 'Starter Set',
+                'bundle': 'Learning Bundle',
+                'collection': 'Mastery Collection'
+            };
+            
+            const packageName = packageNames[formData.package];
+            
+            const message = `
+                <div style="text-align: center; padding: 20px;">
+                    <h2 style="color: #0a7c42;">Order Successful!</h2>
+                    <p>Thank you for your order. Here are your order details:</p>
+                    <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                        <p><strong>Order ID:</strong> ${orderId}</p>
+                        <p><strong>Package:</strong> ${packageName}</p>
+                        <p><strong>Delivery to:</strong> ${formData.state} State</p>
+                        <p><strong>Your Referral Code:</strong> ${referralCode}</p>
+                    </div>
+                    <p>You will receive a confirmation email shortly. Our team will contact you within 24 hours to confirm delivery details.</p>
+                    <p><strong>Share your referral code with friends to earn ₦10,000 cashback!</strong></p>
+                    <button onclick="this.parentElement.parentElement.style.display='none'" style="background: #0a7c42; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Close</button>
+                </div>
+            `;
+            
+            // Create and show modal
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.5)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '1000';
+            
+            const modalContent = document.createElement('div');
+            modalContent.style.background = 'white';
+            modalContent.style.padding = '30px';
+            modalContent.style.borderRadius = '15px';
+            modalContent.style.maxWidth = '500px';
+            modalContent.style.width = '90%';
+            modalContent.innerHTML = message;
+            
+            modal.appendChild(modalContent);
+            document.body.appendChild(modal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
                 }
             });
         }
 
-        // 4. The API will call this function when the video player is ready.
-        function onPlayerReady(event) {
-            event.target.playVideo();
-        }
+        /* Payment success animation (confetti) and overlay
+           callback is called when animation completes (use to redirect)
+        */
+        function playPaymentSuccessAnimation(callback){
+            // create overlay
+            const overlay = document.createElement('div'); overlay.className = 'payment-success-overlay';
+            overlay.setAttribute('role','dialog'); overlay.setAttribute('aria-live','polite');
 
-        // 5. The API calls this function when the player's state changes.
-        //    The function indicates that when playing a video (state=1),
-        //    the player should play for six seconds and then stop.
-        var done = false;
+            const card = document.createElement('div'); card.className = 'payment-success-card';
+            const check = document.createElement('div'); check.className = 'success-check'; check.innerHTML = '&#10003;';
+            const title = document.createElement('h2'); title.textContent = 'Order Successful!';
+            const text = document.createElement('p'); text.textContent = 'Thank you — your order was placed successfully. Redirecting to the thank you page...';
 
-        function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING && !done) {
-                setTimeout(stopVideo, 6000);
-                done = true;
+            // confetti canvas
+            const cvs = document.createElement('canvas'); cvs.style.width = '100%'; cvs.style.height = '160px';
+            cvs.width = 900; cvs.height = 200; cvs.style.display = 'block';
+
+            card.appendChild(check);
+            card.appendChild(title);
+            card.appendChild(text);
+            card.appendChild(cvs);
+            overlay.appendChild(card);
+            document.body.appendChild(overlay);
+
+            // simple confetti particle system
+            const ctx = cvs.getContext('2d');
+            let particles = [];
+            function rand(min,max){ return Math.random()*(max-min)+min; }
+            function spawnConfetti(count){
+                for(let i=0;i<count;i++){
+                    particles.push({
+                        x: rand(20, cvs.width-20),
+                        y: rand(20, 60),
+                        vx: rand(-3,3),
+                        vy: rand(1,5),
+                        size: rand(6,12),
+                        color: ['#ff595e','#ffca3a','#8ac926','#1982c4','#6a4c93'][Math.floor(Math.random()*5)],
+                        rot: rand(0,Math.PI*2),
+                        rotSpeed: rand(-0.2,0.2),
+                        ttl: Math.floor(rand(60,140))
+                    });
+                }
             }
+
+            function update(){
+                ctx.clearRect(0,0,cvs.width,cvs.height);
+                for(let i=particles.length-1;i>=0;i--){
+                    const p = particles[i];
+                    p.x += p.vx; p.y += p.vy; p.vy += 0.12; p.rot += p.rotSpeed; p.ttl--;
+                    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+                    ctx.fillStyle = p.color; ctx.fillRect(-p.size/2,-p.size/2,p.size,p.size);
+                    ctx.restore();
+                    if(p.ttl<=0 || p.y>cvs.height+50) particles.splice(i,1);
+                }
+            }
+
+            let frames = 0; const duration = 3000; // ms (longer for more celebration)
+            let raf;
+            function loop(){
+                update();
+                frames += 16; // approximate
+                // spawn a larger burst periodically for a stronger effect
+                if(frames % 160 === 0) spawnConfetti(18);
+                if(frames < duration){ raf = requestAnimationFrame(loop); }
+                else { cancelAnimationFrame(raf); overlay.classList.add('hide'); setTimeout(()=>{ document.body.removeChild(overlay); if(typeof callback === 'function') callback(); }, 280); }
+            }
+
+            // size canvas for crisp rendering
+            function fit(){
+                const rect = cvs.getBoundingClientRect();
+                cvs.width = Math.max(320, Math.floor(rect.width));
+                cvs.height = Math.max(120, Math.floor(rect.height));
+            }
+            fit(); spawnConfetti(80); loop();
         }
 
-        function stopVideo() {
-            player.stopVideo();
-        }
-    </script>
-
-</head>
-
-<body data-spy="scroll" data-target="#main-navbar">
-
-    <!-- Preloader -->
-    <div class="loader bg-orange">
-        <div class="loader-inner ball-scale-ripple-multiple vh-center">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-
-
-    <div class="main-container" id="page">
-
-
-        <!-- =========================
-             HEADER 
-        ============================== -->
-        <header id="nav1-3">
-            <nav class="navbar navbar-fixed-top" id="main-navbar">
-
-                <div class="container">
-
-                    <div class="navbar-header">
-                        <!-- Menu Button for Mobile Devices -->
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <!-- Image Logo -->
-                        <!-- 
-                        recommended sizes
-                            width: 150px;
-                            height: 35px;
-                        -->
-                        <a href="#" class="navbar-brand smooth-scroll"><img src="images/logo10.JPG" alt="logo" /></a>
-                        <!-- Image Logo For Background Transparent -->
-                        <!--
-                            <a href="#" class="navbar-brand logo-black smooth-scroll"><img src="images/logo-black.png" alt="logo" /></a>
-                            <a href="#" class="navbar-brand logo-white smooth-scroll"><img src="images/logo-white.png" alt="logo" /></a> 
-                        -->
-                    </div><!-- /End Navbar Header -->
-
-                    <div class="collapse navbar-collapse" id="navbar-collapse">
-                        <!-- Menu Links -->
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#hero2" class="smooth-scroll">Home</a></li>
-                            <li><a href="#testimonials2-1&#128293;" class="smooth-scroll">About</a></li>
-                            <li><a href="#content7-1" class="smooth-scroll">learn more</a></li>
-                            <li><a href="#testimonials5-1" class="smooth-scroll">Testimonial</a></li>
-                            <li><a href="#pricing5-1" class="smooth-scroll">Pricing</a></li>
-                            <li><a href="#contact8-2" class="btn-nav btn-orange smooth-scroll">Order Now</a></li>
-                        </ul><!-- /End Menu Links -->
-                    </div><!-- /End Navbar Collapse -->
-
-                </div><!-- /End Container -->
-            </nav><!-- /End Navbar -->
-        </header>
-        <!-- /End Header Section -->
-
-
-        <!-- =========================
-             HERO SECTION
-        ============================== -->
-        <section id="hero2" class="hero bg-edit bg-blue height-800-fix">
-            <div class="container vertical-center-rel">
-                <div class="row">
-                    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0">
-                        <h3 class="text-white">⏳ Limited Time Offer !!
-                        </h3>
-                        <p class="lead text-white m-b-md">The Sank Magic Copybook is the solution! Fun, reusable handwriting practice = Captivated young audiences primed for your brand..♻️</p>
-
-
-                        <p class="lead text-white">"Perfect for kids <b>3 years</b> and above..."</p>
-                    </div><!-- /End Col -->
-
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-
-            <!-- Closeup Image on Left -->
-            <div class="closeup-box closeup-right">
-                <img class="responsive" src="images/learningg.jpg" alt="">
-            </div>
-
-        </section>
-        <!-- /End Hero Section -->
-
-
-        <!-- =========================
-             PARTNERS
-        ============================== -->
-        <section id="partners3-1" class="p-y bg-edit bg-grey">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 text-center clients">
-                        <img src="images/customer-satisfiction.png" class="img-responsive" alt="">
-                        <img src="images/images (3).png" class="img-responsive" alt="">
-                        <img src="images/imgg.JPG" class="img-responsive" alt="">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- =========================
-             TESTIMONIALS
-        ============================== -->
-        <section id="testimonials2-1" class="p-y-lg bg-edit">
-
-            <div class="container">
-                <!-- Section Header -->
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2 style="color:#ef7c46">&#128293;&#128293;Order Now & Get High-Value Free Gifts! of &#8358;15,000 and above..&#128293;&#128293;
-                            </h2>
-                            <h3 style="color:dodgerblue; font-size: 30px !important"><b>This Amazing Sank magic practice copybook will improve child’s learning while having Fun
-                                    just in weeks of practice.</b></h3>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                <!-- Testimonial Item -->
-                <div class="row testimonials wow slideInUp">
-                    <div class="col-md-12">
-
-                        <p class="lead">Handwriting is one of the important skills every child should be taught, but it
-                            has been overlooked in recent years. Have you ever had a problem with trying to teach your
-                            kids? It is hard sometimes, but you cannot blame them because it is really hard to focus
-                            sometimes. Luckily for you we found the solution for this “An unconventional but interesting
-                            way of Preschool education” </p>
-                        <p class="lead">Help your child or ward improve their handwriting by turning it into fun magical
-                            game using this “Educational Magic Reusable practice book”.</p>
-                        <p class="lead">This magic practice copybook set contains a variety of exercises that helps your
-                            child’s visual and motor memory develop a proper look and feel for correctly composed
-                            letters, numbers, drawing and more.</p>
-                        <p>This is a good resources for children to master calligraphy, hand Writing, painting, mathematics, and English and having fun while doing it .</p>
-                        <p class="lead">It’s made of high-quality paper which is strong, durable, and comfortable for your child.</p>
-                        <p class="lead">The soft pen Holder is designed to train your child how to hold the Pen or pencil correctly.</p>
-
-
-                    </div>
-                </div><!-- /End Row -->
-
-            </div><!-- /End Container -->
-        </section>
-        <!-- /End Testimonial Section -->
-
-
-        <!-- =========================
-            CTA SECTION
-        ============================== -->
-        <section id="cta2" class="p-y cta bg-edit bg-orange">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center single-line">
-                        <p class="lead text-white m-r-md f-w-700">&#128293;Special promo sales &#128293;&#128293;! free delivery + payment on
-                            delivery
-                            Grab this special offer today as stock is limited</p>
-                        <a href="#contact8-2" class="btn btn-ghost btn-md smooth-scroll">Order Now <i class="fa fa-arrow-right m-l"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- /End Cta Section -->
-
-
-        <!-- =========================
-           CONTENT SECTION
-        ============================== -->
-        <section id="content7-1" class="p-y-lg">
-
-            <!-- Section Header -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2 class="m-b-md" style="color:#147bf1">WHAT YOU NEED TO KNOW ABOUT THIS PRODUCT</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="text-align: center;">
-                <div class="" style="margin-bottom: 20px;">
-                    <iframe width="97%" height="350" src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                <h2 style="color:#147bf1"><b>PLEASE WATCH THE VIDEO ABOVE</b></h2>
-            </div>
-
-
-
-        </section>
-        <!-- /End Content Section -->
-
-
-
-        <!-- =========================
-            CTA SECTION
-        ============================== -->
-        <section id="cta2-2" class="p-y cta bg-edit bg-orange">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center single-line">
-                        <p class="lead text-white m-r-md f-w-700">&#128293;Special promo sales &#128293;&#128293; ! + free delivery + payment on
-                            delivery
-                            Grab this special offer today as stock is limited</p>
-                        <a href="#contact8-2" class="btn btn-ghost btn-md smooth-scroll">Order Now <i class="fa fa-arrow-right m-l"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- /End Cta Section -->
-
-
-        <!-- =========================
-             BLOG SECTION
-        ============================== -->
-        <section id="blog2-1" class="p-y-lg blog bg-edit">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2 style="color:#ef7c46;">Benefits of This magic Reusable practice book</h2>
-                            <p class="lead">Copy book can help children or adult practice different font of Hand writing
-                                and build their own style.</p>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 content-block c3">
-                        <ul>
-                            <li>
-                                <p style="color:#ef7c46;"> Practice Makes Perfect: Reusable Copybook for Growing Minds</p>
-                            </li>
-                            <li>
-                                <p style="color:#ef7c46;"> Sank Magic: Make Learning Letters & Numbers Disappear (Like Magic!).</p>
-                            </li>
-                            <li>
-                                <p style="color:#ef7c46;"> A Magical Start: Develop Fine Motor Skills & Confidence with Sank Magic.</p>
-                            </li>
-                        </ul>
-                        <br />
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/number_magic.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!! </h5>
-                                </a>
-
-                            </div>
-                            <p class="lead">This magic practice copy book lets kids <b>practice writing letters and
-                                    numbers</b> that they often struggle with in school right at home in their own
-                                space.</p>
-
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/letter_magic.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!!</h5>
-                                </a>
-
-                            </div>
-                            <p class="lead">The books are designed with <b>grooved Letters and Numbers</b> that guides
-                                your child’s hand resulting in <b>improved muscle memory and beautiful handwriting</b>.
-                            </p>
-
-                        </div>
-
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/magic_sank.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!!</h5>
-                                </a>
-
-                            </div>
-                            <p class="lead">Kids will love this <b>fun way to develop their skills</b>, while parents
-                                can breath a sigh of relief knowing they are developing important life skills without
-                                any mess or fuss.</p>
-
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/maths_magic.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!!</h5>
-                                </a>
-
-                            </div>
-                            <p class="lead"> <b>The special magic pen’s Ink gradually fade over a time,</b>
-                                disappearing within some minutes of writing. This allows the books to be used over and
-                                over without the need for extra paper and new books every time your child would like to
-                                start again.</p>
-                            <!-- <a href="#" class="more-link f-w-700 edit" style="color:#ef7c46;">Continue Reading ...</a> -->
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/paint_magi.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!!</h5>
-                                </a>
-
-                            </div>
-                            <p class="lead">Thinking of <b>the perfect gift</b> for kids on occasions such as Birthday,
-                                children’s day or any other special occasion then you just found one.</p>
-                            <!-- <a href="#" class="more-link f-w-700 edit" style="color:#ef7c46;">Continue Reading ...</a> -->
-                        </div>
-                        <div class="col-sm-4">
-                            <a href="#"><img src="images/1.jpg" alt="" class="img-responsive img-rounded"></a>
-                            <div class="post-info">
-                                <div class="date text-edit" style="background-color:#ef7c46;">
-                                    <span class="day">40%</span>
-                                    Off
-                                </div>
-                                <a href="#">
-                                    <h5>Get this sank magic copy book Now!!</h5>
-                                </a>
-
-                            </div>
-                            <p class="lead">The paper of this practice copybook is also <strong> durable</strong>
-                                because it is made to be thicker than normal. Thus , it does not easily smudge, squeeze
-                                or tear. It will last for every child.</p>
-                            <!-- <a href="#" class="more-link f-w-700 edit" style="color:#ef7c46;">Continue Reading ...</a> -->
-                        </div>
-                    </div>
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-
-        </section>
-        <!-- /End Blog Section -->
-        <!-- =========================
-           CONTENT SECTION
-        ============================== -->
-        <section id="content7-1" class="p-y-lg">
-
-            <!-- Section Header -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2 class="m-b-md">WHAT YOU NEED TO KNOW ABOUT THIS PRODUCT</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container p-a-0">
-                <div class="col-md-10">
-
-                    <div class="img-block" style="background-image:url('images/slider1.jpg')"></div>
-                </div>
-                <div class="row content-grid">
-                    <!-- Big Image Left -->
-
-                    <!-- Right Col: Highlight Text+Image -->
-                    <div class="col-md-6">
-
-                        <div class="img-block" style="background-image:url('images/sliddd.jpg')"></div>
-                    </div>
-                    <div class="col-md-6">
-
-                        <div class="img-block" style="background-image:url('images/slidde.jpg')"></div>
-                    </div>
-                    <div class="col-md-6">
-
-                        <div class="img-block" style="background-image:url('images/slider1.jpg')"></div>
-                    </div>
-                    <div class="col-md-6">
-
-                        <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"></div>
-                    </div>
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-
-        </section>
-        <!-- /End Content Section -->
-        <!-- =========================
-           CONTENT SECTION
-        ============================== -->
-        <section id="content7-1" class="p-y-lg">
-
-            <!-- Section Header -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2 class="m-b-md">How much does this amazing Magic copybook cost? </h2>
-                            <!-- <p class="lead m-b-md">Lorem ipsum dolor sit amet, consectetur adipisicing. Doloribus reprehenderit odit officia totam ipsa accusamus atque omnis enim nostrum explicabo. Itaque hic voluptatem ex explicabo sit, fugit recusandae aspernatur sunt.</p> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="container p-a-0">
-                <div class="row content-grid">
-                    <!-- Big Image Left -->
-                    <div class="col-md-6">
-                        <div class="img-block" style="background-image:url('images/copybooks.jpg')"></div>
-                    </div>
-                    <!-- Right Col: Highlight Text+Image -->
-                    <div class="col-md-6">
-                        <div class="lead-block bg-edit bg-orange">
-                            <p class="lead text-white m-b-0 wow zoomIn">Normally the price is $25.99 which is ₦38,388.54
-                                as show in the picture below</p>
-                        </div>
-                        <div class="img-block col-sm-12" style=" object-fit: contain; width: 100%; background-image:url('images/amazon-price-728x321.png')"></div>
-                    </div>
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-
-        </section>
-        <!-- /End Content Section -->
-
-
-        <!-- =========================
-           FUNFACTS
-        ============================== -->
-        <section id="funfacts1-2" class="p-y bg-edit bg-blue counter-start">
-            <div class="container">
-                <div class="row text-white">
-                    <div class="col-md-12">
-                        <div class="funfacts text-center wow fadeIn">
-                            <div class="col-md-4 clearfix p-t">
-                                <div class="counter-left">
-                                    <i class="fa fa-plus"></i>
-                                    <div class="counter" data-from="0" data-to="2000" data-speed="2500"></div>
-                                </div>
-                                <div class="text text-left text-edit">Total Sold</div>
-                            </div>
-                            <div class="col-md-4 p-t clearfix">
-                                <div class="counter-left">
-                                    <i class="fa fa-plus"></i>
-                                    <div class="counter" data-from="0" data-to="2200" data-speed="2500"></div>
-                                </div>
-                                <div class="text text-left text-edit">Total Order/ Pay On Delivery</div>
-                            </div>
-                            <div class="col-md-4 p-t clearfix">
-                                <div class="counter-left">
-                                    <i class="fa fa-plus"></i>
-                                    <div class="counter" data-from="0" data-to="20" data-speed="2500"></div>
-                                </div>
-                                <div class="text text-left text-edit">In progess </div>
-                            </div>
-                        </div>
-                    </div><!-- /End Col-12 -->
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-        </section>
-        <!-- /End Funfacts Section -->
-
-
-        <!-- =========================
-             TESTIMONIAL
-        ============================== -->
-        <section id="testimonials5-1" class="p-y-lg bg-edit testimonials-twitter">
-
-            <div class="container">
-                <!-- Section Header -->
-                <div class="row">
-                    <div class="">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2>see what other smart parents are saying about this amazing products !</h2>
-                            <!-- <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae nulla quam vel deserunt hic necessitatibus aut earum a tempore aliquid.</p> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 c3 testimonials">
-
-
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/amazon-testimonial1.png" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/Amazon-review-sank-3-728x267.png" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/amazon-review-sank-2-728x229.png" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-
-                    </div>
-                </div><!-- /End Row -->
-                <div class="row">
-                    <div class="col-md-12 c3 testimonials">
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/1testimo.JPG" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/2testimo.JPG" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/3testimo.JPG" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                        <!-- Twitter Testimonials -->
-                        <div class="col-md-4 clearfix">
-                            <div class="embed-tweet-item">
-                                <blockquote class="twitter-tweet" lang="en" data-link-color="#439FE0" data-align="center">
-                                    <img src="images/review_1.JPG" class="responsive" />
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /End Row -->
-
-
-            </div><!-- /End Container -->
-
-        </section>
-        <!-- /End Testimonials Section -->
-
-        <!-- =========================
-           PRICING
-        ============================== -->
-        <section id="pricing5-1" class="p-y-lg bg-edit bg-light">
-            <div class="container">
-                <!-- Section Header -->
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        <div class="section-header text-center wow fadeIn">
-                            <h2>Pricing Packages</h2>
-                            <!-- <p class="lead">Nesciunt eaque porro distinctio eveniet aliquam eumin ipsa vite expedita, accusantium, iure earum impedit adipisci itaque facilis beatae iure.</p> -->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="">
-
-                        <!-- Dynamic Price -->
-                        <div class="col-md-4">
-                            <div class="pricing-table" style="text-align: center;">
-                                <h3>Regular Pack</h3>
-                                <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>Order Now & Get High-Value Free Gifts!</i><span>19,500</span></li>
-
-
-                                    <li class="text-edit">Get 1 Set <b>(4 Books + 1 PEN + 4 Refill)</b></li>
-                                    <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE THREE GIFTS</li>
-                                    <li class="text-edit">PAY ON DELIVERY</li>
-                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;7,388.54</li>
-                                    <li class="text-edit">For 1 Child</li>
-                                    <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /End Col Price -->
-                        <!-- Dynamic Price -->
-                        <div class="col-md-4">
-                            <div class="pricing-table" style="text-align: center;">
-                                <h3>Super Pack</h3>
-                                <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>35,000</span></li>
-                                    <li class="text-edit">Get 2 Set <b>(8 Books + 2 PEN + 8 Refill)</b></li>
-                                    <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE SIX GIFTS</li>
-                                    <li class="text-edit">PAY ON DELIVERY</li>
-                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;15,388.54</li>
-                                    <li class="text-edit">For 2 Child</li>
-                                    <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /End Col Price -->
-                        <!-- Dynamic Price -->
-                        <div class="col-md-4">
-                            <div class="pricing-table" style="text-align: center;">
-                                <h3>Gold Pack</h3>
-                                <ul class="list-unstyled">
-                                    <li class="price text-edit"><i>&#8358;</i><span>51,000</span></li>
-                                    <li class="text-edit">Get 1 Set <b>(12 Books + 3 PEN + 12 Refill)</b></li>
-                                    <li class="text-edit"> FREE DELIVERY</li>
-                                    <li class="text-edit">FREE EIGHT GIFTS</li>
-                                    <li class="text-edit">PAY ON DELIVERY</li>
-                                    <li class="text-edit" style="color:#ef7c46">YOU SAVE &#8358;24,548.54</li>
-                                    <li class="text-edit">For 3 Child</li>
-                                    <li class="m-t p-b"><a href="#contact8-2" class="btn btn-shadow btn-blue text-uppercase smooth-scroll">Order NOW</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div><!-- /End Col Price -->
-
-                    </div><!-- /End Col-10 -->
-                    <!-- <div>
-                        <h3>So what are you waiting for? </h3>
-                        <p>Hurry Now and Place your Order to Secure Your KIDS REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts For 15,000naria Right Now.</p>
-                        <p>For More Information & Enquiry , Whatsapp/Call>08029950001</p>
-                    </div> -->
-                </div><!-- /End Row -->
-            </div><!-- /End Container -->
-
-        </section>
-        <!-- /End Pricing Section -->
-        <!-- =============================
-             SUBSCRIPTION
-        ============================== -->
-        <section id="subscription3-2" class="p-y-lg"">
-        <div class=" row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="section-header text-center wow fadeIn">
-                    <h2>WHAT YOU WILL RECEIVE IF YOU ORDER NOW</h2>
-                    <p class="lead" style="color:#ef7c46;">NOTE: THE PICTURES HAS ALL BEEN ZOOMED AND ACTUAL SIZE IS NOT
-                        AS BIG AS DISPLACED ON THE PICTURES.</p>
-                </div>
-            </div>
-    </div>
-
-    <div class=" container">
-        <div class="row">
-            <div class="">
-                <div class="col-md-6 text-black center-md">
-                    <ul>
-                        <li>
-                            <p class="lead"> 1 MATH Sank Magic Copy Book</p>
-                        </li>
-                        <li>
-                            <p class="lead"> 1 ALPHABET Sank Magic Copy Book</p>
-                        </li>
-                        <li>
-                            <p class="lead"> 1 NUMBER Sank Magic Copy Book</p>
-                        </li>
-                        <li>
-                            <p class="lead"> 1 DRAWING Sank Magic Copy Book</p>
-                        </li>
-                        <li>
-                            <p class="lead"> 1 DISAPPEARING PEN with 4 refills</p>
-                        </li>
-                        <li>
-                            <p class="lead"> 1 PEN HOLDER</p>
-                        </li>
-                    </ul>
-                    <p class="lead" style="color:#ef7c46">Plus Free Gifts</p>
-                    <ul>
-                        <li>
-                            <p class="lead"> 1 Water Game Pad Toy</p>
-
-                        </li>
-                        <li>
-                            <p class="lead"> Kids U Shape Toothbrush Oral Cleaning Children Soft Million Nano Bristle
-                                Teeth Brush Silicon Finger Teether Training</p>
-
-                        </li>
-                        <li>
-                            <p class="lead"> Skipping Rope</p>
-
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 col-md-offset-2">
-                    <div class="">
-                        <img src="images/copyr.jpg" class="img-responsive img-rounded" />
-                        <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
-                    </div>
-                </div>
-            </div>
-        </div><!-- /End Col-12 -->
-    </div><!-- /End Row -->
-    </div><!-- /End Container -->
-
-    </section>
-    <section id="subscription3-2" class="p-y-lg"">
-
-    <div class=" container" style="margin-top: 40px;">
-        <div class="row">
-            <div class="">
-                <div class="section-header text-center wow fadeIn">
-                    <h2 style="color:#ef7c46;">Our Free Gifts And It's Benfits</h2>
-
-                </div>
-                <div class="col-md-4">
-                    <div class="">
-                        <h3>Water Game Pad Toy</h3>
-                        <img src="images/4322-1.jpg" class="img-responsive img-rounded" />
-                        <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
-                    </div>
-                </div>
-                <div class="col-md-8 text-black center-md">
-                    <ul>
-                        <li>
-                            <p class="lead"> This item will bring back memories from the past and can be enjoyed by all family members.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> This unicorn water game will have you entertained for hours.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> Get the hoops onto the target through the water.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> This toy is shaped like a cell phone, so when the kids beg for your phone give them this instead to be educationally stimulated.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> This game encourages hand eye coordination, encourages concentration and will keep your kids entertained while learning to count and differentiating colour and shapes.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> Promotes problem solving skills in Kids</p>
-                        </li>
-                    </ul>
-                </div>
-
-
-            </div>
-        </div><!-- /End Col-12 -->
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="row">
-            <div class="">
-                <h3>Kids U Shape Toothbrush</h3>
-                <div class="col-md-4">
-                    <div class="" style="margin-bottom: 10px;">
-
-                        <!-- <img src="images/u brush.jpg" class="img-responsive img-rounded" /> -->
-                        <div id="player"></div>
-                        <!-- <iframe width="100%" height="200" src="https://www.youtube.com/watch?v=SR9xCb9j0Cs" title="U shape Toothbrush" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe> -->
-                        <img src="images/u brush.jpg" class="img-responsive img-rounded" />
-                        <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
-                    </div>
-                </div>
-                <div class="col-md-8 text-black ">
-                    <ul>
-                        <li>
-                            <p class="lead"> it can also help prevent cavities, tooth decay, and gum disease, and instill good oral hygiene habits in your child.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> These 360-degree u shape toothbrushes are special designed for kids, the bristle is soft and hygienic for massaging toddlers’ gum and sensitive teeth.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> Safe Material: Made of quality food grade silicone, soft and durable.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> Easy to Use: Apply an appropriate amount of Children's Foam Toothpaste on both sides of the toothbrush, and then brush the teeth with repeated swings from side to side.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> Designed with a small suction cup base, which is convenient for placement.</p>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-
-            </div>
-
-        </div><!-- /End Col-12 -->
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="row">
-            <div class="">
-                <h3>Skipping Rope</h3>
-                <div class="col-md-4">
-                    <div class="" style="margin-bottom: 10px;">
-
-                        <img src="images/skipp_rope.jpg" class="img-responsive img-rounded" />
-                        <!-- <div class="img-block" style="background-image:url('images/magic-book-3-1024x1024.jpg')"> -->
-                    </div>
-                </div>
-                <div class="col-md-8 text-black ">
-                    <ul>
-                        <li>
-                            <p class="lead"> <b> Reasons Why Jumping Rope Is Good For Your Child:-</b>
-                                Jumping rope is a classic kids’ activity that has been around for generations. There is a reason why it is still popular and relevant today. Jumping rope offers your child a wide variety of different benefits. In today’s world where children are increasingly glued to electronic devices, like smartphones, laptops and video gaming devices, it is important to encourage them to participate in more physical activity to maintain their heath and well-being and to promote good physical development. Below are some of the advantages that jumping rope provides for young children.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> <b> Self-Esteem:-</b>
-
-                                As your child improves their skills at jumping rope, their self-image will improve as well. It also gives them something to show off to their peers, allowing them to boost their self-esteem. It is important for young children to feel confident about themselves as this will give them the confidence to make friends with other children their age and to try new things, both of which are crucial for their personal development.</p>
-                        </li>
-                        <li>
-                            <p class="lead"> <b> Muscular strength and endurance:-</b>
-
-                                It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-
-            </div>
-
-        </div><!-- /End Col-12 -->
-
-        <p class="lead" style="margin-top: 30px;">Hurry Now and Place your Order to Secure Your <strong style="color:#ef7c46">REUSABLE MAGIC PRACTICE COPYBOOK + Free Gifts</strong> For <strong style="color:#ef7c46">&#8358;19,500</strong> Right Now.</p>
-        </div><!-- /End Row -->
-
-        </div><!-- /End Container -->
-
-    </section>
-    <!-- /End Subscription Section -->
-    <section id="cta2" class="p-y cta bg-edit bg-blue">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2 text-center single-line">
-                    <p class="lead text-white m-r-md f-w-700">NOTE: <strong>Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf.</strong></p>
-                    <p class="lead text-white m-r-md f-w-700">Also, Please give us an accurate mobile phone number and precise address for delivery (Use of landmarks is encouraged example Church, bank, eatery and so on)</p>
-                    <p class="lead text-white m-r-md f-w-700">For More Information & Enquiry , Whatsapp/Call</p>
-                    <a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="partners3-1" class="p-y bg-edit bg-grey">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center clients">
-                    <img src="images/customer-satisfiction.png" class="img-responsive" alt="">
-                    <img src="images/images (3).png" class="img-responsive" alt="">
-                    <img src="images/imgg.JPG" class="img-responsive" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- =========================
-             CONTACT FORM
-        ============================== -->
-    <section id="contact8-2" class="p-y-lg contact bg-edit bg-orange content-align-md">
-
-        <div class="container">
-            <!-- Section Header -->
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="section-header text-center text-white wow fadeIn">
-                        <h2>Please Fill the form below Correctly</h2>
-                        <p class="lead">PLEASE DO NOT FILL THE FORM IF YOU ARE NOT READY TO RECEIVE AND PAY FOR YOUR PACKAGE OR IF YOU WILL BE TRAVELING OUT OF TOWN. SAVE OUR NUMBER OR OUR WEBSITE URL TO ORDER WHEN YOU ARE AVAILBLE.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row y-middle c2">
-                <!-- Contact Form -->
-                <div class="col-md-6">
-                    <form class="form-horizontal form-white" method="post" id="quoteForm">
-                        <!-- Notification -->
-                        <p class="success qf text-center"><i class="fa fa-check"></i> <strong>Your order has
-                                successfully been sent.</strong></p>
-                        <p class="failed qf text-center"><i class="fa fa-exclamation-circle"></i><strong> Please fill all the requried field!</strong></p>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="qName" minlength="3" maxlength="40" placeholder="Enter Your FullName" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" id="qEmail" placeholder=" Enter your Email for your E-recipt">
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" minlength="11" maxlength="11" id="qPhone" placeholder="Phone Number" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" minlength="11" maxlength="14" id="qAltPhone" placeholder="Alternative Phone Number/ Whatsapp Number">
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control form-control-lg" name="qState" class="state" id="qState" required>
-
-                                <option disabled selected>Select Your State of delivery</option>
-                                <option style="color:rgb(0, 0, 0)" value=" Abia">Abia</option>
-                                <option style="color:rgb(0, 0, 0)" value="Adamawa">Adamawa</option>
-                                <option style="color:rgb(0, 0, 0)" value="Akwa Ibom">Akwa Ibom</option>
-                                <option style="color:rgb(0, 0, 0)" value="Anambra">Anambra</option>
-                                <option style="color:rgb(0, 0, 0)" value="Bauchi">Bauchi</option>
-                                <option style="color:rgb(0, 0, 0)" value="Bayelsa">Bayelsa</option>
-                                <option style="color:rgb(0, 0, 0)" value="Benue">Benue</option>
-                                <option style="color:rgb(0, 0, 0)" value="Borno">Borno</option>
-                                <option style="color:rgb(0, 0, 0)" value="Cross Rive">Cross River</option>
-                                <option style="color:rgb(0, 0, 0)" value="Delta">Delta</option>
-                                <option style="color:rgb(0, 0, 0)" value="Ebonyi">Ebonyi</option>
-                                <option style="color:rgb(0, 0, 0)" value="Edo">Edo</option>
-                                <option style="color:rgb(0, 0, 0)" value="Ekiti">Ekiti</option>
-                                <option style="color:rgb(0, 0, 0)" value="Enugu">Enugu</option>
-                                <option style="color:rgb(0, 0, 0)" value="FCT">Federal Capital Territory</option>
-                                <option style="color:rgb(0, 0, 0)" value="Gombe">Gombe</option>
-                                <option style="color:rgb(0, 0, 0)" value="Imo">Imo</option>
-                                <option style="color:rgb(0, 0, 0)" value="Jigawa">Jigawa</option>
-                                <option style="color:rgb(0, 0, 0)" value="Kaduna">Kaduna</option>
-                                <option style="color:rgb(0, 0, 0)" value="Kano">Kano</option>
-                                <option style="color:rgb(0, 0, 0)" value="Katsina">Katsina</option>
-                                <option style="color:rgb(0, 0, 0)" value="Kebbi">Kebbi</option>
-                                <option style="color:rgb(0, 0, 0)" value="Kogi">Kogi</option>
-                                <option style="color:rgb(0, 0, 0)" value="Kwara">Kwara</option>
-                                <option style="color:rgb(0, 0, 0)" value="Lagos">Lagos</option>
-                                <option style="color:rgb(0, 0, 0)" value="Nasarawa">Nasarawa</option>
-                                <option style="color:rgb(0, 0, 0)" value="Niger">Niger</option>
-                                <option style="color:rgb(0, 0, 0)" value="Ogun">Ogun</option>
-                                <option style="color:rgb(0, 0, 0)" value="Ondo">Ondo</option>
-                                <option style="color:rgb(0, 0, 0)" value="Osun">Osun</option>
-                                <option style="color:rgb(0, 0, 0)" value="Oyo">Oyo</option>
-                                <option style="color:rgb(0, 0, 0)" value="Plateau">Plateau</option>
-                                <option style="color:rgb(0, 0, 0)" value="Rivers">Rivers</option>
-                                <option style="color:rgb(0, 0, 0)" value="Sokoto">Sokoto</option>
-                                <option style="color:rgb(0, 0, 0)" value="Taraba">Taraba</option>
-                                <option style="color:rgb(0, 0, 0)" value="Yobe">Yobe</option>
-                                <option style="color:rgb(0, 0, 0)" value="Zamfara">Zamfara</option>
-
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="qAddress" placeholder="Address in Full" required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control form-control-lg" name="pack" id="qPack">
-                                <option disabled selected>
-                                    Choose Your pack
-                                </option>
-                                <option value="1 set of copy book @ N19,500">
-                                    1 Copybook Regular Set (4 books + free gifts)@ &#8358;19,500
-                                </option>
-                                <option value="2 set of copy book @ N35,000">
-                                    2 Copybook Super pack Sets (8 books + free gifts)@ &#8358;35,000
-                                </option>
-                                <option value="3 set of copy book @ N51,000">
-                                    3 Copybook Gold Sets (12 books + free gifts)@ &#8358;51,000
-                                </option>
-                            </select>
-                        </div>
-
-
-                        <div class="form-group m-b-0">
-                            <button type="submit" class="btn btn-shadow btn-blue" id="addToCartButton">Order Now</button>
-                        </div>
-
-                    </form>
-                </div>
-                <!-- Contact Info -->
-                <div class="col-md-6 center-md m-b-md text-white features-block">
-                    <h4 class="f-w-900 m-t-0">NOTE: Our customer care will contact you via Whatsapp / Call to confirm your order. </h4>
-                    <p>Dear Valued Customer, Your might experience a slight delay in the delivery of your order due to this rainy season that affect our transportation and logistics network causing unavoidable delays in the delivery process, the estimated delivery date is 1-7 days maximum. Thanks in anticipation.</p>
-                    <p class="text-white"><a href="https://wa.me/9029026782/?text=Hello, Please i want to make Enquiry concerning magic copy book!!" class="btn btn-ghost btn-md smooth-scroll"><i class="fa fa-whatsapp" style="font-size:36px"></i> 090 290 267 82</a></p>
-
-
-                    <!-- <div class="c3 contact-divider text-white text-center">
-                        <div class="col-sm-4">
-                            <img src="images/about3.jpg" class="img-circle" alt="">
-                        </div>
-                        <div class="col-sm-4 wow zoomIn">
-                            <i class="icon-phone"></i>
-                            <h5 class="f-w-900">Call me</h5>
-                            <p>+01 2342543378</p>
-                        </div>
-                        <div class="col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-                            <i class="icon-mail"></i>
-                            <h5 class="f-w-900">Email me</h5>
-                            <p><a href="mailto:mail@themedept.com" class="inverse">mail@themedept.com</a>
-                            </p>
-                        </div>
-                    </div> -->
-                </div><!-- /End Contact Info -->
-            </div><!-- /End Row -->
-        </div><!-- /End Container -->
-
-    </section>
-    <!-- /End Contact Section -->
-
-
-    <!-- =========================
-             FOOTER
-        ============================== -->
-    <footer id="footer1-2" class="p-y-md footer f1 bg-edit bg-dark">
-        <div class="container">
-            <div class="row">
-                <!-- Copy -->
-                <div class="col-sm-8 text-white">
-                    <p>All rights reserved - Copyright &copy; <?php echo date("Y"); ?> Sank Magic Copy Book by <a href="#" class="f-w-900 inverse">Emerald Digital Prime Tech Global</a></p>
-                </div>
-                <!-- Social Links -->
-                <div class="col-sm-4">
-                    <ul class="footer-social inverse">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-            </div><!-- /End Row -->
-        </div><!-- /End Container -->
-    </footer>
-
-    </div>
-
-
-    <!-- Back to Top Button -->
-    <a href="#" class="top" style="background-color:#ef7c46;">Top</a>
-
-
-    <!-- =========================
-         SCRIPTS 
-    ============================== -->
-    <script src="js/plugins/jquery1.11.2.min.js"></script>
-    <script src="js/plugins/bootstrap.min.js"></script>
-    <script src="js/plugins/jquery.easing.1.3.min.js"></script>
-    <script src="js/plugins/jquery.countTo.js"></script>
-    <script src="js/plugins/jquery.formchimp.min.js"></script>
-    <script src="js/plugins/jquery.jCounter-0.1.4.js"></script>
-    <script src="js/plugins/jquery.magnific-popup.min.js"></script>
-    <script src="js/plugins/jquery.vide.min.js"></script>
-    <script src="js/plugins/owl.carousel.min.js"></script>
-    <script src="js/plugins/spectragram.min.js"></script>
-    <script src="js/plugins/twitterFetcher_min.js"></script>
-    <script src="js/plugins/wow.min.js"></script>
-    <script src="js/plugins/picker.js"></script>
-    <script src="js/plugins/picker.date.js"></script>
-    <!-- Custom Script -->
-    <script src="js/custom.js"></script>
-
-    <!-- <script type="text/javascript">
-        $("#mailchimpForm2").formchimp();
-    </script> -->
-    <script type="text/javascript">
-        $('#addToCartButton').click(function() {
-            fbq('track', 'Purchase', {
-                currency: "NGN",
-                value: 5000
+        // Lightbox: open gallery images in modal with prev/next
+        (function(){
+            const thumbnails = Array.from(document.querySelectorAll('.gallery-thumb'));
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const closeBtn = document.getElementById('lightbox-close');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+            let current = 0;
+
+            function show(idx){
+                if(idx < 0) idx = thumbnails.length - 1;
+                if(idx >= thumbnails.length) idx = 0;
+                current = idx;
+                const src = thumbnails[current].getAttribute('src') || thumbnails[current].getAttribute('data-src');
+                if(lightboxImage) lightboxImage.src = src;
+                if(lightbox) lightbox.style.display = 'flex';
+            }
+
+            thumbnails.forEach((t, i) => {
+                t.addEventListener('click', function(e){ e.preventDefault(); show(i); });
             });
-        });
+
+            if(closeBtn) closeBtn.addEventListener('click', function(){ if(lightbox) lightbox.style.display = 'none'; });
+            if(lightbox) lightbox.addEventListener('click', function(e){ if(e.target === lightbox) lightbox.style.display = 'none'; });
+            if(prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); show(current-1); });
+            if(nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); show(current+1); });
+        })();
+
+        /* Fireworks controller: start/stop and mobile-disable toggle
+           - Respects localStorage 'fireworksEnabled' (string 'false' disables)
+           - Automatically disabled on narrow screens (<480px)
+        */
+        (function(){
+            const cvs = document.getElementById('fireworks-canvas');
+            if(!cvs) return;
+            const ctx = cvs.getContext('2d');
+            let W = 0, H = 0, rafId = null;
+            let fireworks = [];
+
+            function rand(min,max){ return Math.random()*(max-min)+min; }
+
+            function resize(){
+                const rect = cvs.getBoundingClientRect();
+                W = Math.max(300, Math.floor(rect.width));
+                H = Math.max(200, Math.floor(rect.height));
+                const dpr = window.devicePixelRatio || 1;
+                cvs.width = Math.max(300, Math.floor(rect.width * dpr));
+                cvs.height = Math.max(200, Math.floor(rect.height * dpr));
+                cvs.style.width = rect.width + 'px';
+                cvs.style.height = rect.height + 'px';
+                ctx.setTransform(dpr,0,0,dpr,0,0);
+            }
+
+            window.addEventListener('resize', resize);
+
+            function spawnFirework(){
+                const x = rand(40, W-40);
+                const y = rand(H*0.06, H*0.6);
+                const hue = Math.floor(rand(0,360));
+                const sparks = [];
+                const count = Math.floor(rand(28,60));
+                for(let i=0;i<count;i++){
+                    const angle = (Math.PI*2) * (i/count) + rand(-0.06,0.06);
+                    const speed = rand(3.2,8.0);
+                    sparks.push({ x, y, vx: Math.cos(angle)*speed + rand(-1.2,1.2), vy: Math.sin(angle)*speed + rand(-1.2,1.2), life: Math.floor(rand(70,180)), age:0, hue, size: rand(4,12) });
+                }
+                fireworks.push({ sparks });
+            }
+
+            function update(){
+                ctx.clearRect(0,0,W,H);
+                for(let i=fireworks.length-1;i>=0;i--){
+                    const f = fireworks[i];
+                    for(let j=f.sparks.length-1;j>=0;j--){
+                        const s = f.sparks[j];
+                        s.x += s.vx; s.y += s.vy; s.vy += 0.06; s.vx *= 0.997; s.age++;
+                        const alpha = Math.max(0, 1 - s.age/s.life);
+                        const r = s.size || 5;
+                        const g = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, r*2);
+                        g.addColorStop(0, `rgba(255,255,255,${Math.min(1, alpha+0.3)})`);
+                        g.addColorStop(0.2, `hsla(${s.hue},90%,60%,${alpha})`);
+                        g.addColorStop(1, `hsla(${s.hue},90%,45%,${alpha*0.02})`);
+                        ctx.globalCompositeOperation = 'lighter';
+                        ctx.fillStyle = g;
+                        ctx.fillRect(s.x - r, s.y - r, r*2, r*2);
+                    }
+                    f.sparks = f.sparks.filter(s=> s.age < s.life && s.y < H + 50);
+                    if(f.sparks.length === 0) fireworks.splice(i,1);
+                }
+            }
+
+            let next = Date.now() + 600;
+            function loop(){
+                const now = Date.now();
+                if(now > next){ spawnFirework(); next = now + rand(400, 1700); }
+                update();
+                rafId = requestAnimationFrame(loop);
+            }
+
+            // controller exposed to window for toggle
+            window._fireworksController = {
+                start: function(){ if(rafId) return; resize(); next = Date.now() + 300; loop(); },
+                stop: function(){ if(rafId){ cancelAnimationFrame(rafId); rafId = null; fireworks = []; ctx.clearRect(0,0,W,H); } },
+                isRunning: function(){ return !!rafId; }
+            };
+
+            // toggle UI (small floating control)
+            (function installToggle(){
+                const control = document.createElement('button');
+                control.type = 'button';
+                control.id = 'fireworks-toggle';
+                control.setAttribute('aria-pressed','false');
+                control.style.position = 'fixed';
+                control.style.left = '12px';
+                control.style.bottom = '12px';
+                control.style.zIndex = '2500';
+                control.style.background = 'rgba(0,0,0,0.6)';
+                control.style.color = '#fff';
+                control.style.border = 'none';
+                control.style.padding = '8px 10px';
+                control.style.borderRadius = '8px';
+                control.style.fontSize = '13px';
+                control.style.cursor = 'pointer';
+                control.textContent = 'Fireworks: On';
+                document.body.appendChild(control);
+
+                function updateLabel(){ const enabled = (localStorage.getItem('fireworksEnabled') !== 'false'); control.textContent = enabled ? 'Fireworks: On' : 'Fireworks: Off'; control.setAttribute('aria-pressed', enabled ? 'true' : 'false'); }
+
+                control.addEventListener('click', function(){
+                    const enabled = (localStorage.getItem('fireworksEnabled') !== 'false');
+                    if(enabled){ localStorage.setItem('fireworksEnabled','false'); window._fireworksController.stop(); }
+                    else { localStorage.removeItem('fireworksEnabled'); if(window.innerWidth >= 480) window._fireworksController.start(); }
+                    updateLabel();
+                });
+
+                updateLabel();
+            })();
+
+            const userDisabled = (localStorage.getItem('fireworksEnabled') === 'false');
+            if(!userDisabled && window.innerWidth >= 480){ window._fireworksController.start(); }
+
+        })();
+
+        // Auto-select package when gallery CTA is clicked
+        (function(){
+            document.querySelectorAll('.cta-button.small[data-package]').forEach(function(btn){
+                btn.addEventListener('click', function(e){
+                    // if href is an anchor to #order, prevent default scrolling to handle selection first
+                    const pkg = (btn.getAttribute('data-package') || '').toLowerCase();
+                    const select = document.getElementById('package');
+                    if(select && pkg){
+                        let matched = false;
+                        for(let i=0;i<select.options.length;i++){
+                            if(select.options[i].value.toLowerCase() === pkg){
+                                select.selectedIndex = i; matched = true; break;
+                            }
+                        }
+                        if(!matched){
+                            for(let i=0;i<select.options.length;i++){
+                                if(select.options[i].text.toLowerCase().indexOf(pkg) !== -1){
+                                    select.selectedIndex = i; matched = true; break;
+                                }
+                            }
+                        }
+                        select.dispatchEvent(new Event('change'));
+                    }
+                    // let the default anchor behavior scroll to #order
+                });
+            });
+        })();
+
+        // Demo order slide-in notifications (generate 20 fake orders and cycle them)
+        (function(){
+            const first = ['Ada','Emeka','Chinelo','Ifeanyi','Sade','Kunle','Ngozi','Tunde','Aisha','Olu','Maya','Ijeoma','Amaka','Ibrahim','Zainab','Uche','Kemi','Bola','Ikenna','Opeyemi'];
+            const last = ['Nwosu','Okonkwo','Adetunji','Eze','Olawale','Ibrahim','Abiodun','Onyeka','Balogun','Chukwu','Afolabi','Odenigbo','Ejiro','Madu','Ilesanmi','Ogunleye','Suleiman','Ojo','Obi','Omotayo'];
+            const packages = ['Starter','Learning Bundle','Mastery Collection'];
+            const states = ['Lagos','Abuja','Rivers','Enugu','Oyo','Delta','Kaduna','Anambra','Kano','Katsina'];
+            const thumbs = ['images/number_magic.jpg','images/letter_magic.jpg','images/magic_sank.jpg','images/maths_magic.jpg','images/paint_magi.jpg','images/1.jpg'];
+
+            function rnd(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+            function genName(i){ return first[i%first.length] + ' ' + last[(i*3)%last.length]; }
+
+            const demoOrders = [];
+            for(let i=0;i<20;i++){
+                demoOrders.push({
+                    name: genName(i),
+                    pkg: rnd(packages),
+                    state: rnd(states),
+                    time: (Math.floor(Math.random()*50)+1) + 'm ago',
+                    img: thumbs[i % thumbs.length]
+                });
+            }
+
+            const container = document.getElementById('order-toast-container');
+            let idx = 0;
+
+            function showOrder(o){
+                const el = document.createElement('div'); el.className = 'order-toast';
+                el.innerHTML = `<img src="${o.img}" loading="lazy" alt="order thumbnail"><div class="ot-body"><strong>${o.name}</strong><div class="ot-pkg">${o.pkg}</div><div class="ot-meta">${o.time} • ${o.state}</div></div>`;
+                container.appendChild(el);
+                // animate in
+                requestAnimationFrame(()=> el.classList.add('show') );
+                // remove after show duration
+                setTimeout(()=>{ el.classList.remove('show'); setTimeout(()=> el.remove(), 420); }, 4200);
+            }
+
+            // cycle through demo orders every 3.8s
+            function cycle(){
+                showOrder(demoOrders[idx]);
+                idx = (idx + 1) % demoOrders.length;
+            }
+
+            // start immediately with a few seeds
+            cycle();
+            setTimeout(cycle, 1800);
+            const interval = setInterval(cycle, 3800);
+
+            // expose for debugging
+            window._demoOrders = { orders: demoOrders, stop: ()=> clearInterval(interval) };
+        })();
+
+        // Facebook addToCart / quick Purchase tracking
+        (function(){
+            function getPurchaseValue(){
+                try{
+                    var pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
+                    var priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                    return priceMap[pkg] || 18000;
+                }catch(e){ return 18000; }
+            }
+
+            var btn = document.getElementById('addToCartButton');
+            if(btn){
+                btn.addEventListener('click', function(e){
+                    try{
+                        var value = getPurchaseValue();
+                        if(window.fbq){ fbq('track', 'Purchase', { currency: 'NGN', value: value }); }
+                    }catch(err){ /* ignore */ }
+                });
+            }
+        })();
+
+        // Rotating hero benefit phrases
+        (function(){
+            const phrases = [
+                'Reusable sank copybook',
+                'The ink disappears after 5mins',
+                'Perfect for kids 3 years and above'
+            ];
+            const el = document.getElementById('rotatingWord');
+            if(!el) return;
+            let idx = 0;
+            function showNext(){
+                el.classList.add('fade');
+                setTimeout(()=>{
+                    idx = (idx + 1) % phrases.length;
+                    el.textContent = phrases[idx];
+                    el.classList.remove('fade');
+                }, 320);
+            }
+            el.textContent = phrases[0];
+            setInterval(showNext, 2600);
+        })();
     </script>
-    // add this before event code to all pages where PII data postback is expected and appropriate 
-ttq.identify({
-	"email": "<hashed_email_address>", // string. The email of the customer if available. It must be hashed with SHA-256 on the client side.
-	"phone_number": "<hashed_phone_number>", // string. The phone number of the customer if available. It must be hashed with SHA-256 on the client side.
-	"external_id": "<hashed_external_id>" // string. Any unique identifier, such as loyalty membership IDs, user IDs, and external cookie IDs.It must be hashed with SHA-256 on the client side.
-});
-
-ttq.track('AddToCart', {
-	"contents": [
-		{
-			"content_id": "<content_identifier>", // string. ID of the product. Example: "1077218".
-			"content_type": "<content_type>", // string. Either product or product_group.
-			"content_name": "<content_name>" // string. The name of the page or product. Example: "shirt".
-		}
-	],
-	"value": "<content_value>", 5000.
-	"currency": "<content_currency>" NGN".
-});
-
-
-
-
 </body>
-
-<!-- Mirrored from themes.netivo.it/getleads/consulting.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 May 2023 15:45:24 GMT -->
-
 </html>
