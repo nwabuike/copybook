@@ -608,10 +608,11 @@
                     <div class="logo-text">Emerald Tech Hub</div>
                 </div>
                 <nav class="admin-nav">
-                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                    <a href="#" class="active"><i class="fas fa-shopping-cart"></i> Orders</a>
-                    <a href="#"><i class="fas fa-users"></i> Customers</a>
-                    <a href="#"><i class="fas fa-chart-bar"></i> Analytics</a>
+                    <a href="index.php"><i class="fas fa-home"></i> Home</a>
+                    <a href="customer_orderlist.php" class="active"><i class="fas fa-shopping-cart"></i> Orders</a>
+                    <a href="agent_management.php"><i class="fas fa-user-tie"></i> Agents</a>
+                    <a href="analytics.php"><i class="fas fa-chart-line"></i> Analytics</a>
+                    <a href="sales_notifications.php"><i class="fas fa-bell"></i> Alerts</a>
                 </nav>
             </div>
         </div>
@@ -696,9 +697,10 @@
                                 <th>Customer</th>
                                 <th>Package</th>
                                 <th>Amount</th>
+                                <th>State</th>
+                                <th>Agent</th>
                                 <th>Status</th>
                                 <th>Order Date</th>
-                                <th>Confirmed Date</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -818,94 +820,15 @@
     </footer>
 
     <script>
-        // Sample order data
-        let orders = [
-            {
-                id: 'ETH2023110452',
-                customer: 'Adeola Johnson',
-                package: 'Learning Bundle',
-                amount: '₦32,000',
-                status: 'confirmed',
-                orderDate: '2023-11-04 14:30',
-                confirmedDate: '2023-11-04 15:45',
-                notes: 'Customer confirmed via WhatsApp'
-            },
-            {
-                id: 'ETH2023110389',
-                customer: 'Chinedu Okoro',
-                package: 'Mastery Collection',
-                amount: '₦45,000',
-                status: 'shipped',
-                orderDate: '2023-11-03 10:15',
-                confirmedDate: '2023-11-03 11:20',
-                notes: 'Shipped via dispatch rider'
-            },
-            {
-                id: 'ETH2023110276',
-                customer: 'Fatima Bello',
-                package: 'Starter Set',
-                amount: '₦18,000',
-                status: 'delivered',
-                orderDate: '2023-11-02 09:45',
-                confirmedDate: '2023-11-02 10:30',
-                notes: 'Delivered successfully'
-            },
-            {
-                id: 'ETH2023110154',
-                customer: 'Emeka Nwosu',
-                package: 'Learning Bundle',
-                amount: '₦32,000',
-                status: 'processing',
-                orderDate: '2023-11-01 16:20',
-                confirmedDate: '2023-11-01 17:05',
-                notes: 'Preparing for shipment'
-            },
-            {
-                id: 'ETH2023102987',
-                customer: 'Bisi Adekunle',
-                package: 'Starter Set',
-                amount: '₦18,000',
-                status: 'pending',
-                orderDate: '2023-10-29 13:10',
-                confirmedDate: '',
-                notes: 'Awaiting customer confirmation'
-            },
-            {
-                id: 'ETH2023102765',
-                customer: 'Tunde Lawal',
-                package: 'Mastery Collection',
-                amount: '₦45,000',
-                status: 'delivered',
-                orderDate: '2023-10-27 11:30',
-                confirmedDate: '2023-10-27 12:15',
-                notes: 'Customer satisfied with products'
-            },
-            {
-                id: 'ETH2023102543',
-                customer: 'Grace Okafor',
-                package: 'Learning Bundle',
-                amount: '₦32,000',
-                status: 'cancelled',
-                orderDate: '2023-10-25 15:40',
-                confirmedDate: '2023-10-25 16:20',
-                notes: 'Customer requested cancellation'
-            },
-            {
-                id: 'ETH2023102312',
-                customer: 'Samuel Adeyemi',
-                package: 'Starter Set',
-                amount: '₦18,000',
-                status: 'delivered',
-                orderDate: '2023-10-23 08:50',
-                confirmedDate: '2023-10-23 09:35',
-                notes: 'Delivered to office address'
-            }
-        ];
-
-        // Pagination variables
+        // State variables
+        let orders = [];
+        let allOrders = [];
         let currentPage = 1;
-        const ordersPerPage = 5;
-        let filteredOrders = [...orders];
+        const ordersPerPage = 10;
+        let filteredOrders = [];
+        let currentSearch = '';
+        let currentStatusFilter = '';
+        let statsData = {};
 
         // DOM Elements
         const ordersTbody = document.getElementById('orders-tbody');
@@ -923,15 +846,15 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
-            updateStats();
-            renderOrdersTable();
             setupEventListeners();
+            loadOrders();
+            loadStats();
         });
 
         // Set up event listeners
         function setupEventListeners() {
-            searchInput.addEventListener('input', filterOrders);
-            statusFilter.addEventListener('change', filterOrders);
+            searchInput.addEventListener('input', debounce(loadOrders, 500));
+            statusFilter.addEventListener('change', loadOrders);
             editModalClose.addEventListener('click', closeEditModal);
             editCancelBtn.addEventListener('click', closeEditModal);
             editSaveBtn.addEventListener('click', saveOrderChanges);
@@ -946,65 +869,115 @@
             });
         }
 
-        // Update statistics cards
-        function updateStats() {
-            const totalOrders = orders.length;
-            const confirmedOrders = orders.filter(order => order.status === 'confirmed' || order.status === 'processing' || order.status === 'shipped' || order.status === 'delivered').length;
-            const shippedOrders = orders.filter(order => order.status === 'shipped').length;
-            const deliveredOrders = orders.filter(order => order.status === 'delivered').length;
-            
-            document.getElementById('total-orders').textContent = totalOrders;
-            document.getElementById('confirmed-orders').textContent = confirmedOrders;
-            document.getElementById('shipped-orders').textContent = shippedOrders;
-            document.getElementById('delivered-orders').textContent = deliveredOrders;
+        // Debounce function for search
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
         }
 
-        // Filter orders based on search and status
-        function filterOrders() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const statusFilterValue = statusFilter.value;
-            
-            filteredOrders = orders.filter(order => {
-                const matchesSearch = 
-                    order.id.toLowerCase().includes(searchTerm) ||
-                    order.customer.toLowerCase().includes(searchTerm) ||
-                    order.package.toLowerCase().includes(searchTerm);
+        // Load orders from API
+        async function loadOrders() {
+            try {
+                currentSearch = searchInput.value;
+                currentStatusFilter = statusFilter.value;
                 
-                const matchesStatus = statusFilterValue === '' || order.status === statusFilterValue;
+                const params = new URLSearchParams({
+                    action: 'list',
+                    page: currentPage,
+                    per_page: ordersPerPage,
+                    search: currentSearch,
+                    status: currentStatusFilter
+                });
                 
-                return matchesSearch && matchesStatus;
-            });
-            
-            currentPage = 1;
-            renderOrdersTable();
+                const response = await fetch(`api/orders.php?${params}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    orders = data.data;
+                    renderOrdersTable(data);
+                } else {
+                    console.error('Failed to load orders:', data.message);
+                    alert('Error loading orders. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error loading orders:', error);
+                alert('Error connecting to server. Please check your connection.');
+            }
+        }
+
+        // Load statistics from API
+        async function loadStats() {
+            try {
+                const response = await fetch('api/orders.php?action=stats');
+                const data = await response.json();
+                
+                if (data.success) {
+                    statsData = data.data;
+                    updateStats();
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        }
+
+        // Update statistics cards
+        function updateStats() {
+            document.getElementById('total-orders').textContent = statsData.total || 0;
+            document.getElementById('confirmed-orders').textContent = statsData.confirmed || 0;
+            document.getElementById('shipped-orders').textContent = statsData.shipped || 0;
+            document.getElementById('delivered-orders').textContent = statsData.delivered || 0;
         }
 
         // Render orders table with pagination
-        function renderOrdersTable() {
+        function renderOrdersTable(apiData) {
             // Clear current table
             ordersTbody.innerHTML = '';
             
-            // Calculate pagination
-            const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
-            const startIndex = (currentPage - 1) * ordersPerPage;
-            const endIndex = Math.min(startIndex + ordersPerPage, filteredOrders.length);
-            const currentOrders = filteredOrders.slice(startIndex, endIndex);
+            if (!orders || orders.length === 0) {
+                const row = document.createElement('tr');
+                row.innerHTML = '<td colspan="8" style="text-align: center; padding: 20px;">No orders found</td>';
+                ordersTbody.appendChild(row);
+                paginationInfo.textContent = 'Showing 0 orders';
+                paginationControls.innerHTML = '';
+                return;
+            }
             
             // Populate table
-            currentOrders.forEach(order => {
+            orders.forEach(order => {
                 const row = document.createElement('tr');
                 
-                // Format confirmed date
-                const confirmedDate = order.confirmedDate ? order.confirmedDate : 'Not confirmed';
+                // Format package name
+                const packageNames = {
+                    'starter': 'Starter Set',
+                    'bundle': 'Learning Bundle',
+                    'collection': 'Mastery Collection'
+                };
+                
+                // Calculate amount based on package
+                const amounts = {
+                    'starter': '₦18,000',
+                    'bundle': '₦32,000',
+                    'collection': '₦45,000'
+                };
+                
+                // Format dates
+                const orderDate = order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A';
+                const confirmedDate = order.confirmed_at ? new Date(order.confirmed_at).toLocaleString() : 'Not confirmed';
+                const status = order.status || 'pending';
+                const agentName = order.agent_name || '<span style="color: #999;">Not assigned</span>';
                 
                 row.innerHTML = `
                     <td class="order-id">${order.id}</td>
-                    <td class="customer-name">${order.customer}</td>
-                    <td>${order.package}</td>
-                    <td>${order.amount}</td>
-                    <td><span class="status-badge status-${order.status}">${getStatusText(order.status)}</span></td>
-                    <td>${order.orderDate}</td>
-                    <td>${confirmedDate}</td>
+                    <td class="customer-name">${order.fullname}</td>
+                    <td>${packageNames[order.pack] || order.pack}</td>
+                    <td>${amounts[order.pack] || 'N/A'}</td>
+                    <td>${order.state || 'N/A'}</td>
+                    <td>${agentName}</td>
+                    <td><span class="status-badge status-${status}">${getStatusText(status)}</span></td>
+                    <td>${orderDate}</td>
                     <td>
                         <div class="action-buttons">
                             <button class="action-btn edit-btn" data-id="${order.id}">
@@ -1036,15 +1009,24 @@
             });
             
             // Update pagination info
-            paginationInfo.textContent = `Showing ${startIndex + 1}-${endIndex} of ${filteredOrders.length} orders`;
+            const total = apiData.pagination?.total || orders.length;
+            const page = apiData.pagination?.current_page || currentPage;
+            const perPage = apiData.pagination?.per_page || ordersPerPage;
+            const startIndex = (page - 1) * perPage + 1;
+            const endIndex = Math.min(page * perPage, total);
+            
+            paginationInfo.textContent = `Showing ${startIndex}-${endIndex} of ${total} orders`;
             
             // Render pagination controls
+            const totalPages = apiData.pagination?.total_pages || 1;
             renderPaginationControls(totalPages);
         }
 
         // Render pagination controls
         function renderPaginationControls(totalPages) {
             paginationControls.innerHTML = '';
+            
+            if (totalPages <= 1) return;
             
             // Previous button
             const prevButton = document.createElement('button');
@@ -1053,19 +1035,26 @@
             prevButton.addEventListener('click', () => {
                 if (currentPage > 1) {
                     currentPage--;
-                    renderOrdersTable();
+                    loadOrders();
                 }
             });
             paginationControls.appendChild(prevButton);
             
-            // Page buttons
-            for (let i = 1; i <= totalPages; i++) {
+            // Page buttons (show max 5 pages)
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, startPage + 4);
+            
+            if (endPage - startPage < 4) {
+                startPage = Math.max(1, endPage - 4);
+            }
+            
+            for (let i = startPage; i <= endPage; i++) {
                 const pageButton = document.createElement('button');
                 pageButton.className = `pagination-btn ${i === currentPage ? 'active' : ''}`;
                 pageButton.textContent = i;
                 pageButton.addEventListener('click', () => {
                     currentPage = i;
-                    renderOrdersTable();
+                    loadOrders();
                 });
                 paginationControls.appendChild(pageButton);
             }
@@ -1077,7 +1066,7 @@
             nextButton.addEventListener('click', () => {
                 if (currentPage < totalPages) {
                     currentPage++;
-                    renderOrdersTable();
+                    loadOrders();
                 }
             });
             paginationControls.appendChild(nextButton);
@@ -1098,17 +1087,23 @@
         }
 
         // Open edit modal with order data
-        function openEditModal(orderId) {
-            const order = orders.find(o => o.id === orderId);
+        async function openEditModal(orderId) {
+            const order = orders.find(o => o.id == orderId);
             
             if (order) {
+                const packageNames = {
+                    'starter': 'Starter Set',
+                    'bundle': 'Learning Bundle',
+                    'collection': 'Mastery Collection'
+                };
+                
                 document.getElementById('edit-order-id').value = order.id;
-                document.getElementById('edit-customer-name').value = order.customer;
-                document.getElementById('edit-package').value = order.package;
-                document.getElementById('edit-order-date').value = order.orderDate;
-                document.getElementById('edit-confirmed-date').value = order.confirmedDate || 'Not confirmed';
-                document.getElementById('edit-status').value = order.status;
-                document.getElementById('edit-notes').value = order.notes || '';
+                document.getElementById('edit-customer-name').value = order.fullname;
+                document.getElementById('edit-package').value = packageNames[order.pack] || order.pack;
+                document.getElementById('edit-order-date').value = order.created_at || '';
+                document.getElementById('edit-confirmed-date').value = order.confirmed_at || 'Not confirmed';
+                document.getElementById('edit-status').value = order.status || 'pending';
+                document.getElementById('edit-notes').value = order.admin_notes || '';
                 
                 editOrderModal.style.display = 'flex';
             }
@@ -1120,59 +1115,134 @@
         }
 
         // Save order changes
-        function saveOrderChanges() {
+        async function saveOrderChanges() {
             const orderId = document.getElementById('edit-order-id').value;
             const newStatus = document.getElementById('edit-status').value;
             const notes = document.getElementById('edit-notes').value;
             
-            const orderIndex = orders.findIndex(o => o.id === orderId);
-            
-            if (orderIndex !== -1) {
-                // Update order status
-                orders[orderIndex].status = newStatus;
-                orders[orderIndex].notes = notes;
+            try {
+                const response = await fetch('api/orders.php?action=update_status', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        order_id: orderId,
+                        status: newStatus,
+                        notes: notes
+                    })
+                });
                 
-                // If confirming for the first time, set confirmed date
-                if (newStatus === 'confirmed' && !orders[orderIndex].confirmedDate) {
-                    const now = new Date();
-                    orders[orderIndex].confirmedDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Order updated successfully!');
+                    closeEditModal();
+                    loadOrders();
+                    loadStats();
+                } else {
+                    alert('Error updating order: ' + data.message);
                 }
-                
-                // Update stats and table
-                updateStats();
-                filterOrders(); // This will also re-render the table
-                
-                // Close modal
-                closeEditModal();
-                
-                // Show success message
-                alert(`Order ${orderId} status updated successfully!`);
+            } catch (error) {
+                console.error('Error saving order:', error);
+                alert('Error connecting to server. Please try again.');
             }
         }
 
         // Delete order
-        function deleteOrder(orderId) {
-            if (confirm(`Are you sure you want to delete order ${orderId}? This action cannot be undone.`)) {
-                orders = orders.filter(o => o.id !== orderId);
-                updateStats();
-                filterOrders(); // This will also re-render the table
-                alert(`Order ${orderId} has been deleted.`);
+        async function deleteOrder(orderId) {
+            if (!confirm(`Are you sure you want to delete order ${orderId}? This action cannot be undone.`)) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('api/orders.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id: orderId })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    alert('Order deleted successfully!');
+                    loadOrders();
+                    loadStats();
+                } else {
+                    alert('Error deleting order: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error deleting order:', error);
+                alert('Error connecting to server. Please try again.');
             }
         }
 
         // Refresh orders
         function refreshOrders() {
-            // In a real application, this would fetch fresh data from the server
-            // For now, we'll just re-render the table
-            filterOrders();
-            alert('Orders refreshed successfully!');
+            currentPage = 1;
+            loadOrders();
+            loadStats();
         }
 
         // Export orders
-        function exportOrders() {
-            // In a real application, this would generate a CSV or Excel file
-            // For now, we'll just show an alert
-            alert('Export functionality would generate a CSV file with all order data in a real application.');
+        async function exportOrders() {
+            try {
+                const startDate = prompt('Enter start date (YYYY-MM-DD):', getDateWeeksAgo(4));
+                const endDate = prompt('Enter end date (YYYY-MM-DD):', new Date().toISOString().split('T')[0]);
+                
+                if (!startDate || !endDate) return;
+                
+                const params = new URLSearchParams({
+                    action: 'sales_report',
+                    start_date: startDate,
+                    end_date: endDate,
+                    group_by: 'day'
+                });
+                
+                const response = await fetch(`api/orders.php?${params}`);
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Convert to CSV
+                    let csv = 'Order ID,Customer,Package,State,Amount,Status,Order Date,Confirmed Date,Delivered Date,Agent\n';
+                    
+                    data.data.orders.forEach(order => {
+                        const packageNames = {
+                            'starter': 'Starter Set',
+                            'bundle': 'Learning Bundle',
+                            'collection': 'Mastery Collection'
+                        };
+                        const amounts = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                        
+                        csv += `${order.id},"${order.fullname}","${packageNames[order.pack]}","${order.state}",${amounts[order.pack]},"${order.status}","${order.created_at}","${order.confirmed_at || ''}","${order.delivered_at || ''}","${order.agent_name || ''}"\n`;
+                    });
+                    
+                    // Download CSV
+                    const blob = new Blob([csv], { type: 'text/csv' });
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `orders_${startDate}_to_${endDate}.csv`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                } else {
+                    alert('Error exporting orders: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error exporting orders:', error);
+                alert('Error exporting orders. Please try again.');
+            }
+        }
+
+        // Helper function to get date weeks ago
+        function getDateWeeksAgo(weeks) {
+            const date = new Date();
+            date.setDate(date.getDate() - (weeks * 7));
+            return date.toISOString().split('T')[0];
         }
     </script>
 </body>

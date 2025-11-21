@@ -1,0 +1,31 @@
+# Git Ignore File
+# Add this to prevent sensitive files from being committed
+
+# Composer
+vendor/
+composer.lock
+
+# Environment variables (contains passwords!)
+.env
+smtp_config.php
+
+# Logs
+*.log
+error_log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.cache

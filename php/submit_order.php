@@ -97,23 +97,95 @@ function generate_referral($conn) {
 $referral_code = generate_referral($conn);
 $created_at = date('Y-m-d H:i:s');
 
-// Insert order
-$insert = "INSERT INTO orders (fullname, email, phone, altphone, address, state, pack, referral_code, created_at) VALUES ('{$fullname_db}','{$email_db}','{$phone_db}','{$altphone_db}','{$address_db}','{$state_db}','{$pack_db}','{$referral_code}','{$created_at}')";
+// Find active agent for this state
+$agent_id = null;
+$agent_sql = "SELECT da.id FROM delivery_agents da 
+              INNER JOIN agent_states ast ON da.id = ast.agent_id 
+              WHERE ast.state = '{$state_db}' AND da.status = 'active' 
+              LIMIT 1";
+$agent_result = $conn->query($agent_sql);
+if ($agent_result && $agent_result->num_rows > 0) {
+    $agent_row = $agent_result->fetch_assoc();
+    $agent_id = $agent_row['id'];
+}
+
+// Insert order with auto-assigned agent
+$insert = "INSERT INTO orders (fullname, email, phone, altphone, address, state, pack, referral_code, agent_id, quantity, created_at) 
+           VALUES ('{$fullname_db}','{$email_db}','{$phone_db}','{$altphone_db}','{$address_db}','{$state_db}','{$pack_db}','{$referral_code}'," . 
+           ($agent_id ? $agent_id : "NULL") . ",1,'{$created_at}')";
 if (!$conn->query($insert)) {
     json_error('Database error: ' . $conn->error);
 }
 $order_id = $conn->insert_id;
 
-// Send emails (only if mail function is available - many shared hosts disable it)
-$adminEmail = 'emeraldonlineecom@gmail.com';
-$siteFrom = 'no-reply@smartkidsedu.com.ng';
+// Send emails using SMTP (PHPMailer) or fallback to mail()
 $adminMailSent = false;
 $customerMailSent = false;
+$emailMethod = 'none';
 
-// Check if mail function exists to prevent fatal errors
-if (function_exists('mail')) {
+// Get agent name if assigned
+$agent_name = null;
+if ($agent_id) {
+    $agent_name_sql = "SELECT name FROM delivery_agents WHERE id = {$agent_id}";
+    $agent_name_result = $conn->query($agent_name_sql);
+    if ($agent_name_result && $agent_name_result->num_rows > 0) {
+        $agent_name_row = $agent_name_result->fetch_assoc();
+        $agent_name = $agent_name_row['name'];
+    }
+}
+
+// Prepare order data for email functions
+$orderData = [
+    'order_id' => $order_id,
+    'fullname' => $fullname,
+    'email' => $email,
+    'phone' => $phone,
+    'altphone' => $altphone,
+    'address' => $address,
+    'state' => $state,
+    'pack' => $pack,
+    'referral_code' => $referral_code,
+    'agent_id' => $agent_id,
+    'agent_name' => $agent_name,
+    'created_at' => $created_at
+];
+
+// Try SMTP first (if configured)
+if (file_exists(__DIR__ . '/mailer_smtp.php')) {
     try {
-        // Admin email
+        require_once __DIR__ . '/mailer_smtp.php';
+        
+        // Send admin notification
+        $adminResult = sendAdminOrderNotification($orderData);
+        $adminMailSent = $adminResult['success'];
+        
+        // Send customer confirmation
+        $customerResult = sendCustomerOrderConfirmation($orderData);
+        $customerMailSent = $customerResult['success'];
+        
+        if ($adminMailSent || $customerMailSent) {
+            $emailMethod = 'smtp';
+        }
+        
+        // Log any SMTP errors
+        if (!$adminMailSent) {
+            error_log("SMTP Admin email failed: " . $adminResult['message']);
+        }
+        if (!$customerMailSent && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            error_log("SMTP Customer email failed: " . $customerResult['message']);
+        }
+        
+    } catch (Exception $e) {
+        error_log("SMTP initialization failed: " . $e->getMessage());
+    }
+}
+
+// Fallback to mail() if SMTP failed or not configured
+if (!$adminMailSent && function_exists('mail')) {
+    try {
+        $adminEmail = 'emeraldonlineecom@gmail.com';
+        $siteFrom = 'no-reply@smartkidsedu.com.ng';
+        
         $subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
         $bodyAdmin = "New order received:\n\n";
         $bodyAdmin .= "Order ID: {$order_id}\n";
@@ -128,41 +200,46 @@ if (function_exists('mail')) {
         $bodyAdmin .= "Created At: {$created_at}\n";
         $headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\n";
         $adminMailSent = @mail($adminEmail, $subjectAdmin, $bodyAdmin, $headersAdmin);
-    } catch (Exception $e) {
-        // Log error but don't fail the order
-        error_log("Admin email failed: " . $e->getMessage());
-    }
-
-    try {
-        // Customer email (if provided)
-        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $subjectCustomer = "Your Smartkids Edu Order #{$order_id}";
-            $bodyCustomer = "Hi {$fullname},\n\nThank you for your order. Here are your order details:\n\n";
-            $bodyCustomer .= "Order ID: {$order_id}\n";
-            $bodyCustomer .= "Package: {$pack}\n";
-            $bodyCustomer .= "Delivery to: {$state}\n";
-            $bodyCustomer .= "Address: {$address}\n";
-            $bodyCustomer .= "Referral Code: {$referral_code}\n\n";
-            $bodyCustomer .= "We will contact you shortly to confirm delivery details.\n\nRegards,\nSmartkids Edu";
-            $headersCustomer = "From: Smartkids Edu <{$siteFrom}>\r\n";
-            $customerMailSent = @mail($email, $subjectCustomer, $bodyCustomer, $headersCustomer);
+        
+        if ($adminMailSent) {
+            $emailMethod = 'mail';
         }
     } catch (Exception $e) {
-        // Log error but don't fail the order
-        error_log("Customer email failed: " . $e->getMessage());
+        error_log("Mail() admin email failed: " . $e->getMessage());
     }
-} else {
-    // Mail function is disabled on this server - log for admin awareness
-    error_log("Mail function is disabled on this server. Order #{$order_id} created but no emails sent.");
+}
+
+// Fallback customer email
+if (!$customerMailSent && function_exists('mail') && filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    try {
+        $siteFrom = 'no-reply@smartkidsedu.com.ng';
+        $subjectCustomer = "Your Smartkids Edu Order #{$order_id}";
+        $bodyCustomer = "Hi {$fullname},\n\nThank you for your order. Here are your order details:\n\n";
+        $bodyCustomer .= "Order ID: {$order_id}\n";
+        $bodyCustomer .= "Package: {$pack}\n";
+        $bodyCustomer .= "Delivery to: {$state}\n";
+        $bodyCustomer .= "Address: {$address}\n";
+        $bodyCustomer .= "Referral Code: {$referral_code}\n\n";
+        $bodyCustomer .= "We will contact you shortly to confirm delivery details.\n\nRegards,\nSmartkids Edu";
+        $headersCustomer = "From: Smartkids Edu <{$siteFrom}>\r\n";
+        $customerMailSent = @mail($email, $subjectCustomer, $bodyCustomer, $headersCustomer);
+        
+        if ($customerMailSent && $emailMethod === 'none') {
+            $emailMethod = 'mail';
+        }
+    } catch (Exception $e) {
+        error_log("Mail() customer email failed: " . $e->getMessage());
+    }
+}
+
+// Log if no email method worked
+if ($emailMethod === 'none') {
+    error_log("No email method available. Order #{$order_id} created but no emails sent.");
 }
 
 // Clean output buffer and return JSON
 ob_clean();
 http_response_code(200);
-
-$mailStatus = function_exists('mail') ? 
-    ($adminMailSent ? 'sent' : 'failed') : 
-    'disabled';
 
 echo json_encode([
     'type' => 'message',
@@ -170,9 +247,12 @@ echo json_encode([
     'text' => 'Order received successfully!',
     'order_id' => $order_id,
     'referral_code' => $referral_code,
-    'admin_mail' => $mailStatus,
-    'customer_mail' => function_exists('mail') ? ($customerMailSent ? 'sent' : 'failed') : 'disabled',
-    'mail_available' => function_exists('mail')
+    'agent_id' => $agent_id,
+    'agent_name' => $agent_name,
+    'agent_assigned' => $agent_id ? true : false,
+    'admin_mail' => $adminMailSent ? 'sent' : ($emailMethod === 'none' ? 'disabled' : 'failed'),
+    'customer_mail' => $customerMailSent ? 'sent' : ($emailMethod === 'none' ? 'disabled' : 'failed'),
+    'email_method' => $emailMethod  // 'smtp', 'mail', or 'none'
 ]);
 ob_end_flush();
 
