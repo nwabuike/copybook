@@ -2,12 +2,35 @@
 // submit_order.php
 // Receives POST from form, inserts order into DB, generates referral code, sends emails, returns JSON
 
+// Enable error reporting for debugging (remove in production)
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('log_errors', 1);
+
 require_once 'db.php';
 date_default_timezone_set('Africa/Lagos');
 
-header('Content-Type: application/json');
+// Check database connection
+if ($conn->connect_error) {
+    http_response_code(200);
+    echo json_encode(['type'=>'error','text'=>'Database connection failed. Please try again later.']);
+    exit;
+}
+
+// CORS headers for cross-origin requests
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Content-Type: application/json; charset=utf-8');
+
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 
 function json_error($msg) {
+    http_response_code(200); // Keep 200 so fetch doesn't throw
     echo json_encode(['type'=>'error','text'=>$msg]);
     exit;
 }
@@ -58,8 +81,8 @@ if (!$conn->query($insert)) {
 $order_id = $conn->insert_id;
 
 // Send emails
-$adminEmail = 'goldenemeraldglobal@gmail.com';
-$siteFrom = 'no-reply@smartkids-edu.local';
+$adminEmail = 'emeraldonlineecom@gmail.com';
+$siteFrom = 'no-reply@smartkidsedu.com.ng';
 
 // Admin email
 $subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
@@ -93,9 +116,11 @@ if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // Return JSON with order info
+http_response_code(200);
 echo json_encode([
     'type' => 'message',
-    'text' => 'Order received',
+    'success' => true,
+    'text' => 'Order received successfully!',
     'order_id' => $order_id,
     'referral_code' => $referral_code,
     'admin_mail' => $adminMailSent ? 'sent' : 'failed',

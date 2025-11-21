@@ -2525,12 +2525,23 @@
             console.log('Submitting order...', {name: fullName, pack: document.getElementById('package').value});
             showFormMessage('Processing your order — please wait...', 'info');
 
+            // Add timeout to fetch request
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000); // 30 second timeout
+            
             fetch('php/submit_order.php', {
                 method: 'POST',
-                body: fd
-            }).then(r => r.json()).then(res => {
+                body: fd,
+                signal: controller.signal
+            }).then(r => {
+                clearTimeout(timeoutId);
+                if (!r.ok) {
+                    throw new Error('Server returned error: ' + r.status);
+                }
+                return r.json();
+            }).then(res => {
                 console.log('Server response', res);
-                if (res.type === 'message') {
+                if (res.type === 'message' || res.success) {
                     // Play payment-success animation, then redirect to thank you page
                     const targetUrl = res.referral_code ? ('thank-You.new.php?ref=' + encodeURIComponent(res.referral_code)) : ('thank-You.new.php?order_id=' + encodeURIComponent(res.order_id));
                     // optional: pass order meta to showSuccessMessage if desired
@@ -2554,8 +2565,15 @@
                     showFormMessage(res.text || 'Unexpected response from server.', 'error');
                 }
             }).catch(err => {
-                console.error(err);
-                showFormMessage('Network error — please check your connection and try again.', 'error');
+                clearTimeout(timeoutId);
+                console.error('Fetch error:', err);
+                let errorMsg = 'Network error — please check your connection and try again.';
+                if (err.name === 'AbortError') {
+                    errorMsg = 'Request timeout — the server took too long to respond. Please try again.';
+                } else if (err.message) {
+                    errorMsg = 'Error: ' + err.message;
+                }
+                showFormMessage(errorMsg, 'error');
             }).finally(() => {
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
