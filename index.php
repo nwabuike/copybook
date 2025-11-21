@@ -16,6 +16,9 @@
     <meta name="twitter:description" content="Limited Black Friday offer on reusable Sank Magic copybooks for kids. Free delivery & gifts." />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Load clear, bold sale-friendly fonts for this page */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
+
         :root {
             --primary: #0a7c42;
             --primary-dark: #066633;
@@ -24,21 +27,35 @@
             --accent: #ffd166;
             --dark: #2d3047;
             --light: #f7f9fc;
-            --text: #333333;
+            --text: #222222;
             --transition: all 0.3s ease;
         }
-        
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Comic Neue', cursive, Arial, sans-serif;
         }
-        
+
+        /* Page-wide typography: use Inter / Roboto and stronger weights for sale readability */
         body {
+            font-family: 'Inter', 'Roboto', Arial, sans-serif;
             background-color: var(--light);
             color: var(--text);
             line-height: 1.6;
+            font-weight: 500;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Headings and CTAs stronger on mobile */
+        h1, h2, h3, h4, h5, h6 { font-weight: 800; }
+        .cta-button, .bf-badge, .md-badge, .price-chip .new-price { font-weight: 800; }
+
+        @media (max-width: 576px) {
+            body { font-size: 16px; }
+            h1 { font-size: 1.8rem; }
+            .cta-button { padding: 14px 18px; font-size: 1rem; }
         }
         
         .container {

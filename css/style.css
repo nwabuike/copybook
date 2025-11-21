@@ -85,19 +85,31 @@ Hotel Landing page, Software Landing page, Medical Landing page, Hosting Landing
 
 /* ==========================================================================
    01. GENERAL STYLE
-========================================================================== */ 
-/* @import url('https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Rubik:300,300i,400,400i,500,500i,700,700i,900,900i'); */
+==========================================================================*/
+/* Use a modern, highly readable sans-serif stack suitable for sales pages.
+   Inter provides good legibility at small sizes and strong weights for CTAs.
+   Roboto is included as a widely-supported fallback. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
 body {
-    font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 20px;
-    color: #69696E;
-    font-weight: 400;
+    font-family: 'Inter', 'Roboto', "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 17px;
+        line-height: 1.6;
+        color: #222222;
+        /* higher contrast for sale readability */
+        font-weight: 500;
+        /* slightly bolder by default for better legibility */
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     padding: 0;
     margin: 0;
 }
 
+/* Make body copy slightly stronger on small screens */
+@media (max-width: 576px) {
+    body {
+        font-size: 16px;
+    }
+}
 .main-container {
     overflow: hidden;
 }
