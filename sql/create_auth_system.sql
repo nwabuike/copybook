@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS activity_logs (
 -- Insert default admin user
 -- Password: admin123 (you should change this after first login)
 INSERT INTO users (username, email, password, full_name, role, status) 
-VALUES ('admin', 'admin@magicbook.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'admin', 'active');
+VALUES ('admin', 'admin@magicbook.com', '$2y$10$4pBISldZ9DSKz6TnpNHbU.XhIw0tQmTSTXEPUNskQtUa9mbCGyE8a', 'System Administrator', 'admin', 'active')
+ON DUPLICATE KEY UPDATE password = '$2y$10$4pBISldZ9DSKz6TnpNHbU.XhIw0tQmTSTXEPUNskQtUa9mbCGyE8a';
 
 -- Add user_id column to orders table
 ALTER TABLE orders 
@@ -74,12 +75,14 @@ CREATE TABLE IF NOT EXISTS user_sessions (
 -- Sample data: Create a subadmin user
 -- Password: subadmin123
 INSERT INTO users (username, email, password, full_name, role, status, created_by) 
-VALUES ('subadmin', 'subadmin@magicbook.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Sales Manager', 'subadmin', 'active', 1);
+VALUES ('subadmin', 'subadmin@magicbook.com', '$2y$10$LK04KsQQjgs12JVRUXPwLu9LPEFNNqWkvN86YOU9EkTLyA36PNF0q', 'Sales Manager', 'subadmin', 'active', 1)
+ON DUPLICATE KEY UPDATE password = '$2y$10$LK04KsQQjgs12JVRUXPwLu9LPEFNNqWkvN86YOU9EkTLyA36PNF0q';
 
 -- Sample data: Create an agent user
 -- Password: agent123
 INSERT INTO users (username, email, password, full_name, role, status, created_by) 
-VALUES ('agent001', 'agent@magicbook.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'Delivery Agent', 'agent', 'active', 1);
+VALUES ('agent001', 'agent@magicbook.com', '$2y$10$fh48IRs4RNJjSS72ghZ9L.j2w517twlISNdY6sbei/p5nkIRSBGPG', 'Delivery Agent', 'agent', 'active', 1)
+ON DUPLICATE KEY UPDATE password = '$2y$10$fh48IRs4RNJjSS72ghZ9L.j2w517twlISNdY6sbei/p5nkIRSBGPG';
 
 -- View all users
 SELECT id, username, email, full_name, role, status, last_login, created_at FROM users;

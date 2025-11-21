@@ -305,7 +305,7 @@
                 </button>
             </form>
 
-            <div class="test-accounts">
+            <!-- <div class="test-accounts">
                 <h4><i class="fas fa-info-circle"></i> Test Accounts</h4>
                 <div class="account-item">
                     <strong>Admin:</strong> admin / admin123
@@ -316,7 +316,7 @@
                 <div class="account-item">
                     <strong>Agent:</strong> agent001 / agent123
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
