@@ -183,7 +183,160 @@
         /* default perks line used in pricing cards */
         .default-perks { margin-top:8px; font-weight:700; color:var(--primary); font-size:0.95rem; }
 
-        @media (max-width:768px){ .hero h1{font-size:2rem;} .hero-pricing{gap:10px} .price-chip{min-width:140px;padding:10px;} }
+        /* Limited Slots Banner */
+        .limited-slots-banner {
+            background: linear-gradient(135deg, #ff3b3b 0%, #ff6b6b 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 25px rgba(255, 59, 59, 0.4);
+            animation: pulse-banner 2s ease-in-out infinite;
+            position: relative;
+        }
+
+        .pulse-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-banner {
+            0%, 100% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 59, 59, 0.4); }
+            50% { transform: scale(1.02); box-shadow: 0 12px 35px rgba(255, 59, 59, 0.6); }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.3); }
+        }
+
+        /* Stock Badges on Price Chips */
+        .stock-badge {
+            background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
+            color: #2d3047;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(255, 193, 102, 0.3);
+        }
+
+        .stock-badge.hot {
+            background: linear-gradient(135deg, #ff3b3b 0%, #ff6b6b 100%);
+            color: white;
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        /* Limited Stock Tag for Pricing Cards */
+        .limited-stock-tag {
+            background: #ffd166;
+            color: #2d3047;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+            margin: -20px -20px 15px -20px;
+            border-bottom: 3px solid #ffb347;
+        }
+
+        .limited-stock-tag.hot {
+            background: linear-gradient(135deg, #ff3b3b 0%, #ff6b6b 100%);
+            color: white;
+            animation: blink-tag 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink-tag {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Urgency Banner */
+        .urgency-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff3b3b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(255, 59, 59, 0.3);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .blink-icon {
+            display: inline-block;
+            animation: blink-icon 1s ease-in-out infinite;
+            font-size: 1.3rem;
+        }
+
+        @keyframes blink-icon {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.2); }
+        }
+
+        .stock-number, .stock-counter {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 2px 8px;
+            border-radius: 5px;
+            font-weight: 900;
+            font-size: 1.1em;
+        }
+
+        /* Notification Toast */
+        .stock-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff3b3b 0%, #ff6b6b 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(255, 59, 59, 0.5);
+            z-index: 9999;
+            font-weight: 700;
+            max-width: 350px;
+            animation: slide-in-right 0.5s ease-out;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes slide-in-right {
+            from { transform: translateX(400px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .stock-notification.fade-out {
+            animation: fade-out 0.5s ease-out forwards;
+        }
+
+        @keyframes fade-out {
+            to { opacity: 0; transform: translateX(400px); }
+        }
+
+        @media (max-width:768px){ 
+            .hero h1{font-size:2rem;} 
+            .hero-pricing{gap:10px} 
+            .price-chip{min-width:140px;padding:10px;} 
+            .limited-slots-banner { font-size: 0.95rem; padding: 10px 15px; }
+            .stock-notification { right: 10px; max-width: 90%; font-size: 0.9rem; }
+        }
         
         .hero h1 span {
             color: var(--primary);
@@ -353,6 +506,50 @@
             max-width: 600px;
             margin: 0 auto;
         }
+
+        /* Highlight benefits paragraphs with eye-catching styling */
+        .gallery-section .section-title p {
+            background: linear-gradient(135deg, #ffd166 0%, #ffb347 100%);
+            color: #2d3047;
+            font-weight: 700;
+            font-size: 1.15rem;
+            padding: 14px 24px;
+            border-radius: 12px;
+            margin: 12px auto;
+            max-width: 700px;
+            box-shadow: 0 4px 15px rgba(255, 193, 102, 0.3);
+            border-left: 5px solid #ff6b6b;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section .section-title p::before {
+            content: '✨';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.3rem;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }
+            50% { opacity: 0.7; transform: translateY(-50%) scale(1.2); }
+        }
+
+        .gallery-section .section-title p:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 193, 102, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-section .section-title p {
+                font-size: 1rem;
+                padding: 12px 18px 12px 38px;
+            }
+        }
         
         .gallery-container {
             display: grid;
@@ -509,63 +706,72 @@
 
         /* Testimonials Section */
         .testimonials {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
-        .testimonial-cards {
-            display: flex;
-            gap: 30px;
-            overflow-x: auto;
-            padding: 20px 0;
-            scrollbar-width: thin;
-        }
-        
-        .testimonial-card {
-            min-width: 300px;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 20px;
-            color: #555;
-        }
-        
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-        
-        .author-info h4 {
-            margin-bottom: 5px;
+        .testimonials .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
             color: var(--dark);
+            font-weight: 800;
         }
         
-        .author-info p {
-            color: #777;
-            font-size: 0.9rem;
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
         
-        .rating {
-            color: var(--accent);
-            margin-top: 5px;
+        .testimonial-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .testimonial-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .testimonial-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .testimonials {
+                padding: 60px 0;
+            }
+            
+            .testimonials .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .testimonial-item {
+                padding: 12px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .testimonials {
+                padding: 40px 0;
+            }
+            
+            .testimonials .section-title h2 {
+                font-size: 1.5rem;
+            }
         }
         
         /* Products Section */
@@ -1253,18 +1459,26 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Black Friday Massive Discount on Kids Copybooks
+            <div class="limited-slots-banner">
+                <span class="pulse-dot"></span>
+                🔥 BLACK FRIDAY SPECIAL 🔥 Limited Slots Available! Only <span id="hero-stock" class="stock-number">7</span> Sets Remaining!
+            </div>
+            <h1>⏳🎯 BLACK FRIDAY MEGA SALE 🎯⏳<br>Massive Discount on Kids Copybooks 🔥💥
             </h1>
+            <h2>Order now to get cashback of <b>₦10,000</b>  + free gifts worth up to <b>₦12,000</b>!</h2> 
+            <!-- <p>&#128293;&#128293;Order Now & Get High-Value Free Gifts! of <b>&#8358;12,000</b> and above..&#128293;&#128293;</p> -->
             <p>Perfect for kids <strong>3 years and above</strong> — compact, easy-to-follow activities that build pen control, confidence and neat handwriting fast.</p>
-            <p>Each purchase includes a value-packed <strong>4-in-1 set</strong> that grows with your child. Help your child develop beautiful handwriting with our fun, educational Magic Groove copybooks. Limited stock — grab yours before they're gone!</p>
+            <p><b>This Amazing 4 in 1 Sank magic practice copybook will improve child’s learning while having Fun
+                                    just in weeks of practice.</b> </p>
 
             <!-- Rotating benefit phrases -->
             <div class="rotating-phrases" aria-live="polite">
-                <span id="rotatingWord">Reusable sank copybook</span>
+                <span id="rotatingWord">Reusable sank magic copybook</span>
             </div>
 
             <div class="hero-pricing" aria-hidden="false">
                 <div class="price-chip" data-package="Starter">
+                    <div class="stock-badge">⚡ Only <span class="stock-counter" data-stock="starter">9</span> Left!</div>
                     <div class="chip-title">Starter Set</div>
                     <div class="chip-prices"><span class="old-price">₦22,500</span><span class="new-price">₦18,000</span></div>
                     <div class="chip-note">4-in-1 Book</div>
@@ -1273,6 +1487,7 @@
 
                 <div class="price-chip featured" data-package="Bundle">
                     <span class="ribbon">-29% OFF</span>
+                    <div class="stock-badge hot">🔥 ONLY <span class="stock-counter" data-stock="bundle">5</span> LEFT!</div>
                     <div class="chip-title">Learning Bundle</div>
                     <div class="chip-prices"><span class="old-price">₦45,000</span><span class="new-price">₦32,000</span></div>
                     <div class="chip-note">2 Sets (4-in-1 Book)</div>
@@ -1280,6 +1495,7 @@
                 </div>
 
                 <div class="price-chip" data-package="Collection">
+                    <div class="stock-badge">⚡ Only <span class="stock-counter" data-stock="collection">8</span> Left!</div>
                     <div class="chip-title">Mastery Collection</div>
                     <div class="chip-prices"><span class="old-price">₦67,500</span><span class="new-price">₦45,000</span></div>
                     <div class="chip-note">3 Sets (4-in-1 Book)</div>
@@ -1316,6 +1532,47 @@
     </section>
 
   
+ <!-- Content7-1: Video + Image Grid (combined, with H2 header) -->
+    <section id="content7-1" class="video-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Watch & See How Sank Magic Copybooks Work</h2>
+                <p>Short demo showing how the grooves guide young learners to form letters and numbers — then reuse the pages again and again.</p>
+            </div>
+
+            <div class="video-wrap">
+                <div class="video-embed">
+                    <iframe src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:14px;margin-bottom:8px;">
+                <h2 style="color:#147bf1;"><b>PLEASE WATCH THE VIDEO ABOVE</b></h2>
+            </div>
+
+            <div class="content-grid">
+                <figure class="img-block">
+                    <img src="images/slider1.jpg" alt="Magic copybook demo" loading="lazy">
+                    <figcaption>Fast Results in 1-3weeks, improves handwriting and much more</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/sliddd.jpg" alt="Practice activities" loading="lazy">
+                    <figcaption>Disappears after 5mins of writing for Easy Reuse</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/slidde.jpg" alt="Reusable pages" loading="lazy">
+                    <figcaption>4 in 1 Magic Copybook with extra Refill Pen</figcaption>
+                </figure>
+
+                <figure class="img-block">
+                    <img src="images/magic-book-3-1024x1024.jpg" alt="Durable copybook" loading="lazy">
+                    <figcaption>Durable, kid-friendly materials</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
 
     <!-- Gallery Section -->
     <section class="gallery-section" id="gallery">
@@ -1393,47 +1650,7 @@
         </div>
     </section>
 
-    <!-- Content7-1: Video + Image Grid (combined, with H2 header) -->
-    <section id="content7-1" class="video-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Watch & See How Sank Magic Copybooks Work</h2>
-                <p>Short demo showing how the grooves guide young learners to form letters and numbers — then reuse the pages again and again.</p>
-            </div>
-
-            <div class="video-wrap">
-                <div class="video-embed">
-                    <iframe src="https://www.youtube.com/embed/UXHP3WxupBQ" title="Magic Calligraphy Book for Kids" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:14px;margin-bottom:8px;">
-                <h2 style="color:#147bf1;"><b>PLEASE WATCH THE VIDEO ABOVE</b></h2>
-            </div>
-
-            <div class="content-grid">
-                <figure class="img-block">
-                    <img src="images/slider1.jpg" alt="Magic copybook demo" loading="lazy">
-                    <figcaption>See the Magic Copybook in action</figcaption>
-                </figure>
-
-                <figure class="img-block">
-                    <img src="images/sliddd.jpg" alt="Practice activities" loading="lazy">
-                    <figcaption>Fun practice activities for early learners</figcaption>
-                </figure>
-
-                <figure class="img-block">
-                    <img src="images/slidde.jpg" alt="Reusable pages" loading="lazy">
-                    <figcaption>Reusable pages — write, watch fade, and repeat</figcaption>
-                </figure>
-
-                <figure class="img-block">
-                    <img src="images/magic-book-3-1024x1024.jpg" alt="Durable copybook" loading="lazy">
-                    <figcaption>Durable, kid-friendly materials</figcaption>
-                </figure>
-            </div>
-        </div>
-    </section>
+   
 
       <!-- Free Gifts Section -->
     <section class="free-gifts">
@@ -1498,114 +1715,37 @@
     <section class="testimonials" id="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What Parents & Teachers Say</h2>
-                <p>Don't just take our word for it - hear from those who have used our copybooks</p>
+                <h2>See What Other Smart Parents Are Saying About This Amazing Product!</h2>
+                <p>Real reviews from happy customers who have transformed their children's handwriting</p>
             </div>
             
-            <div class="testimonial-cards">
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "My daughter's handwriting improved so much after just a few weeks. The books are fun and very effective — we practice every evening now."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">C</div>
-                        <div class="author-info">
-                            <h4>Chinelo Okafor</h4>
-                            <p>Parent, Enugu</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-item">
+                    <img src="images/amazon-testimonial1.png" alt="Customer testimonial" loading="lazy" />
                 </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Excellent learning resource. My KG pupils enjoyed the tracing activities and their fine motor skills have improved. Delivery was prompt too."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">I</div>
-                        <div class="author-info">
-                            <h4>Ibrahim Abdullahi</h4>
-                            <p>Teacher, Kano</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/Amazon-review-sank-3-728x267.png" alt="Customer review" loading="lazy" />
                 </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Bought the bundle for my two kids — they both love it and practise without complaints. Great value and lovely free gifts."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">N</div>
-                        <div class="author-info">
-                            <h4>Ngozi Nwosu</h4>
-                            <p>Parent, Lagos</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/amazon-review-sank-2-728x229.png" alt="Amazon review" loading="lazy" />
                 </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-text">
-                        "Fast delivery and friendly support. My son's handwriting is noticeably neater after 3 weeks. Very happy with the purchase."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">A</div>
-                        <div class="author-info">
-                            <h4>Adewale Bakare</h4>
-                            <p>Parent, Ibadan</p>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/1testimo.JPG" alt="Parent testimonial" loading="lazy" />
                 </div>
-
-                <!-- WhatsApp happy-customer snippet -->
-                <div class="testimonial-card" style="background: #f6ffed; border: 1px solid #e6fbb7;">
-                    <div class="testimonial-text">
-                        <div style="display:flex;align-items:flex-start;gap:12px;">
-                            <div style="font-size:20px;color:#25D366;">📱</div>
-                            <div>
-                                <strong>WhatsApp message</strong>
-                                <p style="margin:6px 0 0;">"Received my order today — the books are excellent and my daughter loves them. Thank you Smartkids Edu!"</p>
-                                <p style="margin:6px 0 0;font-size:13px;color:#666;">— Chinedu, Lagos • <a href="https://wa.me/2348163778265" target="_blank" rel="noopener">Message Seller</a></p>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/2testimo.JPG" alt="Teacher review" loading="lazy" />
                 </div>
-
-                <!-- Facebook comment style snippet -->
-                <div class="testimonial-card" style="background:#f0f2f5;border:1px solid #d8dde3;">
-                    <div class="testimonial-text" style="display:flex;gap:12px;align-items:flex-start;">
-                        <div class="author-avatar" style="background:#fff;color:#333;">AM</div>
-                        <div>
-                            <div style="font-weight:600;color:#1d2129;">Amaka Obi <span style="font-weight:400;color:#606770;font-size:13px;margin-left:8px;">2w</span></div>
-                            <div style="margin-top:6px;color:#1d2129;">Five stars! My child's handwriting has improved so much. The activities are clear and engaging — highly recommend.</div>
-                        </div>
-                    </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/3testimo.JPG" alt="Customer feedback" loading="lazy" />
+                </div>
+                
+                <div class="testimonial-item">
+                    <img src="images/review_1.JPG" alt="Product review" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -1622,6 +1762,7 @@
             <div class="pricing-cards">
                 <!-- 1 Set Package -->
                 <div class="pricing-card">
+                    <div class="limited-stock-tag">📦 <span class="stock-counter" data-stock="starter">9</span> Sets Remaining</div>
                     <h3>Starter Set</h3>
                     <div class="price">
                         <div class="original-price">₦22,500</div>
@@ -1643,6 +1784,7 @@
                 
                 <!-- 2 Sets Package -->
                 <div class="pricing-card featured">
+                    <div class="limited-stock-tag hot">🔥 HURRY! Only <span class="stock-counter" data-stock="bundle">5</span> Left!</div>
                     <h3>Learning Bundle</h3>
                     <div class="price">
                         <div class="original-price">₦45,000</div>
@@ -1662,6 +1804,7 @@
                 
                 <!-- 3 Sets Package -->
                 <div class="pricing-card">
+                    <div class="limited-stock-tag">📦 <span class="stock-counter" data-stock="collection">8</span> Sets Remaining</div>
                     <h3>Mastery Collection</h3>
                     <div class="price">
                         <div class="original-price">₦67,500</div>
@@ -1688,8 +1831,11 @@
         <div class="container">
             <div class="order-container">
                 <div class="order-info">
-                    <h2>Order Your Copybooks Today!</h2>
-                    <p>Take advantage of our Black Friday sale and give your child the gift of beautiful handwriting. Limited stock available at these prices!</p>
+                    <div class="urgency-banner">
+                        <span class="blink-icon">⚠️</span> <strong>LIMITED TIME OFFER!</strong> Only <span id="total-stock" class="stock-number">22</span> sets left at this price!
+                    </div>
+                    <h2>🎯 Order Your Copybooks Today! 🔥</h2>
+                    <p>Take advantage of our Black Friday sale and give your child the gift of beautiful handwriting. <strong style="color:#ff3b3b;">⏰ Limited stock available at these prices - Act now before they're gone!</strong></p>
                     
                     <ul class="benefits">
                         <li>Developed by handwriting experts</li>
@@ -2538,6 +2684,148 @@
             }
             el.textContent = phrases[0];
             setInterval(showNext, 2600);
+        })();
+
+        // Dynamic Stock Counter System with Random Values (1-10)
+        (function(){
+            // Initialize stock with random values between 3-10
+            const stockData = {
+                starter: Math.floor(Math.random() * 8) + 3,  // 3-10
+                bundle: Math.floor(Math.random() * 6) + 3,   // 3-8 (more popular)
+                collection: Math.floor(Math.random() * 8) + 3 // 3-10
+            };
+
+            // Save to localStorage to persist across page reloads
+            const savedStock = localStorage.getItem('blackFridayStock');
+            if(savedStock) {
+                try {
+                    const parsed = JSON.parse(savedStock);
+                    Object.assign(stockData, parsed);
+                } catch(e) {}
+            }
+
+            function updateStockDisplays() {
+                // Update all stock counters on page
+                document.querySelectorAll('.stock-counter').forEach(el => {
+                    const stockType = el.getAttribute('data-stock');
+                    if(stockType && stockData[stockType] !== undefined) {
+                        el.textContent = stockData[stockType];
+                    }
+                });
+
+                // Update hero stock (total remaining)
+                const heroStock = document.getElementById('hero-stock');
+                if(heroStock) {
+                    const total = stockData.starter + stockData.bundle + stockData.collection;
+                    heroStock.textContent = total;
+                }
+
+                // Update total stock in order section
+                const totalStock = document.getElementById('total-stock');
+                if(totalStock) {
+                    const total = stockData.starter + stockData.bundle + stockData.collection;
+                    totalStock.textContent = total;
+                }
+
+                // Save to localStorage
+                localStorage.setItem('blackFridayStock', JSON.stringify(stockData));
+            }
+
+            function decreaseStock(type) {
+                if(stockData[type] > 1) {
+                    stockData[type]--;
+                    updateStockDisplays();
+                    return true;
+                }
+                return false;
+            }
+
+            // Simulate random stock decreases every 2-5 minutes
+            function simulateStockDecrease() {
+                const types = ['starter', 'bundle', 'collection'];
+                const randomType = types[Math.floor(Math.random() * types.length)];
+                
+                if(decreaseStock(randomType)) {
+                    showStockNotification(randomType, stockData[randomType]);
+                }
+
+                // Schedule next decrease in 2-5 minutes
+                const nextDecrease = (Math.random() * 180000) + 120000; // 2-5 min
+                setTimeout(simulateStockDecrease, nextDecrease);
+            }
+
+            function showStockNotification(type, remaining) {
+                const packageNames = {
+                    starter: 'Starter Set',
+                    bundle: 'Learning Bundle',
+                    collection: 'Mastery Collection'
+                };
+
+                const notification = document.createElement('div');
+                notification.className = 'stock-notification';
+                notification.innerHTML = `
+                    <div style="font-size:1.2rem;margin-bottom:5px;">⚡ STOCK UPDATE!</div>
+                    <div>Someone just ordered a <strong>${packageNames[type]}</strong>!</div>
+                    <div style="margin-top:8px;font-size:1.1rem;">
+                        📦 Only <strong style="font-size:1.3rem;">${remaining}</strong> ${packageNames[type]}${remaining > 1 ? 's' : ''} left!
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                // Remove after 6 seconds
+                setTimeout(() => {
+                    notification.classList.add('fade-out');
+                    setTimeout(() => notification.remove(), 500);
+                }, 6000);
+            }
+
+            // Show initial reminder notification after 10 seconds
+            setTimeout(() => {
+                const notification = document.createElement('div');
+                notification.className = 'stock-notification';
+                const total = stockData.starter + stockData.bundle + stockData.collection;
+                notification.innerHTML = `
+                    <div style="font-size:1.2rem;margin-bottom:5px;">🔥 BLACK FRIDAY ALERT!</div>
+                    <div><strong>Limited Time Offer</strong> - Only ${total} sets remaining!</div>
+                    <div style="margin-top:8px;">⏰ Don't miss out on this amazing deal!</div>
+                `;
+                document.body.appendChild(notification);
+                setTimeout(() => {
+                    notification.classList.add('fade-out');
+                    setTimeout(() => notification.remove(), 500);
+                }, 7000);
+            }, 10000);
+
+            // Show periodic reminders every 3-4 minutes
+            setInterval(() => {
+                const total = stockData.starter + stockData.bundle + stockData.collection;
+                if(total > 0) {
+                    const notification = document.createElement('div');
+                    notification.className = 'stock-notification';
+                    notification.innerHTML = `
+                        <div style="font-size:1.2rem;margin-bottom:5px;">⏳ HURRY!</div>
+                        <div>Black Friday prices ending soon!</div>
+                        <div style="margin-top:8px;font-size:1.1rem;">
+                            Only <strong style="font-size:1.3rem;">${total}</strong> sets left at this price!
+                        </div>
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => {
+                        notification.classList.add('fade-out');
+                        setTimeout(() => notification.remove(), 500);
+                    }, 6000);
+                }
+            }, 210000); // 3.5 minutes
+
+            // Initialize displays
+            updateStockDisplays();
+
+            // Start simulated stock decreases after 30 seconds
+            setTimeout(simulateStockDecrease, 30000);
+
+            // Expose for debugging
+            window._stockSystem = { stockData, updateStockDisplays, decreaseStock, showStockNotification };
         })();
     </script>
 </body>
