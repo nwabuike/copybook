@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Form Test - Debug 500 Error</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0a7c42;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        button {
+            background: #0a7c42;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background: #066633;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+        .result.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .result.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .test-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .test-buttons button {
+            flex: 1;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Order Form Test Page</h1>
+        <p>Use this page to test and debug the 500 error on your live server.</p>
+        
+        <div class="test-buttons">
+            <button onclick="runDiagnostic()">1. Run Diagnostic Test</button>
+            <button onclick="testDBConnection()">2. Test Database</button>
+        </div>
+
+        <div id="diagnosticResult" class="result"></div>
+
+        <hr style="margin: 30px 0;">
+
+        <h2>3. Test Order Submission</h2>
+        <form id="testForm">
+            <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" id="name" value="Test User" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="email" value="test@example.com">
+            </div>
+
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" id="phone" value="08012345678" required>
+            </div>
+
+            <div class="form-group">
+                <label>Alternative Phone</label>
+                <input type="tel" id="altphone" value="">
+            </div>
+
+            <div class="form-group">
+                <label>Delivery Address *</label>
+                <textarea id="address" rows="2" required>123 Test Street, Test Area</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>State *</label>
+                <select id="state" required>
+                    <option value="Lagos">Lagos</option>
+                    <option value="Abuja">Abuja</option>
+                    <option value="Rivers">Rivers</option>
+                    <option value="Oyo">Oyo</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Package *</label>
+                <select id="pack" required>
+                    <option value="starter">Starter Set - ₦18,000</option>
+                    <option value="bundle">Learning Bundle - ₦32,000</option>
+                    <option value="collection">Mastery Collection - ₦45,000</option>
+                </select>
+            </div>
+
+            <button type="submit">Submit Test Order</button>
+        </form>
+
+        <div id="formResult" class="result"></div>
+    </div>
+
+    <script>
+        // Test 1: Run diagnostic
+        async function runDiagnostic() {
+            const resultDiv = document.getElementById('diagnosticResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '<strong>Running diagnostic...</strong>';
+
+            try {
+                const response = await fetch('php/test_submit.php');
+                const data = await response.json();
+                
+                let html = '<h3>Diagnostic Results:</h3><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                
+                // Check for issues
+                const issues = [];
+                if (!data.php_version_ok) issues.push('PHP version too old: ' + data.php_version);
+                if (!data.db_file_exists) issues.push('db.php file not found');
+                if (data.db_include !== 'success') issues.push('Cannot include db.php: ' + data.db_include);
+                if (data.db_connection !== 'success') issues.push('Database connection failed: ' + data.db_connection);
+                if (!data.orders_table_exists) issues.push('orders table does not exist');
+                if (data.missing_columns && data.missing_columns.length > 0) {
+                    issues.push('Missing columns: ' + data.missing_columns.join(', '));
+                }
+
+                if (issues.length > 0) {
+                    html += '<h4 style="color: red;">⚠️ Issues Found:</h4><ul>';
+                    issues.forEach(issue => html += '<li>' + issue + '</li>');
+                    html += '</ul>';
+                    resultDiv.className = 'result error';
+                } else {
+                    html += '<h4 style="color: green;">✅ All checks passed!</h4>';
+                    resultDiv.className = 'result success';
+                }
+
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '<strong>Error:</strong> ' + error.message;
+            }
+        }
+
+        // Test 2: Test database connection
+        async function testDBConnection() {
+            const resultDiv = document.getElementById('diagnosticResult');
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '<strong>Testing database connection...</strong>';
+
+            try {
+                const response = await fetch('php/test_db.php');
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = '<strong>✅ Database Connected:</strong> ' + data.message;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = '<strong>❌ Database Error:</strong> ' + data.message;
+                }
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = '<strong>Error:</strong> ' + error.message + '<br><br>Make sure to create php/test_db.php file (see troubleshooting guide).';
+            }
+        }
+
+        // Test 3: Submit form
+        document.getElementById('testForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('formResult');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = '<strong>Submitting order...</strong>';
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+
+            const formData = new FormData();
+            formData.append('name', document.getElementById('name').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('phone', document.getElementById('phone').value);
+            formData.append('altphone', document.getElementById('altphone').value);
+            formData.append('address', document.getElementById('address').value);
+            formData.append('state', document.getElementById('state').value);
+            formData.append('pack', document.getElementById('pack').value);
+
+            console.log('Submitting to php/submit_order.php...');
+
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+                const response = await fetch('php/submit_order.php', {
+                    method: 'POST',
+                    body: formData,
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                console.log('Response status:', response.status);
+                console.log('Response headers:', [...response.headers.entries()]);
+
+                if (!response.ok) {
+                    throw new Error('Server returned error: ' + response.status);
+                }
+
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (data.type === 'message' || data.success) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Order Submitted Successfully!</h3>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                        <p><strong>Order ID:</strong> ${data.order_id}</p>
+                        <p><strong>Referral Code:</strong> ${data.referral_code}</p>
+                        <p><strong>Admin Email:</strong> ${data.admin_mail}</p>
+                        <p><strong>Customer Email:</strong> ${data.customer_mail}</p>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = '<strong>Error:</strong> ' + (data.text || 'Unknown error') + '<br><pre>' + JSON.stringify(data, null, 2) + '</pre>';
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                resultDiv.className = 'result error';
+                
+                let errorMsg = '<h3>❌ Error</h3>';
+                errorMsg += '<p><strong>Error:</strong> ' + error.message + '</p>';
+                
+                if (error.name === 'AbortError') {
+                    errorMsg += '<p>Request timeout - server took too long to respond (>30s)</p>';
+                } else if (error.message.includes('500')) {
+                    errorMsg += '<h4>This is a 500 Server Error. Common causes:</h4>';
+                    errorMsg += '<ol>';
+                    errorMsg += '<li><strong>Database connection:</strong> Check db.php credentials</li>';
+                    errorMsg += '<li><strong>Missing table/columns:</strong> Run diagnostic test above</li>';
+                    errorMsg += '<li><strong>PHP errors:</strong> Check server error logs</li>';
+                    errorMsg += '<li><strong>File permissions:</strong> Ensure files are readable</li>';
+                    errorMsg += '</ol>';
+                    errorMsg += '<p><strong>Next steps:</strong></p>';
+                    errorMsg += '<ul><li>Run diagnostic test (button above)</li>';
+                    errorMsg += '<li>Check your hosting error logs (cPanel > Errors)</li>';
+                    errorMsg += '<li>See TROUBLESHOOTING_500_ERROR.md for detailed guide</li></ul>';
+                }
+                
+                resultDiv.innerHTML = errorMsg;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Test Order';
+            }
+        });
+    </script>
+</body>
+</html>
