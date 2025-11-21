@@ -1,3 +1,10 @@
+<?php
+require_once 'php/auth.php';
+requireLogin();
+
+$currentUser = getCurrentUser();
+$canDelete = canPerform('delete_agent');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

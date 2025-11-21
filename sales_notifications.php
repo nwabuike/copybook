@@ -1,3 +1,9 @@
+<?php
+require_once 'php/auth.php';
+requireRole(['admin', 'subadmin']); // Only admin and subadmin can view
+
+$currentUser = getCurrentUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

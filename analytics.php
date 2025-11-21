@@ -1,3 +1,9 @@
+<?php
+require_once 'php/auth.php';
+requireAdmin(); // Only admins can view analytics
+
+$currentUser = getCurrentUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

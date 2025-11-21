@@ -1,6 +1,11 @@
 <?php
 // api/orders.php - Order Management API
 require_once '../php/db.php';
+require_once '../php/auth.php';
+
+// Require authentication for all order operations
+requireLogin();
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
@@ -297,7 +302,7 @@ function updateOrderStatus() {
     $oldStatus = $order['status'];
     
     // Build update query
-    $updateParts = ["status = '$newStatus'"];
+    $updateParts = ["status = '$newStatus'", "updated_by = " . $_SESSION['user_id']];
     
     if (!empty($notes)) {
         $updateParts[] = "admin_notes = '$notes'";
@@ -327,16 +332,28 @@ function updateOrderStatus() {
         $conn->query($stockSql);
         
         // Record stock movement
+        $userId = $_SESSION['user_id'];
         $movementSql = "INSERT INTO stock_movements 
                         (state, package_type, quantity_change, movement_type, reference_id, agent_id, notes, created_by)
                         VALUES ('$state', '$packageType', -$quantity, 'sale', $orderId, " . 
-                        ($agentId ? $agentId : "NULL") . ", 'Order delivered', 'system')";
+                        ($agentId ? $agentId : "NULL") . ", 'Order delivered', '$userId')";
         $conn->query($movementSql);
     }
     
     $updateSql = "UPDATE orders SET " . implode(', ', $updateParts) . " WHERE id = '$orderId'";
     
     if ($conn->query($updateSql)) {
+        // Log activity
+        logActivity(
+            $_SESSION['user_id'],
+            'update_status',
+            'order',
+            $orderId,
+            "Updated order #{$orderId} status from {$oldStatus} to {$newStatus}",
+            ['status' => $oldStatus],
+            ['status' => $newStatus, 'notes' => $notes]
+        );
+        
         echo json_encode(['success' => true, 'message' => 'Order updated successfully']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to update order: ' . $conn->error]);
@@ -345,6 +362,12 @@ function updateOrderStatus() {
 
 function deleteOrder() {
     global $conn;
+    
+    // Check permission
+    if (!canPerform('delete_order')) {
+        echo json_encode(['success' => false, 'message' => 'You do not have permission to delete orders']);
+        return;
+    }
     
     $input = json_decode(file_get_contents('php://input'), true);
     
@@ -355,9 +378,30 @@ function deleteOrder() {
     
     $orderId = $conn->real_escape_string($input['order_id']);
     
+    // Get order info for logging
+    $orderSql = "SELECT * FROM orders WHERE id = '$orderId'";
+    $orderResult = $conn->query($orderSql);
+    $order = $orderResult->fetch_assoc();
+    
+    if (!$order) {
+        echo json_encode(['success' => false, 'message' => 'Order not found']);
+        return;
+    }
+    
     $sql = "DELETE FROM orders WHERE id = '$orderId'";
     
     if ($conn->query($sql)) {
+        // Log activity
+        logActivity(
+            $_SESSION['user_id'],
+            'delete',
+            'order',
+            $orderId,
+            "Deleted order #{$orderId} - Customer: {$order['fullname']}",
+            $order,
+            null
+        );
+        
         echo json_encode(['success' => true, 'message' => 'Order deleted successfully']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to delete order: ' . $conn->error]);

@@ -1,3 +1,10 @@
+<?php
+require_once 'php/auth.php';
+requireLogin(); // Require authentication
+
+$currentUser = getCurrentUser();
+$canDelete = canPerform('delete_order');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -611,9 +618,24 @@
                     <a href="index.php"><i class="fas fa-home"></i> Home</a>
                     <a href="customer_orderlist.php" class="active"><i class="fas fa-shopping-cart"></i> Orders</a>
                     <a href="agent_management.php"><i class="fas fa-user-tie"></i> Agents</a>
+                    <?php if (isAdmin()): ?>
                     <a href="analytics.php"><i class="fas fa-chart-line"></i> Analytics</a>
+                    <?php endif; ?>
                     <a href="sales_notifications.php"><i class="fas fa-bell"></i> Alerts</a>
+                    <?php if (isAdmin()): ?>
+                    <a href="user_management.php"><i class="fas fa-users-cog"></i> Users</a>
+                    <a href="activity_logs.php"><i class="fas fa-history"></i> Logs</a>
+                    <?php endif; ?>
                 </nav>
+                <div style="margin-left: 20px; display: flex; align-items: center; gap: 15px;">
+                    <span style="color: white;">
+                        <i class="fas fa-user-circle"></i> <?= htmlspecialchars($currentUser['full_name']) ?>
+                        <small style="opacity: 0.8;">(<?= htmlspecialchars($currentUser['role']) ?>)</small>
+                    </span>
+                    <a href="logout.php" class="btn btn-secondary" style="padding: 8px 15px; font-size: 13px;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -983,9 +1005,11 @@
                             <button class="action-btn edit-btn" data-id="${order.id}">
                                 <i class="fas fa-edit"></i>
                             </button>
+                            <?php if ($canDelete): ?>
                             <button class="action-btn delete-btn" data-id="${order.id}">
                                 <i class="fas fa-trash"></i>
                             </button>
+                            <?php endif; ?>
                         </div>
                     </td>
                 `;
