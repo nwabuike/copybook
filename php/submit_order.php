@@ -104,63 +104,75 @@ if (!$conn->query($insert)) {
 }
 $order_id = $conn->insert_id;
 
-// Send emails (wrapped in try-catch to prevent mail errors from breaking the response)
+// Send emails (only if mail function is available - many shared hosts disable it)
 $adminEmail = 'emeraldonlineecom@gmail.com';
 $siteFrom = 'no-reply@smartkidsedu.com.ng';
 $adminMailSent = false;
 $customerMailSent = false;
 
-try {
-    // Admin email
-    $subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
-    $bodyAdmin = "New order received:\n\n";
-    $bodyAdmin .= "Order ID: {$order_id}\n";
-    $bodyAdmin .= "Fullname: {$fullname}\n";
-    $bodyAdmin .= "Email: {$email}\n";
-    $bodyAdmin .= "Phone: {$phone}\n";
-    $bodyAdmin .= "Alt Phone: {$altphone}\n";
-    $bodyAdmin .= "Address: {$address}\n";
-    $bodyAdmin .= "State: {$state}\n";
-    $bodyAdmin .= "Package: {$pack}\n";
-    $bodyAdmin .= "Referral Code: {$referral_code}\n";
-    $bodyAdmin .= "Created At: {$created_at}\n";
-    $headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\n";
-    $adminMailSent = @mail($adminEmail, $subjectAdmin, $bodyAdmin, $headersAdmin);
-} catch (Exception $e) {
-    // Log error but don't fail the order
-    error_log("Admin email failed: " . $e->getMessage());
-}
-
-try {
-    // Customer email (if provided)
-    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $subjectCustomer = "Your Smartkids Edu Order #{$order_id}";
-        $bodyCustomer = "Hi {$fullname},\n\nThank you for your order. Here are your order details:\n\n";
-        $bodyCustomer .= "Order ID: {$order_id}\n";
-        $bodyCustomer .= "Package: {$pack}\n";
-        $bodyCustomer .= "Delivery to: {$state}\n";
-        $bodyCustomer .= "Address: {$address}\n";
-        $bodyCustomer .= "Referral Code: {$referral_code}\n\n";
-        $bodyCustomer .= "We will contact you shortly to confirm delivery details.\n\nRegards,\nSmartkids Edu";
-        $headersCustomer = "From: Smartkids Edu <{$siteFrom}>\r\n";
-        $customerMailSent = @mail($email, $subjectCustomer, $bodyCustomer, $headersCustomer);
+// Check if mail function exists to prevent fatal errors
+if (function_exists('mail')) {
+    try {
+        // Admin email
+        $subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
+        $bodyAdmin = "New order received:\n\n";
+        $bodyAdmin .= "Order ID: {$order_id}\n";
+        $bodyAdmin .= "Fullname: {$fullname}\n";
+        $bodyAdmin .= "Email: {$email}\n";
+        $bodyAdmin .= "Phone: {$phone}\n";
+        $bodyAdmin .= "Alt Phone: {$altphone}\n";
+        $bodyAdmin .= "Address: {$address}\n";
+        $bodyAdmin .= "State: {$state}\n";
+        $bodyAdmin .= "Package: {$pack}\n";
+        $bodyAdmin .= "Referral Code: {$referral_code}\n";
+        $bodyAdmin .= "Created At: {$created_at}\n";
+        $headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\n";
+        $adminMailSent = @mail($adminEmail, $subjectAdmin, $bodyAdmin, $headersAdmin);
+    } catch (Exception $e) {
+        // Log error but don't fail the order
+        error_log("Admin email failed: " . $e->getMessage());
     }
-} catch (Exception $e) {
-    // Log error but don't fail the order
-    error_log("Customer email failed: " . $e->getMessage());
+
+    try {
+        // Customer email (if provided)
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $subjectCustomer = "Your Smartkids Edu Order #{$order_id}";
+            $bodyCustomer = "Hi {$fullname},\n\nThank you for your order. Here are your order details:\n\n";
+            $bodyCustomer .= "Order ID: {$order_id}\n";
+            $bodyCustomer .= "Package: {$pack}\n";
+            $bodyCustomer .= "Delivery to: {$state}\n";
+            $bodyCustomer .= "Address: {$address}\n";
+            $bodyCustomer .= "Referral Code: {$referral_code}\n\n";
+            $bodyCustomer .= "We will contact you shortly to confirm delivery details.\n\nRegards,\nSmartkids Edu";
+            $headersCustomer = "From: Smartkids Edu <{$siteFrom}>\r\n";
+            $customerMailSent = @mail($email, $subjectCustomer, $bodyCustomer, $headersCustomer);
+        }
+    } catch (Exception $e) {
+        // Log error but don't fail the order
+        error_log("Customer email failed: " . $e->getMessage());
+    }
+} else {
+    // Mail function is disabled on this server - log for admin awareness
+    error_log("Mail function is disabled on this server. Order #{$order_id} created but no emails sent.");
 }
 
 // Clean output buffer and return JSON
 ob_clean();
 http_response_code(200);
+
+$mailStatus = function_exists('mail') ? 
+    ($adminMailSent ? 'sent' : 'failed') : 
+    'disabled';
+
 echo json_encode([
     'type' => 'message',
     'success' => true,
     'text' => 'Order received successfully!',
     'order_id' => $order_id,
     'referral_code' => $referral_code,
-    'admin_mail' => $adminMailSent ? 'sent' : 'failed',
-    'customer_mail' => $customerMailSent ? 'sent' : 'failed'
+    'admin_mail' => $mailStatus,
+    'customer_mail' => function_exists('mail') ? ($customerMailSent ? 'sent' : 'failed') : 'disabled',
+    'mail_available' => function_exists('mail')
 ]);
 ob_end_flush();
 

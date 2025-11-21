@@ -167,6 +167,8 @@
                 
                 // Check for issues
                 const issues = [];
+                const warnings = [];
+                
                 if (!data.php_version_ok) issues.push('PHP version too old: ' + data.php_version);
                 if (!data.db_file_exists) issues.push('db.php file not found');
                 if (data.db_include !== 'success') issues.push('Cannot include db.php: ' + data.db_include);
@@ -175,15 +177,27 @@
                 if (data.missing_columns && data.missing_columns.length > 0) {
                     issues.push('Missing columns: ' + data.missing_columns.join(', '));
                 }
+                
+                // Check for warnings (non-critical)
+                if (!data.mail_function_exists) {
+                    warnings.push('⚠️ Mail function is DISABLED - Orders will save but NO emails will be sent. This is normal on many shared hosting providers.');
+                }
 
                 if (issues.length > 0) {
-                    html += '<h4 style="color: red;">⚠️ Issues Found:</h4><ul>';
+                    html += '<h4 style="color: red;">❌ Critical Issues Found:</h4><ul>';
                     issues.forEach(issue => html += '<li>' + issue + '</li>');
                     html += '</ul>';
                     resultDiv.className = 'result error';
                 } else {
-                    html += '<h4 style="color: green;">✅ All checks passed!</h4>';
+                    html += '<h4 style="color: green;">✅ All critical checks passed!</h4>';
                     resultDiv.className = 'result success';
+                }
+                
+                if (warnings.length > 0) {
+                    html += '<h4 style="color: orange;">⚠️ Warnings (non-critical):</h4><ul>';
+                    warnings.forEach(warning => html += '<li>' + warning + '</li>');
+                    html += '</ul>';
+                    html += '<p style="color: #666; font-size: 14px;"><em>Note: Orders will still work correctly. You can manually contact customers or set up alternative email solutions (SMTP plugin, SendGrid, etc.)</em></p>';
                 }
 
                 resultDiv.innerHTML = html;
@@ -265,13 +279,27 @@
 
                 if (data.type === 'message' || data.success) {
                     resultDiv.className = 'result success';
+                    
+                    let mailWarning = '';
+                    if (data.admin_mail === 'disabled' || !data.mail_available) {
+                        mailWarning = `
+                            <div style="background: #fff3cd; border: 1px solid #ffc107; padding: 10px; border-radius: 5px; margin: 10px 0;">
+                                <strong>⚠️ Note:</strong> Mail function is disabled on this server. 
+                                Order saved successfully but no confirmation emails were sent. 
+                                You'll need to manually contact customers or set up alternative email solution (SMTP plugin).
+                            </div>
+                        `;
+                    }
+                    
                     resultDiv.innerHTML = `
                         <h3>✅ Order Submitted Successfully!</h3>
+                        ${mailWarning}
                         <pre>${JSON.stringify(data, null, 2)}</pre>
                         <p><strong>Order ID:</strong> ${data.order_id}</p>
                         <p><strong>Referral Code:</strong> ${data.referral_code}</p>
                         <p><strong>Admin Email:</strong> ${data.admin_mail}</p>
                         <p><strong>Customer Email:</strong> ${data.customer_mail}</p>
+                        <p style="color: green;"><strong>✅ Order is in database and will redirect to thank you page on main site!</strong></p>
                     `;
                 } else {
                     resultDiv.className = 'result error';
