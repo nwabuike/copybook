@@ -1,20 +1,209 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emerald Tech Hub | Kids Copybooks - Black Friday Special</title>
-    <meta name="description" content="Black Friday deals on Sank Magic copybooks — reusable 4-in-1 practice books for kids 3+. Free delivery & gifts. Order Starter, Bundle or Mastery packages today.">
-    <meta name="keywords" content="kids copybooks, handwriting practice, Sank Magic, reusable copybook, black friday, free delivery, pay on delivery">
-    <link rel="canonical" href="/magicbook/copybook-blackfridaysales.php">
-    <meta property="og:title" content="Black Friday: Sank Magic Copybooks — Free Gifts & Delivery" />
-    <meta property="og:description" content="Limited Black Friday offer on reusable Sank Magic copybooks for kids (3+). Free delivery across Nigeria and multiple free gifts with every order." />
-    <meta property="og:image" content="images/copybooks.jpg" />
-    <meta property="og:type" content="website" />
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Buy Sank Magic Copybook for Kids | Reusable 4-in-1 Handwriting Practice Book Nigeria | Black Friday Sale 2025</title>
+    <meta name="description" content="🎁 Best Reusable Magic Copybook for Kids 3+ in Nigeria! ₦18,000 - ₦45,000. Improve handwriting fast with grooved practice books. FREE delivery nationwide. Pay on delivery. Black Friday cashback ₦10,000 + free gifts worth ₦12,000. Perfect gift for children, nieces, nephews!">
+    <meta name="keywords" content="magic copybook Nigeria, reusable copybook for kids, Sank magic copybook, handwriting practice book, calligraphy copybook Nigeria, kids writing practice book, disappearing ink copybook, 4 in 1 magic book, children educational toys Nigeria, handwriting improvement book, alphabet practice book, number writing book, buy copybook online Nigeria, best copybook for kids, magic pen copybook, grooved copybook, pen control books kids, Lagos copybook delivery, Abuja kids books, free delivery copybook Nigeria, pay on delivery copybook, kids learning materials Nigeria, preschool writing books, kindergarten practice books, cursive writing copybook, letter tracing books, Black Friday kids books, copybook discount Nigeria, children gift ideas Nigeria, educational gifts for kids, back to school books Nigeria, homeschool materials Nigeria, montessori writing materials, fine motor skills books, toddler writing practice, ages 3-12 copybooks">
+    <meta name="author" content="Emerald Tech Hub">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://yourdomain.com/magicbook/index.php">
+    
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="https://yourdomain.com/magicbook/index.php" />
+    <meta property="og:site_name" content="Emerald Tech Hub - Kids Educational Products" />
+    <meta property="og:title" content="🔥 Sank Magic Copybook Nigeria | Reusable Handwriting Practice Book for Kids | Black Friday Sale" />
+    <meta property="og:description" content="💰 Save up to ₦22,500! Get ₦10,000 cashback + ₦12,000 free gifts. Reusable 4-in-1 magic copybook improves kids handwriting in weeks. FREE delivery across Nigeria. Ages 3+. Perfect surprise gift!" />
+    <meta property="og:image" content="https://yourdomain.com/magicbook/images/magic-book-3-1024x1024.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_NG" />
+    <meta property="product:price:amount" content="18000" />
+    <meta property="product:price:currency" content="NGN" />
+    <meta property="product:availability" content="in stock" />
+    
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Black Friday: Sank Magic Copybooks" />
-    <meta name="twitter:description" content="Limited Black Friday offer on reusable Sank Magic copybooks for kids. Free delivery & gifts." />
+    <meta name="twitter:title" content="🎁 Sank Magic Reusable Copybook Nigeria | Kids Handwriting Practice | Black Friday Deal" />
+    <meta name="twitter:description" content="₦18,000 - ₦45,000 | Improve children's handwriting fast! Reusable 4-in-1 copybook. FREE delivery. Pay on delivery. Get ₦10,000 cashback + gifts" />
+    <meta name="twitter:image" content="https://yourdomain.com/magicbook/images/magic-book-3-1024x1024.jpg" />
+    <meta name="twitter:site" content="@EmeraldTechHub" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="NG" />
+    <meta name="geo.placename" content="Nigeria" />
+    <meta name="geo.position" content="9.082;8.6753" />
+    <meta name="ICBM" content="9.082, 8.6753" />
+    <meta name="language" content="English">
+    <meta name="coverage" content="Nigeria">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="target" content="parents, teachers, educators, gift buyers">
+    <meta name="audience" content="parents with kids ages 3-12">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Structured Data for Google Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Sank Magic Reusable Copybook 4-in-1 for Kids",
+      "image": [
+        "https://yourdomain.com/magicbook/images/magic-book-3-1024x1024.jpg",
+        "https://yourdomain.com/magicbook/images/slider1.jpg",
+        "https://yourdomain.com/magicbook/images/magic_sank.jpg"
+      ],
+      "description": "Reusable magic copybook for kids ages 3-12. Improves handwriting with grooved letters and numbers. Ink disappears in 5 minutes for reuse. 4-in-1 practice book includes alphabet, numbers, math and drawing exercises. Perfect educational gift.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Sank Magic"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://yourdomain.com/magicbook/index.php",
+        "priceCurrency": "NGN",
+        "lowPrice": "18000",
+        "highPrice": "45000",
+        "priceValidUntil": "2025-12-31",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "Organization",
+          "name": "Emerald Tech Hub"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "247"
+      },
+      "category": "Educational Toys & Books",
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedMinAge": 3,
+        "suggestedMaxAge": 12
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Emerald Tech Hub - Kids Educational Products",
+      "url": "https://yourdomain.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://yourdomain.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Emerald Tech Hub",
+      "url": "https://yourdomain.com",
+      "logo": "https://yourdomain.com/magicbook/images/logo.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-902-902-6782",
+        "contactType": "Customer Service",
+        "areaServed": "NG",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/emeraldtechhub",
+        "https://instagram.com/emeraldtechhub"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://yourdomain.com"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Kids Educational Products",
+        "item": "https://yourdomain.com/kids-products"
+      },{
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Magic Copybooks",
+        "item": "https://yourdomain.com/magicbook"
+      }]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [{
+        "@type": "Question",
+        "name": "What is Sank Magic Copybook?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sank Magic Copybook is a reusable 4-in-1 handwriting practice book for kids ages 3-12. It features grooved letters and numbers that guide children's hand movements. The special magic pen ink disappears within 5 minutes, allowing unlimited reuse without needing new books."
+        }
+      },{
+        "@type": "Question",
+        "name": "How does the magic copybook work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The copybook has grooved letters, numbers, and shapes that guide your child's hand for proper pen control and muscle memory. Kids write with the included magic pen, and the ink automatically fades away after 5 minutes, making the pages ready to use again. This helps children practice repeatedly without wasting paper."
+        }
+      },{
+        "@type": "Question",
+        "name": "What age is the magic copybook suitable for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Sank Magic Copybook is perfect for children aged 3 years and above. It's ideal for preschoolers, kindergarten, and primary school students learning to write letters, numbers, and improve their handwriting skills."
+        }
+      },{
+        "@type": "Question",
+        "name": "Do you deliver nationwide in Nigeria?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! We offer FREE delivery to all 36 states in Nigeria including Lagos, Abuja, Port Harcourt, Kano, Ibadan, and everywhere else. We also offer pay on delivery option - you only pay when you receive your order."
+        }
+      },{
+        "@type": "Question",
+        "name": "What's included in the copybook package?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Each package includes: 4-in-1 magic copybook (alphabet, numbers, math, and drawing), 10 premium refill pens, pencil grip helper, free nationwide delivery, and multiple free gifts (water game pad, U-shaped toothbrush, skipping rope). Black Friday buyers also get ₦10,000 cashback!"
+        }
+      },{
+        "@type": "Question",
+        "name": "How long does delivery take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Delivery takes 24-48 hours within Lagos and Abuja, and 2-4 days for other states across Nigeria. We work with reliable courier services to ensure safe and timely delivery to your doorstep."
+        }
+      },{
+        "@type": "Question",
+        "name": "Can I order as a gift for someone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely! The Sank Magic Copybook makes a perfect surprise gift for children, nieces, nephews, cousins, or friends' children for birthdays, Christmas, Children's Day, or any special occasion. Just provide the recipient's delivery address during checkout."
+        }
+      }]
+    }
+    </script>
+    
     <style>
         /* Load clear, bold sale-friendly fonts for this page */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Roboto:wght@400;500;700;900&display=swap');
@@ -120,9 +309,12 @@
             color: var(--dark);
             border: none;
             padding: 12px 24px;
+            min-height: 44px; /* Minimum touch target for mobile */
             border-radius: 30px;
             font-weight: 700;
             cursor: pointer;
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+            touch-action: manipulation; /* Prevent double-tap zoom */
             transition: var(--transition);
             box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
         }
@@ -171,7 +363,7 @@
 
         /* Hero pricing chips */
         .hero-pricing { display:flex; gap:14px; justify-content:center; margin:18px 0 26px; flex-wrap:wrap; }
-        .price-chip { background: white; border-radius:12px; padding:12px 16px; min-width:160px; box-shadow:0 8px 30px rgba(10,124,66,0.06); text-align:center; border:1px solid rgba(10,124,66,0.06); position:relative; cursor:pointer; transition: transform 220ms ease, box-shadow 220ms ease; }
+        .price-chip { background: white; border-radius:12px; padding:12px 16px; min-width:160px; box-shadow:0 8px 30px rgba(10,124,66,0.06); text-align:center; border:1px solid rgba(10,124,66,0.06); position:relative; cursor:pointer; transition: transform 220ms ease, box-shadow 220ms ease; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
         .price-chip:hover { transform: translateY(-8px) scale(1.02); box-shadow:0 24px 60px rgba(10,124,66,0.12); }
         .price-chip.featured { transform: translateY(-6px); border:2px solid rgba(10,124,66,0.12); box-shadow:0 18px 48px rgba(10,124,66,0.12); }
         .price-chip .ribbon { position:absolute; left:-18px; top:12px; background:#ff3b3b; color:white; padding:6px 10px; font-weight:800; font-size:0.78rem; transform:rotate(-14deg); box-shadow:0 6px 18px rgba(0,0,0,0.12); border-radius:4px; }
@@ -332,10 +524,22 @@
 
         @media (max-width:768px){ 
             .hero h1{font-size:2rem;} 
-            .hero-pricing{gap:10px} 
-            .price-chip{min-width:140px;padding:10px;} 
+            .hero-pricing{gap:10px; flex-direction: column; align-items: center;} 
+            .price-chip{min-width:280px; max-width: 100%; padding:15px; font-size: 1rem;} 
+            .price-chip .chip-title { font-size: 1.1rem; }
+            .price-chip .new-price { font-size: 1.8rem; }
+            .price-chip .old-price { font-size: 1rem; }
             .limited-slots-banner { font-size: 0.95rem; padding: 10px 15px; }
             .stock-notification { right: 10px; max-width: 90%; font-size: 0.9rem; }
+            .stock-badge { padding: 4px 8px; font-size: 0.75rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-pricing { gap: 8px; }
+            .price-chip { min-width: 260px; padding: 12px; }
+            .price-chip .chip-title { font-size: 1rem; }
+            .price-chip .new-price { font-size: 1.5rem; }
+            .limited-slots-banner { font-size: 0.85rem; padding: 8px 12px; }
         }
         
         .hero h1 span {
@@ -1025,10 +1229,13 @@
         .form-control {
             width: 100%;
             padding: 12px 15px;
+            min-height: 44px; /* Minimum touch target for mobile */
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 16px; /* Prevents zoom on iOS when focusing */
             transition: var(--transition);
+            -webkit-appearance: none; /* Remove default iOS styling */
+            appearance: none;
         }
         
         .form-control:focus {
@@ -1066,12 +1273,15 @@
             color: white;
             border: none;
             padding: 15px;
+            min-height: 50px; /* Larger touch target for important action */
             border-radius: 8px;
             font-size: 1.1rem;
             font-weight: 700;
             cursor: pointer;
             transition: var(--transition);
             margin-top: 10px;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
         }
         
         .submit-button:hover {
@@ -1280,23 +1490,43 @@
         }
 
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.9rem; }
+            .hero h1 { font-size: 1.9rem; line-height: 1.2; }
+            .hero h2 { font-size: 1.3rem; line-height: 1.4; }
+            .hero p { font-size: 1rem; padding: 0 10px; }
             .nav-links { display: none; }
             .header-content { flex-wrap: wrap; gap: 10px; }
-            .cta-button { width: 100%; text-align: center; }
+            .cta-button { width: 100%; text-align: center; padding: 15px 20px; font-size: 1.1rem; }
             .gifts-container { flex-direction: column; align-items: center; }
             .gallery-container { grid-template-columns: 1fr; }
             .timer { flex-direction: row; flex-wrap: wrap; gap: 10px; justify-content: center; }
             .timer-item { min-width: 70px; padding: 10px; }
+            .timer-number { font-size: 1.5rem; }
             .order-container { flex-direction: column; }
             .form-row { flex-direction: column; gap: 0; }
+            .section-title h2 { font-size: 1.8rem; }
+            .section-title p { font-size: 1rem; }
+            /* Mobile-friendly notice banner */
+            .form-container > div[style*="gradient"] { padding: 12px; font-size: 0.95rem; }
+            .form-container > div[style*="gradient"] h4 { font-size: 1rem; }
+            .form-container > div[style*="gradient"] p { font-size: 0.9rem; margin: 6px 0; }
         }
 
         @media (max-width: 480px) {
             /* reduce vertical padding on small phones */
+            .hero h1 { font-size: 1.5rem; }
+            .hero h2 { font-size: 1.1rem; }
+            .hero p { font-size: 0.95rem; }
             #content7-1 .video-wrap { padding: 6px; }
             .content-grid .img-block figcaption { font-size: 0.9rem; }
             .gift-image { height: 140px; }
+            .cta-button { padding: 12px 16px; font-size: 1rem; }
+            .timer-item { min-width: 60px; padding: 8px; }
+            .timer-number { font-size: 1.3rem; }
+            .timer-label { font-size: 0.7rem; }
+            .form-container > div[style*="gradient"] { padding: 10px; }
+            .form-container > div[style*="gradient"] h4 { font-size: 0.95rem; }
+            .form-container > div[style*="gradient"] p { font-size: 0.85rem; }
+            #order-toast-container { right: 10px; bottom: 10px; max-width: 90%; }
         }
 
         /* Demo order toast notifications */
@@ -1463,9 +1693,10 @@
                 <span class="pulse-dot"></span>
                 🔥 BLACK FRIDAY SPECIAL 🔥 Limited Slots Available! Only <span id="hero-stock" class="stock-number">7</span> Sets Remaining!
             </div>
-            <h1>⏳🎯 BLACK FRIDAY MEGA SALE 🎯⏳<br>Massive Discount on Kids Copybooks 🔥💥
+            <h1>⏳🎯 BLACK FRIDAY MEGA SALE 🎯⏳<br>Sank Magic Reusable Copybook for Kids - Best Handwriting Practice Book Nigeria 🔥💥
             </h1>
-            <h2>Order now to get cashback of <b>₦10,000</b>  + free gifts worth up to <b>₦12,000</b>!</h2> 
+            <h2>Order now to get cashback of <b>💰₦10,000💰</b> + free gifts worth up to <b>🎁₦12,000🎁</b>!</h2>
+            <p style="background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%); padding: 12px 16px; border-radius: 10px; border-left: 4px solid #0ea5e9; margin: 15px 0; font-weight: 500;">🎉 <strong>Perfect Surprise Gift!</strong> Buy this amazing copybook set for your children, cousins, nieces, nephews, friends' children, or any special kid in your life! 🎁✨</p> 
             <!-- <p>&#128293;&#128293;Order Now & Get High-Value Free Gifts! of <b>&#8358;12,000</b> and above..&#128293;&#128293;</p> -->
             <p>Perfect for kids <strong>3 years and above</strong> — compact, easy-to-follow activities that build pen control, confidence and neat handwriting fast.</p>
             <p><b>This Amazing 4 in 1 Sank magic practice copybook will improve child’s learning while having Fun
@@ -1632,7 +1863,7 @@
                         <img src="images/paint_magi.jpg" alt="Paint Magic" data-index="4" class="gallery-thumb" loading="lazy" />
                     </div>
                     <div class="gallery-info">
-                        <p class="lead">Thinking of the perfect gift for kids on occasions such as Birthday, children’s day or any other special occasion then you just found one.</p>
+                        <p class="lead">🎁 <strong>Perfect Surprise Gift!</strong> Buy this as an amazing gift for your children, cousins, nieces, nephews, friends' children, or any special kid in your life on occasions such as Birthday, Children's Day, Christmas, or any special celebration!</p>
                         <p><a class="cta-button small" href="#order" data-package="Bundle">Order Learning Bundle</a></p>
                     </div>
                 </div>
@@ -1717,35 +1948,46 @@
             <div class="section-title">
                 <h2>See What Other Smart Parents Are Saying About This Amazing Product!</h2>
                 <p>Real reviews from happy customers who have transformed their children's handwriting</p>
+                <p style="color: #0a7c42; font-weight: 600; margin-top: 10px;">💡 Tip: Click any review image to view in full screen for easier reading!</p>
             </div>
+            <style>
+                .testimonial-item:hover {
+                    transform: scale(1.03);
+                }
+                @media (max-width: 768px) {
+                    .testimonials-grid {
+                        grid-template-columns: 1fr !important;
+                    }
+                }
+            </style>
             
-            <div class="testimonials-grid">
-                <div class="testimonial-item">
-                    <img src="images/amazon-testimonial1.png" alt="Customer testimonial" loading="lazy" />
+            <div class="testimonials-grid" style="grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); gap: 30px;">
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/amazon-testimonial1.png" alt="Customer testimonial" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/Amazon-review-sank-3-728x267.png" alt="Customer review" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/Amazon-review-sank-3-728x267.png" alt="Customer review" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/amazon-review-sank-2-728x229.png" alt="Amazon review" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/amazon-review-sank-2-728x229.png" alt="Amazon review" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/1testimo.JPG" alt="Parent testimonial" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/1testimo.JPG" alt="Parent testimonial" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/2testimo.JPG" alt="Teacher review" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/2testimo.JPG" alt="Teacher review" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/3testimo.JPG" alt="Customer feedback" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/3testimo.JPG" alt="Customer feedback" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
                 
-                <div class="testimonial-item">
-                    <img src="images/review_1.JPG" alt="Product review" loading="lazy" />
+                <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
+                    <img src="images/review_1.JPG" alt="Product review" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
             </div>
         </div>
@@ -1869,7 +2111,15 @@
                 
                 <div class="form-container">
                     <h3>Place Your Order</h3>
-                    <p>NOTE: Please Don’t Order If Cash Isn’t Readily Available Or If You’d Travel Within The Period. Except Someone Is Picking Up on your behalf. Also, Please give us an accurate mobile phone number and precise address for delivery (Use of landmarks is encouraged example Church, bank, eatery and so on)</p>
+                                        <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 16px; border-radius: 10px; border: 2px solid #ffc107; margin-bottom: 20px;">
+                        <h4 style="color: #dc3545; margin: 0 0 12px 0; font-size: 1.1rem;">⚠️ IMPORTANT NOTICE - PLEASE READ CAREFULLY! ⚠️</h4>
+                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if you're not ready to receive delivery within <strong>24-48 hours</strong>!</p>
+                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if cash is not readily available for payment on delivery!</p>
+                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if you will be traveling during this period (unless someone can receive on your behalf)!</p>
+                        <p style="margin: 12px 0 8px 0; color: #0a7c42; font-weight: 600;">✅ If you're NOT ready now: <strong>Save our WhatsApp numbers</strong> (09029026782 or 08102609396) or bookmark this website to order when ready!</p>
+                        <p style="margin: 8px 0; color: #dc3545; font-weight: 600; font-size: 1.05rem;">⏰ <strong>BLACK FRIDAY SPECIAL:</strong> Only orders placed during our promo period are eligible for 💰₦10,000💰 cashback and discounted prices (₦18,000/₦32,000/₦45,000). After promo ends, prices return to original ₦22,500+ rates!</p>
+                    </div>
+                    <p style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #0a7c42; margin-bottom: 15px;">📍 <strong>Delivery Information:</strong> Please provide an accurate mobile phone number and precise delivery address. Use landmarks (church, bank, eatery, etc.) to help our delivery agent locate you easily.</p>
                     <div id="formMessage" style="display:none;margin-bottom:12px;padding:12px;border-radius:8px;"></div>
                     <form id="orderForm" method="post" action="php/order.php">
                         <div class="form-group">
@@ -1884,7 +2134,7 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="name">First Name</label>
+                                <label for="name">Full Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
                             </div>
                     
@@ -1982,9 +2232,10 @@
         <div class="container">
             <div class="referral-content">
                 <div class="referral-text">
-                    <h2>Earn <span>₦10,000 Cashback</span> With Our Referral Program</h2>
+                    <h2>Earn <span>💰₦10,000💰 Cashback</span> With Our Referral Program</h2>
                     <p>Refer friends and earn cashback when they purchase using your unique referral code. The more you refer, the more you earn!</p>
-                    <p>After making a purchase, you'll receive a unique referral code on your thank you page. Share this code with up to 3 friends, and when they make a purchase, you'll get ₦10,000 cashback credited to your account.</p>
+                    <p>After making a purchase, you'll receive a unique referral code on your thank you page. Share this code with up to 3 friends, and when they make a purchase, you'll get 💰₦10,000💰 cashback credited to your account.</p>
+                    <p style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); padding: 10px 14px; border-radius: 8px; border-left: 4px solid #f59e0b; margin-top: 12px;">🎉 <strong>Gift Idea:</strong> Share this amazing deal with friends who have kids - it makes a perfect surprise gift for their children too! 🎁</p>
                     <button class="cta-button" data-scroll-to="#order">Start Referring Now</button>
                 </div>
                 
@@ -2017,7 +2268,7 @@
                         <div class="step-number">4</div>
                         <div class="step-content">
                             <h4>Earn Cashback</h4>
-                            <p>When your friends purchase using your code, you'll get ₦10,000 cashback per referral.</p>
+                            <p>When your friends purchase using your code, you'll get 💰₦10,000💰 cashback per referral.</p>
                         </div>
                     </div>
                 </div>
@@ -2033,8 +2284,8 @@
                 <p>Our customer service team is available to answer any questions you may have about our products.</p>
                 
                 <div class="whatsapp-numbers">
-                    <a href="https://wa.me/2348163778265" class="whatsapp-number" target="_blank">
-                        <i class="fab fa-whatsapp"></i> 08163778265
+                    <a href="https://wa.me/23409029026782" class="whatsapp-number" target="_blank">
+                        <i class="fab fa-whatsapp"></i> 09029026782
                     </a>
                     <a href="https://wa.me/2348102609396" class="whatsapp-number" target="_blank">
                         <i class="fab fa-whatsapp"></i> 08102609396
@@ -2093,12 +2344,14 @@
             </div>
             
             <div class="copyright">
-                &copy; 2023 Emerald Tech Hub. All rights reserved.
+                &copy; 2019 - <?php echo date("Y"); ?> Emerald Tech Hub. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
+        // Wait for DOM to be fully loaded before initializing interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
         // Countdown Timer - fixed calendar deadline (today -> tomorrow end of day)
         (function() {
             // You can change FIXED_DEADLINE to a fixed ISO datetime string (e.g. '2025-11-30T23:59:59')
@@ -2164,18 +2417,40 @@
         });
         
         // CTA buttons: scroll to order section when clicked
-        document.querySelectorAll('.cta-button').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                const target = this.getAttribute('data-scroll-to') || this.getAttribute('href');
-                if (target && target.startsWith('#')) {
-                    e.preventDefault();
-                    const el = document.querySelector(target);
-                    if (el) {
-                        window.scrollTo({ top: el.offsetTop - 60, behavior: 'smooth' });
-                    }
-                }
+        function initScrollButtons() {
+            document.querySelectorAll('.cta-button, button.cta-button').forEach(btn => {
+                // Remove any existing listeners
+                btn.removeEventListener('click', handleButtonClick);
+                // Add new listener
+                btn.addEventListener('click', handleButtonClick);
             });
-        });
+        }
+        
+        function handleButtonClick(e) {
+            const target = this.getAttribute('data-scroll-to') || this.getAttribute('href');
+            console.log('Button clicked:', target); // Debug log
+            if (target && target.startsWith('#')) {
+                e.preventDefault();
+                e.stopPropagation();
+                const el = document.querySelector(target);
+                if (el) {
+                    const offsetTop = el.offsetTop - 80;
+                    window.scrollTo({ 
+                        top: offsetTop, 
+                        behavior: 'smooth' 
+                    });
+                    console.log('Scrolling to:', offsetTop); // Debug log
+                } else {
+                    console.error('Target element not found:', target);
+                }
+            }
+        }
+        
+        // Initialize scroll buttons
+        initScrollButtons();
+        
+        // Re-initialize after a short delay to catch any dynamically added buttons
+        setTimeout(initScrollButtons, 500);
 
         // Price chip clicks: auto-select package and jump to order form
         document.querySelectorAll('.price-chip').forEach(function(chip){
@@ -2308,7 +2583,7 @@
                         <p><strong>Your Referral Code:</strong> ${referralCode}</p>
                     </div>
                     <p>You will receive a confirmation email shortly. Our team will contact you within 24 hours to confirm delivery details.</p>
-                    <p><strong>Share your referral code with friends to earn ₦10,000 cashback!</strong></p>
+                    <p><strong>Share your referral code with friends to earn 💰₦10,000💰 cashback!</strong></p>
                     <button onclick="this.parentElement.parentElement.style.display='none'" style="background: #0a7c42; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin-top: 10px;">Close</button>
                 </div>
             `;
@@ -2528,37 +2803,7 @@
                 isRunning: function(){ return !!rafId; }
             };
 
-            // toggle UI (small floating control)
-            (function installToggle(){
-                const control = document.createElement('button');
-                control.type = 'button';
-                control.id = 'fireworks-toggle';
-                control.setAttribute('aria-pressed','false');
-                control.style.position = 'fixed';
-                control.style.left = '12px';
-                control.style.bottom = '12px';
-                control.style.zIndex = '2500';
-                control.style.background = 'rgba(0,0,0,0.6)';
-                control.style.color = '#fff';
-                control.style.border = 'none';
-                control.style.padding = '8px 10px';
-                control.style.borderRadius = '8px';
-                control.style.fontSize = '13px';
-                control.style.cursor = 'pointer';
-                control.textContent = 'Fireworks: On';
-                document.body.appendChild(control);
-
-                function updateLabel(){ const enabled = (localStorage.getItem('fireworksEnabled') !== 'false'); control.textContent = enabled ? 'Fireworks: On' : 'Fireworks: Off'; control.setAttribute('aria-pressed', enabled ? 'true' : 'false'); }
-
-                control.addEventListener('click', function(){
-                    const enabled = (localStorage.getItem('fireworksEnabled') !== 'false');
-                    if(enabled){ localStorage.setItem('fireworksEnabled','false'); window._fireworksController.stop(); }
-                    else { localStorage.removeItem('fireworksEnabled'); if(window.innerWidth >= 480) window._fireworksController.start(); }
-                    updateLabel();
-                });
-
-                updateLabel();
-            })();
+            // Fireworks toggle removed - auto-start only
 
             const userDisabled = (localStorage.getItem('fireworksEnabled') === 'false');
             if(!userDisabled && window.innerWidth >= 480){ window._fireworksController.start(); }
@@ -2827,6 +3072,8 @@
             // Expose for debugging
             window._stockSystem = { stockData, updateStockDisplays, decreaseStock, showStockNotification };
         })();
+        
+        }); // End DOMContentLoaded
     </script>
 </body>
 </html>

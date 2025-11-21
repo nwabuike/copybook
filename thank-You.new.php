@@ -565,7 +565,7 @@ $expected_to   = date('j M Y, H:i', $order_ts + 72 * 3600);
                     <p>Click below to send us a quick confirmation message on WhatsApp:</p>
                     
                     <div class="whatsapp-buttons">
-                        <a href="<?php echo $order ? 'https://wa.me/2348163778265?text='.urlencode('Hello Emerald Tech Hub! I would like to confirm my recent order.\n\nPackage: '.($order['pack']).'\nName: '.($order['fullname'])).'' : '#'; ?>" class="whatsapp-button" id="whatsapp-confirm">
+                        <a href="<?php echo $order ? 'https://wa.me/2349029026782?text='.urlencode('Hello Emerald Tech Hub! I would like to confirm my recent order.\n\nPackage: '.($order['pack']).'\nName: '.($order['fullname'])).'' : '#'; ?>" class="whatsapp-button" id="whatsapp-confirm">
                             <i class="fab fa-whatsapp"></i>
                             <span>Confirm Order on WhatsApp</span>
                         </a>
@@ -639,7 +639,7 @@ $expected_to   = date('j M Y, H:i', $order_ts + 72 * 3600);
                 <div class="footer-column">
                     <h4>Contact Info</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> 08163778265</li>
+                        <li><i class="fas fa-phone"></i> 009029026782</li>
                         <li><i class="fas fa-phone"></i> 08102609396</li>
                         <li><i class="fas fa-envelope"></i> info@emeraldtechhub.com</li>
                     </ul>
@@ -689,7 +689,7 @@ $expected_to   = date('j M Y, H:i', $order_ts + 72 * 3600);
                 // WhatsApp links (do not show order id)
                 var confirm = document.getElementById('whatsapp-confirm');
                 var track = document.getElementById('whatsapp-track');
-                if(confirm) confirm.href = 'https://wa.me/2348163778265?text=' + encodeURIComponent('Hello Emerald Tech Hub! I would like to confirm my recent order for the Learning Bundle.');
+                if(confirm) confirm.href = 'https://wa.me/23409029026782?text=' + encodeURIComponent('Hello Emerald Tech Hub! I would like to confirm my recent order for the Learning Bundle.');
                 if(track) track.href = 'https://wa.me/2348102609396?text=' + encodeURIComponent('Hello Emerald Tech Hub! I would like to track my recent order for the Learning Bundle.');
 
                 // Share referral
