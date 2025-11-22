@@ -56,15 +56,58 @@ function sendSMTPEmail($to, $toName, $subject, $body, $isHtml = false, $replyTo 
     
     // Reload config if not set or not an array
     if (!isset($smtpConfig) || !is_array($smtpConfig)) {
-        $smtpConfig = require __DIR__ . '/smtp_config.php';
+        $configFile = __DIR__ . '/smtp_config.php';
+        
+        if (!file_exists($configFile)) {
+            error_log("SMTP Error: smtp_config.php not found at: " . $configFile);
+            return [
+                'success' => false,
+                'message' => 'SMTP configuration file not found. Please create smtp_config.php from smtp_config.example.php',
+                'error' => 'CONFIG_NOT_FOUND',
+                'debug' => 'Looking for: ' . $configFile
+            ];
+        }
+        
+        try {
+            $smtpConfig = require $configFile;
+            
+            if (!is_array($smtpConfig)) {
+                error_log("SMTP Error: smtp_config.php did not return an array");
+                return [
+                    'success' => false,
+                    'message' => 'Invalid SMTP configuration format',
+                    'error' => 'INVALID_CONFIG_FORMAT'
+                ];
+            }
+        } catch (Exception $e) {
+            error_log("SMTP Error loading config: " . $e->getMessage());
+            return [
+                'success' => false,
+                'message' => 'Error loading SMTP configuration: ' . $e->getMessage(),
+                'error' => 'CONFIG_LOAD_ERROR'
+            ];
+        }
     }
     
-    // Check if SMTP is enabled
-    if (!isset($smtpConfig['enable_smtp']) || !$smtpConfig['enable_smtp']) {
+    // Check if SMTP is enabled with more detailed error
+    if (!isset($smtpConfig['enable_smtp'])) {
+        error_log("SMTP Error: 'enable_smtp' key not found in config");
         return [
             'success' => false,
-            'message' => 'SMTP is disabled in configuration',
-            'error' => 'SMTP_DISABLED'
+            'message' => 'SMTP configuration incomplete: enable_smtp key missing',
+            'error' => 'CONFIG_INCOMPLETE',
+            'debug' => 'Check smtp_config.php has: enable_smtp => true'
+        ];
+    }
+    
+    if (!$smtpConfig['enable_smtp']) {
+        $debugInfo = "enable_smtp value: " . var_export($smtpConfig['enable_smtp'], true);
+        error_log("SMTP Error: SMTP is disabled. " . $debugInfo);
+        return [
+            'success' => false,
+            'message' => 'SMTP is disabled in configuration. Set enable_smtp to true in smtp_config.php',
+            'error' => 'SMTP_DISABLED',
+            'debug' => $debugInfo
         ];
     }
     
