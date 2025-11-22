@@ -664,6 +664,13 @@ $expected_to   = date('j M Y, H:i', $order_ts + 72 * 3600);
             </div>
         </div>
     </footer>
+     <a href="#" class="top" style="background-color:#8e44ad;">Top</a>
+    <script>
+        fbq('track', 'Purchase', {
+            value: 5000,
+            currency: 'NGN',
+        });
+    </script>
 
     <script>
         // If no server-driven order is present, fall back to generating values client-side (keeps original demo behaviour)
