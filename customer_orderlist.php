@@ -1515,6 +1515,10 @@ $canDelete = canPerform('delete_order');
                         <i class="fas fa-bell"></i>
                         <span style="font-size: 16px;">Order Reminder</span>
                     </button>
+                    <button class="btn" onclick="selectMessageType('not_picking')" style="width: 100%; justify-content: center; padding: 20px; background: #dc3545; color: white;">
+                        <i class="fas fa-phone-slash"></i>
+                        <span style="font-size: 16px;">Not Picking Calls</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -2087,6 +2091,10 @@ $canDelete = canPerform('delete_order');
                 subject = `Order Confirmation - #${order.id} - Sank Magic Copy Book`;
             } else if (messageType === 'reminder') {
                 subject = `Order Reminder - #${order.id} - Sank Magic Copy Book`;
+            } else if (messageType === 'not_picking') {
+                subject = `URGENT: Unable to Reach You - Order #${order.id}`;
+            } else {
+                subject = `Message - Order #${order.id} - Sank Magic Copy Book`;
             }
             
             // Show loading state
@@ -2194,6 +2202,9 @@ $canDelete = canPerform('delete_order');
             } else if (messageType === 'reminder') {
                 messageHeader = 'ORDER REMINDER';
                 messageIntro = `Dear ${order.fullname},\n\nThis is a friendly reminder about your order. Please find the details below:`;
+            } else if (messageType === 'not_picking') {
+                messageHeader = 'URGENT: UNABLE TO REACH YOU';
+                messageIntro = `Dear ${order.fullname},\n\nWe've been trying to reach you regarding your order but couldn't get through.\n\nPlease contact us as soon as possible to confirm your delivery details.`;
             }
             
             // Build the complete message
@@ -2222,6 +2233,8 @@ $canDelete = canPerform('delete_order');
                 message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nYour order is being processed and will be delivered soon.\n\nWhen will you be available for delivery?\n\nThank you for choosing Sank Magic Copy Book!`;
             } else if (messageType === 'reminder') {
                 message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nIf you have any questions or concerns about your order, please feel free to contact us.`;
+            } else if (messageType === 'not_picking') {
+                message += `\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⚠️ IMPORTANT: Please call us back or reply to this message with your availability.\n\nContact Numbers:\n📞 08163778265\n📞 08102609396\n\nWe need to confirm your delivery details to proceed with your order.\n\nThank you for your cooperation!`;
             }
             
             return message;

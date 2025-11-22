@@ -767,6 +767,7 @@ $currentUser = getCurrentUser();
                             <select id="bulk-message-type">
                                 <option value="confirmation">Order Confirmation</option>
                                 <option value="reminder">Order Reminder</option>
+                                <option value="not_picking">Not Picking Calls</option>
                                 <option value="custom">Custom Message</option>
                             </select>
                         </div>
@@ -838,6 +839,7 @@ $currentUser = getCurrentUser();
                                 <select id="individual-message-type">
                                     <option value="confirmation">Order Confirmation</option>
                                     <option value="reminder">Order Reminder</option>
+                                    <option value="not_picking">Not Picking Calls</option>
                                     <option value="custom">Custom Message</option>
                                 </select>
                             </div>
@@ -888,6 +890,15 @@ $currentUser = getCurrentUser();
                             </div>
                             <div class="template-preview">
                                 This is a friendly reminder about your order. Please find the details...
+                            </div>
+                        </div>
+
+                        <div class="message-template" onclick="useTemplate('not_picking')">
+                            <div class="template-name">
+                                <i class="fas fa-phone-slash"></i> Not Picking Calls Template
+                            </div>
+                            <div class="template-preview">
+                                We've been trying to reach you regarding your order. Please contact us...
                             </div>
                         </div>
 
@@ -1133,6 +1144,9 @@ $currentUser = getCurrentUser();
             } else if (messageType === 'reminder') {
                 messageHeader = 'ORDER REMINDER';
                 messageIntro = `Dear ${order.fullname},\n\nThis is a friendly reminder about your order. Please find the details below:`;
+            } else if (messageType === 'not_picking') {
+                messageHeader = 'URGENT: UNABLE TO REACH YOU';
+                messageIntro = `Dear ${order.fullname},\n\nWe've been trying to reach you regarding your order but couldn't get through.\n\nPlease contact us as soon as possible to confirm your delivery details.`;
             }
 
             let message = `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
@@ -1155,6 +1169,8 @@ $currentUser = getCurrentUser();
             
             if (messageType === 'confirmation') {
                 message += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nYour order is being processed and will be delivered soon.\n\nWhen will you be available for delivery?\n\nThank you for choosing Sank Magic Copy Book!`;
+            } else if (messageType === 'not_picking') {
+                message += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⚠️ IMPORTANT: Please call us back or reply to this message with your availability.\n\nContact Numbers:\n📞 08163778265\n📞 08102609396\n\nWe need to confirm your delivery details to proceed with your order.\n\nThank you for your cooperation!`;
             } else {
                 message += `\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\nIf you have questions, please contact us.`;
             }
@@ -1230,7 +1246,11 @@ $currentUser = getCurrentUser();
             
             const subject = messageType === 'confirmation' 
                 ? 'Order Confirmation - Sank Magic Copy Book'
-                : 'Order Reminder - Sank Magic Copy Book';
+                : messageType === 'reminder'
+                ? 'Order Reminder - Sank Magic Copy Book'
+                : messageType === 'not_picking'
+                ? 'URGENT: Unable to Reach You - Sank Magic Copy Book'
+                : 'Message from Sank Magic Copy Book';
             
             // Show loading overlay
             const loadingOverlay = document.createElement('div');
@@ -1340,7 +1360,11 @@ $currentUser = getCurrentUser();
             
             const subject = messageType === 'confirmation'
                 ? `Order Confirmation - #${individualOrder.id} - Sank Magic Copy Book`
-                : `Order Reminder - #${individualOrder.id} - Sank Magic Copy Book`;
+                : messageType === 'reminder'
+                ? `Order Reminder - #${individualOrder.id} - Sank Magic Copy Book`
+                : messageType === 'not_picking'
+                ? `URGENT: Unable to Reach You - Order #${individualOrder.id}`
+                : `Message - Order #${individualOrder.id} - Sank Magic Copy Book`;
             
             // Show loading state
             const loadingMessage = document.createElement('div');
@@ -1406,7 +1430,7 @@ $currentUser = getCurrentUser();
             // Set message type based on template
             setTimeout(() => {
                 const messageTypeSelect = document.getElementById('bulk-message-type');
-                if (templateType === 'confirmation' || templateType === 'reminder') {
+                if (templateType === 'confirmation' || templateType === 'reminder' || templateType === 'not_picking') {
                     messageTypeSelect.value = templateType;
                     document.getElementById('custom-message-section').style.display = 'none';
                 } else if (templateType === 'delivery') {
