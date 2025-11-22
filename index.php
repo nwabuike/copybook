@@ -6,6 +6,9 @@
     
     <!-- Primary SEO Meta Tags -->
     <title>Buy Sank Magic Copybook for Kids | Reusable 4-in-1 Handwriting Practice Book Nigeria | Black Friday Sale 2025</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <meta name="description" content="🎁 Best Reusable Magic Copybook for Kids 3+ in Nigeria! ₦18,000 - ₦45,000. Improve handwriting fast with grooved practice books. FREE delivery nationwide. Pay on delivery. Black Friday cashback ₦10,000 + free gifts worth ₦12,000. Perfect gift for children, nieces, nephews!">
     <meta name="keywords" content="magic copybook Nigeria, reusable copybook for kids, Sank magic copybook, handwriting practice book, calligraphy copybook Nigeria, kids writing practice book, disappearing ink copybook, 4 in 1 magic book, children educational toys Nigeria, handwriting improvement book, alphabet practice book, number writing book, buy copybook online Nigeria, best copybook for kids, magic pen copybook, grooved copybook, pen control books kids, Lagos copybook delivery, Abuja kids books, free delivery copybook Nigeria, pay on delivery copybook, kids learning materials Nigeria, preschool writing books, kindergarten practice books, cursive writing copybook, letter tracing books, Black Friday kids books, copybook discount Nigeria, children gift ideas Nigeria, educational gifts for kids, back to school books Nigeria, homeschool materials Nigeria, montessori writing materials, fine motor skills books, toddler writing practice, ages 3-12 copybooks">
     <meta name="author" content="Emerald Tech Hub">
