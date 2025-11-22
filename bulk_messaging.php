@@ -733,6 +733,21 @@ $currentUser = getCurrentUser();
                             </div>
                         </div>
 
+                        <div class="filter-section" style="margin-top: 20px;">
+                            <div class="filter-title">Special Categories:</div>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="category-not-picking">
+                                    <label for="category-not-picking" style="font-weight: normal; margin: 0; color: #dc3545;">
+                                        <i class="fas fa-phone-slash"></i> Not Picking Calls
+                                    </label>
+                                </div>
+                            </div>
+                            <small style="display: block; margin-top: 8px; color: #666; font-style: italic;">
+                                * Check this to filter orders where customers haven't been answering calls (requires admin notes indicating "not picking" or similar)
+                            </small>
+                        </div>
+
                         <div class="stats-row" id="recipient-stats">
                             <div class="stat-box">
                                 <div class="stat-value" id="total-recipients">0</div>
@@ -1014,6 +1029,19 @@ $currentUser = getCurrentUser();
                         selectedOrders.push(...result.data);
                     }
                 });
+
+                // Apply "Not Picking Calls" filter if checked
+                const notPickingCheckbox = document.getElementById('category-not-picking');
+                if (notPickingCheckbox && notPickingCheckbox.checked) {
+                    selectedOrders = selectedOrders.filter(order => {
+                        const notes = (order.admin_notes || '').toLowerCase();
+                        return notes.includes('not picking') || 
+                               notes.includes('no answer') || 
+                               notes.includes('not answering') ||
+                               notes.includes('unreachable') ||
+                               notes.includes('not responding');
+                    });
+                }
 
                 // Update stats
                 const totalRecipients = selectedOrders.length;
