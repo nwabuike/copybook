@@ -151,17 +151,29 @@ $orderData = [
 ];
 
 // Try SMTP first (if configured)
-if (file_exists(__DIR__ . '/mailer_smtp.php')) {
+if (file_exists(__DIR__ . '/mailer_smtp.php') && file_exists(__DIR__ . '/smtp_config.php')) {
     try {
+        // Clear any previous config
+        if (isset($smtpConfig)) {
+            unset($smtpConfig);
+        }
+        
         require_once __DIR__ . '/mailer_smtp.php';
+        
+        // Verify config is loaded
+        if (!isset($smtpConfig) || !is_array($smtpConfig)) {
+            $smtpConfig = require __DIR__ . '/smtp_config.php';
+        }
         
         // Send admin notification
         $adminResult = sendAdminOrderNotification($orderData);
-        $adminMailSent = $adminResult['success'];
+        $adminMailSent = isset($adminResult['success']) ? $adminResult['success'] : false;
         
         // Send customer confirmation
-        $customerResult = sendCustomerOrderConfirmation($orderData);
-        $customerMailSent = $customerResult['success'];
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $customerResult = sendCustomerOrderConfirmation($orderData);
+            $customerMailSent = isset($customerResult['success']) ? $customerResult['success'] : false;
+        }
         
         if ($adminMailSent || $customerMailSent) {
             $emailMethod = 'smtp';
@@ -169,14 +181,18 @@ if (file_exists(__DIR__ . '/mailer_smtp.php')) {
         
         // Log any SMTP errors
         if (!$adminMailSent) {
-            error_log("SMTP Admin email failed: " . $adminResult['message']);
+            $errorMsg = isset($adminResult['error']) ? $adminResult['error'] : 'unknown';
+            error_log("SMTP Admin email failed: " . (isset($adminResult['message']) ? $adminResult['message'] : 'No message') . " Error: " . $errorMsg);
         }
         if (!$customerMailSent && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            error_log("SMTP Customer email failed: " . $customerResult['message']);
+            $errorMsg = isset($customerResult['error']) ? $customerResult['error'] : 'unknown';
+            error_log("SMTP Customer email failed: " . (isset($customerResult['message']) ? $customerResult['message'] : 'No message') . " Error: " . $errorMsg);
         }
         
     } catch (Exception $e) {
         error_log("SMTP initialization failed: " . $e->getMessage());
+    } catch (Error $e) {
+        error_log("SMTP error: " . $e->getMessage());
     }
 }
 

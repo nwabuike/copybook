@@ -1,6 +1,11 @@
 <?php
 // api/stock.php - Stock Management API
 require_once '../php/db.php';
+require_once '../php/auth.php';
+
+// Require authentication
+requireLogin();
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT');

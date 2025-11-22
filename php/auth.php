@@ -296,4 +296,53 @@ function generatePassword($length = 12) {
     }
     return $password;
 }
+
+// Get agent ID for current user (if user is an agent)
+function getAgentIdForCurrentUser() {
+    if (!isLoggedIn() || !isAgent()) {
+        return null;
+    }
+    
+    global $conn;
+    $userId = $_SESSION['user_id'];
+    
+    $sql = "SELECT id FROM delivery_agents WHERE user_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        return $row['id'];
+    }
+    
+    return null;
+}
+
+// Get states assigned to agent
+function getAgentStates($agentId = null) {
+    if ($agentId === null && isAgent()) {
+        $agentId = getAgentIdForCurrentUser();
+    }
+    
+    if ($agentId === null) {
+        return [];
+    }
+    
+    global $conn;
+    
+    $sql = "SELECT state FROM agent_states WHERE agent_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $agentId);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $states = [];
+    while ($row = $result->fetch_assoc()) {
+        $states[] = $row['state'];
+    }
+    
+    return $states;
+}
 ?>

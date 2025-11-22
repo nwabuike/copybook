@@ -1,8 +1,9 @@
 <?php
 require_once 'php/auth.php';
-requireRole(['admin', 'subadmin']); // Only admin and subadmin can view
+requireLogin(); // All logged-in users can view notifications
 
 $currentUser = getCurrentUser();
+$userRole = $currentUser['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -368,7 +369,14 @@ $currentUser = getCurrentUser();
     <div class="container">
         <header>
             <div class="header-left">
-                <h1><i class="fas fa-bell"></i> Sales Rep Dashboard</h1>
+                <h1><i class="fas fa-bell"></i> <?php 
+                    echo match($userRole) {
+                        'admin' => 'Admin Dashboard - Notifications',
+                        'subadmin' => 'Manager Dashboard - Notifications',
+                        'agent' => 'Agent Dashboard - Notifications',
+                        default => 'Dashboard - Notifications'
+                    };
+                ?></h1>
                 <div class="breadcrumb">
                     <a href="index.php">Home</a> / <a href="customer_orderlist.php">Orders</a> / <span>Notifications</span>
                 </div>
@@ -558,21 +566,58 @@ $currentUser = getCurrentUser();
         // Request notification permission
         async function requestNotificationPermission() {
             if (!('Notification' in window)) {
-                alert('This browser does not support notifications');
+                alert('This browser does not support desktop notifications. You can still use the alert list below.');
+                // Still allow page to work without notifications
+                notificationPermission = false;
+                updateNotificationStatus();
+                startAutoCheck();
+                checkAlerts();
                 return false;
             }
 
-            const permission = await Notification.requestPermission();
-            notificationPermission = permission === 'granted';
-            
-            updateNotificationStatus();
-            
-            if (notificationPermission) {
+            try {
+                // Handle both old and new notification API syntax for mobile compatibility
+                let permission;
+                if (Notification.requestPermission) {
+                    permission = await Notification.requestPermission();
+                } else {
+                    // Fallback for older browsers
+                    permission = await new Promise((resolve) => {
+                        Notification.requestPermission(resolve);
+                    });
+                }
+                
+                notificationPermission = permission === 'granted';
+                
+                updateNotificationStatus();
+                
+                if (notificationPermission) {
+                    startAutoCheck();
+                    checkAlerts();
+                    alert('Notifications enabled successfully!');
+                } else if (permission === 'denied') {
+                    alert('Notifications were blocked. Please enable them in your browser settings. You can still use the alert list below.');
+                } else {
+                    alert('Notification permission was not granted. You can still use the alert list below.');
+                }
+                
+                // Even if notifications denied, still run checks for alert list
+                if (!notificationPermission) {
+                    startAutoCheck();
+                    checkAlerts();
+                }
+
+                return notificationPermission;
+            } catch (error) {
+                console.error('Error requesting notification permission:', error);
+                alert('Could not enable browser notifications. You can still use the alert list below.');
+                notificationPermission = false;
+                updateNotificationStatus();
+                // Still start checks for alert list
                 startAutoCheck();
                 checkAlerts();
+                return false;
             }
-
-            return notificationPermission;
         }
 
         // Update notification status UI
@@ -582,13 +627,13 @@ $currentUser = getCurrentUser();
 
             if (notificationPermission) {
                 statusEl.className = 'notification-status enabled';
-                statusEl.innerHTML = '<i class="fas fa-bell"></i><span>Notifications Enabled</span>';
-                btnEl.innerHTML = '<i class="fas fa-bell-slash"></i> Disable Notifications';
+                statusEl.innerHTML = '<i class="fas fa-bell"></i><span>Browser Notifications Enabled</span>';
+                btnEl.innerHTML = '<i class="fas fa-bell-slash"></i> Disable Browser Alerts';
                 btnEl.className = 'btn btn-danger';
             } else {
                 statusEl.className = 'notification-status disabled';
-                statusEl.innerHTML = '<i class="fas fa-bell-slash"></i><span>Notifications Disabled</span>';
-                btnEl.innerHTML = '<i class="fas fa-bell"></i> Enable Notifications';
+                statusEl.innerHTML = '<i class="fas fa-info-circle"></i><span>Monitoring Active (Alert List Only)</span>';
+                btnEl.innerHTML = '<i class="fas fa-bell"></i> Enable Browser Notifications';
                 btnEl.className = 'btn';
             }
         }
@@ -634,114 +679,164 @@ $currentUser = getCurrentUser();
 
         // Check pending orders
         async function checkPendingOrders() {
-            const response = await fetch('api/orders.php?action=list&status=pending');
-            const data = await response.json();
+            try {
+                const response = await fetch('api/orders.php?action=list&status=pending');
+                
+                if (!response.ok) {
+                    console.error('Orders API error:', response.status);
+                    return;
+                }
+                
+                const data = await response.json();
 
-            if (data.success && data.data.length > 0) {
-                const now = new Date();
-                const thresholdMs = settings.pendingThreshold * 60 * 1000;
-                let alertCount = 0;
+                if (data.success && data.data && data.data.length > 0) {
+                    const now = new Date();
+                    const thresholdMs = settings.pendingThreshold * 60 * 1000;
+                    let alertCount = 0;
 
-                data.data.forEach(order => {
-                    const orderTime = new Date(order.created_at);
-                    const timeDiff = now - orderTime;
+                    data.data.forEach(order => {
+                        const orderTime = new Date(order.created_at);
+                        const timeDiff = now - orderTime;
 
-                    if (timeDiff > thresholdMs) {
-                        alertCount++;
-                        if (alertCount === 1) { // Only notify once per check
-                            showNotification(
-                                'Pending Orders Need Attention',
-                                `${data.data.length} order(s) have been pending for over ${settings.pendingThreshold} minutes`,
-                                'urgent'
-                            );
+                        if (timeDiff > thresholdMs) {
+                            alertCount++;
                         }
-                    }
-                });
+                    });
 
-                document.getElementById('pending-count').textContent = data.data.length;
-            } else {
+                    document.getElementById('pending-count').textContent = data.data.length;
+                    
+                    // Only notify once per check if there are old pending orders
+                    if (alertCount > 0) {
+                        showNotification(
+                            'Pending Orders Need Attention',
+                            `${alertCount} order(s) have been pending for over ${settings.pendingThreshold} minutes`,
+                            'urgent'
+                        );
+                    }
+                } else {
+                    document.getElementById('pending-count').textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error checking pending orders:', error);
                 document.getElementById('pending-count').textContent = '0';
             }
         }
 
         // Check low stock
         async function checkLowStock() {
-            const response = await fetch(`api/stock.php?action=low_stock&threshold=${settings.stockThreshold}`);
-            const data = await response.json();
-
-            if (data.success) {
-                const lowStockCount = data.data.filter(item => item.quantity > 0 && item.quantity <= settings.stockThreshold).length;
-                const outOfStockCount = data.data.filter(item => item.quantity === 0 || item.quantity === '0').length;
-
-                document.getElementById('low-stock-count').textContent = lowStockCount;
-                document.getElementById('out-stock-count').textContent = outOfStockCount;
-
-                if (outOfStockCount > 0) {
-                    showNotification(
-                        'Out of Stock Alert',
-                        `${outOfStockCount} item(s) are out of stock`,
-                        'urgent'
-                    );
-                } else if (lowStockCount > 0) {
-                    showNotification(
-                        'Low Stock Alert',
-                        `${lowStockCount} item(s) are running low`,
-                        'warning'
-                    );
+            try {
+                const response = await fetch(`api/stock.php?action=low_stock&threshold=${settings.stockThreshold}`);
+                
+                if (!response.ok) {
+                    console.error('Stock API error:', response.status);
+                    return;
                 }
+                
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    const lowStockCount = data.data.filter(item => {
+                        const qty = parseInt(item.quantity);
+                        return qty > 0 && qty <= settings.stockThreshold;
+                    }).length;
+                    
+                    const outOfStockCount = data.data.filter(item => {
+                        const qty = parseInt(item.quantity);
+                        return qty === 0;
+                    }).length;
+
+                    document.getElementById('low-stock-count').textContent = lowStockCount;
+                    document.getElementById('out-stock-count').textContent = outOfStockCount;
+
+                    if (outOfStockCount > 0) {
+                        showNotification(
+                            'Out of Stock Alert',
+                            `${outOfStockCount} item(s) are out of stock`,
+                            'urgent'
+                        );
+                    } else if (lowStockCount > 0) {
+                        showNotification(
+                            'Low Stock Alert',
+                            `${lowStockCount} item(s) are running low`,
+                            'warning'
+                        );
+                    }
+                } else {
+                    console.error('Stock data error:', data.message || 'Unknown error');
+                    document.getElementById('low-stock-count').textContent = '0';
+                    document.getElementById('out-stock-count').textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error checking stock:', error);
+                document.getElementById('low-stock-count').textContent = '0';
+                document.getElementById('out-stock-count').textContent = '0';
             }
         }
 
         // Check follow-ups
         async function checkFollowUps() {
-            const response = await fetch('api/orders.php?action=list&status=confirmed');
-            const data = await response.json();
-
-            if (data.success && data.data.length > 0) {
-                const now = new Date();
-                const thresholdMs = settings.followUpThreshold * 60 * 1000;
-                let alertCount = 0;
-
-                data.data.forEach(order => {
-                    const confirmedTime = order.confirmed_at ? new Date(order.confirmed_at) : new Date(order.created_at);
-                    const timeDiff = now - confirmedTime;
-
-                    if (timeDiff > thresholdMs) {
-                        alertCount++;
-                    }
-                });
-
-                if (alertCount > 0) {
-                    showNotification(
-                        'Follow-up Required',
-                        `${alertCount} confirmed order(s) need follow-up`,
-                        'warning'
-                    );
+            try {
+                const response = await fetch('api/orders.php?action=list&status=confirmed');
+                
+                if (!response.ok) {
+                    console.error('Orders API error:', response.status);
+                    return;
                 }
+                
+                const data = await response.json();
+
+                if (data.success && data.data && data.data.length > 0) {
+                    const now = new Date();
+                    const thresholdMs = settings.followUpThreshold * 60 * 1000;
+                    let alertCount = 0;
+
+                    data.data.forEach(order => {
+                        const confirmedTime = order.confirmed_at ? new Date(order.confirmed_at) : new Date(order.created_at);
+                        const timeDiff = now - confirmedTime;
+
+                        if (timeDiff > thresholdMs) {
+                            alertCount++;
+                        }
+                    });
+
+                    if (alertCount > 0) {
+                        showNotification(
+                            'Follow-up Required',
+                            `${alertCount} confirmed order(s) need follow-up`,
+                            'warning'
+                        );
+                    }
+                }
+            } catch (error) {
+                console.error('Error checking follow-ups:', error);
             }
         }
 
         // Show notification
         function showNotification(title, body, type = 'info') {
-            if (!notificationPermission) return;
-
-            // Browser notification
-            const notification = new Notification(title, {
-                body: body,
-                icon: 'images/logo.png',
-                badge: 'images/logo.png',
-                tag: type,
-                requireInteraction: type === 'urgent',
-                vibrate: [200, 100, 200]
-            });
-
-            notification.onclick = function() {
-                window.focus();
-                notification.close();
-            };
-
-            // Add to alerts list
+            // Always add to alerts list regardless of browser notification permission
             addAlertToList(title, body, type);
+            
+            // Try to show browser notification if permission granted
+            if (notificationPermission && 'Notification' in window) {
+                try {
+                    const notification = new Notification(title, {
+                        body: body,
+                        icon: 'images/logo.png',
+                        badge: 'images/logo.png',
+                        tag: type,
+                        requireInteraction: type === 'urgent',
+                        vibrate: [200, 100, 200]
+                    });
+
+                    notification.onclick = function() {
+                        window.focus();
+                        notification.close();
+                    };
+                } catch (error) {
+                    console.error('Error showing notification:', error);
+                }
+            }
 
             // Play sound for urgent alerts
             if (type === 'urgent') {
@@ -802,16 +897,35 @@ $currentUser = getCurrentUser();
         document.addEventListener('DOMContentLoaded', function() {
             loadSettings();
             
-            // Check if notifications were previously enabled
-            if (Notification.permission === 'granted') {
-                notificationPermission = true;
+            // Check notification support and permission
+            if ('Notification' in window) {
+                if (Notification.permission === 'granted') {
+                    notificationPermission = true;
+                    updateNotificationStatus();
+                    startAutoCheck();
+                    checkAlerts(); // Initial check
+                } else if (Notification.permission === 'denied') {
+                    // Permission was denied, but still show alerts list
+                    notificationPermission = false;
+                    updateNotificationStatus();
+                    startAutoCheck();
+                    checkAlerts();
+                } else {
+                    // Permission not yet requested (default)
+                    // Auto-request permission on every page load until granted or denied
+                    requestNotificationPermission();
+                }
+            } else {
+                // Browser doesn't support notifications, just use alert list
+                notificationPermission = false;
                 updateNotificationStatus();
                 startAutoCheck();
-                checkAlerts(); // Initial check
+                checkAlerts();
             }
 
             // Event listeners
-            document.getElementById('enable-notifications-btn').addEventListener('click', function() {
+            document.getElementById('enable-notifications-btn').addEventListener('click', function(e) {
+                e.preventDefault();
                 if (notificationPermission) {
                     notificationPermission = false;
                     if (checkInterval) clearInterval(checkInterval);

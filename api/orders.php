@@ -72,6 +72,21 @@ function listOrders() {
     
     // Build WHERE clause
     $where = [];
+    
+    // If user is an agent, filter by their assigned states
+    if (isAgent()) {
+        $agentStates = getAgentStates();
+        if (!empty($agentStates)) {
+            $statesQuoted = array_map(function($state) use ($conn) {
+                return "'" . $conn->real_escape_string($state) . "'";
+            }, $agentStates);
+            $where[] = "o.state IN (" . implode(',', $statesQuoted) . ")";
+        } else {
+            // Agent has no states assigned, show no orders
+            $where[] = "1 = 0";
+        }
+    }
+    
     if (!empty($search)) {
         $where[] = "(o.id LIKE '%$search%' OR o.fullname LIKE '%$search%' OR o.email LIKE '%$search%' OR o.phone LIKE '%$search%')";
     }
@@ -134,10 +149,29 @@ function getSingleOrder() {
     
     $orderId = $conn->real_escape_string($_GET['id']);
     
+    // Build WHERE clause
+    $where = ["o.id = '$orderId'"];
+    
+    // If user is an agent, ensure order is in their assigned states
+    if (isAgent()) {
+        $agentStates = getAgentStates();
+        if (!empty($agentStates)) {
+            $statesQuoted = array_map(function($state) use ($conn) {
+                return "'" . $conn->real_escape_string($state) . "'";
+            }, $agentStates);
+            $where[] = "o.state IN (" . implode(',', $statesQuoted) . ")";
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Access denied']);
+            return;
+        }
+    }
+    
+    $whereClause = 'WHERE ' . implode(' AND ', $where);
+    
     $sql = "SELECT o.*, da.name as agent_name, da.phone as agent_phone, da.email as agent_email
             FROM orders o
             LEFT JOIN delivery_agents da ON o.agent_id = da.id
-            WHERE o.id = '$orderId'";
+            $whereClause";
     
     $result = $conn->query($sql);
     
@@ -164,6 +198,20 @@ function getSingleOrder() {
 function getOrderStats() {
     global $conn;
     
+    // Build WHERE clause for agents
+    $whereClause = '';
+    if (isAgent()) {
+        $agentStates = getAgentStates();
+        if (!empty($agentStates)) {
+            $statesQuoted = array_map(function($state) use ($conn) {
+                return "'" . $conn->real_escape_string($state) . "'";
+            }, $agentStates);
+            $whereClause = "WHERE state IN (" . implode(',', $statesQuoted) . ")";
+        } else {
+            $whereClause = "WHERE 1 = 0";
+        }
+    }
+    
     $sql = "SELECT 
                 COUNT(*) as total_orders,
                 SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as pending,
@@ -172,7 +220,7 @@ function getOrderStats() {
                 SUM(CASE WHEN status = 'shipped' THEN 1 ELSE 0 END) as shipped,
                 SUM(CASE WHEN status = 'delivered' THEN 1 ELSE 0 END) as delivered,
                 SUM(CASE WHEN status = 'cancelled' THEN 1 ELSE 0 END) as cancelled
-            FROM orders";
+            FROM orders $whereClause";
     
     $result = $conn->query($sql);
     $stats = $result->fetch_assoc();
@@ -187,11 +235,30 @@ function getSalesReport() {
     $endDate = isset($_GET['end_date']) ? $conn->real_escape_string($_GET['end_date']) : date('Y-m-d');
     $groupBy = isset($_GET['group_by']) ? $conn->real_escape_string($_GET['group_by']) : 'day';
     
+    // Build WHERE clause for date range and agent states
+    $where = [];
+    $where[] = "o.created_at BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'";
+    
+    // If user is an agent, filter by their assigned states
+    if (isAgent()) {
+        $agentStates = getAgentStates();
+        if (!empty($agentStates)) {
+            $statesQuoted = array_map(function($state) use ($conn) {
+                return "'" . $conn->real_escape_string($state) . "'";
+            }, $agentStates);
+            $where[] = "o.state IN (" . implode(',', $statesQuoted) . ")";
+        } else {
+            $where[] = "1 = 0";
+        }
+    }
+    
+    $whereClause = 'WHERE ' . implode(' AND ', $where);
+    
     // Get all orders in date range
     $ordersSql = "SELECT o.*, da.name as agent_name
                   FROM orders o
                   LEFT JOIN delivery_agents da ON o.agent_id = da.id
-                  WHERE o.created_at BETWEEN '$startDate 00:00:00' AND '$endDate 23:59:59'
+                  $whereClause
                   ORDER BY o.created_at DESC";
     
     $ordersResult = $conn->query($ordersSql);
@@ -289,12 +356,31 @@ function updateOrderStatus() {
     $agentId = isset($input['agent_id']) ? (int)$input['agent_id'] : null;
     $notes = isset($input['notes']) ? $conn->real_escape_string($input['notes']) : '';
     
+    // Build WHERE clause to check agent access
+    $orderWhere = ["id = '$orderId'"];
+    
+    // If user is an agent, ensure they can only update orders in their states
+    if (isAgent()) {
+        $agentStates = getAgentStates();
+        if (!empty($agentStates)) {
+            $statesQuoted = array_map(function($state) use ($conn) {
+                return "'" . $conn->real_escape_string($state) . "'";
+            }, $agentStates);
+            $orderWhere[] = "state IN (" . implode(',', $statesQuoted) . ")";
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Access denied']);
+            return;
+        }
+    }
+    
+    $orderWhereClause = 'WHERE ' . implode(' AND ', $orderWhere);
+    
     // Get current order details
-    $orderSql = "SELECT * FROM orders WHERE id = '$orderId'";
+    $orderSql = "SELECT * FROM orders $orderWhereClause";
     $orderResult = $conn->query($orderSql);
     
     if ($orderResult->num_rows === 0) {
-        echo json_encode(['success' => false, 'message' => 'Order not found']);
+        echo json_encode(['success' => false, 'message' => 'Order not found or access denied']);
         return;
     }
     

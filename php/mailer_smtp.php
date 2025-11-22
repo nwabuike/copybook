@@ -7,7 +7,9 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 // Load SMTP configuration
-$smtpConfig = require_once __DIR__ . '/smtp_config.php';
+if (!isset($smtpConfig)) {
+    $smtpConfig = require __DIR__ . '/smtp_config.php';
+}
 
 /**
  * Send email using SMTP via PHPMailer
@@ -23,8 +25,13 @@ $smtpConfig = require_once __DIR__ . '/smtp_config.php';
 function sendSMTPEmail($to, $toName, $subject, $body, $isHtml = false, $replyTo = null) {
     global $smtpConfig;
     
+    // Reload config if not set or not an array
+    if (!isset($smtpConfig) || !is_array($smtpConfig)) {
+        $smtpConfig = require __DIR__ . '/smtp_config.php';
+    }
+    
     // Check if SMTP is enabled
-    if (!$smtpConfig['enable_smtp']) {
+    if (!isset($smtpConfig['enable_smtp']) || !$smtpConfig['enable_smtp']) {
         return [
             'success' => false,
             'message' => 'SMTP is disabled in configuration',
@@ -125,6 +132,11 @@ function sendSMTPEmail($to, $toName, $subject, $body, $isHtml = false, $replyTo 
 function sendAdminOrderNotification($orderData) {
     global $smtpConfig;
     
+    // Reload config if not set or not an array
+    if (!isset($smtpConfig) || !is_array($smtpConfig)) {
+        $smtpConfig = require __DIR__ . '/smtp_config.php';
+    }
+    
     $subject = "New Order #{$orderData['order_id']} - Smartkids Edu";
     
     $body = "New order received:\n\n";
@@ -154,6 +166,11 @@ function sendAdminOrderNotification($orderData) {
  */
 function sendCustomerOrderConfirmation($orderData) {
     global $smtpConfig;
+    
+    // Reload config if not set or not an array
+    if (!isset($smtpConfig) || !is_array($smtpConfig)) {
+        $smtpConfig = require __DIR__ . '/smtp_config.php';
+    }
     
     if (!filter_var($orderData['email'], FILTER_VALIDATE_EMAIL)) {
         return [
