@@ -68,8 +68,8 @@ $altphone = isset($_POST['altphone']) ? trim($_POST['altphone']) : '';
 $address = isset($_POST['address']) ? trim($_POST['address']) : '';
 $state = isset($_POST['state']) ? trim($_POST['state']) : '';
 
-if ($fullname === '' || $phone === '' || $address === '') {
-    json_error('Please complete the required fields (name, phone, address).');
+if ($fullname === '' || $phone === '') {
+    json_error('Please complete the required fields (name, phone).');
 }
 
 // sanitize for DB

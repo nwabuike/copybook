@@ -2202,8 +2202,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="address">Delivery Address</label>
-                            <textarea class="form-control" name="address" id="address" rows="3" required></textarea>
+                            <label for="address">Delivery Address (Optional)</label>
+                            <textarea class="form-control" name="address" id="address" rows="3" placeholder="Enter your delivery address"></textarea>
                         </div>
                         
                         <div class="form-group">
@@ -2586,12 +2586,19 @@
         // Function to show success message
         function showSuccessMessage(orderId, referralCode, formData) {
             const packageNames = {
-                'starter': 'Starter Set',
-                'bundle': 'Learning Bundle',
-                'collection': 'Mastery Collection'
+                'starter': 'Starter Set (1 Set)',
+                'bundle': 'Learning Bundle (2 Sets)',
+                'collection': 'Mastery Collection (3 Sets)'
             };
             
-            const packageName = packageNames[formData.package];
+            const packagePrices = {
+                'starter': '₦18,000',
+                'bundle': '₦32,000',
+                'collection': '₦45,000'
+            };
+            
+            const packageName = packageNames[formData.package] || formData.package;
+            const packagePrice = packagePrices[formData.package] || '';
             
             const message = `
                 <div style="text-align: center; padding: 20px;">
@@ -2600,6 +2607,7 @@
                     <div style="background: #f0f0f0; padding: 15px; border-radius: 8px; margin: 15px 0;">
                         <p><strong>Order ID:</strong> ${orderId}</p>
                         <p><strong>Package:</strong> ${packageName}</p>
+                        <p><strong>Amount:</strong> ${packagePrice}</p>
                         <p><strong>Delivery to:</strong> ${formData.state} State</p>
                         <p><strong>Your Referral Code:</strong> ${referralCode}</p>
                     </div>
