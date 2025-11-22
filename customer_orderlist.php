@@ -1751,11 +1751,11 @@ $canDelete = canPerform('delete_order');
                         <div class="customer-info">
                             <div class="customer-name">${order.fullname}</div>
                             <div class="customer-phone"><i class="fas fa-phone"></i>${order.phone || 'N/A'}</div>
-                            <div class="customer-address"><i class="fas fa-map-marker-alt"></i>${order.state || 'N/A'}${order.delivery_address ? ' - ' + (order.delivery_address.length > 30 ? order.delivery_address.substring(0, 30) + '...' : order.delivery_address) : ''}</div>
+                            <div class="customer-address"><i class="fas fa-map-marker-alt"></i>${order.state || 'N/A'}${order.address ? ' - ' + (order.address.length > 30 ? order.address.substring(0, 30) + '...' : order.address) : ''}</div>
                         </div>
                     </td>
                     <td>${packageNames[order.pack] || order.pack}</td>
-                    <td>${amounts[order.pack] || 'N/A'}</td>
+                    <td><strong>${order.formatted_amount || amounts[order.pack] || 'N/A'}</strong></td>
                     <td>${agentName}</td>
                     <td><span class="status-badge status-${status}">${getStatusText(status)}</span></td>
                     <td>${orderDateShort}</td>
@@ -1806,7 +1806,7 @@ $canDelete = canPerform('delete_order');
                         </div>
                         <div class="order-card-row">
                             <div class="order-card-label"><i class="fas fa-location-arrow"></i>Address</div>
-                            <div class="order-card-value">${order.delivery_address || 'N/A'}</div>
+                            <div class="order-card-value">${order.address || 'Not provided'}</div>
                         </div>
                         <div class="order-card-row">
                             <div class="order-card-label"><i class="fas fa-box"></i>Package</div>
@@ -1814,7 +1814,7 @@ $canDelete = canPerform('delete_order');
                         </div>
                         <div class="order-card-row">
                             <div class="order-card-label"><i class="fas fa-money-bill-wave"></i>Amount</div>
-                            <div class="order-card-value"><strong>${amounts[order.pack] || 'N/A'}</strong></div>
+                            <div class="order-card-value"><strong>${order.formatted_amount || amounts[order.pack] || 'N/A'}</strong></div>
                         </div>
                         <div class="order-card-row">
                             <div class="order-card-label"><i class="fas fa-user-tie"></i>Agent</div>
@@ -2260,12 +2260,12 @@ $canDelete = canPerform('delete_order');
             
             // Format LGA/Address
             let lgaAddress = '';
-            if (order.local_govt && order.delivery_address) {
-                lgaAddress = order.local_govt + ', ' + order.delivery_address;
+            if (order.local_govt && order.address) {
+                lgaAddress = order.local_govt + ', ' + order.address;
             } else if (order.local_govt) {
                 lgaAddress = order.local_govt;
-            } else if (order.delivery_address) {
-                lgaAddress = order.delivery_address;
+            } else if (order.address) {
+                lgaAddress = order.address;
             } else {
                 lgaAddress = 'N/A';
             }
