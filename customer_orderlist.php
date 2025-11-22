@@ -2146,6 +2146,9 @@ $canDelete = canPerform('delete_order');
         function formatOrderDetailsWithType(order, messageType) {
             const quantity = order.quantity || 1;
             
+            // Normalize package name to lowercase for comparison
+            const packLower = (order.pack || '').toLowerCase();
+            
             // Define base sets per package type
             const baseSets = {
                 'starter': 1,
@@ -2154,22 +2157,22 @@ $canDelete = canPerform('delete_order');
             };
             
             // Calculate total sets based on package type and quantity
-            const totalSets = (baseSets[order.pack] || 1) * quantity;
+            const totalSets = (baseSets[packLower] || 1) * quantity;
             
             // Generate package details with quantities
             let packageDetails = '';
-            if (order.pack === 'starter') {
+            if (packLower === 'starter') {
                 packageDetails = `Starter Set (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook)`;
-            } else if (order.pack === 'bundle') {
-                packageDetails = `Learning Bundle (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${quantity} gaming pad${quantity > 1 ? 's' : ''}, ${quantity} skipping rope${quantity > 1 ? 's' : ''}, ${quantity} U-shape Brush${quantity > 1 ? 'es' : ''})`;
-            } else if (order.pack === 'collection') {
-                packageDetails = `Mastery Collection (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${quantity} gaming pad${quantity > 1 ? 's' : ''}, ${quantity} skipping rope${quantity > 1 ? 's' : ''}, ${quantity} U-shape Brush${quantity > 1 ? 'es' : ''}, premium learning materials)`;
+            } else if (packLower === 'bundle') {
+                packageDetails = `Learning Bundle (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${totalSets} gaming pad${totalSets > 1 ? 's' : ''}, ${totalSets} skipping rope${totalSets > 1 ? 's' : ''}, ${totalSets} U-shape Brush${totalSets > 1 ? 'es' : ''})`;
+            } else if (packLower === 'collection') {
+                packageDetails = `Mastery Collection (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${totalSets} gaming pad${totalSets > 1 ? 's' : ''}, ${totalSets} skipping rope${totalSets > 1 ? 's' : ''}, ${totalSets} U-shape Brush${totalSets > 1 ? 'es' : ''}, premium learning materials)`;
             } else {
                 packageDetails = order.pack;
             }
             
             // Calculate total amount
-            const unitPrice = order.pack === 'starter' ? 18000 : (order.pack === 'bundle' ? 32000 : 45000);
+            const unitPrice = packLower === 'starter' ? 18000 : (packLower === 'bundle' ? 32000 : 45000);
             const totalAmount = '₦' + (unitPrice * quantity).toLocaleString();
             
             const orderDate = order.created_at ? new Date(order.created_at).toLocaleDateString('en-GB') : 'N/A';
@@ -2228,6 +2231,9 @@ $canDelete = canPerform('delete_order');
         function formatOrderDetails(order) {
             const quantity = order.quantity || 1;
             
+            // Normalize package name to lowercase for comparison
+            const packLower = (order.pack || '').toLowerCase();
+            
             // Define base sets per package type
             const baseSets = {
                 'starter': 1,
@@ -2236,23 +2242,23 @@ $canDelete = canPerform('delete_order');
             };
             
             // Calculate total sets based on package type and quantity
-            const totalSets = (baseSets[order.pack] || 1) * quantity;
+            const totalSets = (baseSets[packLower] || 1) * quantity;
             
             // Generate package details with quantities
             // Free gifts quantity = total sets (1 set = 1 gift each, 2 sets = 2 gifts each, 3 sets = 3 gifts each)
             let packageDetails = '';
-            if (order.pack === 'starter') {
+            if (packLower === 'starter') {
                 packageDetails = `Starter Set (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook)`;
-            } else if (order.pack === 'bundle') {
+            } else if (packLower === 'bundle') {
                 packageDetails = `Learning Bundle (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${totalSets} gaming pad${totalSets > 1 ? 's' : ''}, ${totalSets} skipping rope${totalSets > 1 ? 's' : ''}, ${totalSets} U-shape Brush${totalSets > 1 ? 'es' : ''})`;
-            } else if (order.pack === 'collection') {
+            } else if (packLower === 'collection') {
                 packageDetails = `Mastery Collection (${totalSets} set${totalSets > 1 ? 's' : ''} of copybook, ${totalSets} gaming pad${totalSets > 1 ? 's' : ''}, ${totalSets} skipping rope${totalSets > 1 ? 's' : ''}, ${totalSets} U-shape Brush${totalSets > 1 ? 'es' : ''}, premium learning materials)`;
             } else {
                 packageDetails = order.pack;
             }
             
             // Calculate total amount
-            const unitPrice = order.pack === 'starter' ? 18000 : (order.pack === 'bundle' ? 32000 : 45000);
+            const unitPrice = packLower === 'starter' ? 18000 : (packLower === 'bundle' ? 32000 : 45000);
             const totalAmount = '₦' + (unitPrice * quantity).toLocaleString();
             
             const orderDate = order.created_at ? new Date(order.created_at).toLocaleDateString('en-GB') : 'N/A';
