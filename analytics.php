@@ -480,13 +480,28 @@ $currentUser = getCurrentUser();
                 <div class="stat-header">
                     <div>
                         <div class="stat-value" id="delivered-orders">0</div>
-                        <div class="stat-label">Completed Orders</div>
+                        <div class="stat-label">Delivered Orders</div>
                         <div class="stat-change positive" id="delivered-change">
-                            <i class="fas fa-check-circle"></i> Delivered successfully
+                            <i class="fas fa-check-circle"></i> Successfully delivered
                         </div>
                     </div>
                     <div class="stat-icon profit">
                         <i class="fas fa-box-open"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="failed-orders">0</div>
+                        <div class="stat-label">Failed Orders</div>
+                        <div class="stat-change negative" id="failed-change">
+                            <i class="fas fa-times-circle"></i> Cancelled
+                        </div>
+                    </div>
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);">
+                        <i class="fas fa-ban"></i>
                     </div>
                 </div>
             </div>
@@ -716,21 +731,21 @@ $currentUser = getCurrentUser();
             document.getElementById('total-revenue').textContent = '₦' + formatNumber(summary.total_revenue);
             document.getElementById('total-orders').textContent = summary.total_orders;
             document.getElementById('avg-order-value').textContent = '₦' + formatNumber(summary.average_order_value);
-            
-            // Get delivered count
-            const deliveredCount = data.orders.filter(o => o.status === 'delivered').length;
-            document.getElementById('delivered-orders').textContent = deliveredCount;
+            document.getElementById('delivered-orders').textContent = summary.delivered_orders || 0;
+            document.getElementById('failed-orders').textContent = summary.failed_orders || 0;
         }
 
         function updateRevenueChart(data) {
             const ctx = document.getElementById('revenue-chart').getContext('2d');
 
-            // Group orders by date
+            // Group orders by date - only count delivered orders for revenue
             const revenueByDate = {};
             data.orders.forEach(order => {
-                const date = order.created_at.split(' ')[0];
-                const amount = getAmount(order.pack);
-                revenueByDate[date] = (revenueByDate[date] || 0) + amount;
+                if (order.status === 'delivered') {
+                    const date = order.created_at.split(' ')[0];
+                    const amount = getAmount(order.pack);
+                    revenueByDate[date] = (revenueByDate[date] || 0) + amount;
+                }
             });
 
             const labels = Object.keys(revenueByDate).sort();

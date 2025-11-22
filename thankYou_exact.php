@@ -610,7 +610,7 @@ if ($order_id > 0) {
                 <div class="footer-column">
                     <h4>Contact Info</h4>
                     <ul class="footer-links">
-                        <li><i class="fas fa-phone"></i> 08163778265</li>
+                        <li><i class="fas fa-phone"></i> 09029026782</li>
                         <li><i class="fas fa-phone"></i> 08102609396</li>
                         <li><i class="fas fa-envelope"></i> info@emeraldtechhub.com</li>
                     </ul>

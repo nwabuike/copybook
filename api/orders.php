@@ -270,24 +270,36 @@ function getSalesReport() {
     $collectionRevenue = 0;
     $orderCounts = [];
     
+    $deliveredOrders = 0;
+    $failedOrders = 0;
+    
     while ($row = $ordersResult->fetch_assoc()) {
         $orders[] = $row;
         $totalOrders++;
         
-        // Calculate revenue
-        switch(strtolower($row['pack'])) {
-            case 'starter':
-                $totalRevenue += 18000;
-                $starterRevenue += 18000;
-                break;
-            case 'bundle':
-                $totalRevenue += 32000;
-                $bundleRevenue += 32000;
-                break;
-            case 'collection':
-                $totalRevenue += 45000;
-                $collectionRevenue += 45000;
-                break;
+        // Count delivered and failed orders
+        if (strtolower($row['status']) === 'delivered') {
+            $deliveredOrders++;
+        } elseif (strtolower($row['status']) === 'cancelled') {
+            $failedOrders++;
+        }
+        
+        // Calculate revenue ONLY from delivered orders
+        if (strtolower($row['status']) === 'delivered') {
+            switch(strtolower($row['pack'])) {
+                case 'starter':
+                    $totalRevenue += 18000;
+                    $starterRevenue += 18000;
+                    break;
+                case 'bundle':
+                    $totalRevenue += 32000;
+                    $bundleRevenue += 32000;
+                    break;
+                case 'collection':
+                    $totalRevenue += 45000;
+                    $collectionRevenue += 45000;
+                    break;
+            }
         }
         
         // Count by state
@@ -296,12 +308,16 @@ function getSalesReport() {
             $orderCounts[$state] = ['order_count' => 0, 'revenue' => 0];
         }
         $orderCounts[$state]['order_count']++;
-        $orderCounts[$state]['revenue'] += match(strtolower($row['pack'])) {
-            'starter' => 18000,
-            'bundle' => 32000,
-            'collection' => 45000,
-            default => 0
-        };
+        
+        // Add revenue only from delivered orders
+        if (strtolower($row['status']) === 'delivered') {
+            $orderCounts[$state]['revenue'] += match(strtolower($row['pack'])) {
+                'starter' => 18000,
+                'bundle' => 32000,
+                'collection' => 45000,
+                default => 0
+            };
+        }
     }
     
     // Format top states
@@ -327,6 +343,8 @@ function getSalesReport() {
             'orders' => $orders,
             'summary' => [
                 'total_orders' => $totalOrders,
+                'delivered_orders' => $deliveredOrders,
+                'failed_orders' => $failedOrders,
                 'total_revenue' => $totalRevenue,
                 'formatted_revenue' => '₦' . number_format($totalRevenue),
                 'average_order_value' => $avgOrderValue,
