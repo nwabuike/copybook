@@ -8,7 +8,36 @@ use PHPMailer\PHPMailer\Exception;
 
 // Load SMTP configuration
 if (!isset($smtpConfig)) {
-    $smtpConfig = require __DIR__ . '/smtp_config.php';
+    $configFile = __DIR__ . '/smtp_config.php';
+    
+    // Check if config file exists
+    if (!file_exists($configFile)) {
+        // Try to copy from example if it doesn't exist
+        $exampleFile = __DIR__ . '/smtp_config.example.php';
+        if (file_exists($exampleFile)) {
+            error_log("Warning: smtp_config.php not found. Please copy smtp_config.example.php to smtp_config.php and configure your SMTP settings.");
+        } else {
+            error_log("Error: Neither smtp_config.php nor smtp_config.example.php found.");
+        }
+        
+        // Return a default disabled config
+        $smtpConfig = [
+            'enable_smtp' => false,
+            'smtp_host' => '',
+            'smtp_port' => 587,
+            'smtp_encryption' => 'tls',
+            'smtp_username' => '',
+            'smtp_password' => '',
+            'from_email' => '',
+            'from_name' => '',
+            'admin_email' => '',
+            'reply_to_email' => '',
+            'reply_to_name' => '',
+            'debug_mode' => false
+        ];
+    } else {
+        $smtpConfig = require $configFile;
+    }
 }
 
 /**
