@@ -20,11 +20,161 @@ $userRole = $currentUser['role'];
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #0a7c42;
+            --primary-light: #e8f5e9;
+            --secondary: #ff6b35;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --accent: #ffd700;
+            --transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Layout with Sidebar */
+        .layout-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 260px;
+            height: 100vh;
+            background: white;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
             padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .sidebar-logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .sidebar-logo-text {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            overflow-y: auto;
+            padding: 15px 0;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu-item {
+            margin: 0;
+        }
+
+        .sidebar-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: #666;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .sidebar-menu-link:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        .sidebar-menu-link.active {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .sidebar-menu-link i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            background: #eee;
+            margin: 15px 20px;
+        }
+
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .sidebar-user-info {
+            flex: 1;
+        }
+
+        .sidebar-user-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.9rem;
+        }
+
+        .sidebar-user-role {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: capitalize;
+        }
+
+        /* Main Content Wrapper */
+        .main-wrapper {
+            flex: 1;
+            margin-left: 260px;
+            padding: 20px;
+            transition: margin-left 0.3s ease;
         }
 
         .container {
@@ -35,27 +185,72 @@ $userRole = $currentUser['role'];
         header {
             background: white;
             border-radius: 15px;
-            padding: 25px 30px;
+            padding: 20px 30px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .header-left h1 {
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-
-        .breadcrumb {
+        .page-breadcrumb {
             color: #666;
             font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .breadcrumb a {
-            color: #667eea;
+        .page-breadcrumb a {
+            color: var(--primary);
             text-decoration: none;
+        }
+
+        .page-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .header-user-info {
+            text-align: right;
+        }
+
+        .header-user-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.9rem;
+        }
+
+        .header-user-role {
+            font-size: 12px;
+            color: #666;
+            text-transform: capitalize;
         }
 
         .notification-toggle {
@@ -366,31 +561,117 @@ $userRole = $currentUser['role'];
     </style>
 </head>
 <body>
+    <!-- Layout Wrapper -->
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.php" class="sidebar-logo">
+                    <div class="sidebar-logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="sidebar-logo-text">Emerald Tech Hub</div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li class="sidebar-menu-item">
+                        <a href="index.php" class="sidebar-menu-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="customer_orderlist.php" class="sidebar-menu-link">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="bulk_messaging.php" class="sidebar-menu-link">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Bulk Messaging</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="agent_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Agents</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="sales_notifications.php" class="sidebar-menu-link active">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                    
+                    <?php if (isAdmin()): ?>
+                    <div class="sidebar-divider"></div>
+                    <li class="sidebar-menu-item">
+                        <a href="user_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-users-cog"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar">
+                        <?= strtoupper(substr($currentUser['full_name'], 0, 2)) ?>
+                    </div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name"><?= htmlspecialchars($currentUser['full_name']) ?></div>
+                        <div class="sidebar-user-role"><?= htmlspecialchars($currentUser['role']) ?></div>
+                    </div>
+                </div>
+                <a href="logout.php" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Header -->
+            <header>
+                <div class="container">
+                    <div class="header-content">
+                        <div class="page-breadcrumb">
+                            <i class="fas fa-home"></i>
+                            <a href="index.php">Home</a>
+                            <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                            <span>Notifications</span>
+                        </div>
+                        <div class="header-actions">
+                            <div class="notification-toggle">
+                                <div class="notification-status" id="notification-status">
+                                    <i class="fas fa-bell-slash"></i>
+                                    <span>Notifications Disabled</span>
+                                </div>
+                                <button class="btn" id="enable-notifications-btn">
+                                    <i class="fas fa-bell"></i> Enable
+                                </button>
+                            </div>
+                            <div class="header-user">
+                                <div class="header-user-avatar">
+                                    <?= strtoupper(substr($currentUser['full_name'], 0, 2)) ?>
+                                </div>
+                                <div class="header-user-info">
+                                    <div class="header-user-name"><?= htmlspecialchars($currentUser['full_name']) ?></div>
+                                    <div class="header-user-role"><?= htmlspecialchars($currentUser['role']) ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
     <div class="container">
-        <header>
-            <div class="header-left">
-                <h1><i class="fas fa-bell"></i> <?php 
-                    echo match($userRole) {
-                        'admin' => 'Admin Dashboard - Notifications',
-                        'subadmin' => 'Manager Dashboard - Notifications',
-                        'agent' => 'Agent Dashboard - Notifications',
-                        default => 'Dashboard - Notifications'
-                    };
-                ?></h1>
-                <div class="breadcrumb">
-                    <a href="index.php">Home</a> / <a href="customer_orderlist.php">Orders</a> / <span>Notifications</span>
-                </div>
-            </div>
-            <div class="notification-toggle">
-                <div class="notification-status" id="notification-status">
-                    <i class="fas fa-bell-slash"></i>
-                    <span>Notifications Disabled</span>
-                </div>
-                <button class="btn" id="enable-notifications-btn">
-                    <i class="fas fa-bell"></i> Enable Notifications
-                </button>
-            </div>
-        </header>
 
         <div class="stats-grid">
             <div class="stat-card">
@@ -951,5 +1232,7 @@ $userRole = $currentUser['role'];
             });
         }
     </script>
+        </div>
+    </div>
 </body>
 </html>
