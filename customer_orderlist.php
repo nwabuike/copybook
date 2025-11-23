@@ -4,6 +4,8 @@ requireLogin(); // Require authentication
 
 $currentUser = getCurrentUser();
 $canDelete = canPerform('delete_order');
+$canEditExpenses = canPerform('add_expense'); // Can add/edit expenses
+$isAdminUser = isAdmin(); // Full admin access
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -1435,10 +1437,13 @@ $canDelete = canPerform('delete_order');
                         </select>
                     </div>
                     
-                    <!-- Expense Fields (Only visible for delivered and failed orders) -->
+                    <!-- Expense Fields (Visible for delivered and failed orders) -->
                     <div id="expense-section" style="display: none; border-top: 2px solid var(--primary-light); padding-top: 20px; margin-top: 20px;">
                         <h4 style="color: var(--primary); margin-bottom: 15px;">
                             <i class="fas fa-money-bill-wave"></i> Cost & Profit Tracking
+                            <?php if (!$canEditExpenses): ?>
+                            <small style="color: #666; font-size: 0.8rem; font-weight: normal;">(View Only)</small>
+                            <?php endif; ?>
                         </h4>
                         
                         <div class="form-row">
@@ -1567,6 +1572,10 @@ $canDelete = canPerform('delete_order');
     </div>
 
     <script>
+        // Pass PHP permissions to JavaScript
+        const canEditExpenses = <?php echo $canEditExpenses ? 'true' : 'false'; ?>;
+        const isAdmin = <?php echo $isAdminUser ? 'true' : 'false'; ?>;
+        
         // Sidebar toggle functionality
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -2081,6 +2090,25 @@ $canDelete = canPerform('delete_order');
             // Show expense section for delivered and cancelled (failed) orders
             if (status === 'delivered' || status === 'cancelled') {
                 expenseSection.style.display = 'block';
+                
+                // Make fields readonly for users who can't edit expenses
+                if (!canEditExpenses) {
+                    document.getElementById('edit-cost-price').setAttribute('readonly', true);
+                    document.getElementById('edit-expenses').setAttribute('readonly', true);
+                    document.getElementById('edit-expenses-notes').setAttribute('readonly', true);
+                    
+                    document.getElementById('edit-cost-price').style.background = '#f0f0f0';
+                    document.getElementById('edit-expenses').style.background = '#f0f0f0';
+                    document.getElementById('edit-expenses-notes').style.background = '#f0f0f0';
+                } else {
+                    document.getElementById('edit-cost-price').removeAttribute('readonly');
+                    document.getElementById('edit-expenses').removeAttribute('readonly');
+                    document.getElementById('edit-expenses-notes').removeAttribute('readonly');
+                    
+                    document.getElementById('edit-cost-price').style.background = '';
+                    document.getElementById('edit-expenses').style.background = '';
+                    document.getElementById('edit-expenses-notes').style.background = '';
+                }
             } else {
                 expenseSection.style.display = 'none';
             }
@@ -2494,7 +2522,8 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
                 
                 if (data.success) {
                     // If status is delivered or cancelled and cost/expenses are provided, add expense data
-                    if ((newStatus === 'delivered' || newStatus === 'cancelled') && (costPrice || expenses)) {
+                    // Only admins and subadmins with add_expense permission can save expense data
+                    if (canEditExpenses && (newStatus === 'delivered' || newStatus === 'cancelled') && (costPrice || expenses)) {
                         const expenseResponse = await fetch('api/expenses.php?action=add_expense', {
                             method: 'POST',
                             headers: {

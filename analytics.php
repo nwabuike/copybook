@@ -479,13 +479,28 @@ $currentUser = getCurrentUser();
             <div class="stat-card">
                 <div class="stat-header">
                     <div>
+                        <div class="stat-value" id="net-profit">₦0</div>
+                        <div class="stat-label">Net Profit</div>
+                        <div class="stat-change positive" id="profit-change">
+                            <i class="fas fa-arrow-up"></i> Total profit earned
+                        </div>
+                    </div>
+                    <div class="stat-icon profit">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div>
                         <div class="stat-value" id="delivered-orders">0</div>
                         <div class="stat-label">Delivered Orders</div>
                         <div class="stat-change positive" id="delivered-change">
                             <i class="fas fa-check-circle"></i> Successfully delivered
                         </div>
                     </div>
-                    <div class="stat-icon profit">
+                    <div class="stat-icon" style="background: rgba(40, 167, 69, 0.1); color: #28a745;">
                         <i class="fas fa-box-open"></i>
                     </div>
                 </div>
@@ -569,13 +584,15 @@ $currentUser = getCurrentUser();
                             <th>Package</th>
                             <th>State</th>
                             <th>Amount</th>
+                            <th>Cost</th>
+                            <th>Net Profit</th>
                             <th>Status</th>
                             <th>Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="7" class="loading">
+                            <td colspan="9" class="loading">
                                 <i class="fas fa-spinner fa-spin"></i> Loading transactions...
                             </td>
                         </tr>
@@ -727,12 +744,35 @@ $currentUser = getCurrentUser();
 
         function updateSummaryStats(data) {
             const summary = data.summary;
+            
+            // Calculate net profit from all orders
+            let totalProfit = 0;
+            data.orders.forEach(order => {
+                const revenue = getAmount(order.pack);
+                const costPrice = parseFloat(order.cost_price) || 0;
+                const expenses = parseFloat(order.expenses) || 0;
+                totalProfit += (revenue - costPrice - expenses);
+            });
 
             document.getElementById('total-revenue').textContent = '₦' + formatNumber(summary.total_revenue);
             document.getElementById('total-orders').textContent = summary.total_orders;
             document.getElementById('avg-order-value').textContent = '₦' + formatNumber(summary.average_order_value);
+            document.getElementById('net-profit').textContent = '₦' + formatNumber(totalProfit);
             document.getElementById('delivered-orders').textContent = summary.delivered_orders || 0;
             document.getElementById('failed-orders').textContent = summary.failed_orders || 0;
+            
+            // Update profit change indicator
+            const profitChange = document.getElementById('profit-change');
+            if (totalProfit > 0) {
+                profitChange.className = 'stat-change positive';
+                profitChange.innerHTML = '<i class="fas fa-arrow-up"></i> Profit earned';
+            } else if (totalProfit < 0) {
+                profitChange.className = 'stat-change negative';
+                profitChange.innerHTML = '<i class="fas fa-arrow-down"></i> Loss incurred';
+            } else {
+                profitChange.className = 'stat-change';
+                profitChange.innerHTML = '<i class="fas fa-minus"></i> Break even';
+            }
         }
 
         function updateRevenueChart(data) {
@@ -856,7 +896,7 @@ $currentUser = getCurrentUser();
             const recentOrders = data.orders.slice(0, 20);
 
             if (recentOrders.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="7" class="no-data"><i class="fas fa-receipt"></i><br>No transactions found</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="9" class="no-data"><i class="fas fa-receipt"></i><br>No transactions found</td></tr>';
                 return;
             }
 
@@ -866,17 +906,27 @@ $currentUser = getCurrentUser();
                 'collection': 'Mastery Collection'
             };
 
-            tbody.innerHTML = recentOrders.map(order => `
-                <tr>
-                    <td><strong>${order.id}</strong></td>
-                    <td>${order.fullname}</td>
-                    <td>${packageNames[order.pack] || order.pack}</td>
-                    <td>${order.state}</td>
-                    <td class="amount">₦${formatNumber(getAmount(order.pack))}</td>
-                    <td><span class="status-badge status-${order.status}">${order.status}</span></td>
-                    <td>${new Date(order.created_at).toLocaleDateString()}</td>
-                </tr>
-            `).join('');
+            tbody.innerHTML = recentOrders.map(order => {
+                const revenue = getAmount(order.pack);
+                const costPrice = parseFloat(order.cost_price) || 0;
+                const expenses = parseFloat(order.expenses) || 0;
+                const profit = revenue - costPrice - expenses;
+                const totalCost = costPrice + expenses;
+                
+                return `
+                    <tr>
+                        <td><strong>${order.id}</strong></td>
+                        <td>${order.fullname}</td>
+                        <td>${packageNames[order.pack] || order.pack}</td>
+                        <td>${order.state}</td>
+                        <td class="amount">₦${formatNumber(revenue)}</td>
+                        <td style="color: #dc3545;">₦${formatNumber(totalCost)}</td>
+                        <td class="amount" style="color: ${profit >= 0 ? '#28a745' : '#dc3545'};">₦${formatNumber(profit)}</td>
+                        <td><span class="status-badge status-${order.status}">${order.status}</span></td>
+                        <td>${new Date(order.created_at).toLocaleDateString()}</td>
+                    </tr>
+                `;
+            }).join('');
         }
 
         async function loadOrderStatus() {
