@@ -483,18 +483,98 @@ $currentUser = getCurrentUser();
             border: 1px solid rgba(220, 53, 69, 0.3);
         }
 
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-toggle:hover {
+            background: var(--dark);
+        }
+
+        .mobile-menu-toggle i {
+            font-size: 20px;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
         /* Responsive table wrapper */
         .table-wrapper {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
+        @media (max-width: 968px) {
+            .mobile-menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-wrapper {
+                margin-left: 0;
+                padding: 80px 15px 15px;
+            }
+
+            .container {
+                padding: 0;
+            }
+
+            header {
+                padding: 15px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .page-breadcrumb {
+                font-size: 12px;
+            }
+
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        @media (max-width: 768px) {
             .card-header {
                 flex-direction: column;
                 gap: 15px;
@@ -502,7 +582,12 @@ $currentUser = getCurrentUser();
             }
 
             .card-header h2 {
-                font-size: 20px;
+                font-size: 18px;
+            }
+
+            .card-header .btn {
+                width: 100%;
+                justify-content: center;
             }
 
             table {
@@ -523,6 +608,7 @@ $currentUser = getCurrentUser();
             table th,
             table td {
                 padding: 8px 4px;
+                font-size: 10px;
             }
 
             .action-buttons {
@@ -550,25 +636,67 @@ $currentUser = getCurrentUser();
             .form-group {
                 margin-bottom: 15px;
             }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-group input,
+            .form-group select {
+                font-size: 14px;
+            }
         }
 
         @media (max-width: 576px) {
+            .mobile-menu-toggle {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                left: 10px;
+            }
+
+            .main-wrapper {
+                padding: 70px 10px 10px;
+            }
+
             table {
-                font-size: 10px;
+                font-size: 9px;
+            }
+
+            table th,
+            table td {
+                padding: 6px 2px;
             }
 
             .btn {
-                font-size: 12px;
-                padding: 8px 12px;
+                font-size: 11px;
+                padding: 6px 10px;
             }
 
             .action-buttons .btn i {
                 display: none;
             }
+
+            .modal-content {
+                width: 98%;
+                padding: 15px;
+            }
+
+            .modal-header h3 {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
     <!-- Layout Wrapper -->
     <div class="layout-wrapper">
         <!-- Sidebar -->
@@ -617,6 +745,18 @@ $currentUser = getCurrentUser();
                     
                     <?php if (isAdmin()): ?>
                     <div class="sidebar-divider"></div>
+                    <li class="sidebar-menu-item">
+                        <a href="stock_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-boxes"></i>
+                            <span>Stock Management</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="pricing_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-tags"></i>
+                            <span>Pricing</span>
+                        </a>
+                    </li>
                     <li class="sidebar-menu-item">
                         <a href="user_management.php" class="sidebar-menu-link active">
                             <i class="fas fa-users-cog"></i>
@@ -976,6 +1116,50 @@ $currentUser = getCurrentUser();
                 alertContainer.innerHTML = '';
             }, 5000);
         }
+
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggle = document.getElementById('mobile-menu-toggle');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+            
+            // Change icon
+            const icon = toggle.querySelector('i');
+            if (sidebar.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        // Close sidebar when clicking on a link (mobile)
+        document.querySelectorAll('.sidebar-menu-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 968) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        // Close sidebar on window resize if desktop
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebar-overlay');
+            const toggle = document.getElementById('mobile-menu-toggle');
+            
+            if (window.innerWidth > 968) {
+                sidebar.classList.remove('active');
+                overlay.classList.remove('active');
+                const icon = toggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
     </script>
         </div>
     </div>
