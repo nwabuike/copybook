@@ -1131,24 +1131,24 @@ $canDelete = canPerform('delete_agent');
                         <div class="table-container">
                             <div class="table-responsive">
                                 <table id="agents-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>States Covered</th>
-                            <th>Total Orders</th>
-                            <th>Status</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="agents-tbody">
-                        <tr>
-                            <td colspan="8" class="loading">
-                                <i class="fas fa-spinner fa-spin"></i> Loading agents...
-                            </td>
-                        </tr>
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>States Covered</th>
+                                            <th>Total Orders</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="agents-tbody">
+                                        <tr>
+                                            <td colspan="8" class="loading">
+                                                <i class="fas fa-spinner fa-spin"></i> Loading agents...
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
