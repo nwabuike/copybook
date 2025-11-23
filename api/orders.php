@@ -66,6 +66,7 @@ function listOrders() {
     
     $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
     $status = isset($_GET['status']) ? $conn->real_escape_string($_GET['status']) : '';
+    $source = isset($_GET['source']) ? $conn->real_escape_string($_GET['source']) : '';
     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $perPage = isset($_GET['per_page']) ? (int)$_GET['per_page'] : 10;
     $offset = ($page - 1) * $perPage;
@@ -92,6 +93,9 @@ function listOrders() {
     }
     if (!empty($status)) {
         $where[] = "o.status = '$status'";
+    }
+    if (!empty($source)) {
+        $where[] = "o.source = '$source'";
     }
     
     $whereClause = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';

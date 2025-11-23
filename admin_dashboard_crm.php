@@ -620,6 +620,26 @@ $isAdminUser = isAdmin(); // Full admin access
             color: #721c24;
         }
         
+        /* Source Badge Styles */
+        .source-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            text-transform: capitalize;
+        }
+        
+        .source-facebook {
+            background: #e7f3ff;
+            color: #1877f2;
+        }
+        
+        .source-tiktok {
+            background: #ffe7f0;
+            color: #fe2c55;
+        }
+        
         .action-buttons {
             display: flex;
             gap: 8px;
@@ -1353,6 +1373,11 @@ $isAdminUser = isAdmin(); // Full admin access
                             <option value="delivered">Delivered</option>
                             <option value="cancelled">Cancelled</option>
                         </select>
+                        <select id="source-filter" class="form-control">
+                            <option value="">All Sources</option>
+                            <option value="facebook">Facebook</option>
+                            <option value="tiktok">TikTok</option>
+                        </select>
                     </div>
                 </div>
                 
@@ -1365,6 +1390,7 @@ $isAdminUser = isAdmin(); // Full admin access
                                     <th>Customer</th>
                                     <th>Package</th>
                                     <th>Amount</th>
+                                    <th>Source</th>
                                     <th>Agent</th>
                                     <th>Status</th>
                                     <th>Order Date</th>
@@ -1649,6 +1675,7 @@ $isAdminUser = isAdmin(); // Full admin access
         const paginationControls = document.getElementById('pagination-controls');
         const searchInput = document.getElementById('search-input');
         const statusFilter = document.getElementById('status-filter');
+        const sourceFilter = document.getElementById('source-filter');
         const editOrderModal = document.getElementById('edit-order-modal');
         const editOrderForm = document.getElementById('edit-order-form');
         const editModalClose = document.getElementById('edit-modal-close');
@@ -1682,6 +1709,7 @@ $isAdminUser = isAdmin(); // Full admin access
         function setupEventListeners() {
             searchInput.addEventListener('input', debounce(loadOrders, 500));
             statusFilter.addEventListener('change', loadOrders);
+            sourceFilter.addEventListener('change', loadOrders);
             editModalClose.addEventListener('click', closeEditModal);
             editCancelBtn.addEventListener('click', closeEditModal);
             editSaveBtn.addEventListener('click', saveOrderChanges);
@@ -1710,13 +1738,15 @@ $isAdminUser = isAdmin(); // Full admin access
             try {
                 currentSearch = searchInput.value;
                 currentStatusFilter = statusFilter.value;
+                const currentSourceFilter = sourceFilter.value;
                 
                 const params = new URLSearchParams({
                     action: 'list',
                     page: currentPage,
                     per_page: ordersPerPage,
                     search: currentSearch,
-                    status: currentStatusFilter
+                    status: currentStatusFilter,
+                    source: currentSourceFilter
                 });
                 
                 const response = await fetch(`api/orders.php?${params}`);
@@ -1816,6 +1846,7 @@ $isAdminUser = isAdmin(); // Full admin access
                     </td>
                     <td>${packageNames[order.pack] || order.pack}</td>
                     <td><strong>${order.formatted_amount || amounts[order.pack] || 'N/A'}</strong></td>
+                    <td><span class="source-badge source-${order.source || 'facebook'}">${order.source || 'facebook'}</span></td>
                     <td>${agentName}</td>
                     <td><span class="status-badge status-${status}">${getStatusText(status)}</span></td>
                     <td>${orderDateShort}</td>
