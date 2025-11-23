@@ -1689,6 +1689,18 @@ function formatPrice($amount) {
         fbq('track', 'PageView');
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1478749616293388&ev=PageView&noscript=1"/></noscript>
+    
+    <!-- TikTok Pixel Code -->
+    <!-- IMPORTANT: Replace 'YOUR_TIKTOK_PIXEL_ID' with your actual TikTok Pixel ID -->
+    <script>
+        !function (w, d, t) {
+          w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+          
+          ttq.load('YOUR_TIKTOK_PIXEL_ID');
+          ttq.page();
+        }(window, document, 'ttq');
+    </script>
+    
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-54PRKH52XY"></script>
     <script>
@@ -2269,7 +2281,7 @@ function formatPrice($amount) {
                         </div>
                         
                         <!-- Hidden field for tracking traffic source -->
-                        <input type="hidden" name="source" value="facebook">
+                        <input type="hidden" name="source" value="tiktok">
                         
                         <div class="form-group">
                             <label for="referralCode">Referral Code (If any)</label>
@@ -2621,6 +2633,20 @@ function formatPrice($amount) {
                                     const pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
                                     const purchaseValue = PACKAGE_PRICES[pkg] || null;
                                     if(window.fbq && purchaseValue){ fbq('track', 'Purchase', { currency: 'NGN', value: purchaseValue }); }
+                                } catch(e){ /* ignore pixel errors */ }
+                                
+                                // Track Purchase via TikTok Pixel (if available)
+                                try {
+                                    const pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
+                                    const purchaseValue = PACKAGE_PRICES[pkg] || null;
+                                    if(window.ttq && purchaseValue){ 
+                                        ttq.track('CompletePayment', { 
+                                            content_type: 'product',
+                                            content_id: pkg,
+                                            currency: 'NGN', 
+                                            value: purchaseValue 
+                                        }); 
+                                    }
                                 } catch(e){ /* ignore pixel errors */ }
 
                                 playPaymentSuccessAnimation(function(){ window.location = targetUrl; });

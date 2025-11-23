@@ -13,9 +13,10 @@ if ((isset($_POST['name']) && $_POST['pack'] != '')) {
     $user_address = $conn->real_escape_string($_POST['address']);
     $user_state = $conn->real_escape_string($_POST['state']);
     $user_pack = $conn->real_escape_string($_POST['pack']);
+    $user_source = isset($_POST['source']) ? $conn->real_escape_string($_POST['source']) : 'facebook';
     $user_date = date("M d, Y h:i a");
-    $sql = "INSERT INTO orders (fullname, email, phone, altphone, address, state, pack, created_at) 
-VALUES('" . $user_name . "', '" . $user_email . "', '" . $user_phone . "','" . $user_altphone . "', '" . $user_address . "', '" . $user_state . "','" . $user_pack . "','" . $user_date . "')";
+    $sql = "INSERT INTO orders (fullname, email, phone, altphone, address, state, pack, source, created_at) 
+VALUES('" . $user_name . "', '" . $user_email . "', '" . $user_phone . "','" . $user_altphone . "', '" . $user_address . "', '" . $user_state . "','" . $user_pack . "','" . $user_source . "','" . $user_date . "')";
     // echo $sql;
     if (!$result = $conn->query($sql)) {
         $output = json_encode(array('type' => 'error', 'text' => 'There was an error running the query [' . $conn->error . ']'));
