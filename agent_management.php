@@ -738,19 +738,12 @@ $canDelete = canPerform('delete_agent');
                 justify-content: center;
             }
 
-            table {
-                font-size: 12px;
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+            .table-responsive {
+                margin: 0 -15px;
             }
-
-            table thead,
-            table tbody,
-            table tr {
-                display: table;
-                width: 100%;
-                table-layout: fixed;
+            
+            #agents-table {
+                min-width: 900px;
             }
 
             th, td {
