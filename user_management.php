@@ -521,10 +521,68 @@ $currentUser = getCurrentUser();
             z-index: 999;
         }
 
-        /* Responsive table wrapper */
+        /* Responsive table wrapper with scroll indicators */
         .table-wrapper {
+            position: relative;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .table-wrapper::before,
+        .table-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 30px;
+            pointer-events: none;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+
+        .table-wrapper::before {
+            left: 0;
+            background: linear-gradient(to right, rgba(255,255,255,0.95), transparent);
+            opacity: 0;
+        }
+
+        .table-wrapper::after {
+            right: 0;
+            background: linear-gradient(to left, rgba(255,255,255,0.95), transparent);
+            opacity: 0;
+        }
+
+        .table-wrapper.scroll-left::before {
+            opacity: 1;
+        }
+
+        .table-wrapper.scroll-right::after {
+            opacity: 1;
+        }
+
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #5568d3;
+        }
+
+        #users-table {
+            min-width: 1000px;
         }
 
         @media (max-width: 968px) {
@@ -592,10 +650,26 @@ $currentUser = getCurrentUser();
             }
 
             table {
+                font-size: 12px;
+            }
+
+            table thead th {
                 font-size: 11px;
-                display: block;
-                overflow-x: auto;
-                white-space: nowrap;
+                padding: 10px 8px;
+            }
+
+            table tbody td {
+                padding: 10px 8px;
+                font-size: 11px;
+            }
+
+            .table-wrapper {
+                margin: 15px -15px;
+                border-radius: 0;
+            }
+
+            #users-table {
+                min-width: 900px;
             }
 
             table thead,
@@ -661,12 +735,20 @@ $currentUser = getCurrentUser();
             }
 
             table {
-                font-size: 9px;
+                font-size: 10px;
             }
 
             table th,
             table td {
-                padding: 6px 2px;
+                padding: 8px 5px;
+            }
+
+            #users-table {
+                min-width: 800px;
+            }
+
+            .table-wrapper {
+                box-shadow: 0 1px 4px rgba(0,0,0,0.1);
             }
 
             .btn {
@@ -917,9 +999,45 @@ $currentUser = getCurrentUser();
         let users = [];
         let editingUserId = null;
 
+        // Initialize table scroll indicators
+        function initTableScroll() {
+            const tableWrapper = document.querySelector('.table-wrapper');
+            if (!tableWrapper) return;
+
+            function updateScrollIndicators() {
+                const scrollLeft = tableWrapper.scrollLeft;
+                const scrollWidth = tableWrapper.scrollWidth;
+                const clientWidth = tableWrapper.clientWidth;
+                const maxScroll = scrollWidth - clientWidth;
+
+                // Add/remove classes based on scroll position
+                if (scrollLeft > 10) {
+                    tableWrapper.classList.add('scroll-left');
+                } else {
+                    tableWrapper.classList.remove('scroll-left');
+                }
+
+                if (scrollLeft < maxScroll - 10) {
+                    tableWrapper.classList.add('scroll-right');
+                } else {
+                    tableWrapper.classList.remove('scroll-right');
+                }
+            }
+
+            // Update on scroll
+            tableWrapper.addEventListener('scroll', updateScrollIndicators);
+            
+            // Update on window resize
+            window.addEventListener('resize', updateScrollIndicators);
+            
+            // Initial check
+            setTimeout(updateScrollIndicators, 100);
+        }
+
         // Load users on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadUsers();
+            initTableScroll();
         });
 
         async function loadUsers() {
@@ -976,6 +1094,15 @@ $currentUser = getCurrentUser();
                     </td>
                 </tr>
             `).join('');
+
+            // Reinitialize scroll indicators after table content changes
+            setTimeout(() => {
+                const tableWrapper = document.querySelector('.table-wrapper');
+                if (tableWrapper) {
+                    const event = new Event('scroll');
+                    tableWrapper.dispatchEvent(event);
+                }
+            }, 50);
         }
 
         function openAddUserModal() {
