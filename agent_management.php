@@ -10,12 +10,12 @@ $canDelete = canPerform('delete_agent');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agent Management - Emerald Tech Hub</title>
+    <title>Agent Management | Emerald Tech Hub</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <?php include 'php/content_protection.php'; ?>
     <style>
         * {
             margin: 0;
@@ -25,26 +25,44 @@ $canDelete = canPerform('delete_agent');
 
         :root {
             --primary: #0a7c42;
+            --primary-dark: #066633;
             --primary-light: #e8f5e9;
-            --secondary: #ff6b35;
-            --dark: #2c3e50;
-            --light: #f8f9fa;
-            --accent: #ffd700;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #2d3047;
+            --light: #f7f9fc;
+            --text: #333333;
             --transition: all 0.3s ease;
         }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        
+        * {
             margin: 0;
-            overflow-x: hidden;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
         /* Layout with Sidebar */
         .layout-wrapper {
             display: flex;
-            min-height: 100vh;
+            flex: 1;
+            position: relative;
         }
 
         /* Sidebar Styles */
@@ -63,67 +81,68 @@ $canDelete = canPerform('delete_agent');
         }
 
         .sidebar-header {
-            padding: 20px;
+            padding: 25px 20px;
             border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
         }
 
         .sidebar-logo {
             display: flex;
             align-items: center;
             gap: 12px;
+            color: white;
             text-decoration: none;
-            color: var(--primary);
         }
-
+        
         .sidebar-logo-icon {
-            font-size: 1.5rem;
+            font-size: 28px;
         }
-
+        
         .sidebar-logo-text {
+            font-size: 18px;
             font-weight: 700;
-            font-size: 1.1rem;
         }
 
         .sidebar-nav {
-            flex: 1;
-            overflow-y: auto;
-            padding: 15px 0;
+            padding: 20px 0;
         }
-
+        
         .sidebar-menu {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
+        
         .sidebar-menu-item {
-            margin: 0;
+            margin-bottom: 5px;
         }
-
+        
         .sidebar-menu-link {
             display: flex;
             align-items: center;
             gap: 12px;
             padding: 12px 20px;
-            color: #666;
+            color: var(--text);
             text-decoration: none;
             transition: var(--transition);
+            font-weight: 500;
         }
-
+        
         .sidebar-menu-link:hover {
             background: var(--primary-light);
             color: var(--primary);
         }
-
+        
         .sidebar-menu-link.active {
-            background: var(--primary);
-            color: white;
-            font-weight: 600;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-right: 3px solid var(--primary);
         }
-
+        
         .sidebar-menu-link i {
             width: 20px;
-            font-size: 1.1rem;
+            text-align: center;
+            font-size: 16px;
         }
 
         .sidebar-divider {
@@ -135,64 +154,99 @@ $canDelete = canPerform('delete_agent');
         .sidebar-footer {
             padding: 20px;
             border-top: 1px solid #eee;
+            margin-top: auto;
         }
-
+        
         .sidebar-user {
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 15px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 10px;
         }
-
+        
         .sidebar-user-avatar {
             width: 40px;
             height: 40px;
-            border-radius: 50%;
             background: var(--primary);
-            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
             font-weight: 600;
         }
-
+        
         .sidebar-user-info {
             flex: 1;
         }
-
+        
         .sidebar-user-name {
             font-weight: 600;
-            color: var(--dark);
             font-size: 0.9rem;
+            margin-bottom: 2px;
         }
-
+        
         .sidebar-user-role {
             font-size: 0.75rem;
-            color: #999;
+            color: #666;
             text-transform: capitalize;
         }
 
-        /* Main Content Wrapper */
+        /* Mobile Toggle */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            width: 45px;
+            height: 45px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+        
+        .sidebar-toggle:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+        
+        /* Main Content Area */
         .main-wrapper {
             flex: 1;
             margin-left: 260px;
-            padding: 20px;
-            transition: margin-left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        
+        /* Header Styles */
         header {
             background: white;
-            border-radius: 15px;
-            padding: 20px 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #eee;
         }
-
+        
         .header-content {
             display: flex;
             justify-content: space-between;
@@ -200,18 +254,18 @@ $canDelete = canPerform('delete_agent');
         }
 
         .page-breadcrumb {
-            color: #666;
-            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
+            color: #666;
+            font-size: 0.9rem;
         }
-
+        
         .page-breadcrumb a {
             color: var(--primary);
             text-decoration: none;
         }
-
+        
         .page-breadcrumb a:hover {
             text-decoration: underline;
         }
@@ -221,149 +275,184 @@ $canDelete = canPerform('delete_agent');
             align-items: center;
             gap: 15px;
         }
-
+        
         .header-user {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            padding: 8px 15px;
+            background: var(--light);
+            border-radius: 8px;
         }
-
+        
         .header-user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
+            width: 35px;
+            height: 35px;
             background: var(--primary);
-            color: white;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
             font-weight: 600;
-        }
-
-        .header-user-info {
-            text-align: right;
-        }
-
-        .header-user-name {
-            font-weight: 600;
-            color: #333;
             font-size: 0.9rem;
         }
-
+        
+        .header-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
         .header-user-role {
-            font-size: 12px;
+            font-size: 0.75rem;
             color: #666;
             text-transform: capitalize;
         }
 
-        h1 {
-            color: #667eea;
-            margin-bottom: 10px;
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+            flex: 1;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             margin-bottom: 30px;
         }
-
+        
         .stat-card {
             background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-light);
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
         }
-
+        
         .stat-info h3 {
-            font-size: 32px;
-            color: #333;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark);
             margin-bottom: 5px;
         }
-
+        
         .stat-info p {
             color: #666;
-            font-size: 14px;
-        }
-
-        .stat-icon {
-            font-size: 40px;
-            color: #667eea;
+            font-size: 0.9rem;
         }
 
         .content-card {
             background: white;
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
             margin-bottom: 30px;
         }
-
+        
         .card-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
         }
-
+        
         .card-header h2 {
-            color: #333;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
         }
 
         .btn {
-            background: #667eea;
-            color: white;
+            padding: 10px 20px;
             border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
+            border-radius: 5px;
+            font-weight: 600;
             cursor: pointer;
-            font-size: 14px;
-            display: inline-flex;
+            transition: var(--transition);
+            display: flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
         }
-
-        .btn:hover {
-            background: #5568d3;
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
-
-        .btn-danger {
-            background: #dc3545;
+        
+        .btn-secondary {
+            background: var(--accent);
+            color: var(--dark);
         }
-
-        .btn-danger:hover {
-            background: #c82333;
+        
+        .btn-secondary:hover {
+            background: #ffc145;
+            transform: translateY(-2px);
         }
 
         .table-container {
+            padding: 20px;
+        }
+        
+        .table-responsive {
             overflow-x: auto;
         }
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
         }
-
-        th, td {
+        
+        thead {
+            background: var(--primary-light);
+        }
+        
+        th {
             padding: 15px;
             text-align: left;
+            font-weight: 600;
+            color: var(--dark);
             border-bottom: 1px solid #eee;
         }
-
-        th {
-            background: #f8f9fa;
-            color: #333;
-            font-weight: 600;
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
         }
-
-        tr:hover {
-            background: #f8f9fa;
+        
+        tbody tr {
+            transition: var(--transition);
+        }
+        
+        tbody tr:hover {
+            background: #f9f9f9;
         }
 
         .status-badge {
@@ -387,32 +476,34 @@ $canDelete = canPerform('delete_agent');
             display: flex;
             gap: 8px;
         }
-
+        
         .action-btn {
-            background: none;
+            width: 30px;
+            height: 30px;
             border: none;
-            padding: 8px 12px;
-            border-radius: 6px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 14px;
+            transition: var(--transition);
         }
-
+        
         .edit-btn {
-            color: #667eea;
-            background: #e7e9fc;
+            background: var(--primary-light);
+            color: var(--primary);
         }
-
+        
         .edit-btn:hover {
-            background: #667eea;
+            background: var(--primary);
             color: white;
         }
-
+        
         .delete-btn {
-            color: #dc3545;
             background: #f8d7da;
+            color: #721c24;
         }
-
+        
         .delete-btn:hover {
             background: #dc3545;
             color: white;
@@ -442,14 +533,17 @@ $canDelete = canPerform('delete_agent');
         }
 
         .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 25px;
         }
-
+        
         .modal-header h2 {
-            color: #333;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark);
         }
 
         .close-btn {
@@ -476,34 +570,52 @@ $canDelete = canPerform('delete_agent');
             grid-column: 1 / -1;
         }
 
-        label {
-            color: #333;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-        }
-
-        input, select, textarea {
-            padding: 12px;
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
             border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
         }
-
-        input:focus, select:focus, textarea:focus {
+        
+        .form-control:focus {
+            border-color: var(--primary);
             outline: none;
-            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(10, 124, 66, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select, textarea {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(10, 124, 66, 0.1);
         }
 
         .states-selection {
             border: 1px solid #ddd;
-            border-radius: 8px;
+            border-radius: 5px;
             padding: 15px;
             max-height: 200px;
             overflow-y: auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
+            background: white;
         }
 
         .state-checkbox {
@@ -541,42 +653,7 @@ $canDelete = canPerform('delete_agent');
             margin-bottom: 20px;
         }
 
-        /* Mobile Menu Toggle */
-        .mobile-menu-toggle {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1100;
-            background: var(--primary);
-            color: white;
-            border: none;
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
-        }
 
-        .mobile-menu-toggle:hover {
-            background: var(--dark);
-        }
-
-        .mobile-menu-toggle i {
-            font-size: 20px;
-        }
-
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-        }
 
         /* Responsive table wrapper */
         .table-wrapper {
@@ -584,55 +661,52 @@ $canDelete = canPerform('delete_agent');
             -webkit-overflow-scrolling: touch;
         }
 
-        /* Responsive */
-        @media (max-width: 968px) {
-            .mobile-menu-toggle {
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .sidebar-toggle {
                 display: flex;
                 align-items: center;
                 justify-content: center;
             }
-
-            .sidebar {
-                transform: translateX(-100%);
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .sidebar-overlay.active {
-                display: block;
-            }
-
+            
             .main-wrapper {
                 margin-left: 0;
-                padding: 80px 15px 15px;
             }
-
-            .container {
-                padding: 0;
-            }
-
-            header {
-                padding: 15px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
+            
+            /* Adjust header for toggle button */
+            .page-breadcrumb {
+                margin-left: 50px;
             }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 22px;
+            .container {
+                width: 100%;
+                padding: 0 15px;
             }
-
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .card-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
             }
-
+            
             .card-header .btn {
                 width: 100%;
                 justify-content: center;
@@ -702,15 +776,11 @@ $canDelete = canPerform('delete_agent');
         }
 
         @media (max-width: 576px) {
-            .mobile-menu-toggle {
+            .sidebar-toggle {
                 width: 40px;
                 height: 40px;
                 top: 10px;
                 left: 10px;
-            }
-
-            .main-wrapper {
-                padding: 70px 10px 10px;
             }
 
             table {
@@ -761,13 +831,6 @@ $canDelete = canPerform('delete_agent');
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Toggle -->
-    <button class="mobile-menu-toggle" id="mobile-menu-toggle" onclick="toggleSidebar()">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar Overlay -->
-    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
     <!-- Layout Wrapper -->
     <div class="layout-wrapper">
         <!-- Sidebar -->
@@ -842,6 +905,9 @@ $canDelete = canPerform('delete_agent');
             </div>
         </aside>
         
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        
         <!-- Main Content Wrapper -->
         <div class="main-wrapper">
             <!-- Header -->
@@ -869,50 +935,53 @@ $canDelete = canPerform('delete_agent');
                 </div>
             </header>
 
-    <div class="container">
+            <!-- Main Content -->
+            <section class="main-content">
+                <div class="container">
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h3 id="total-agents">0</h3>
-                    <p>Total Agents</p>
-                </div>
-                <div class="stat-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-            </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="total-agents">0</h3>
+                                <p>Total Agents</p>
+                            </div>
+                        </div>
 
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h3 id="active-agents">0</h3>
-                    <p>Active Agents</p>
-                </div>
-                <div class="stat-icon">
-                    <i class="fas fa-user-check"></i>
-                </div>
-            </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="active-agents">0</h3>
+                                <p>Active Agents</p>
+                            </div>
+                        </div>
 
-            <div class="stat-card">
-                <div class="stat-info">
-                    <h3 id="total-states">0</h3>
-                    <p>States Covered</p>
-                </div>
-                <div class="stat-icon">
-                    <i class="fas fa-map-marked-alt"></i>
-                </div>
-            </div>
-        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-map-marked-alt"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3 id="total-states">0</h3>
+                                <p>States Covered</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <div class="content-card">
-            <div class="card-header">
-                <h2>All Delivery Agents</h2>
-                <button class="btn" id="add-agent-btn">
-                    <i class="fas fa-plus"></i> Add New Agent
-                </button>
-            </div>
+                    <div class="content-card">
+                        <div class="card-header">
+                            <h2>All Delivery Agents</h2>
+                            <button class="btn btn-primary" id="add-agent-btn">
+                                <i class="fas fa-plus"></i> Add New Agent
+                            </button>
+                        </div>
 
-            <div class="table-container">
-                <table id="agents-table">
+                        <div class="table-container">
+                            <div class="table-responsive">
+                                <table id="agents-table">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -931,11 +1000,13 @@ $canDelete = canPerform('delete_agent');
                                 <i class="fas fa-spinner fa-spin"></i> Loading agents...
                             </td>
                         </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
     <!-- Add/Edit Agent Modal -->
     <div class="modal" id="agent-modal">
@@ -991,8 +1062,8 @@ $canDelete = canPerform('delete_agent');
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn" style="background: #6c757d" id="cancel-btn">Cancel</button>
-                    <button type="submit" class="btn">Save Agent</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Agent</button>
                 </div>
             </form>
         </div>
@@ -1246,51 +1317,51 @@ $canDelete = canPerform('delete_agent');
             }
         }
 
-        // Mobile sidebar toggle
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            const toggle = document.getElementById('mobile-menu-toggle');
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-            
-            // Change icon
-            const icon = toggle.querySelector('i');
-            if (sidebar.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        }
-
         // Close sidebar when clicking on a link (mobile)
         document.querySelectorAll('.sidebar-menu-link').forEach(link => {
             link.addEventListener('click', function() {
-                if (window.innerWidth <= 968) {
-                    toggleSidebar();
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
                 }
             });
         });
 
         // Close sidebar on window resize if desktop
         window.addEventListener('resize', function() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebar-overlay');
-            const toggle = document.getElementById('mobile-menu-toggle');
-            
-            if (window.innerWidth > 968) {
+            if (window.innerWidth > 1024) {
                 sidebar.classList.remove('active');
-                overlay.classList.remove('active');
-                const icon = toggle.querySelector('i');
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
+                sidebarOverlay.classList.remove('active');
             }
         });
     </script>
-        </div>
-    </div>
+        </div><!-- End main-wrapper -->
+    </div><!-- End layout-wrapper -->
+    
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <script>
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+        
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        }
+    </script>
 </body>
 </html>
