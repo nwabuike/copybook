@@ -290,6 +290,15 @@ $currentUser = getCurrentUser();
             background: #c82333;
         }
 
+        .btn-warning {
+            background: #ffc107;
+            color: #000;
+        }
+
+        .btn-warning:hover {
+            background: #e0a800;
+        }
+
         .btn-secondary {
             background: #6c757d;
         }
@@ -743,14 +752,20 @@ $currentUser = getCurrentUser();
                     <td>${user.last_login ? new Date(user.last_login).toLocaleString() : 'Never'}</td>
                     <td>
                         <div class="action-buttons">
-                            <button class="btn btn-sm" onclick="editUser(${user.id})">
+                            <button class="btn btn-sm" onclick="editUser(${user.id})" title="Edit user details">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
                             ${user.id !== <?= $currentUser['id'] ?> ? `
-                                <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id}, '${user.username}')">
+                                <button class="btn btn-${user.status === 'active' ? 'warning' : 'success'} btn-sm" 
+                                        onclick="toggleUserStatus(${user.id}, '${user.username}', '${user.status}')"
+                                        title="${user.status === 'active' ? 'Deactivate' : 'Activate'} account">
+                                    <i class="fas fa-${user.status === 'active' ? 'ban' : 'check-circle'}"></i> 
+                                    ${user.status === 'active' ? 'Deactivate' : 'Activate'}
+                                </button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteUser(${user.id}, '${user.username}')" title="Delete user">
                                     <i class="fas fa-trash"></i> Delete
                                 </button>
-                            ` : ''}
+                            ` : '<span style="color: #999; font-size: 0.85rem;"><i class="fas fa-user-shield"></i> Current User</span>'}
                         </div>
                     </td>
                 </tr>
@@ -826,6 +841,39 @@ $currentUser = getCurrentUser();
                 submitBtn.innerHTML = '<i class="fas fa-save"></i> Save User';
             }
         });
+
+        async function toggleUserStatus(userId, username, currentStatus) {
+            const action = currentStatus === 'active' ? 'deactivate' : 'activate';
+            const message = currentStatus === 'active' 
+                ? `Are you sure you want to deactivate user "${username}"? They will not be able to log in.`
+                : `Are you sure you want to activate user "${username}"? They will be able to log in.`;
+
+            if (!confirm(message)) {
+                return;
+            }
+
+            try {
+                const response = await fetch(`api/users.php?action=toggle_status`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ user_id: userId })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message, 'success');
+                    loadUsers();
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Failed to update user status', 'error');
+            }
+        }
 
         async function deleteUser(userId, username) {
             if (!confirm(`Are you sure you want to delete user "${username}"? This action cannot be undone.`)) {

@@ -1420,7 +1420,7 @@ $canDelete = canPerform('delete_order');
                     
                     <div class="form-group">
                         <label for="edit-status">Order Status</label>
-                        <select class="form-control" id="edit-status" required>
+                        <select class="form-control" id="edit-status" required onchange="toggleExpenseFields()">
                             <option value="pending">Pending</option>
                             <option value="confirmed">Confirmed</option>
                             <option value="processing">Processing</option>
@@ -1428,6 +1428,34 @@ $canDelete = canPerform('delete_order');
                             <option value="delivered">Delivered</option>
                             <option value="cancelled">Cancelled</option>
                         </select>
+                    </div>
+                    
+                    <!-- Expense Fields (Only visible for delivered orders) -->
+                    <div id="expense-section" style="display: none; border-top: 2px solid var(--primary-light); padding-top: 20px; margin-top: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">
+                            <i class="fas fa-money-bill-wave"></i> Expenses & Profit
+                        </h4>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-revenue">Revenue (₦)</label>
+                                <input type="number" class="form-control" id="edit-revenue" readonly style="background: #f0f0f0;">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-expenses">Expenses (₦)</label>
+                                <input type="number" class="form-control" id="edit-expenses" placeholder="Enter total expenses" step="100" min="0" onchange="calculateProfit()">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-profit">Profit (₦)</label>
+                            <input type="number" class="form-control" id="edit-profit" readonly style="background: #e8f5e9; font-weight: bold; color: var(--primary);">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-expenses-notes">Expense Notes</label>
+                            <textarea class="form-control" id="edit-expenses-notes" rows="2" placeholder="Details about expenses (delivery, packaging, etc.)..."></textarea>
+                        </div>
                     </div>
                     
                     <div class="form-group">
@@ -1476,10 +1504,13 @@ $canDelete = canPerform('delete_order');
                 <div class="footer-column">
                     <h4>Admin Links</h4>
                     <ul class="footer-links">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Orders</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Customers</a></li>
+                        <li><a href="analytics.php">Dashboard</a></li>
+                        <li><a href="customer_orderlist.php">Orders</a></li>
+                        <?php if (isAdmin()): ?>
+                        <li><a href="pricing_management.php">Pricing</a></li>
+                        <li><a href="profit_loss_report.php">Profit/Loss</a></li>
+                        <?php endif; ?>
+                        <li><a href="bulk_messaging.php">Messages</a></li>
                     </ul>
                 </div>
             </div>
@@ -1997,6 +2028,12 @@ $canDelete = canPerform('delete_order');
                     'collection': 'Mastery Collection'
                 };
                 
+                // Calculate revenue based on package
+                const packLower = order.pack.toLowerCase();
+                const revenue = packLower === 'starter' ? 18000 : 
+                               packLower === 'bundle' ? 32000 : 
+                               packLower === 'collection' ? 45000 : 0;
+                
                 document.getElementById('edit-order-id').value = order.id;
                 document.getElementById('edit-customer-name').value = order.fullname;
                 document.getElementById('edit-package').value = packageNames[order.pack] || order.pack;
@@ -2005,8 +2042,38 @@ $canDelete = canPerform('delete_order');
                 document.getElementById('edit-status').value = order.status || 'pending';
                 document.getElementById('edit-notes').value = order.admin_notes || '';
                 
+                // Set expense fields
+                document.getElementById('edit-revenue').value = revenue;
+                document.getElementById('edit-expenses').value = order.expenses || '';
+                document.getElementById('edit-profit').value = order.profit || (revenue - (order.expenses || 0));
+                document.getElementById('edit-expenses-notes').value = order.expenses_notes || '';
+                
+                // Show/hide expense section based on status
+                toggleExpenseFields();
+                
                 editOrderModal.style.display = 'flex';
             }
+        }
+        
+        // Toggle expense fields visibility based on status
+        function toggleExpenseFields() {
+            const status = document.getElementById('edit-status').value;
+            const expenseSection = document.getElementById('expense-section');
+            
+            if (status === 'delivered') {
+                expenseSection.style.display = 'block';
+            } else {
+                expenseSection.style.display = 'none';
+            }
+        }
+        
+        // Calculate profit when expenses change
+        function calculateProfit() {
+            const revenue = parseFloat(document.getElementById('edit-revenue').value) || 0;
+            const expenses = parseFloat(document.getElementById('edit-expenses').value) || 0;
+            const profit = revenue - expenses;
+            
+            document.getElementById('edit-profit').value = profit.toFixed(2);
         }
 
         // Send WhatsApp message
@@ -2385,8 +2452,11 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
             const orderId = document.getElementById('edit-order-id').value;
             const newStatus = document.getElementById('edit-status').value;
             const notes = document.getElementById('edit-notes').value;
+            const expenses = document.getElementById('edit-expenses').value;
+            const expensesNotes = document.getElementById('edit-expenses-notes').value;
             
             try {
+                // First update order status
                 const response = await fetch('api/orders.php?action=update_status', {
                     method: 'POST',
                     headers: {
@@ -2402,7 +2472,31 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
                 const data = await response.json();
                 
                 if (data.success) {
-                    alert('Order updated successfully!');
+                    // If status is delivered and expenses are provided, add expenses
+                    if (newStatus === 'delivered' && expenses && parseFloat(expenses) > 0) {
+                        const expenseResponse = await fetch('api/expenses.php?action=add_expense', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                order_id: orderId,
+                                expenses: parseFloat(expenses),
+                                notes: expensesNotes
+                            })
+                        });
+                        
+                        const expenseData = await expenseResponse.json();
+                        
+                        if (expenseData.success) {
+                            alert('Order updated successfully with expenses!\nProfit: ₦' + expenseData.data.profit.toLocaleString());
+                        } else {
+                            alert('Order updated but failed to add expenses: ' + expenseData.message);
+                        }
+                    } else {
+                        alert('Order updated successfully!');
+                    }
+                    
                     closeEditModal();
                     loadOrders();
                     loadStats();

@@ -97,15 +97,17 @@ function canPerform($action) {
             'view_orders', 'create_order', 'edit_order', 'delete_order', 'update_order_status',
             'view_agents', 'create_agent', 'edit_agent', 'delete_agent',
             'view_stock', 'update_stock', 'delete_stock_movement',
-            'view_analytics', 'export_data',
+            'view_analytics', 'export_data', 'view_profit_loss',
             'view_users', 'create_user', 'edit_user', 'delete_user',
-            'view_logs', 'view_all_activities'
+            'view_logs', 'view_all_activities',
+            'add_expense', 'update_pricing', 'view_pricing'
         ],
         'subadmin' => [
             'view_orders', 'create_order', 'edit_order', 'update_order_status',
             'view_agents', 'edit_agent',
             'view_stock', 'update_stock',
-            'export_data', 'view_logs'
+            'export_data', 'view_logs',
+            'add_expense', 'view_pricing'
         ],
         'agent' => [
             'view_orders', 'update_order_status',

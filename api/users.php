@@ -36,6 +36,9 @@ try {
             case 'update':
                 updateUser();
                 break;
+            case 'toggle_status':
+                toggleUserStatus();
+                break;
             case 'delete':
                 deleteUser();
                 break;
@@ -309,6 +312,66 @@ function updateUser() {
         ]);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to update user: ' . $conn->error]);
+    }
+}
+
+function toggleUserStatus() {
+    global $conn;
+    
+    $input = json_decode(file_get_contents('php://input'), true);
+    
+    if (empty($input['user_id'])) {
+        echo json_encode(['success' => false, 'message' => 'User ID is required']);
+        return;
+    }
+    
+    $userId = (int)$input['user_id'];
+    
+    // Prevent changing your own status
+    if ($userId === $_SESSION['user_id']) {
+        echo json_encode(['success' => false, 'message' => 'You cannot change your own account status']);
+        return;
+    }
+    
+    // Get current user info
+    $userSql = "SELECT username, role, status FROM users WHERE id = ?";
+    $userStmt = $conn->prepare($userSql);
+    $userStmt->bind_param("i", $userId);
+    $userStmt->execute();
+    $user = $userStmt->get_result()->fetch_assoc();
+    
+    if (!$user) {
+        echo json_encode(['success' => false, 'message' => 'User not found']);
+        return;
+    }
+    
+    // Toggle status
+    $newStatus = $user['status'] === 'active' ? 'inactive' : 'active';
+    
+    $sql = "UPDATE users SET status = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $newStatus, $userId);
+    
+    if ($stmt->execute()) {
+        // Log activity
+        $action = $newStatus === 'active' ? 'activated' : 'deactivated';
+        logActivity(
+            $_SESSION['user_id'], 
+            'update_status', 
+            'user', 
+            $userId, 
+            ucfirst($action) . " user: {$user['username']} ({$user['role']})",
+            ['status' => $user['status']],
+            ['status' => $newStatus]
+        );
+        
+        echo json_encode([
+            'success' => true, 
+            'message' => "User {$action} successfully",
+            'new_status' => $newStatus
+        ]);
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Failed to update user status: ' . $conn->error]);
     }
 }
 
