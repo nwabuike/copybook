@@ -1633,29 +1633,12 @@ $canDelete = canPerform('delete_agent');
         // Close sidebar on window resize if desktop
         window.addEventListener('resize', function() {
             if (window.innerWidth > 1024) {
+                const sidebar = document.getElementById('sidebar');
+                const sidebarOverlay = document.getElementById('sidebar-overlay');
                 sidebar.classList.remove('active');
                 sidebarOverlay.classList.remove('active');
             }
         });
-        
-        // Sidebar toggle functionality
-        const sidebar = document.getElementById('sidebar');
-        const sidebarToggle = document.getElementById('sidebar-toggle');
-        const sidebarOverlay = document.getElementById('sidebar-overlay');
-        
-        if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('active');
-                sidebarOverlay.classList.toggle('active');
-            });
-        }
-        
-        if (sidebarOverlay) {
-            sidebarOverlay.addEventListener('click', function() {
-                sidebar.classList.remove('active');
-                sidebarOverlay.classList.remove('active');
-            });
-        }
     </script>
     
     <!-- Mobile Sidebar Toggle -->
