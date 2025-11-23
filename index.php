@@ -1,4 +1,61 @@
-﻿<!DOCTYPE html>
+﻿<?php
+// Fetch current pricing from database
+require_once 'php/db.php';
+
+// Default prices (fallback if database is unavailable)
+$defaultPrices = [
+    'starter' => ['price' => 18000, 'original' => 22500],
+    'bundle' => ['price' => 32000, 'original' => 45000],
+    'collection' => ['price' => 45000, 'original' => 67500]
+];
+
+// Fetch current prices from database
+$prices = [];
+try {
+    $sql = "SELECT package_type, price FROM package_pricing ORDER BY FIELD(package_type, 'starter', 'bundle', 'collection')";
+    $result = $conn->query($sql);
+    
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $currentPrice = (float)$row['price'];
+            // Calculate original price (assuming 25% discount for starter, 29% for bundle, 33% for collection)
+            $originalPrice = match($row['package_type']) {
+                'starter' => round($currentPrice * 1.25, -2), // 25% markup
+                'bundle' => round($currentPrice * 1.40625, -2), // 40.625% markup
+                'collection' => round($currentPrice * 1.50, -2), // 50% markup
+                default => round($currentPrice * 1.25, -2)
+            };
+            
+            $prices[$row['package_type']] = [
+                'price' => $currentPrice,
+                'original' => $originalPrice,
+                'savings' => $originalPrice - $currentPrice,
+                'discount' => round((($originalPrice - $currentPrice) / $originalPrice) * 100)
+            ];
+        }
+    }
+} catch (Exception $e) {
+    error_log("Error fetching prices: " . $e->getMessage());
+}
+
+// Use default prices if database fetch failed
+if (empty($prices)) {
+    foreach ($defaultPrices as $type => $priceData) {
+        $prices[$type] = [
+            'price' => $priceData['price'],
+            'original' => $priceData['original'],
+            'savings' => $priceData['original'] - $priceData['price'],
+            'discount' => round((($priceData['original'] - $priceData['price']) / $priceData['original']) * 100)
+        ];
+    }
+}
+
+// Helper function to format price
+function formatPrice($amount) {
+    return '₦' . number_format($amount, 0);
+}
+?>
+<!DOCTYPE html>
 <html lang="en">
     <head>
     <meta charset="UTF-8">
@@ -9,7 +66,7 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <meta name="description" content="🎁 Best Reusable Magic Copybook for Kids 3+ in Nigeria! ₦18,000 - ₦45,000. Improve handwriting fast with grooved practice books. FREE delivery nationwide. Pay on delivery. Black Friday cashback ₦10,000 + free gifts worth ₦12,000. Perfect gift for children, nieces, nephews!">
+    <meta name="description" content="🎁 Best Reusable Magic Copybook for Kids 3+ in Nigeria! <?php echo formatPrice($prices['starter']['price']); ?> - <?php echo formatPrice($prices['collection']['price']); ?>. Improve handwriting fast with grooved practice books. FREE delivery nationwide. Pay on delivery. Black Friday cashback ₦10,000 + free gifts worth ₦12,000. Perfect gift for children, nieces, nephews!">
     <meta name="keywords" content="magic copybook Nigeria, reusable copybook for kids, Sank magic copybook, handwriting practice book, calligraphy copybook Nigeria, kids writing practice book, disappearing ink copybook, 4 in 1 magic book, children educational toys Nigeria, handwriting improvement book, alphabet practice book, number writing book, buy copybook online Nigeria, best copybook for kids, magic pen copybook, grooved copybook, pen control books kids, Lagos copybook delivery, Abuja kids books, free delivery copybook Nigeria, pay on delivery copybook, kids learning materials Nigeria, preschool writing books, kindergarten practice books, cursive writing copybook, letter tracing books, Black Friday kids books, copybook discount Nigeria, children gift ideas Nigeria, educational gifts for kids, back to school books Nigeria, homeschool materials Nigeria, montessori writing materials, fine motor skills books, toddler writing practice, ages 3-12 copybooks">
     <meta name="author" content="Emerald Tech Hub">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -25,14 +82,14 @@
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:locale" content="en_NG" />
-    <meta property="product:price:amount" content="18000" />
+    <meta property="product:price:amount" content="<?php echo $prices['starter']['price']; ?>" />
     <meta property="product:price:currency" content="NGN" />
     <meta property="product:availability" content="in stock" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="🎁 Sank Magic Reusable Copybook Nigeria | Kids Handwriting Practice | Black Friday Deal" />
-    <meta name="twitter:description" content="₦18,000 - ₦45,000 | Improve children's handwriting fast! Reusable 4-in-1 copybook. FREE delivery. Pay on delivery. Get ₦10,000 cashback + gifts" />
+    <meta name="twitter:description" content="<?php echo formatPrice($prices['starter']['price']); ?> - <?php echo formatPrice($prices['collection']['price']); ?> | Improve children's handwriting fast! Reusable 4-in-1 copybook. FREE delivery. Pay on delivery. Get ₦10,000 cashback + gifts" />
     <meta name="twitter:image" content="https://yourdomain.com/magicbook/images/magic-book-3-1024x1024.jpg" />
     <meta name="twitter:site" content="@EmeraldTechHub" />
     
@@ -69,8 +126,8 @@
         "@type": "AggregateOffer",
         "url": "https://yourdomain.com/magicbook/index.php",
         "priceCurrency": "NGN",
-        "lowPrice": "18000",
-        "highPrice": "45000",
+        "lowPrice": "<?php echo $prices['starter']['price']; ?>",
+        "highPrice": "<?php echo $prices['collection']['price']; ?>",
         "priceValidUntil": "2025-12-31",
         "availability": "https://schema.org/InStock",
         "seller": {
@@ -2010,9 +2067,9 @@
                     <div class="limited-stock-tag">📦 <span class="stock-counter" data-stock="starter">9</span> Sets Remaining</div>
                     <h3>Starter Set</h3>
                     <div class="price">
-                        <div class="original-price">₦22,500</div>
-                        <div class="discount-price">₦18,000</div>
-                        <div class="savings">Save ₦4,500</div>
+                        <div class="original-price" style="text-decoration: line-through; color: #999; font-size: 1.2rem;"><?php echo formatPrice($prices['starter']['original']); ?></div>
+                        <div class="discount-price" style="font-size: 2rem; color: #0a7c42; font-weight: bold; margin: 5px 0;"><?php echo formatPrice($prices['starter']['price']); ?></div>
+                        <div class="savings" style="background: #ff3b3b; color: white; padding: 5px 10px; border-radius: 5px; display: inline-block; font-weight: 600;">Save <?php echo formatPrice($prices['starter']['savings']); ?> (<?php echo $prices['starter']['discount']; ?>% OFF)</div>
                     </div>
                     <ul class="features">
                         <li>1 Comprehensive Copybook</li>
@@ -2032,9 +2089,9 @@
                     <div class="limited-stock-tag hot">🔥 HURRY! Only <span class="stock-counter" data-stock="bundle">5</span> Left!</div>
                     <h3>Learning Bundle</h3>
                     <div class="price">
-                        <div class="original-price">₦45,000</div>
-                        <div class="discount-price">₦32,000</div>
-                        <div class="savings">Save ₦13,000</div>
+                        <div class="original-price" style="text-decoration: line-through; color: #999; font-size: 1.2rem;"><?php echo formatPrice($prices['bundle']['original']); ?></div>
+                        <div class="discount-price" style="font-size: 2rem; color: #0a7c42; font-weight: bold; margin: 5px 0;"><?php echo formatPrice($prices['bundle']['price']); ?></div>
+                        <div class="savings" style="background: #ff3b3b; color: white; padding: 5px 10px; border-radius: 5px; display: inline-block; font-weight: 600;">Save <?php echo formatPrice($prices['bundle']['savings']); ?> (<?php echo $prices['bundle']['discount']; ?>% OFF)</div>
                     </div>
                     <ul class="features">
                         <li>2 Progressive Copybooks</li>
@@ -2052,9 +2109,9 @@
                     <div class="limited-stock-tag">📦 <span class="stock-counter" data-stock="collection">8</span> Sets Remaining</div>
                     <h3>Mastery Collection</h3>
                     <div class="price">
-                        <div class="original-price">₦67,500</div>
-                        <div class="discount-price">₦45,000</div>
-                        <div class="savings">Save ₦22,500</div>
+                        <div class="original-price" style="text-decoration: line-through; color: #999; font-size: 1.2rem;"><?php echo formatPrice($prices['collection']['original']); ?></div>
+                        <div class="discount-price" style="font-size: 2rem; color: #0a7c42; font-weight: bold; margin: 5px 0;"><?php echo formatPrice($prices['collection']['price']); ?></div>
+                        <div class="savings" style="background: #ff3b3b; color: white; padding: 5px 10px; border-radius: 5px; display: inline-block; font-weight: 600;">Save <?php echo formatPrice($prices['collection']['savings']); ?> (<?php echo $prices['collection']['discount']; ?>% OFF)</div>
                     </div>
                     <ul class="features">
                         <li>3 Comprehensive Copybooks</li>
@@ -2353,6 +2410,13 @@
     </footer>
 
     <script>
+        // Dynamic pricing from database
+        const PACKAGE_PRICES = {
+            'starter': <?php echo $prices['starter']['price']; ?>,
+            'bundle': <?php echo $prices['bundle']['price']; ?>,
+            'collection': <?php echo $prices['collection']['price']; ?>
+        };
+        
         // Wait for DOM to be fully loaded before initializing interactive elements
         document.addEventListener('DOMContentLoaded', function() {
         // Countdown Timer - fixed calendar deadline (today -> tomorrow end of day)
@@ -2552,8 +2616,7 @@
                                 // Track Purchase via Facebook Pixel (if available)
                                 try {
                                     const pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
-                                    const priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
-                                    const purchaseValue = priceMap[pkg] || null;
+                                    const purchaseValue = PACKAGE_PRICES[pkg] || null;
                                     if(window.fbq && purchaseValue){ fbq('track', 'Purchase', { currency: 'NGN', value: purchaseValue }); }
                                 } catch(e){ /* ignore pixel errors */ }
 
@@ -2591,14 +2654,8 @@
                 'collection': 'Mastery Collection (3 Sets)'
             };
             
-            const packagePrices = {
-                'starter': '₦18,000',
-                'bundle': '₦32,000',
-                'collection': '₦45,000'
-            };
-            
             const packageName = packageNames[formData.package] || formData.package;
-            const packagePrice = packagePrices[formData.package] || '';
+            const packagePrice = PACKAGE_PRICES[formData.package] ? '₦' + PACKAGE_PRICES[formData.package].toLocaleString() : '';
             
             const message = `
                 <div style="text-align: center; padding: 20px;">
@@ -2922,9 +2979,8 @@
             function getPurchaseValue(){
                 try{
                     var pkg = (document.getElementById('package') && document.getElementById('package').value) ? document.getElementById('package').value.toLowerCase() : '';
-                    var priceMap = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
-                    return priceMap[pkg] || 18000;
-                }catch(e){ return 18000; }
+                    return PACKAGE_PRICES[pkg] || PACKAGE_PRICES['starter'];
+                }catch(e){ return PACKAGE_PRICES['starter']; }
             }
 
             var btn = document.getElementById('addToCartButton');
