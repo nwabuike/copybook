@@ -2,8 +2,9 @@
 
 -- 1. Add expenses column to orders table
 ALTER TABLE orders 
-ADD COLUMN expenses DECIMAL(10,2) DEFAULT 0.00 AFTER quantity,
-ADD COLUMN profit DECIMAL(10,2) DEFAULT NULL AFTER expenses,
+ADD COLUMN cost_price DECIMAL(10,2) DEFAULT 0.00 AFTER quantity COMMENT 'Cost price of the product',
+ADD COLUMN expenses DECIMAL(10,2) DEFAULT 0.00 AFTER cost_price COMMENT 'Additional expenses (delivery, packaging, etc.)',
+ADD COLUMN profit DECIMAL(10,2) DEFAULT NULL AFTER expenses COMMENT 'Profit = Revenue - Cost Price - Expenses',
 ADD COLUMN expenses_notes TEXT AFTER profit,
 ADD COLUMN expenses_added_by INT AFTER expenses_notes,
 ADD COLUMN expenses_added_at TIMESTAMP NULL AFTER expenses_added_by;

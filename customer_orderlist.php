@@ -779,6 +779,9 @@ $canDelete = canPerform('delete_order');
             border-radius: 10px;
             width: 90%;
             max-width: 600px;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         
@@ -811,6 +814,8 @@ $canDelete = canPerform('delete_order');
         
         .modal-body {
             padding: 20px;
+            overflow-y: auto;
+            flex: 1;
         }
         
         .form-group {
@@ -1430,26 +1435,32 @@ $canDelete = canPerform('delete_order');
                         </select>
                     </div>
                     
-                    <!-- Expense Fields (Only visible for delivered orders) -->
+                    <!-- Expense Fields (Only visible for delivered and failed orders) -->
                     <div id="expense-section" style="display: none; border-top: 2px solid var(--primary-light); padding-top: 20px; margin-top: 20px;">
                         <h4 style="color: var(--primary); margin-bottom: 15px;">
-                            <i class="fas fa-money-bill-wave"></i> Expenses & Profit
+                            <i class="fas fa-money-bill-wave"></i> Cost & Profit Tracking
                         </h4>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="edit-revenue">Revenue (₦)</label>
+                                <label for="edit-revenue">Selling Price (₦)</label>
                                 <input type="number" class="form-control" id="edit-revenue" readonly style="background: #f0f0f0;">
                             </div>
                             <div class="form-group">
-                                <label for="edit-expenses">Expenses (₦)</label>
-                                <input type="number" class="form-control" id="edit-expenses" placeholder="Enter total expenses" step="100" min="0" onchange="calculateProfit()">
+                                <label for="edit-cost-price">Cost Price (₦)</label>
+                                <input type="number" class="form-control" id="edit-cost-price" placeholder="Enter cost price" step="100" min="0" onchange="calculateProfit()">
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="edit-profit">Profit (₦)</label>
+                            <label for="edit-expenses">Other Expenses (₦)</label>
+                            <input type="number" class="form-control" id="edit-expenses" placeholder="Enter additional expenses (delivery, packaging, etc.)" step="100" min="0" onchange="calculateProfit()">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-profit">Net Profit (₦)</label>
                             <input type="number" class="form-control" id="edit-profit" readonly style="background: #e8f5e9; font-weight: bold; color: var(--primary);">
+                            <small style="color: #666; display: block; margin-top: 5px;">Profit = Selling Price - Cost Price - Other Expenses</small>
                         </div>
                         
                         <div class="form-group">
@@ -2044,8 +2055,15 @@ $canDelete = canPerform('delete_order');
                 
                 // Set expense fields
                 document.getElementById('edit-revenue').value = revenue;
+                document.getElementById('edit-cost-price').value = order.cost_price || '';
                 document.getElementById('edit-expenses').value = order.expenses || '';
-                document.getElementById('edit-profit').value = order.profit || (revenue - (order.expenses || 0));
+                
+                // Calculate profit: revenue - cost_price - expenses
+                const costPrice = parseFloat(order.cost_price) || 0;
+                const expenses = parseFloat(order.expenses) || 0;
+                const calculatedProfit = revenue - costPrice - expenses;
+                document.getElementById('edit-profit').value = order.profit || calculatedProfit;
+                
                 document.getElementById('edit-expenses-notes').value = order.expenses_notes || '';
                 
                 // Show/hide expense section based on status
@@ -2060,18 +2078,20 @@ $canDelete = canPerform('delete_order');
             const status = document.getElementById('edit-status').value;
             const expenseSection = document.getElementById('expense-section');
             
-            if (status === 'delivered') {
+            // Show expense section for delivered and cancelled (failed) orders
+            if (status === 'delivered' || status === 'cancelled') {
                 expenseSection.style.display = 'block';
             } else {
                 expenseSection.style.display = 'none';
             }
         }
         
-        // Calculate profit when expenses change
+        // Calculate profit when cost price or expenses change
         function calculateProfit() {
             const revenue = parseFloat(document.getElementById('edit-revenue').value) || 0;
+            const costPrice = parseFloat(document.getElementById('edit-cost-price').value) || 0;
             const expenses = parseFloat(document.getElementById('edit-expenses').value) || 0;
-            const profit = revenue - expenses;
+            const profit = revenue - costPrice - expenses;
             
             document.getElementById('edit-profit').value = profit.toFixed(2);
         }
@@ -2452,6 +2472,7 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
             const orderId = document.getElementById('edit-order-id').value;
             const newStatus = document.getElementById('edit-status').value;
             const notes = document.getElementById('edit-notes').value;
+            const costPrice = document.getElementById('edit-cost-price').value;
             const expenses = document.getElementById('edit-expenses').value;
             const expensesNotes = document.getElementById('edit-expenses-notes').value;
             
@@ -2472,8 +2493,8 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
                 const data = await response.json();
                 
                 if (data.success) {
-                    // If status is delivered and expenses are provided, add expenses
-                    if (newStatus === 'delivered' && expenses && parseFloat(expenses) > 0) {
+                    // If status is delivered or cancelled and cost/expenses are provided, add expense data
+                    if ((newStatus === 'delivered' || newStatus === 'cancelled') && (costPrice || expenses)) {
                         const expenseResponse = await fetch('api/expenses.php?action=add_expense', {
                             method: 'POST',
                             headers: {
@@ -2481,7 +2502,8 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
                             },
                             body: JSON.stringify({
                                 order_id: orderId,
-                                expenses: parseFloat(expenses),
+                                cost_price: parseFloat(costPrice) || 0,
+                                expenses: parseFloat(expenses) || 0,
                                 notes: expensesNotes
                             })
                         });

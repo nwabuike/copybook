@@ -62,13 +62,14 @@ function addExpense() {
     
     $input = json_decode(file_get_contents('php://input'), true);
     
-    if (!isset($input['order_id']) || !isset($input['expenses'])) {
-        echo json_encode(['success' => false, 'message' => 'Order ID and expenses amount required']);
+    if (!isset($input['order_id'])) {
+        echo json_encode(['success' => false, 'message' => 'Order ID is required']);
         return;
     }
     
     $orderId = $conn->real_escape_string($input['order_id']);
-    $expenses = (float)$input['expenses'];
+    $costPrice = isset($input['cost_price']) ? (float)$input['cost_price'] : 0;
+    $expenses = isset($input['expenses']) ? (float)$input['expenses'] : 0;
     $notes = isset($input['notes']) ? $conn->real_escape_string($input['notes']) : '';
     $userId = $_SESSION['user_id'];
     
@@ -92,12 +93,13 @@ function addExpense() {
         default => 0
     };
     
-    // Calculate profit (revenue - expenses)
-    $profit = $revenue - $expenses;
+    // Calculate profit (revenue - cost_price - expenses)
+    $profit = $revenue - $costPrice - $expenses;
     
-    // Update order with expenses and profit
+    // Update order with cost price, expenses and profit
     $updateSql = "UPDATE orders 
-                  SET expenses = $expenses, 
+                  SET cost_price = $costPrice,
+                      expenses = $expenses, 
                       profit = $profit,
                       expenses_notes = '$notes',
                       expenses_added_by = $userId,
@@ -111,15 +113,16 @@ function addExpense() {
             'add_expense',
             'order',
             $orderId,
-            "Added expenses ₦" . number_format($expenses) . " to order #{$orderId}",
+            "Updated order #{$orderId}: Cost ₦" . number_format($costPrice) . ", Expenses ₦" . number_format($expenses) . ", Profit ₦" . number_format($profit),
             null,
-            ['expenses' => $expenses, 'profit' => $profit, 'notes' => $notes]
+            ['cost_price' => $costPrice, 'expenses' => $expenses, 'profit' => $profit, 'notes' => $notes]
         );
         
         echo json_encode([
             'success' => true,
-            'message' => 'Expenses added successfully',
+            'message' => 'Cost and expense data saved successfully',
             'data' => [
+                'cost_price' => $costPrice,
                 'expenses' => $expenses,
                 'profit' => $profit,
                 'revenue' => $revenue
@@ -277,22 +280,25 @@ function getProfitLossReport() {
     
     while ($row = $result->fetch_assoc()) {
         $revenue = (float)$row['revenue'];
+        $costPrice = (float)$row['cost_price'];
         $expenses = (float)$row['expenses'];
-        $profit = $revenue - $expenses;
+        $profit = $revenue - $costPrice - $expenses;
         
         $row['revenue'] = $revenue;
+        $row['cost_price'] = $costPrice;
         $row['profit'] = $profit;
         $row['formatted_revenue'] = '₦' . number_format($revenue);
+        $row['formatted_cost_price'] = '₦' . number_format($costPrice);
         $row['formatted_expenses'] = '₦' . number_format($expenses);
         $row['formatted_profit'] = '₦' . number_format($profit);
         
         $orders[] = $row;
         
         $totalRevenue += $revenue;
-        $totalExpenses += $expenses;
+        $totalExpenses += ($costPrice + $expenses);
         $totalProfit += $profit;
         
-        if ($expenses > 0) {
+        if ($costPrice > 0 || $expenses > 0) {
             $ordersWithExpenses++;
         } else {
             $ordersWithoutExpenses++;
