@@ -356,7 +356,9 @@ $currentUser = getCurrentUser();
 
         textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 200px;
+            font-family: inherit;
+            line-height: 1.6;
         }
 
         .btn {

@@ -483,6 +483,12 @@ $currentUser = getCurrentUser();
             border: 1px solid rgba(220, 53, 69, 0.3);
         }
 
+        /* Responsive table wrapper */
+        .table-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         @media (max-width: 768px) {
             header {
                 flex-direction: column;
@@ -495,12 +501,69 @@ $currentUser = getCurrentUser();
                 align-items: flex-start;
             }
 
+            .card-header h2 {
+                font-size: 20px;
+            }
+
             table {
-                font-size: 12px;
+                font-size: 11px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+
+            table thead,
+            table tbody,
+            table tr {
+                display: table;
+                width: 100%;
+                table-layout: fixed;
+            }
+
+            table th,
+            table td {
+                padding: 8px 4px;
             }
 
             .action-buttons {
                 flex-direction: column;
+                gap: 5px;
+            }
+
+            .action-buttons .btn {
+                font-size: 10px;
+                padding: 4px 8px;
+                width: 100%;
+            }
+
+            .badge {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
+
+            .modal-content {
+                width: 95%;
+                padding: 20px;
+                max-height: 85vh;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            table {
+                font-size: 10px;
+            }
+
+            .btn {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+
+            .action-buttons .btn i {
+                display: none;
             }
         }
     </style>
@@ -619,8 +682,9 @@ $currentUser = getCurrentUser();
 
             <div id="alert-container"></div>
 
-            <table id="users-table">
-                <thead>
+            <div class="table-wrapper">
+                <table id="users-table">
+                    <thead>
                     <tr>
                         <th>ID</th>
                         <th>Username</th>
@@ -640,7 +704,8 @@ $currentUser = getCurrentUser();
                         </td>
                     </tr>
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
 

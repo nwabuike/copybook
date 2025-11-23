@@ -1465,7 +1465,6 @@ $isAdminUser = isAdmin(); // Full admin access
                         <div class="form-group">
                             <label for="edit-profit">Net Profit (₦)</label>
                             <input type="number" class="form-control" id="edit-profit" readonly style="background: #e8f5e9; font-weight: bold; color: var(--primary);">
-                            <small style="color: #666; display: block; margin-top: 5px;">Profit = Selling Price - Cost Price - Other Expenses</small>
                         </div>
                         
                         <div class="form-group">
