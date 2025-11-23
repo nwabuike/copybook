@@ -9,65 +9,306 @@ $currentUser = getCurrentUser();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics & Accounting - Emerald Tech Hub</title>
+    <title>Analytics & Reports | Emerald Tech Hub</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <?php include 'php/content_protection.php'; ?>
     <style>
+        :root {
+            --primary: #0a7c42;
+            --primary-dark: #066633;
+            --primary-light: #e8f5e9;
+            --secondary: #ff6b6b;
+            --accent: #ffd166;
+            --dark: #2d3047;
+            --light: #f7f9fc;
+            --text: #333333;
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-
-        body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
         }
-
+        
+        body {
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
         .container {
+            width: 90%;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 20px;
         }
-
-        header {
+        
+        /* Layout with Sidebar */
+        .layout-wrapper {
+            display: flex;
+            flex: 1;
+            position: relative;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            width: 260px;
             background: white;
-            border-radius: 15px;
-            padding: 25px 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 999;
+            transition: transform 0.3s ease;
         }
-
-        header h1 {
-            color: #667eea;
+        
+        .sidebar-header {
+            padding: 25px 20px;
+            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+        
+        .sidebar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .sidebar-logo-icon {
+            font-size: 28px;
+        }
+        
+        .sidebar-logo-text {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-menu-item {
             margin-bottom: 5px;
         }
-
-        .breadcrumb {
+        
+        .sidebar-menu-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+        
+        .sidebar-menu-link:hover {
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+        
+        .sidebar-menu-link.active {
+            background: var(--primary-light);
+            color: var(--primary);
+            border-right: 3px solid var(--primary);
+        }
+        
+        .sidebar-menu-link i {
+            width: 20px;
+            text-align: center;
+            font-size: 16px;
+        }
+        
+        .sidebar-divider {
+            height: 1px;
+            background: #eee;
+            margin: 15px 20px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #eee;
+            margin-top: auto;
+        }
+        
+        .sidebar-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .sidebar-user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .sidebar-user-info {
+            flex: 1;
+        }
+        
+        .sidebar-user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        
+        .sidebar-user-role {
+            font-size: 0.75rem;
             color: #666;
+            text-transform: capitalize;
+        }
+        
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+        }
+        
+        .sidebar-overlay.active {
+            display: block;
+        }
+        
+        /* Main Content Wrapper */
+        .main-wrapper {
+            flex: 1;
+            margin-left: 260px;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .page-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             font-size: 14px;
+            color: #666;
+        }
+        
+        .page-breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .page-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .header-user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-user-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        .header-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header-user-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .header-user-role {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: capitalize;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
         }
 
-        .breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
         }
 
         .date-filter {
             background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             display: flex;
             gap: 15px;
-            align-items: end;
+            align-items: flex-end;
             flex-wrap: wrap;
         }
 
@@ -78,7 +319,7 @@ $currentUser = getCurrentUser();
 
         .filter-group label {
             display: block;
-            color: #333;
+            color: var(--text);
             font-weight: 600;
             margin-bottom: 8px;
             font-size: 14px;
@@ -86,30 +327,46 @@ $currentUser = getCurrentUser();
 
         .filter-group input, .filter-group select {
             width: 100%;
-            padding: 10px;
+            padding: 10px 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .filter-group input:focus, .filter-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
         }
 
         .btn {
-            background: #667eea;
+            background: var(--primary);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 10px 20px;
             border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
 
         .btn:hover {
-            background: #5568d3;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(10, 124, 66, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
         }
 
         .btn-success {
@@ -129,11 +386,17 @@ $currentUser = getCurrentUser();
 
         .stat-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             position: relative;
             overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
         }
 
         .stat-card::before {
@@ -143,7 +406,7 @@ $currentUser = getCurrentUser();
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary);
         }
 
         .stat-header {
@@ -154,8 +417,8 @@ $currentUser = getCurrentUser();
         }
 
         .stat-icon {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -164,18 +427,18 @@ $currentUser = getCurrentUser();
         }
 
         .stat-icon.revenue {
-            background: rgba(40, 167, 69, 0.1);
-            color: #28a745;
+            background: rgba(10, 124, 66, 0.1);
+            color: var(--primary);
         }
 
         .stat-icon.orders {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--secondary);
         }
 
         .stat-icon.average {
-            background: rgba(255, 193, 7, 0.1);
-            color: #ffc107;
+            background: rgba(255, 209, 102, 0.1);
+            color: var(--accent);
         }
 
         .stat-icon.profit {
@@ -185,8 +448,8 @@ $currentUser = getCurrentUser();
 
         .stat-value {
             font-size: 32px;
-            font-weight: bold;
-            color: #333;
+            font-weight: 700;
+            color: var(--text);
             margin-bottom: 5px;
         }
 
@@ -194,13 +457,15 @@ $currentUser = getCurrentUser();
             color: #666;
             font-size: 14px;
             margin-bottom: 10px;
+            font-weight: 500;
         }
 
         .stat-change {
-            font-size: 12px;
+            font-size: 13px;
             display: flex;
             align-items: center;
             gap: 5px;
+            font-weight: 600;
         }
 
         .stat-change.positive {
@@ -213,15 +478,23 @@ $currentUser = getCurrentUser();
 
         .content-card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
         }
 
         .content-card h2 {
-            color: #333;
-            margin-bottom: 20px;
+            color: var(--text);
+            font-size: 20px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -235,6 +508,7 @@ $currentUser = getCurrentUser();
 
         .table-responsive {
             overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
         }
 
         table {
@@ -244,9 +518,25 @@ $currentUser = getCurrentUser();
         }
 
         th, td {
-            padding: 12px;
+            padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: var(--light);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        td {
+            font-size: 14px;
+            color: #555;
+        }
+
+        tbody tr:hover {
+            background: var(--primary-light);
         }
 
         th {
@@ -355,6 +645,54 @@ $currentUser = getCurrentUser();
             color: #dc3545;
         }
 
+        /* Sidebar Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .sidebar-overlay.active {
+                display: block;
+            }
+            
+            .sidebar-toggle {
+                display: flex;
+            }
+            
+            .main-wrapper {
+                margin-left: 0;
+            }
+        }
+
         @media (max-width: 768px) {
             .date-filter {
                 flex-direction: column;
@@ -375,17 +713,154 @@ $currentUser = getCurrentUser();
             .chart-container {
                 height: 250px;
             }
+
+            .header-user-info {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-chart-line"></i> Analytics & Accounting Dashboard</h1>
-            <div class="breadcrumb">
-                <a href="index.php">Home</a> / <a href="admin_dashboard_crm.php">Dashboard</a> / <span>Analytics</span>
+    <!-- Layout Wrapper -->
+    <div class="layout-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.php" class="sidebar-logo">
+                    <div class="sidebar-logo-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <div class="sidebar-logo-text">Emerald Tech Hub</div>
+                </a>
             </div>
-        </header>
+            
+            <nav class="sidebar-nav">
+                <ul class="sidebar-menu">
+                    <li class="sidebar-menu-item">
+                        <a href="index.php" class="sidebar-menu-link">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="admin_dashboard_crm.php" class="sidebar-menu-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard CRM</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="bulk_messaging.php" class="sidebar-menu-link">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Bulk Messaging</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="agent_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-user-tie"></i>
+                            <span>Delivery Agents</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="sales_notifications.php" class="sidebar-menu-link">
+                            <i class="fas fa-bell"></i>
+                            <span>Notifications</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="stock_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-boxes"></i>
+                            <span>Stock Management</span>
+                        </a>
+                    </li>
+                    
+                    <div class="sidebar-divider"></div>
+                    <li class="sidebar-menu-item">
+                        <a href="user_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-users-cog"></i>
+                            <span>User Management</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="pricing_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-tags"></i>
+                            <span>Pricing Management</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="analytics.php" class="sidebar-menu-link active">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="profit_loss_report.php" class="sidebar-menu-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Profit/Loss Report</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="activity_logs.php" class="sidebar-menu-link">
+                            <i class="fas fa-history"></i>
+                            <span>Activity Logs</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="sidebar-user">
+                    <div class="sidebar-user-avatar">
+                        <?= strtoupper(substr($currentUser['full_name'], 0, 2)) ?>
+                    </div>
+                    <div class="sidebar-user-info">
+                        <div class="sidebar-user-name"><?= htmlspecialchars($currentUser['full_name']) ?></div>
+                        <div class="sidebar-user-role"><?= htmlspecialchars($currentUser['role']) ?></div>
+                    </div>
+                </div>
+                <a href="logout.php" class="btn btn-secondary" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+        
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Header -->
+            <header>
+                <div class="container">
+                    <div class="header-content">
+                        <div class="page-breadcrumb">
+                            <i class="fas fa-home"></i>
+                            <a href="index.php">Home</a>
+                            <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                            <a href="admin_dashboard_crm.php">Dashboard</a>
+                            <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
+                            <span>Analytics & Reports</span>
+                        </div>
+                        <div class="header-actions">
+                            <div class="header-user">
+                                <div class="header-user-avatar">
+                                    <?= strtoupper(substr($currentUser['full_name'], 0, 2)) ?>
+                                </div>
+                                <div class="header-user-info">
+                                    <div class="header-user-name"><?= htmlspecialchars($currentUser['full_name']) ?></div>
+                                    <div class="header-user-role"><?= htmlspecialchars($currentUser['role']) ?></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content -->
+            <section class="main-content">
+                <div class="container">
+                    <div class="page-header">
+                        <h1 class="page-title"><i class="fas fa-chart-bar"></i> Analytics & Reports</h1>
+                    </div>
 
         <!-- Date Filter -->
         <div class="date-filter">
@@ -604,7 +1079,9 @@ $currentUser = getCurrentUser();
 
         <!-- Agent Performance -->
         <div class="content-card">
-            <h2><i class="fas fa-user-tie"></i> Agent Performance</h2>
+            <div class="card-header">
+                <h2><i class="fas fa-user-tie"></i> Agent Performance</h2>
+            </div>
             <div class="table-responsive">
                 <table id="agents-table">
                     <thead>
@@ -627,7 +1104,16 @@ $currentUser = getCurrentUser();
                 </table>
             </div>
         </div>
-    </div>
+        
+                </div>
+            </section>
+        </div><!-- End main-wrapper -->
+    </div><!-- End layout-wrapper -->
+    
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <script>
         let revenueChart, packageChart, statusChart;
@@ -1148,6 +1634,76 @@ $currentUser = getCurrentUser();
                 console.error('Error exporting:', error);
                 alert('Error exporting data');
             }
+        }
+
+        // Load Agent Performance Data
+        async function loadAgentPerformance() {
+            try {
+                const response = await fetch('api/agents.php?action=performance');
+                const data = await response.json();
+
+                if (data.success) {
+                    updateAgentsTable(data.data);
+                }
+            } catch (error) {
+                console.error('Error loading agent performance:', error);
+                document.querySelector('#agents-table tbody').innerHTML = 
+                    '<tr><td colspan="6" class="no-data"><i class="fas fa-exclamation-circle"></i><br>Error loading agent data</td></tr>';
+            }
+        }
+
+        function updateAgentsTable(agents) {
+            const tbody = document.querySelector('#agents-table tbody');
+
+            if (!agents || agents.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" class="no-data"><i class="fas fa-user-tie"></i><br>No agent data available</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = agents.map(agent => {
+                const successRate = agent.total_orders > 0 
+                    ? ((agent.delivered / agent.total_orders) * 100).toFixed(1) 
+                    : '0.0';
+                
+                return `
+                    <tr>
+                        <td><strong>${agent.name}</strong></td>
+                        <td>${agent.states_covered || 0}</td>
+                        <td>${agent.total_orders || 0}</td>
+                        <td>${agent.delivered || 0}</td>
+                        <td class="amount">₦${formatNumber(agent.revenue || 0)}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="font-weight: 600; color: ${successRate >= 80 ? '#28a745' : successRate >= 50 ? '#ffc107' : '#dc3545'};">
+                                    ${successRate}%
+                                </span>
+                                <div style="flex: 1; height: 8px; background: #eee; border-radius: 4px; overflow: hidden;">
+                                    <div style="width: ${successRate}%; height: 100%; background: ${successRate >= 80 ? '#28a745' : successRate >= 50 ? '#ffc107' : '#dc3545'}; transition: width 0.3s;"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Sidebar toggle functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+        }
+        
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
         }
     </script>
 </body>
