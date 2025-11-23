@@ -189,26 +189,28 @@ $currentUser = getCurrentUser();
 
         /* Mobile Toggle */
         .sidebar-toggle {
-            display: none;
             position: fixed;
-            top: 15px;
-            left: 15px;
-            width: 45px;
-            height: 45px;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
             background: var(--primary);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 18px;
+            border-radius: 50%;
+            font-size: 20px;
             cursor: pointer;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            display: none;
+            align-items: center;
+            justify-content: center;
             transition: var(--transition);
         }
         
         .sidebar-toggle:hover {
             background: var(--primary-dark);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            transform: scale(1.05);
         }
         
         .sidebar-overlay {
@@ -683,17 +685,11 @@ $currentUser = getCurrentUser();
             
             .sidebar-toggle {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
             
             .main-wrapper {
                 margin-left: 0;
-            }
-            
-            /* Adjust header for toggle button */
-            .page-breadcrumb {
-                margin-left: 50px;
+                width: 100%;
             }
         }
 
@@ -807,9 +803,6 @@ $currentUser = getCurrentUser();
     </style>
 </head>
 <body>
-    <!-- Sidebar Overlay for Mobile -->
-    <div class="sidebar-overlay" id="sidebar-overlay"></div>
-
     <!-- Layout Wrapper -->
     <div class="layout-wrapper">
         <!-- Sidebar -->
@@ -913,6 +906,9 @@ $currentUser = getCurrentUser();
                 </a>
             </div>
         </aside>
+        
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
         
         <!-- Main Content Wrapper -->
         <div class="main-wrapper">
@@ -1323,7 +1319,8 @@ $currentUser = getCurrentUser();
                 }
             });
         });
-    </script>
+                </div>
+            </section>
         </div><!-- End main-wrapper -->
     </div><!-- End layout-wrapper -->
     
@@ -1331,5 +1328,7 @@ $currentUser = getCurrentUser();
     <button class="sidebar-toggle" id="sidebar-toggle">
         <i class="fas fa-bars"></i>
     </button>
+
+    </script>
 </body>
 </html>
