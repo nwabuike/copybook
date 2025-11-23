@@ -1,5 +1,7 @@
 <?php
 // generate_password.php - Generate password hashes for testing
+require_once 'php/auth.php';
+requireAdmin();
 echo "Password Hashes for Demo Accounts:\n\n";
 
 $passwords = [

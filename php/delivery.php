@@ -1,4 +1,6 @@
 <?php
+require_once 'auth.php';
+requireLogin();
 include 'db.php';
 date_default_timezone_set("Africa/Lagos");
 

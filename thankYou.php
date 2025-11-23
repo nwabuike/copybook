@@ -1,3 +1,7 @@
+<?php
+require_once 'php/auth.php';
+requireLogin();
+?>
 <!doctype html>
 <html lang="en">
 

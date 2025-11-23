@@ -1,4 +1,6 @@
 <?php
+require_once 'php/auth.php';
+requireLogin();
 require_once 'php/db.php';
 
 function esc($s) {

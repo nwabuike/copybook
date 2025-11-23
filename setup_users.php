@@ -1,5 +1,7 @@
 <?php
 // Ensure all test users exist with correct passwords
+require_once 'php/auth.php';
+requireAdmin();
 require_once 'php/db.php';
 
 $users = [

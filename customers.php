@@ -1,4 +1,6 @@
 <?php
+require_once 'php/auth.php';
+requireLogin();
 
 // Import the file where we defined the connection to Database.     
 require_once "php/db.php";

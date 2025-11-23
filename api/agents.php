@@ -1,5 +1,7 @@
 <?php
 // api/agents.php - Delivery Agents Management API
+require_once '../php/auth.php';
+requireLogin();
 require_once '../php/db.php';
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');

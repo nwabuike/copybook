@@ -1,5 +1,7 @@
 <?php
 // Update user passwords with correct hashes
+require_once 'php/auth.php';
+requireAdmin();
 require_once 'php/db.php';
 
 $users = [
