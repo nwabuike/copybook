@@ -986,21 +986,40 @@ $currentUser = getCurrentUser();
         // Message type change handlers
         document.getElementById('bulk-message-type').addEventListener('change', function() {
             const customSection = document.getElementById('custom-message-section');
-            if (this.value === 'custom') {
-                customSection.style.display = 'block';
-            } else {
-                customSection.style.display = 'none';
+            const messageType = this.value;
+            
+            // Always show the custom message section so users can edit
+            customSection.style.display = 'block';
+            
+            // If not custom, load the template message into the textarea for editing
+            if (messageType !== 'custom' && selectedOrders.length > 0) {
+                const sampleOrder = selectedOrders[0];
+                const templateMessage = formatOrderMessage(sampleOrder, messageType);
+                document.getElementById('bulk-custom-message').value = templateMessage;
+            } else if (messageType === 'custom') {
+                // Clear the textarea for custom message
+                document.getElementById('bulk-custom-message').value = '';
             }
+            
             updateBulkPreview();
         });
 
         document.getElementById('individual-message-type').addEventListener('change', function() {
             const customSection = document.getElementById('individual-custom-message-section');
-            if (this.value === 'custom') {
-                customSection.style.display = 'block';
-            } else {
-                customSection.style.display = 'none';
+            const messageType = this.value;
+            
+            // Always show the custom message section so users can edit
+            customSection.style.display = 'block';
+            
+            // If not custom, load the template message into the textarea for editing
+            if (messageType !== 'custom' && individualOrder) {
+                const templateMessage = formatOrderMessage(individualOrder, messageType);
+                document.getElementById('individual-custom-message').value = templateMessage;
+            } else if (messageType === 'custom') {
+                // Clear the textarea for custom message
+                document.getElementById('individual-custom-message').value = '';
             }
+            
             updateIndividualPreview();
         });
 
@@ -1078,7 +1097,6 @@ $currentUser = getCurrentUser();
 
         // Update bulk message preview
         function updateBulkPreview() {
-            const messageType = document.getElementById('bulk-message-type').value;
             const previewEl = document.getElementById('bulk-message-preview');
 
             if (selectedOrders.length === 0) {
@@ -1086,14 +1104,9 @@ $currentUser = getCurrentUser();
                 return;
             }
 
-            const sampleOrder = selectedOrders[0];
-            
-            if (messageType === 'custom') {
-                const customMessage = document.getElementById('bulk-custom-message').value;
-                previewEl.textContent = customMessage || 'Enter custom message...';
-            } else {
-                previewEl.textContent = formatOrderMessage(sampleOrder, messageType);
-            }
+            // Always use the custom message textarea value (which may contain template or custom message)
+            const customMessage = document.getElementById('bulk-custom-message').value;
+            previewEl.textContent = customMessage || 'Select a message type or enter custom message...';
         }
 
         // Load individual order
@@ -1132,15 +1145,11 @@ $currentUser = getCurrentUser();
         function updateIndividualPreview() {
             if (!individualOrder) return;
 
-            const messageType = document.getElementById('individual-message-type').value;
             const previewEl = document.getElementById('individual-message-preview');
 
-            if (messageType === 'custom') {
-                const customMessage = document.getElementById('individual-custom-message').value;
-                previewEl.textContent = customMessage || 'Enter custom message...';
-            } else {
-                previewEl.textContent = formatOrderMessage(individualOrder, messageType);
-            }
+            // Always use the custom message textarea value (which may contain template or custom message)
+            const customMessage = document.getElementById('individual-custom-message').value;
+            previewEl.textContent = customMessage || 'Select a message type or enter custom message...';
         }
 
         // Format order message
@@ -1228,9 +1237,8 @@ $currentUser = getCurrentUser();
             
             ordersWithPhone.forEach((order, index) => {
                 setTimeout(() => {
-                    const message = messageType === 'custom' 
-                        ? document.getElementById('bulk-custom-message').value
-                        : formatOrderMessage(order, messageType);
+                    // Always use the custom message textarea (contains template or custom message)
+                    const message = document.getElementById('bulk-custom-message').value;
                     
                     let phone = order.phone.replace(/[^0-9]/g, '');
                     if (phone.startsWith('0')) {
@@ -1266,11 +1274,9 @@ $currentUser = getCurrentUser();
             }
 
             const messageType = document.getElementById('bulk-message-type').value;
-            const sampleOrder = ordersWithEmail[0];
             
-            const message = messageType === 'custom'
-                ? document.getElementById('bulk-custom-message').value
-                : formatOrderMessage(sampleOrder, messageType);
+            // Always use the custom message textarea (contains template or custom message)
+            const message = document.getElementById('bulk-custom-message').value;
             
             const subject = messageType === 'confirmation' 
                 ? 'Order Confirmation - Sank Magic Copy Book'
@@ -1358,10 +1364,8 @@ $currentUser = getCurrentUser();
                 return;
             }
 
-            const messageType = document.getElementById('individual-message-type').value;
-            const message = messageType === 'custom'
-                ? document.getElementById('individual-custom-message').value
-                : formatOrderMessage(individualOrder, messageType);
+            // Always use the custom message textarea (contains template or custom message)
+            const message = document.getElementById('individual-custom-message').value;
             
             let phone = individualOrder.phone.replace(/[^0-9]/g, '');
             if (phone.startsWith('0')) {
@@ -1382,9 +1386,9 @@ $currentUser = getCurrentUser();
             }
 
             const messageType = document.getElementById('individual-message-type').value;
-            const message = messageType === 'custom'
-                ? document.getElementById('individual-custom-message').value
-                : formatOrderMessage(individualOrder, messageType);
+            
+            // Always use the custom message textarea (contains template or custom message)
+            const message = document.getElementById('individual-custom-message').value;
             
             const subject = messageType === 'confirmation'
                 ? `Order Confirmation - #${individualOrder.id} - Sank Magic Copy Book`
