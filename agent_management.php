@@ -1173,13 +1173,8 @@ $canDelete = canPerform('delete_agent');
                     </div>
                 </div>
             </section>
-
+        </div><!-- End main-wrapper -->
     </div><!-- End layout-wrapper -->
-
-    <!-- Mobile Sidebar Toggle -->
-    <button class="sidebar-toggle" id="sidebar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
 
     <!-- Add/Edit Agent Modal -->
     <div class="modal" id="agent-modal">
@@ -1642,16 +1637,7 @@ $canDelete = canPerform('delete_agent');
                 sidebarOverlay.classList.remove('active');
             }
         });
-    </script>
-        </div><!-- End main-wrapper -->
-    </div><!-- End layout-wrapper -->
-    
-    <!-- Mobile Sidebar Toggle -->
-    <button class="sidebar-toggle" id="sidebar-toggle">
-        <i class="fas fa-bars"></i>
-    </button>
-    
-    <script>
+        
         // Sidebar toggle functionality
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebar-toggle');
@@ -1671,5 +1657,10 @@ $canDelete = canPerform('delete_agent');
             });
         }
     </script>
+    
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 </body>
 </html>

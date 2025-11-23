@@ -1040,6 +1040,10 @@ $currentUser = getCurrentUser();
             </form>
         </div>
     </div>
+                </div>
+            </section>
+        </div><!-- End main-wrapper -->
+    </div><!-- End layout-wrapper -->
 
     <script>
         let users = [];
@@ -1320,10 +1324,6 @@ $currentUser = getCurrentUser();
             });
         });
     </script>
-                </div>
-            </section>
-        </div><!-- End main-wrapper -->
-    </div><!-- End layout-wrapper -->
     
     <!-- Mobile Sidebar Toggle -->
     <button class="sidebar-toggle" id="sidebar-toggle">
