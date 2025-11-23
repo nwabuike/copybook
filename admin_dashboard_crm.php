@@ -707,6 +707,16 @@ $isAdminUser = isAdmin(); // Full admin access
             color: white;
         }
         
+        .invoice-btn {
+            background: #e3f2fd;
+            color: #667eea;
+        }
+        
+        .invoice-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
         /* Copy notification */
         .copy-notification {
             position: fixed;
@@ -1858,6 +1868,11 @@ $isAdminUser = isAdmin(); // Full admin access
                             <button class="action-btn email-btn" data-id="${order.id}" title="Send Email">
                                 <i class="fas fa-envelope"></i>
                             </button>
+                            ${status === 'delivered' && order.email ? `
+                            <button class="action-btn invoice-btn" data-id="${order.id}" title="Send Invoice" style="background: ${order.invoice_sent ? '#28a745' : '#667eea'};">
+                                <i class="fas fa-file-invoice"></i>
+                            </button>
+                            ` : ''}
                             <button class="action-btn copy-btn" data-id="${order.id}" title="Copy order details">
                                 <i class="fas fa-copy"></i>
                             </button>
@@ -1951,6 +1966,13 @@ $isAdminUser = isAdmin(); // Full admin access
                 btn.addEventListener('click', function() {
                     const orderId = this.getAttribute('data-id');
                     sendEmail(orderId);
+                });
+            });
+            
+            document.querySelectorAll('.invoice-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const orderId = this.getAttribute('data-id');
+                    sendInvoice(orderId);
                 });
             });
             
@@ -2220,6 +2242,83 @@ $isAdminUser = isAdmin(); // Full admin access
             
             // Show message type selection
             showMessageTypeModal(orderId, 'email');
+        }
+        
+        // Send Invoice
+        async function sendInvoice(orderId) {
+            const order = orders.find(o => o.id == orderId);
+            
+            if (!order) {
+                alert('Order not found');
+                return;
+            }
+            
+            if (!order.email) {
+                alert('Customer email not available. Cannot send invoice.');
+                return;
+            }
+            
+            if (order.status !== 'delivered') {
+                alert('Invoice can only be sent for delivered orders.');
+                return;
+            }
+            
+            // Confirm sending
+            const alreadySent = order.invoice_sent ? ' (Invoice already sent previously)' : '';
+            if (!confirm(`Send invoice to ${order.email}?${alreadySent}`)) {
+                return;
+            }
+            
+            // Show loading state
+            const loadingMessage = document.createElement('div');
+            loadingMessage.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #667eea; color: white; padding: 15px 25px; border-radius: 5px; z-index: 10000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);';
+            loadingMessage.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending invoice...';
+            document.body.appendChild(loadingMessage);
+            
+            try {
+                const response = await fetch('api/invoices.php?action=send', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order_id: orderId })
+                });
+                
+                const result = await response.json();
+                
+                // Remove loading message
+                if (loadingMessage.parentNode) {
+                    document.body.removeChild(loadingMessage);
+                }
+                
+                if (result.success) {
+                    // Show success message
+                    const successMessage = document.createElement('div');
+                    successMessage.style.cssText = 'position: fixed; top: 20px; right: 20px; background: #28a745; color: white; padding: 15px 25px; border-radius: 5px; z-index: 10000; box-shadow: 0 2px 10px rgba(0,0,0,0.2);';
+                    successMessage.innerHTML = '<i class="fas fa-check-circle"></i> Invoice sent successfully!';
+                    document.body.appendChild(successMessage);
+                    
+                    // Reload orders to update invoice status
+                    loadOrders();
+                    
+                    // Remove success message after 3 seconds
+                    setTimeout(() => {
+                        if (successMessage.parentNode) {
+                            document.body.removeChild(successMessage);
+                        }
+                    }, 3000);
+                } else {
+                    throw new Error(result.message || 'Failed to send invoice');
+                }
+                
+            } catch (error) {
+                // Remove loading message if it exists
+                if (loadingMessage.parentNode) {
+                    document.body.removeChild(loadingMessage);
+                }
+                
+                // Show error message
+                alert('Failed to send invoice: ' + error.message);
+                console.error('Invoice error:', error);
+            }
         }
         
         // Send Email with type via SMTP

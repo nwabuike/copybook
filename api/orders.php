@@ -462,6 +462,37 @@ function updateOrderStatus() {
             ['status' => $newStatus, 'notes' => $notes]
         );
         
+        // Automatically send invoice when order is marked as delivered
+        if ($newStatus === 'delivered' && $oldStatus !== 'delivered') {
+            require_once __DIR__ . '/../php/invoice_generator.php';
+            
+            // Get fresh order data with all fields
+            $freshOrderSql = "SELECT * FROM orders WHERE id = '$orderId'";
+            $freshOrderResult = $conn->query($freshOrderSql);
+            if ($freshOrderResult && $freshOrderResult->num_rows > 0) {
+                $freshOrder = $freshOrderResult->fetch_assoc();
+                
+                // Send invoice asynchronously (don't block the response)
+                $invoiceResult = sendInvoiceEmail($freshOrder);
+                
+                // Update invoice tracking if sent successfully
+                if ($invoiceResult['success']) {
+                    $conn->query("UPDATE orders SET invoice_sent = 1, invoice_sent_at = NOW() WHERE id = '$orderId'");
+                    
+                    // Log invoice sending
+                    logActivity(
+                        $_SESSION['user_id'],
+                        'send_invoice',
+                        'order',
+                        $orderId,
+                        "Invoice automatically sent to {$freshOrder['email']}",
+                        [],
+                        ['invoice_sent' => true, 'method' => $invoiceResult['method'] ?? 'auto']
+                    );
+                }
+            }
+        }
+        
         echo json_encode(['success' => true, 'message' => 'Order updated successfully']);
     } else {
         echo json_encode(['success' => false, 'message' => 'Failed to update order: ' . $conn->error]);
