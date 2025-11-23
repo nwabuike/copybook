@@ -1319,6 +1319,7 @@ $currentUser = getCurrentUser();
                 }
             });
         });
+    </script>
                 </div>
             </section>
         </div><!-- End main-wrapper -->
@@ -1328,7 +1329,5 @@ $currentUser = getCurrentUser();
     <button class="sidebar-toggle" id="sidebar-toggle">
         <i class="fas fa-bars"></i>
     </button>
-
-    </script>
 </body>
 </html>
