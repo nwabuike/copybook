@@ -745,13 +745,20 @@ $currentUser = getCurrentUser();
         function updateSummaryStats(data) {
             const summary = data.summary;
             
-            // Calculate net profit from all orders
+            // Calculate net profit ONLY from delivered and cancelled orders (where expenses are tracked)
             let totalProfit = 0;
+            let profitableOrdersCount = 0;
+            
             data.orders.forEach(order => {
-                const revenue = getAmount(order.pack);
-                const costPrice = parseFloat(order.cost_price) || 0;
-                const expenses = parseFloat(order.expenses) || 0;
-                totalProfit += (revenue - costPrice - expenses);
+                // Only calculate profit for delivered or cancelled orders
+                if (order.status === 'delivered' || order.status === 'cancelled') {
+                    const revenue = getAmount(order.pack);
+                    const costPrice = parseFloat(order.cost_price) || 0;
+                    const expenses = parseFloat(order.expenses) || 0;
+                    const profit = revenue - costPrice - expenses;
+                    totalProfit += profit;
+                    profitableOrdersCount++;
+                }
             });
 
             document.getElementById('total-revenue').textContent = '₦' + formatNumber(summary.total_revenue);
@@ -765,13 +772,13 @@ $currentUser = getCurrentUser();
             const profitChange = document.getElementById('profit-change');
             if (totalProfit > 0) {
                 profitChange.className = 'stat-change positive';
-                profitChange.innerHTML = '<i class="fas fa-arrow-up"></i> Profit earned';
+                profitChange.innerHTML = `<i class="fas fa-arrow-up"></i> From ${profitableOrdersCount} completed orders`;
             } else if (totalProfit < 0) {
                 profitChange.className = 'stat-change negative';
-                profitChange.innerHTML = '<i class="fas fa-arrow-down"></i> Loss incurred';
+                profitChange.innerHTML = `<i class="fas fa-arrow-down"></i> Loss from ${profitableOrdersCount} orders`;
             } else {
                 profitChange.className = 'stat-change';
-                profitChange.innerHTML = '<i class="fas fa-minus"></i> Break even';
+                profitChange.innerHTML = `<i class="fas fa-minus"></i> ${profitableOrdersCount} orders tracked`;
             }
         }
 
@@ -910,22 +917,46 @@ $currentUser = getCurrentUser();
                 const revenue = getAmount(order.pack);
                 const costPrice = parseFloat(order.cost_price) || 0;
                 const expenses = parseFloat(order.expenses) || 0;
-                const profit = revenue - costPrice - expenses;
                 const totalCost = costPrice + expenses;
                 
-                return `
-                    <tr>
-                        <td><strong>${order.id}</strong></td>
-                        <td>${order.fullname}</td>
-                        <td>${packageNames[order.pack] || order.pack}</td>
-                        <td>${order.state}</td>
-                        <td class="amount">₦${formatNumber(revenue)}</td>
-                        <td style="color: #dc3545;">₦${formatNumber(totalCost)}</td>
-                        <td class="amount" style="color: ${profit >= 0 ? '#28a745' : '#dc3545'};">₦${formatNumber(profit)}</td>
-                        <td><span class="status-badge status-${order.status}">${order.status}</span></td>
-                        <td>${new Date(order.created_at).toLocaleDateString()}</td>
-                    </tr>
-                `;
+                // Only calculate profit for delivered or cancelled orders
+                let profitDisplay = '-';
+                let costDisplay = '-';
+                
+                if (order.status === 'delivered' || order.status === 'cancelled') {
+                    const profit = revenue - costPrice - expenses;
+                    profitDisplay = `₦${formatNumber(profit)}`;
+                    costDisplay = `₦${formatNumber(totalCost)}`;
+                    
+                    return `
+                        <tr>
+                            <td><strong>${order.id}</strong></td>
+                            <td>${order.fullname}</td>
+                            <td>${packageNames[order.pack] || order.pack}</td>
+                            <td>${order.state}</td>
+                            <td class="amount">₦${formatNumber(revenue)}</td>
+                            <td style="color: #dc3545;">${costDisplay}</td>
+                            <td class="amount" style="color: ${profit >= 0 ? '#28a745' : '#dc3545'};">${profitDisplay}</td>
+                            <td><span class="status-badge status-${order.status}">${order.status}</span></td>
+                            <td>${new Date(order.created_at).toLocaleDateString()}</td>
+                        </tr>
+                    `;
+                } else {
+                    // For pending/processing/shipped orders, show dashes for cost and profit
+                    return `
+                        <tr>
+                            <td><strong>${order.id}</strong></td>
+                            <td>${order.fullname}</td>
+                            <td>${packageNames[order.pack] || order.pack}</td>
+                            <td>${order.state}</td>
+                            <td class="amount">₦${formatNumber(revenue)}</td>
+                            <td style="color: #999;">-</td>
+                            <td style="color: #999;">-</td>
+                            <td><span class="status-badge status-${order.status}">${order.status}</span></td>
+                            <td>${new Date(order.created_at).toLocaleDateString()}</td>
+                        </tr>
+                    `;
+                }
             }).join('');
         }
 
