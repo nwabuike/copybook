@@ -352,9 +352,9 @@
                 if (data.success) {
                     showAlert('Login successful! Redirecting...', 'success');
                     
-                    // Get redirect URL from query string or default to customer_orderlist.php
+                    // Get redirect URL from query string or default to admin_dashboard_crm.php
                     const urlParams = new URLSearchParams(window.location.search);
-                    const redirect = urlParams.get('redirect') || 'customer_orderlist.php';
+                    const redirect = urlParams.get('redirect') || 'admin_dashboard_crm.php';
                     
                     setTimeout(() => {
                         window.location.href = redirect;

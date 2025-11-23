@@ -108,7 +108,7 @@ function sendNewOrderNotifications($orderId, $customerName, $package, $state, $p
         $message .= "Time: $currentDate\n\n";
         $message .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n";
         $message .= "👉 Login to view and manage this order:\n";
-        $message .= "https://" . $_SERVER['HTTP_HOST'] . "/customer_orderlist.php\n\n";
+        $message .= "https://" . $_SERVER['HTTP_HOST'] . "/admin_dashboard_crm.php\n\n";
         $message .= "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n";
         $message .= "To manage notification settings, visit:\n";
         $message .= "https://" . $_SERVER['HTTP_HOST'] . "/sales_notifications.php\n\n";

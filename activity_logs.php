@@ -273,10 +273,10 @@ $currentUser = getCurrentUser();
             <div class="header-left">
                 <h1><i class="fas fa-history"></i> Activity Logs</h1>
                 <div class="breadcrumb">
-                    <a href="customer_orderlist.php">Dashboard</a> / <span>Activity Logs</span>
+                    <a href="admin_dashboard_crm.php">Dashboard</a> / <span>Activity Logs</span>
                 </div>
             </div>
-            <a href="customer_orderlist.php" class="btn">
+            <a href="admin_dashboard_crm.php" class="btn">
                 <i class="fas fa-arrow-left"></i> Back to Dashboard
             </a>
         </header>

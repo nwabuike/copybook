@@ -256,7 +256,7 @@ $currentUser = getCurrentUser();
 <body>
     <div class="header">
         <div class="container">
-            <a href="customer_orderlist.php" class="back-link">
+            <a href="admin_dashboard_crm.php" class="back-link">
                 <i class="fas fa-arrow-left"></i> Back to Orders
             </a>
             <h1><i class="fas fa-tags"></i> Pricing Management</h1>

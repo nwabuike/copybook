@@ -84,7 +84,7 @@
         <a href="javascript:history.back()" class="btn btn-secondary">
             <i class="fas fa-arrow-left"></i> Go Back
         </a>
-        <a href="customer_orderlist.php" class="btn">
+        <a href="admin_dashboard_crm.php" class="btn">
             <i class="fas fa-home"></i> Go to Dashboard
         </a>
     </div>

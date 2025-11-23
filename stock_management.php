@@ -647,15 +647,9 @@ $isAdminUser = isAdmin(); // Full admin access
                         </a>
                     </li>
                     <li class="sidebar-menu-item">
-                        <a href="customer_orderlist.php" class="sidebar-menu-link">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span>Orders</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a href="analytics.php" class="sidebar-menu-link">
-                            <i class="fas fa-chart-line"></i>
-                            <span>Analytics</span>
+                        <a href="admin_dashboard_crm.php" class="sidebar-menu-link">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard CRM</span>
                         </a>
                     </li>
                     <li class="sidebar-menu-item">
@@ -667,7 +661,7 @@ $isAdminUser = isAdmin(); // Full admin access
                     <li class="sidebar-menu-item">
                         <a href="agent_management.php" class="sidebar-menu-link">
                             <i class="fas fa-user-tie"></i>
-                            <span>Agents</span>
+                            <span>Delivery Agents</span>
                         </a>
                     </li>
                     <li class="sidebar-menu-item">
@@ -676,26 +670,46 @@ $isAdminUser = isAdmin(); // Full admin access
                             <span>Notifications</span>
                         </a>
                     </li>
-                    
-                    <div class="sidebar-divider"></div>
                     <li class="sidebar-menu-item">
                         <a href="stock_management.php" class="sidebar-menu-link active">
                             <i class="fas fa-boxes"></i>
                             <span>Stock Management</span>
                         </a>
                     </li>
-                    <li class="sidebar-menu-item">
-                        <a href="pricing_management.php" class="sidebar-menu-link">
-                            <i class="fas fa-tags"></i>
-                            <span>Pricing</span>
-                        </a>
-                    </li>
+                    
+                    <?php if (isAdmin()): ?>
+                    <div class="sidebar-divider"></div>
                     <li class="sidebar-menu-item">
                         <a href="user_management.php" class="sidebar-menu-link">
                             <i class="fas fa-users-cog"></i>
-                            <span>Users</span>
+                            <span>User Management</span>
                         </a>
                     </li>
+                    <li class="sidebar-menu-item">
+                        <a href="pricing_management.php" class="sidebar-menu-link">
+                            <i class="fas fa-tags"></i>
+                            <span>Pricing Management</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="analytics.php" class="sidebar-menu-link">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="profit_loss_report.php" class="sidebar-menu-link">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Profit/Loss Report</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-menu-item">
+                        <a href="activity_logs.php" class="sidebar-menu-link">
+                            <i class="fas fa-history"></i>
+                            <span>Activity Logs</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
                 </ul>
             </nav>
             

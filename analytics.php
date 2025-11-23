@@ -383,7 +383,7 @@ $currentUser = getCurrentUser();
         <header>
             <h1><i class="fas fa-chart-line"></i> Analytics & Accounting Dashboard</h1>
             <div class="breadcrumb">
-                <a href="index.php">Home</a> / <a href="customer_orderlist.php">Orders</a> / <span>Analytics</span>
+                <a href="index.php">Home</a> / <a href="admin_dashboard_crm.php">Dashboard</a> / <span>Analytics</span>
             </div>
         </header>
 

@@ -12,7 +12,7 @@ $isAdminUser = isAdmin(); // Full admin access
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Orders | Emerald Tech Hub</title>
+    <title>Admin Dashboard CRM | Emerald Tech Hub</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -1268,7 +1268,7 @@ $isAdminUser = isAdmin(); // Full admin access
                             <i class="fas fa-home"></i>
                             <a href="index.php">Home</a>
                             <i class="fas fa-chevron-right" style="font-size: 0.7rem;"></i>
-                            <span>Customer Orders</span>
+                            <span>Admin Dashboard CRM</span>
                         </div>
                         <div class="header-actions">
                             <div class="header-user">
@@ -1289,7 +1289,7 @@ $isAdminUser = isAdmin(); // Full admin access
     <section class="main-content">
         <div class="container">
             <div class="page-header">
-                <h1 class="page-title">Customer Orders</h1>
+                <h1 class="page-title">Admin Dashboard CRM</h1>
                 <div class="page-actions">
                     <button class="btn btn-primary" id="export-btn">
                         <i class="fas fa-file-export"></i> Export
@@ -1520,13 +1520,18 @@ $isAdminUser = isAdmin(); // Full admin access
                 <div class="footer-column">
                     <h4>Admin Links</h4>
                     <ul class="footer-links">
-                        <li><a href="analytics.php">Dashboard</a></li>
-                        <li><a href="customer_orderlist.php">Orders</a></li>
+                        <li><a href="admin_dashboard_crm.php">Dashboard CRM</a></li>
+                        <li><a href="bulk_messaging.php">Bulk Messaging</a></li>
+                        <li><a href="agent_management.php">Agents</a></li>
+                        <?php if (canPerform('add_expense')): ?>
+                        <li><a href="stock_management.php">Stock Management</a></li>
+                        <?php endif; ?>
                         <?php if (isAdmin()): ?>
+                        <li><a href="analytics.php">Analytics</a></li>
                         <li><a href="pricing_management.php">Pricing</a></li>
                         <li><a href="profit_loss_report.php">Profit/Loss</a></li>
+                        <li><a href="user_management.php">Users</a></li>
                         <?php endif; ?>
-                        <li><a href="bulk_messaging.php">Messages</a></li>
                     </ul>
                 </div>
             </div>

@@ -15,7 +15,7 @@ self.addEventListener('notificationclick', function(event) {
     event.notification.close();
     
     event.waitUntil(
-        clients.openWindow('/magicbook/customer_orderlist.php')
+        clients.openWindow('/magicbook/admin_dashboard_crm.php')
     );
 });
 
@@ -28,7 +28,7 @@ self.addEventListener('push', function(event) {
             badge: '/magicbook/images/logo.png',
             vibrate: [200, 100, 200],
             data: {
-                url: data.url || '/magicbook/customer_orderlist.php'
+                url: data.url || '/magicbook/admin_dashboard_crm.php'
             }
         };
         
