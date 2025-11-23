@@ -718,19 +718,46 @@ $canDelete = canPerform('delete_agent');
         }
 
         @media (max-width: 768px) {
+            body {
+                overflow-x: hidden;
+            }
+            
             .container {
                 width: 100%;
+                max-width: 100%;
                 padding: 0 15px;
+                overflow-x: hidden;
+            }
+            
+            .main-wrapper {
+                overflow-x: hidden;
             }
             
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .stat-card {
+                padding: 15px;
+            }
+            
+            .stat-card h3 {
+                font-size: 1.5rem;
+            }
+            
+            .stat-card p {
+                font-size: 0.85rem;
             }
             
             .card-header {
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 15px;
+            }
+            
+            .card-header h2 {
+                font-size: 1.2rem;
             }
             
             .card-header .btn {
@@ -740,10 +767,65 @@ $canDelete = canPerform('delete_agent');
 
             .table-responsive {
                 margin: 0 -15px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
             }
             
             #agents-table {
-                min-width: 900px;
+                min-width: 100%;
+                width: max-content;
+            }
+            
+            #agents-table th:nth-child(1), /* ID */
+            #agents-table td:nth-child(1) {
+                width: 50px;
+                min-width: 50px;
+            }
+            
+            #agents-table th:nth-child(2), /* Name */
+            #agents-table td:nth-child(2) {
+                width: 120px;
+                min-width: 120px;
+            }
+            
+            #agents-table th:nth-child(3), /* Email */
+            #agents-table td:nth-child(3) {
+                width: 150px;
+                min-width: 150px;
+            }
+            
+            #agents-table th:nth-child(4), /* Phone */
+            #agents-table td:nth-child(4) {
+                width: 110px;
+                min-width: 110px;
+            }
+            
+            #agents-table th:nth-child(5), /* States Covered */
+            #agents-table td:nth-child(5) {
+                width: 100px;
+                min-width: 100px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            
+            #agents-table th:nth-child(6), /* Total Orders */
+            #agents-table td:nth-child(6) {
+                width: 80px;
+                min-width: 80px;
+                text-align: center;
+            }
+            
+            #agents-table th:nth-child(7), /* Status */
+            #agents-table td:nth-child(7) {
+                width: 80px;
+                min-width: 80px;
+            }
+            
+            #agents-table th:nth-child(8), /* Actions */
+            #agents-table td:nth-child(8) {
+                width: 90px;
+                min-width: 90px;
             }
 
             th, td {
@@ -752,25 +834,37 @@ $canDelete = canPerform('delete_agent');
             }
 
             .action-buttons {
-                flex-direction: column;
+                display: flex;
+                flex-direction: row;
                 gap: 5px;
+                justify-content: center;
             }
 
-            .action-buttons .btn {
+            .action-btn {
+                padding: 6px 8px;
+                font-size: 12px;
+            }
+            
+            .action-btn i {
+                font-size: 11px;
+            }
+
+            .status-badge {
                 font-size: 10px;
                 padding: 4px 8px;
-                width: 100%;
-            }
-
-            .badge {
-                font-size: 9px;
-                padding: 3px 6px;
+                white-space: nowrap;
             }
 
             .modal-content {
                 width: 95%;
+                max-width: 95%;
                 padding: 20px;
                 max-height: 85vh;
+                overflow-y: auto;
+            }
+            
+            .modal-header h2 {
+                font-size: 1.2rem;
             }
 
             .form-group {
@@ -796,24 +890,32 @@ $canDelete = canPerform('delete_agent');
 
         @media (max-width: 576px) {
             .sidebar-toggle {
-                width: 40px;
-                height: 40px;
-                top: 10px;
-                left: 10px;
+                width: 48px;
+                height: 48px;
+                bottom: 15px;
+                right: 15px;
             }
 
-            table {
-                font-size: 10px;
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
-
-            th, td {
-                padding: 8px 4px;
-                font-size: 9px;
+            
+            .card-header h2 {
+                font-size: 1.1rem;
+            }
+            
+            .page-breadcrumb {
+                font-size: 12px;
+            }
+            
+            header {
+                padding: 15px 0;
             }
 
             .btn {
                 font-size: 11px;
-                padding: 6px 10px;
+                padding: 8px 12px;
             }
 
             .action-buttons .btn i {
@@ -913,29 +1015,38 @@ $canDelete = canPerform('delete_agent');
         @media (max-width: 768px) {
             .pagination {
                 flex-direction: column;
-                gap: 15px;
-                padding: 15px;
+                gap: 12px;
+                padding: 15px 10px;
             }
 
             .pagination-info {
                 width: 100%;
                 text-align: center;
+                font-size: 13px;
             }
 
             .pagination-controls {
                 width: 100%;
                 justify-content: center;
                 flex-wrap: wrap;
+                gap: 5px;
             }
 
             .pagination-btn {
-                padding: 10px 12px;
-                font-size: 13px;
+                padding: 8px 10px;
+                font-size: 12px;
+                min-width: 35px;
             }
 
             .entries-per-page {
                 width: 100%;
                 justify-content: center;
+                font-size: 13px;
+            }
+            
+            .entries-per-page select {
+                padding: 6px 10px;
+                font-size: 13px;
             }
         }
     </style>
