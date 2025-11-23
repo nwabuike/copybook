@@ -22,7 +22,7 @@ try {
                         getSingleAgent();
                         break;
                     case 'states':
-                        getAgentStates();
+                        getAgentStatesAPI();
                         break;
                     default:
                         listAgents();
@@ -144,7 +144,7 @@ function getSingleAgent() {
     echo json_encode(['success' => true, 'data' => $agent]);
 }
 
-function getAgentStates() {
+function getAgentStatesAPI() {
     global $conn;
     
     if (!isset($_GET['agent_id'])) {
