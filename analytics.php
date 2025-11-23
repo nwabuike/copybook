@@ -998,6 +998,50 @@ $currentUser = getCurrentUser();
             </div>
         </div>
 
+        <!-- Traffic Sources Section -->
+        <h2 style="margin-top: 30px; margin-bottom: 20px; color: #2d3748; font-size: 20px; font-weight: 600;">
+            <i class="fas fa-chart-bar"></i> Traffic Source Analytics
+        </h2>
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <!-- Facebook Stats Card -->
+            <div class="stat-card" style="border-left: 4px solid #1877f2;">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="facebook-orders">0</div>
+                        <div class="stat-label">Facebook Orders</div>
+                        <div class="stat-change" id="facebook-revenue" style="color: #1877f2; font-size: 18px; font-weight: 600; margin-top: 8px;">
+                            ₦0
+                        </div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+                            <span id="facebook-percentage">0%</span> of total orders
+                        </div>
+                    </div>
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #1877f2 0%, #0c63d4 100%);">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TikTok Stats Card -->
+            <div class="stat-card" style="border-left: 4px solid #fe2c55;">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="tiktok-orders">0</div>
+                        <div class="stat-label">TikTok Orders</div>
+                        <div class="stat-change" id="tiktok-revenue" style="color: #fe2c55; font-size: 18px; font-weight: 600; margin-top: 8px;">
+                            ₦0
+                        </div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+                            <span id="tiktok-percentage">0%</span> of total orders
+                        </div>
+                    </div>
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #fe2c55 0%, #e01e47 100%);">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Charts -->
         <div class="grid-2">
             <div class="content-card">
@@ -1222,6 +1266,9 @@ $currentUser = getCurrentUser();
 
                 // Load agent performance
                 await loadAgentPerformance();
+
+                // Load traffic source analytics
+                await loadTrafficSources();
 
             } catch (error) {
                 console.error('Error loading analytics:', error);
@@ -1649,6 +1696,41 @@ $currentUser = getCurrentUser();
                 console.error('Error loading agent performance:', error);
                 document.querySelector('#agents-table tbody').innerHTML = 
                     '<tr><td colspan="6" class="no-data"><i class="fas fa-exclamation-circle"></i><br>Error loading agent data</td></tr>';
+            }
+        }
+
+        // Load Traffic Source Analytics
+        async function loadTrafficSources() {
+            try {
+                const response = await fetch(`api/traffic_sources.php?start_date=${currentStartDate}&end_date=${currentEndDate}`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const facebook = data.data.facebook;
+                    const tiktok = data.data.tiktok;
+                    const totalOrders = facebook.orders + tiktok.orders;
+
+                    // Update Facebook stats
+                    document.getElementById('facebook-orders').textContent = facebook.orders;
+                    document.getElementById('facebook-revenue').textContent = '₦' + formatNumber(facebook.revenue);
+                    const facebookPercentage = totalOrders > 0 ? ((facebook.orders / totalOrders) * 100).toFixed(1) : '0.0';
+                    document.getElementById('facebook-percentage').textContent = facebookPercentage + '%';
+
+                    // Update TikTok stats
+                    document.getElementById('tiktok-orders').textContent = tiktok.orders;
+                    document.getElementById('tiktok-revenue').textContent = '₦' + formatNumber(tiktok.revenue);
+                    const tiktokPercentage = totalOrders > 0 ? ((tiktok.orders / totalOrders) * 100).toFixed(1) : '0.0';
+                    document.getElementById('tiktok-percentage').textContent = tiktokPercentage + '%';
+                }
+            } catch (error) {
+                console.error('Error loading traffic sources:', error);
+                // Set default values on error
+                document.getElementById('facebook-orders').textContent = '0';
+                document.getElementById('facebook-revenue').textContent = '₦0';
+                document.getElementById('facebook-percentage').textContent = '0%';
+                document.getElementById('tiktok-orders').textContent = '0';
+                document.getElementById('tiktok-revenue').textContent = '₦0';
+                document.getElementById('tiktok-percentage').textContent = '0%';
             }
         }
 
