@@ -661,6 +661,32 @@ $canDelete = canPerform('delete_agent');
             -webkit-overflow-scrolling: touch;
         }
 
+        /* Sidebar Toggle Button */
+        .sidebar-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 998;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
         /* Responsive Styles */
         @media (max-width: 1024px) {
             .sidebar {
@@ -826,6 +852,97 @@ $canDelete = canPerform('delete_agent');
 
             .stat-content h3 {
                 font-size: 24px;
+            }
+        }
+
+        /* Pagination Styles */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .pagination-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .pagination-btn {
+            padding: 8px 14px;
+            border: 1px solid #ddd;
+            background: white;
+            color: var(--text);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+            min-width: 38px;
+        }
+
+        .pagination-btn:hover:not(.disabled), .pagination-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .entries-per-page {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .entries-per-page select {
+            padding: 6px 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .pagination-info {
+                width: 100%;
+                text-align: center;
+            }
+
+            .pagination-controls {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .pagination-btn {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .entries-per-page {
+                width: 100%;
+                justify-content: center;
             }
         }
     </style>
@@ -1004,9 +1121,33 @@ $canDelete = canPerform('delete_agent');
                                 </table>
                             </div>
                         </div>
+
+                        <!-- Pagination Controls -->
+                        <div class="pagination">
+                            <div class="pagination-info" id="pagination-info">Showing 0 of 0 agents</div>
+                            <div class="pagination-controls" id="pagination-controls">
+                                <!-- Pagination buttons will be populated by JavaScript -->
+                            </div>
+                            <div class="entries-per-page">
+                                <label for="entries-select">Show:</label>
+                                <select id="entries-select" onchange="changeEntriesPerPage()">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
+
+    </div><!-- End layout-wrapper -->
+
+    <!-- Mobile Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
 
     <!-- Add/Edit Agent Modal -->
     <div class="modal" id="agent-modal">
@@ -1080,14 +1221,57 @@ $canDelete = canPerform('delete_agent');
         ];
 
         let agents = [];
+        let allAgents = [];
         let currentEditingAgentId = null;
+        let currentPage = 1;
+        let agentsPerPage = window.innerWidth <= 768 ? 10 : 20;
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             loadAgents();
             setupEventListeners();
             populateStatesCheckboxes();
+            setupSidebarToggle();
+            setEntriesPerPage();
         });
+
+        // Set default entries per page based on screen size
+        function setEntriesPerPage() {
+            const select = document.getElementById('entries-select');
+            if (select) {
+                select.value = agentsPerPage;
+            }
+        }
+
+        // Change entries per page
+        function changeEntriesPerPage() {
+            const select = document.getElementById('entries-select');
+            agentsPerPage = parseInt(select.value);
+            currentPage = 1;
+            renderAgentsTable();
+            updatePagination();
+        }
+
+        // Sidebar toggle for mobile
+        function setupSidebarToggle() {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('active');
+                    sidebarOverlay.classList.toggle('active');
+                });
+            }
+            
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', function() {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                });
+            }
+        }
 
         function setupEventListeners() {
             document.getElementById('add-agent-btn').addEventListener('click', () => openModal());
@@ -1116,9 +1300,12 @@ $canDelete = canPerform('delete_agent');
                 const data = await response.json();
 
                 if (data.success) {
-                    agents = data.data;
+                    allAgents = data.data;
+                    agents = allAgents;
+                    currentPage = 1;
                     renderAgentsTable();
                     updateStats();
+                    updatePagination();
                 } else {
                     console.error('Failed to load agents:', data.message);
                 }
@@ -1158,10 +1345,16 @@ $canDelete = canPerform('delete_agent');
                         <p>No agents found. Click "Add New Agent" to get started.</p>
                     </td></tr>
                 `;
+                updatePagination();
                 return;
             }
 
-            tbody.innerHTML = agents.map(agent => `
+            // Calculate pagination
+            const startIndex = (currentPage - 1) * agentsPerPage;
+            const endIndex = startIndex + agentsPerPage;
+            const paginatedAgents = agents.slice(startIndex, endIndex);
+
+            tbody.innerHTML = paginatedAgents.map(agent => `
                 <tr>
                     <td>${agent.id}</td>
                     <td>${agent.name}</td>
@@ -1182,6 +1375,89 @@ $canDelete = canPerform('delete_agent');
                     </td>
                 </tr>
             `).join('');
+            updatePagination();
+        }
+
+        // Update pagination controls
+        function updatePagination() {
+            const totalAgents = agents.length;
+            const totalPages = Math.ceil(totalAgents / agentsPerPage);
+            const startIndex = (currentPage - 1) * agentsPerPage + 1;
+            const endIndex = Math.min(currentPage * agentsPerPage, totalAgents);
+
+            // Update pagination info
+            const paginationInfo = document.getElementById('pagination-info');
+            paginationInfo.textContent = totalAgents > 0 
+                ? `Showing ${startIndex}-${endIndex} of ${totalAgents} agents`
+                : 'Showing 0 of 0 agents';
+
+            // Update pagination controls
+            const paginationControls = document.getElementById('pagination-controls');
+            let buttonsHtml = '';
+
+            // Previous button
+            buttonsHtml += `
+                <button class="pagination-btn ${currentPage === 1 ? 'disabled' : ''}" 
+                        onclick="changePage(${currentPage - 1})" 
+                        ${currentPage === 1 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            `;
+
+            // Page numbers
+            const maxVisiblePages = window.innerWidth <= 768 ? 3 : 5;
+            let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+            if (endPage - startPage + 1 < maxVisiblePages) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+
+            // First page
+            if (startPage > 1) {
+                buttonsHtml += `<button class="pagination-btn" onclick="changePage(1)">1</button>`;
+                if (startPage > 2) {
+                    buttonsHtml += `<span style="padding: 0 5px;">...</span>`;
+                }
+            }
+
+            // Page number buttons
+            for (let i = startPage; i <= endPage; i++) {
+                buttonsHtml += `
+                    <button class="pagination-btn ${i === currentPage ? 'active' : ''}" 
+                            onclick="changePage(${i})">
+                        ${i}
+                    </button>
+                `;
+            }
+
+            // Last page
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    buttonsHtml += `<span style="padding: 0 5px;">...</span>`;
+                }
+                buttonsHtml += `<button class="pagination-btn" onclick="changePage(${totalPages})">${totalPages}</button>`;
+            }
+
+            // Next button
+            buttonsHtml += `
+                <button class="pagination-btn ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}" 
+                        onclick="changePage(${currentPage + 1})" 
+                        ${currentPage === totalPages || totalPages === 0 ? 'disabled' : ''}>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            `;
+
+            paginationControls.innerHTML = buttonsHtml;
+        }
+
+        // Change page
+        function changePage(page) {
+            const totalPages = Math.ceil(agents.length / agentsPerPage);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderAgentsTable();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function openModal(agentId = null) {
