@@ -1,8 +1,10 @@
 <?php
 require_once 'php/auth.php';
-requireAdmin(); // Only admins can manage stock
+requireLogin(); // Require authentication
 
 $currentUser = getCurrentUser();
+$canManageStock = canPerform('add_expense'); // Subadmins and admins can manage stock
+$isAdminUser = isAdmin(); // Full admin access
 ?>
 <!DOCTYPE html>
 <html lang="en">
