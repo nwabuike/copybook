@@ -200,6 +200,7 @@ if (file_exists(__DIR__ . '/mailer_smtp.php') && file_exists(__DIR__ . '/smtp_co
 if (!$adminMailSent && function_exists('mail')) {
     try {
         $adminEmail = 'emeraldonlineecom@gmail.com';
+        $secondaryAdminEmail = 'emeralddigitalprimetech@gmail.com';
         $siteFrom = 'no-reply@smartkidsedu.com.ng';
         
         $subjectAdmin = "New Order #{$order_id} - Smartkids Edu";
@@ -214,7 +215,7 @@ if (!$adminMailSent && function_exists('mail')) {
         $bodyAdmin .= "Package: {$pack}\n";
         $bodyAdmin .= "Referral Code: {$referral_code}\n";
         $bodyAdmin .= "Created At: {$created_at}\n";
-        $headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\n";
+        $headersAdmin = "From: Smartkids Edu <{$siteFrom}>\r\nReply-To: {$email}\r\nBcc: {$secondaryAdminEmail}\r\n";
         $adminMailSent = @mail($adminEmail, $subjectAdmin, $bodyAdmin, $headersAdmin);
         
         if ($adminMailSent) {

@@ -168,6 +168,11 @@ function sendSMTPEmail($to, $toName, $subject, $body, $isHtml = false, $replyTo 
             $mail->addReplyTo($smtpConfig['reply_to_email'], $smtpConfig['reply_to_name']);
         }
         
+        // Add secondary email for admin notifications
+        if (isset($smtpConfig['secondary_admin_email']) && !empty($smtpConfig['secondary_admin_email'])) {
+            $mail->addBCC($smtpConfig['secondary_admin_email']);
+        }
+        
         // Content
         $mail->isHTML($isHtml);
         $mail->Subject = $subject;
@@ -222,6 +227,11 @@ function sendAdminOrderNotification($orderData) {
     $body .= "Package: {$orderData['pack']}\n";
     $body .= "Referral Code: {$orderData['referral_code']}\n";
     $body .= "Created At: {$orderData['created_at']}\n";
+    
+    // Set secondary admin email in config for this call
+    if (!isset($smtpConfig['secondary_admin_email'])) {
+        $smtpConfig['secondary_admin_email'] = 'emeralddigitalprimetech@gmail.com';
+    }
     
     return sendSMTPEmail(
         $smtpConfig['admin_email'],
