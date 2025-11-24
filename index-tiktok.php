@@ -2608,6 +2608,8 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
             fd.append('altphone', document.getElementById('altphone') ? document.getElementById('altphone').value : '');
             fd.append('address', document.getElementById('address').value || '');
             fd.append('state', document.getElementById('state').value || '');
+            // TikTok traffic source
+            fd.append('source', 'tiktok');
 
             console.log('Submitting order...', {name: fullName, pack: document.getElementById('package').value});
             showFormMessage('Processing your order — please wait...', 'info');

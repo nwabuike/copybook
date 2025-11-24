@@ -2591,6 +2591,8 @@ function formatPrice($amount) {
             fd.append('altphone', document.getElementById('altphone') ? document.getElementById('altphone').value : '');
             fd.append('address', document.getElementById('address').value || '');
             fd.append('state', document.getElementById('state').value || '');
+            // Facebook traffic source
+            fd.append('source', 'facebook');
 
             console.log('Submitting order...', {name: fullName, pack: document.getElementById('package').value});
             showFormMessage('Processing your order — please wait...', 'info');
