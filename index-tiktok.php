@@ -1783,16 +1783,16 @@ function formatPrice($amount) {
                 <div class="price-chip" data-package="Starter">
                     <div class="stock-badge">⚡ Only <span class="stock-counter" data-stock="starter">9</span> Left!</div>
                     <div class="chip-title">Starter Set</div>
-                    <div class="chip-prices"><span class="old-price">₦22,500</span><span class="new-price">₦18,000</span></div>
+                    <div class="chip-prices"><span class="old-price"><?php echo formatPrice($prices['starter']['original']); ?></span><span class="new-price"><?php echo formatPrice($prices['starter']['price']); ?></span></div>
                     <div class="chip-note">4-in-1 Book</div>
                     <div class="default-perks">Pay on Delivery • Free delivery • 3 Free Gifts</div>
                 </div>
 
                 <div class="price-chip featured" data-package="Bundle">
-                    <span class="ribbon">-29% OFF</span>
+                    <span class="ribbon">-<?php echo $prices['bundle']['discount']; ?>% OFF</span>
                     <div class="stock-badge hot">🔥 ONLY <span class="stock-counter" data-stock="bundle">5</span> LEFT!</div>
                     <div class="chip-title">Learning Bundle</div>
-                    <div class="chip-prices"><span class="old-price">₦45,000</span><span class="new-price">₦32,000</span></div>
+                    <div class="chip-prices"><span class="old-price"><?php echo formatPrice($prices['bundle']['original']); ?></span><span class="new-price"><?php echo formatPrice($prices['bundle']['price']); ?></span></div>
                     <div class="chip-note">2 Sets (4-in-1 Book)</div>
                     <div class="default-perks">Pay on Delivery • Free delivery • 6 Free Gifts</div>
                 </div>
@@ -1800,7 +1800,7 @@ function formatPrice($amount) {
                 <div class="price-chip" data-package="Collection">
                     <div class="stock-badge">⚡ Only <span class="stock-counter" data-stock="collection">8</span> Left!</div>
                     <div class="chip-title">Mastery Collection</div>
-                    <div class="chip-prices"><span class="old-price">₦67,500</span><span class="new-price">₦45,000</span></div>
+                    <div class="chip-prices"><span class="old-price"><?php echo formatPrice($prices['collection']['original']); ?></span><span class="new-price"><?php echo formatPrice($prices['collection']['price']); ?></span></div>
                     <div class="chip-note">3 Sets (4-in-1 Book)</div>
                     <div class="default-perks">Pay on Delivery • Free delivery • 9 Free Gifts</div>
                 </div>
@@ -2198,9 +2198,9 @@ function formatPrice($amount) {
                             <label for="package">Select Package</label>
                             <select class="form-control" id="package" name="pack" required>
                                 <option value="">Choose a package</option>
-                                <option value="Starter">Starter 1Set(4 in 1 Book) - ₦18,000</option>
-                                <option value="Bundle">Learning Bundle 2Sets(4 in 1 Book) - ₦32,000</option>
-                                <option value="Collection">Mastery Collection 3Sets(4 in 1 Book) - ₦45,000</option>
+                                <option value="Starter">Starter 1Set(4 in 1 Book) - <?php echo formatPrice($prices['starter']['price']); ?></option>
+                                <option value="Bundle">Learning Bundle 2Sets(4 in 1 Book) - <?php echo formatPrice($prices['bundle']['price']); ?></option>
+                                <option value="Collection">Mastery Collection 3Sets(4 in 1 Book) - <?php echo formatPrice($prices['collection']['price']); ?></option>
                             </select>
                         </div>
                         
