@@ -377,6 +377,16 @@ $currentUser = getCurrentUser();
             transform: translateY(-2px);
         }
         
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .btn-info:hover {
+            background: #138496;
+            transform: translateY(-2px);
+        }
+        
         .btn-sm {
             padding: 6px 12px;
             font-size: 12px;
@@ -1043,6 +1053,50 @@ $currentUser = getCurrentUser();
         </div>
     </div>
 
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3 id="password-modal-title">Change Password</h3>
+                <button class="close-btn" onclick="closePasswordModal()">&times;</button>
+            </div>
+
+            <form id="password-form">
+                <input type="hidden" id="password-user-id">
+                
+                <div style="padding: 10px 0; margin-bottom: 15px; background: #f0f8ff; border-left: 4px solid #17a2b8; padding-left: 15px;">
+                    <i class="fas fa-info-circle" style="color: #17a2b8;"></i>
+                    Changing password for: <strong id="password-username"></strong>
+                </div>
+
+                <div class="form-group">
+                    <label>New Password *</label>
+                    <input type="password" id="new-password" name="new_password" required minlength="6">
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        Minimum 6 characters
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm New Password *</label>
+                    <input type="password" id="confirm-password" name="confirm_password" required minlength="6">
+                    <small style="color: #666; display: block; margin-top: 5px;">
+                        Re-enter the password to confirm
+                    </small>
+                </div>
+
+                <div style="display: flex; gap: 10px;">
+                    <button type="submit" class="btn btn-info" id="password-submit-btn">
+                        <i class="fas fa-key"></i> Change Password
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closePasswordModal()">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         let users = [];
         let editingUserId = null;
@@ -1127,6 +1181,9 @@ $currentUser = getCurrentUser();
                             <button class="btn btn-sm" onclick="editUser(${user.id})" title="Edit user details">
                                 <i class="fas fa-edit"></i> Edit
                             </button>
+                            <button class="btn btn-info btn-sm" onclick="openChangePasswordModal(${user.id}, '${user.username}')" title="Change password">
+                                <i class="fas fa-key"></i> Password
+                            </button>
                             ${user.id !== <?= $currentUser['id'] ?> ? `
                                 <button class="btn btn-${user.status === 'active' ? 'warning' : 'success'} btn-sm" 
                                         onclick="toggleUserStatus(${user.id}, '${user.username}', '${user.status}')"
@@ -1184,6 +1241,70 @@ $currentUser = getCurrentUser();
         function closeUserModal() {
             document.getElementById('user-modal').classList.remove('show');
         }
+
+        function openChangePasswordModal(userId, username) {
+            document.getElementById('password-user-id').value = userId;
+            document.getElementById('password-username').textContent = username;
+            document.getElementById('password-form').reset();
+            document.getElementById('password-modal').classList.add('show');
+        }
+
+        function closePasswordModal() {
+            document.getElementById('password-modal').classList.remove('show');
+        }
+
+        document.getElementById('password-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const userId = document.getElementById('password-user-id').value;
+            const username = document.getElementById('password-username').textContent;
+
+            // Validate passwords match
+            if (newPassword !== confirmPassword) {
+                showAlert('Passwords do not match', 'error');
+                return;
+            }
+
+            // Validate minimum length
+            if (newPassword.length < 6) {
+                showAlert('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            const submitBtn = document.getElementById('password-submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Changing...';
+
+            try {
+                const response = await fetch('api/users.php?action=update', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        user_id: userId,
+                        password: newPassword
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(`Password changed successfully for ${username}`, 'success');
+                    closePasswordModal();
+                } else {
+                    showAlert(result.message, 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showAlert('Failed to change password', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-key"></i> Change Password';
+            }
+        });
 
         document.getElementById('user-form').addEventListener('submit', async function(e) {
             e.preventDefault();
