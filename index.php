@@ -1312,6 +1312,8 @@ function formatPrice($amount) {
             font-size: 20px;
             font-weight: 800;
             margin-top: 8px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .comparison-table tbody tr {
@@ -2415,9 +2417,9 @@ function formatPrice($amount) {
                         </tr>
                         <tr>
                             <td class="feature-name">Magic Pens Included</td>
-                            <td class="starter">5 Premium Pens</td>
-                            <td class="bundle">10 Premium Pens</td>
-                            <td class="collection">10 Premium Pens</td>
+                            <td class="starter">5 Premium Refill Pens</td>
+                            <td class="bundle">10 Premium Refill Pens</td>
+                            <td class="collection">15 Premium Refill Pens</td>
                         </tr>
                         <tr>
                             <td class="feature-name">Free Gifts</td>

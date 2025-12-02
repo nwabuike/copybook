@@ -1312,6 +1312,8 @@ function formatPrice($amount) {
             font-size: 20px;
             font-weight: 800;
             margin-top: 8px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .comparison-table tbody tr {
@@ -2050,6 +2052,24 @@ function formatPrice($amount) {
         @media (max-width:900px){.testimonial-card{flex:1 1 calc(50% - 18px)}}
         @media (max-width:520px){.testimonial-card{flex:1 1 100%}}
     </style>
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1384965173173073');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1384965173173073&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
  </head>
 <body>
     <!-- Header -->
@@ -2415,9 +2435,9 @@ function formatPrice($amount) {
                         </tr>
                         <tr>
                             <td class="feature-name">Magic Pens Included</td>
-                            <td class="starter">5 Premium Pens</td>
-                            <td class="bundle">10 Premium Pens</td>
-                            <td class="collection">10 Premium Pens</td>
+                            <td class="starter">5 Premium Refill Pens</td>
+                            <td class="bundle">10 Premium Refill Pens</td>
+                            <td class="collection">15 Premium Refill Pens</td>
                         </tr>
                         <tr>
                             <td class="feature-name">Free Gifts</td>
