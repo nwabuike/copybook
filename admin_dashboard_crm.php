@@ -1,11 +1,32 @@
 <?php
 require_once 'php/auth.php';
+require_once 'php/db.php';
 requireLogin(); // Require authentication
 
 $currentUser = getCurrentUser();
 $canDelete = canPerform('delete_order');
 $canEditExpenses = canPerform('add_expense'); // Can add/edit expenses
 $isAdminUser = isAdmin(); // Full admin access
+
+// Fetch current prices from database
+$packagePrices = [
+    'starter' => 18000,
+    'bundle' => 32000,
+    'collection' => 45000
+];
+
+try {
+    $sql = "SELECT package_type, price FROM package_pricing ORDER BY FIELD(package_type, 'starter', 'bundle', 'collection')";
+    $result = $conn->query($sql);
+    
+    if ($result && $result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $packagePrices[$row['package_type']] = (float)$row['price'];
+        }
+    }
+} catch (Exception $e) {
+    error_log("Error fetching prices in admin dashboard: " . $e->getMessage());
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -1668,6 +1689,18 @@ $isAdminUser = isAdmin(); // Full admin access
     </script>
     
     <script>
+        // Package prices from database
+        const PACKAGE_PRICES = {
+            'starter': <?php echo $packagePrices['starter']; ?>,
+            'bundle': <?php echo $packagePrices['bundle']; ?>,
+            'collection': <?php echo $packagePrices['collection']; ?>
+        };
+        
+        // Format price helper
+        function formatPrice(amount) {
+            return '₦' + amount.toLocaleString('en-NG');
+        }
+        
         // State variables
         let orders = [];
         let allOrders = [];
@@ -1830,12 +1863,9 @@ $isAdminUser = isAdmin(); // Full admin access
                     'collection': 'Mastery Collection'
                 };
                 
-                // Calculate amount based on package
-                const amounts = {
-                    'starter': '₦18,000',
-                    'bundle': '₦32,000',
-                    'collection': '₦45,000'
-                };
+                // Calculate amount based on package using dynamic prices
+                const packLower = (order.pack || 'starter').toLowerCase();
+                const amount = formatPrice(PACKAGE_PRICES[packLower] || PACKAGE_PRICES['starter']);
                 
                 // Format dates
                 const orderDate = order.created_at ? new Date(order.created_at).toLocaleString() : 'N/A';
@@ -2106,11 +2136,9 @@ $isAdminUser = isAdmin(); // Full admin access
                     'collection': 'Mastery Collection'
                 };
                 
-                // Calculate revenue based on package
+                // Calculate revenue based on package using dynamic prices
                 const packLower = order.pack.toLowerCase();
-                const revenue = packLower === 'starter' ? 18000 : 
-                               packLower === 'bundle' ? 32000 : 
-                               packLower === 'collection' ? 45000 : 0;
+                const revenue = PACKAGE_PRICES[packLower] || PACKAGE_PRICES['starter'];
                 
                 document.getElementById('edit-order-id').value = order.id;
                 document.getElementById('edit-customer-name').value = order.fullname;
@@ -2429,8 +2457,8 @@ $isAdminUser = isAdmin(); // Full admin access
                 packageDetails = order.pack;
             }
             
-            // Calculate total amount
-            const unitPrice = packLower === 'starter' ? 18000 : (packLower === 'bundle' ? 32000 : 45000);
+            // Calculate total amount using dynamic prices
+            const unitPrice = PACKAGE_PRICES[packLower] || PACKAGE_PRICES['starter'];
             const totalAmount = '₦' + (unitPrice * quantity).toLocaleString();
             
             const orderDate = order.created_at ? new Date(order.created_at).toLocaleDateString('en-GB') : 'N/A';
@@ -2520,8 +2548,8 @@ $isAdminUser = isAdmin(); // Full admin access
                 packageDetails = order.pack;
             }
             
-            // Calculate total amount
-            const unitPrice = packLower === 'starter' ? 18000 : (packLower === 'bundle' ? 32000 : 45000);
+            // Calculate total amount using dynamic prices
+            const unitPrice = PACKAGE_PRICES[packLower] || PACKAGE_PRICES['starter'];
             const totalAmount = '₦' + (unitPrice * quantity).toLocaleString();
             
             const orderDate = order.created_at ? new Date(order.created_at).toLocaleDateString('en-GB') : 'N/A';
@@ -2760,7 +2788,7 @@ Expected Delivery Date: ${order.expected_delivery_date ? new Date(order.expected
                             'bundle': 'Learning Bundle',
                             'collection': 'Mastery Collection'
                         };
-                        const amounts = { 'starter': 18000, 'bundle': 32000, 'collection': 45000 };
+                        const amounts = PACKAGE_PRICES;
                         
                         csv += `${order.id},"${order.fullname}","${packageNames[order.pack]}","${order.state}",${amounts[order.pack]},"${order.status}","${order.created_at}","${order.confirmed_at || ''}","${order.delivered_at || ''}","${order.agent_name || ''}"\n`;
                     });
