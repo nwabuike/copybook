@@ -2049,7 +2049,7 @@ try {
             
             // Update pagination info
             const total = apiData.pagination?.total || orders.length;
-            const page = apiData.pagination?.current_page || currentPage;
+            const page = apiData.pagination?.page || currentPage;
             const perPage = apiData.pagination?.per_page || ordersPerPage;
             const startIndex = (page - 1) * perPage + 1;
             const endIndex = Math.min(page * perPage, total);

@@ -64,6 +64,20 @@ try {
 function listOrders() {
     global $conn;
     
+    // Fetch dynamic prices from package_pricing table
+    $packagePrices = ['starter' => 18000, 'bundle' => 32000, 'collection' => 45000];
+    try {
+        $priceQuery = "SELECT package_type, price FROM package_pricing";
+        $priceResult = $conn->query($priceQuery);
+        if ($priceResult) {
+            while ($priceRow = $priceResult->fetch_assoc()) {
+                $packagePrices[strtolower($priceRow['package_type'])] = (int)$priceRow['price'];
+            }
+        }
+    } catch (Exception $e) {
+        // Use defaults if query fails
+    }
+    
     $search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
     $status = isset($_GET['status']) ? $conn->real_escape_string($_GET['status']) : '';
     $source = isset($_GET['source']) ? $conn->real_escape_string($_GET['source']) : '';
@@ -117,14 +131,9 @@ function listOrders() {
     $orders = [];
     
     while ($row = $result->fetch_assoc()) {
-        // Calculate amount based on package
-        $amount = 0;
-        switch(strtolower($row['pack'])) {
-            case 'starter': $amount = 18000; break;
-            case 'bundle': $amount = 32000; break;
-            case 'collection': $amount = 45000; break;
-            default: $amount = 0;
-        }
+        // Calculate amount based on package using dynamic prices
+        $packLower = strtolower($row['pack']);
+        $amount = isset($packagePrices[$packLower]) ? $packagePrices[$packLower] : 0;
         
         $row['amount'] = $amount;
         $row['formatted_amount'] = '₦' . number_format($amount);
@@ -145,6 +154,18 @@ function listOrders() {
 
 function getSingleOrder() {
     global $conn;
+    
+    // Fetch dynamic prices
+    $packagePrices = ['starter' => 18000, 'bundle' => 32000, 'collection' => 45000];
+    try {
+        $priceQuery = "SELECT package_type, price FROM package_pricing";
+        $priceResult = $conn->query($priceQuery);
+        if ($priceResult) {
+            while ($priceRow = $priceResult->fetch_assoc()) {
+                $packagePrices[strtolower($priceRow['package_type'])] = (int)$priceRow['price'];
+            }
+        }
+    } catch (Exception $e) {}
     
     if (!isset($_GET['id'])) {
         echo json_encode(['success' => false, 'message' => 'Order ID required']);
@@ -182,13 +203,9 @@ function getSingleOrder() {
     if ($result->num_rows > 0) {
         $order = $result->fetch_assoc();
         
-        // Calculate amount
-        $amount = 0;
-        switch(strtolower($order['pack'])) {
-            case 'starter': $amount = 18000; break;
-            case 'bundle': $amount = 32000; break;
-            case 'collection': $amount = 45000; break;
-        }
+        // Calculate amount using dynamic prices
+        $packLower = strtolower($order['pack']);
+        $amount = isset($packagePrices[$packLower]) ? $packagePrices[$packLower] : 0;
         
         $order['amount'] = $amount;
         $order['formatted_amount'] = '₦' . number_format($amount);
@@ -234,6 +251,18 @@ function getOrderStats() {
 
 function getSalesReport() {
     global $conn;
+    
+    // Fetch dynamic prices
+    $packagePrices = ['starter' => 18000, 'bundle' => 32000, 'collection' => 45000];
+    try {
+        $priceQuery = "SELECT package_type, price FROM package_pricing";
+        $priceResult = $conn->query($priceQuery);
+        if ($priceResult) {
+            while ($priceRow = $priceResult->fetch_assoc()) {
+                $packagePrices[strtolower($priceRow['package_type'])] = (int)$priceRow['price'];
+            }
+        }
+    } catch (Exception $e) {}
     
     $startDate = isset($_GET['start_date']) ? $conn->real_escape_string($_GET['start_date']) : date('Y-m-d', strtotime('-30 days'));
     $endDate = isset($_GET['end_date']) ? $conn->real_escape_string($_GET['end_date']) : date('Y-m-d');
@@ -290,19 +319,17 @@ function getSalesReport() {
         
         // Calculate revenue ONLY from delivered orders
         if (strtolower($row['status']) === 'delivered') {
-            switch(strtolower($row['pack'])) {
-                case 'starter':
-                    $totalRevenue += 18000;
-                    $starterRevenue += 18000;
-                    break;
-                case 'bundle':
-                    $totalRevenue += 32000;
-                    $bundleRevenue += 32000;
-                    break;
-                case 'collection':
-                    $totalRevenue += 45000;
-                    $collectionRevenue += 45000;
-                    break;
+            $packLower = strtolower($row['pack']);
+            $revenue = isset($packagePrices[$packLower]) ? $packagePrices[$packLower] : 0;
+            
+            $totalRevenue += $revenue;
+            
+            if ($packLower === 'starter') {
+                $starterRevenue += $revenue;
+            } elseif ($packLower === 'bundle') {
+                $bundleRevenue += $revenue;
+            } elseif ($packLower === 'collection') {
+                $collectionRevenue += $revenue;
             }
         }
         
@@ -315,12 +342,8 @@ function getSalesReport() {
         
         // Add revenue only from delivered orders
         if (strtolower($row['status']) === 'delivered') {
-            $orderCounts[$state]['revenue'] += match(strtolower($row['pack'])) {
-                'starter' => 18000,
-                'bundle' => 32000,
-                'collection' => 45000,
-                default => 0
-            };
+            $packLower = strtolower($row['pack']);
+            $orderCounts[$state]['revenue'] += isset($packagePrices[$packLower]) ? $packagePrices[$packLower] : 0;
         }
     }
     
