@@ -1040,6 +1040,25 @@ $currentUser = getCurrentUser();
                     </div>
                 </div>
             </div>
+
+            <!-- Facebook Marketplace Stats Card -->
+            <div class="stat-card" style="border-left: 4px solid #00a651;">
+                <div class="stat-header">
+                    <div>
+                        <div class="stat-value" id="facebook-marketplace-orders">0</div>
+                        <div class="stat-label">FB Marketplace Orders</div>
+                        <div class="stat-change" id="facebook-marketplace-revenue" style="color: #00a651; font-size: 18px; font-weight: 600; margin-top: 8px;">
+                            ₦0
+                        </div>
+                        <div style="font-size: 12px; color: #64748b; margin-top: 4px;">
+                            <span id="facebook-marketplace-percentage">0%</span> of total orders
+                        </div>
+                    </div>
+                    <div class="stat-icon" style="background: linear-gradient(135deg, #00a651 0%, #008a43 100%);">
+                        <i class="fas fa-store"></i>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Charts -->
@@ -1708,7 +1727,8 @@ $currentUser = getCurrentUser();
                 if (data.success) {
                     const facebook = data.data.facebook;
                     const tiktok = data.data.tiktok;
-                    const totalOrders = facebook.orders + tiktok.orders;
+                    const fbMarketplace = data.data['facebook-marketplace'];
+                    const totalOrders = facebook.orders + tiktok.orders + fbMarketplace.orders;
 
                     // Update Facebook stats
                     document.getElementById('facebook-orders').textContent = facebook.orders;
@@ -1721,6 +1741,12 @@ $currentUser = getCurrentUser();
                     document.getElementById('tiktok-revenue').textContent = '₦' + formatNumber(tiktok.revenue);
                     const tiktokPercentage = totalOrders > 0 ? ((tiktok.orders / totalOrders) * 100).toFixed(1) : '0.0';
                     document.getElementById('tiktok-percentage').textContent = tiktokPercentage + '%';
+
+                    // Update Facebook Marketplace stats
+                    document.getElementById('facebook-marketplace-orders').textContent = fbMarketplace.orders;
+                    document.getElementById('facebook-marketplace-revenue').textContent = '₦' + formatNumber(fbMarketplace.revenue);
+                    const fbMarketplacePercentage = totalOrders > 0 ? ((fbMarketplace.orders / totalOrders) * 100).toFixed(1) : '0.0';
+                    document.getElementById('facebook-marketplace-percentage').textContent = fbMarketplacePercentage + '%';
                 }
             } catch (error) {
                 console.error('Error loading traffic sources:', error);
@@ -1731,6 +1757,9 @@ $currentUser = getCurrentUser();
                 document.getElementById('tiktok-orders').textContent = '0';
                 document.getElementById('tiktok-revenue').textContent = '₦0';
                 document.getElementById('tiktok-percentage').textContent = '0%';
+                document.getElementById('facebook-marketplace-orders').textContent = '0';
+                document.getElementById('facebook-marketplace-revenue').textContent = '₦0';
+                document.getElementById('facebook-marketplace-percentage').textContent = '0%';
             }
         }
 

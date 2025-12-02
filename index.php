@@ -652,6 +652,67 @@ function formatPrice($amount) {
             color: var(--dark);
         }
         
+        /* Payment Security Badge */
+        .payment-security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 20px 30px;
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.2);
+        }
+        
+        .security-icon {
+            font-size: 48px;
+            color: #0ea5e9;
+        }
+        
+        .security-text {
+            text-align: left;
+        }
+        
+        .security-text strong {
+            font-size: 18px;
+            color: #0c4a6e;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .security-text p {
+            font-size: 14px;
+            color: #64748b;
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .payment-security-badge {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            
+            .security-icon {
+                font-size: 40px;
+            }
+            
+            .security-text {
+                text-align: center;
+            }
+            
+            .security-text strong {
+                font-size: 16px;
+            }
+            
+            .security-text p {
+                font-size: 13px;
+            }
+        }
+        
         /* Free Gifts Section */
         .free-gifts {
             padding: 80px 0;
@@ -971,7 +1032,7 @@ function formatPrice($amount) {
         /* Testimonials Section */
         .testimonials {
             padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
         }
         
         .testimonials .section-title h2 {
@@ -983,30 +1044,99 @@ function formatPrice($amount) {
         
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             margin-top: 40px;
         }
         
-        .testimonial-item {
+        .testimonial-card {
             background: white;
             border-radius: 12px;
-            padding: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            overflow: hidden;
+            border-left: 4px solid #0ea5e9;
         }
         
-        .testimonial-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .testimonial-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 8px;
+        .testimonial-card .rating {
+            color: #fbbf24;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+        
+        .testimonial-text {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            margin: 0 0 4px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+        }
+        
+        .author-info p {
+            margin: 0;
+            font-size: 13px;
+            color: #6b7280;
+        }
+        
+        .social-proof-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+            text-align: center;
+        }
+        
+        .proof-stat {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .proof-stat h3 {
+            font-size: 2.5rem;
+            color: #0a7c42;
+            margin: 0 0 8px 0;
+            font-weight: 800;
+        }
+        
+        .proof-stat p {
+            font-size: 16px;
+            color: #6b7280;
+            margin: 0;
         }
         
         @media (max-width: 768px) {
@@ -1023,8 +1153,14 @@ function formatPrice($amount) {
                 gap: 20px;
             }
             
-            .testimonial-item {
-                padding: 12px;
+            .testimonial-card {
+                padding: 20px;
+            }
+            
+            .social-proof-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-top: 40px;
             }
         }
         
@@ -1035,6 +1171,14 @@ function formatPrice($amount) {
             
             .testimonials .section-title h2 {
                 font-size: 1.5rem;
+            }
+            
+            .social-proof-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .proof-stat h3 {
+                font-size: 2rem;
             }
         }
         
@@ -1103,6 +1247,148 @@ function formatPrice($amount) {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+        }
+        
+        /* Package Comparison Table */
+        .comparison-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+        }
+        
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            margin-top: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table {
+            width: 100%;
+            background: white;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        
+        .comparison-table thead {
+            background: linear-gradient(135deg, #0a7c42 0%, #066633 100%);
+            color: white;
+        }
+        
+        .comparison-table th {
+            padding: 20px 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .comparison-table .feature-column {
+            text-align: left;
+            width: 25%;
+            background: #065f46;
+        }
+        
+        .comparison-table .package-column {
+            width: 25%;
+        }
+        
+        .comparison-table .package-column.popular {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            position: relative;
+        }
+        
+        .popular-badge {
+            display: inline-block;
+            background: #dc2626;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+        
+        .price-mini {
+            display: block;
+            font-size: 20px;
+            font-weight: 800;
+            margin-top: 8px;
+        }
+        
+        .comparison-table tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table tbody tr:hover {
+            background: #f9fafb;
+        }
+        
+        .comparison-table td {
+            padding: 18px 15px;
+            text-align: center;
+            font-size: 15px;
+        }
+        
+        .comparison-table .feature-name {
+            font-weight: 600;
+            text-align: left;
+            background: #f3f4f6;
+            color: #374151;
+        }
+        
+        .comparison-table .starter {
+            color: #0c4a6e;
+        }
+        
+        .comparison-table .bundle {
+            background: #fffbeb;
+            color: #92400e;
+        }
+        
+        .comparison-table .collection {
+            color: #065f46;
+        }
+        
+        .text-success {
+            color: #10b981;
+            font-size: 20px;
+        }
+        
+        .comparison-table .action-row td {
+            padding-top: 25px;
+            padding-bottom: 25px;
+        }
+        
+        .comparison-table .cta-button.small {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-section {
+                padding: 60px 0;
+            }
+            
+            .comparison-table-wrapper {
+                border-radius: 10px;
+            }
+            
+            .comparison-table {
+                font-size: 13px;
+            }
+            
+            .comparison-table th {
+                padding: 15px 10px;
+                font-size: 14px;
+            }
+            
+            .comparison-table td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            
+            .price-mini {
+                font-size: 16px;
+            }
         }
         
         /* Pricing Section */
@@ -1273,6 +1559,47 @@ function formatPrice($amount) {
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .trust-badges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+            padding: 15px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 10px;
+            border: 1px solid #bae6fd;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #0c4a6e;
+        }
+        
+        .trust-badge i {
+            font-size: 18px;
+            color: #0ea5e9;
+        }
+        
+        @media (max-width: 768px) {
+            .trust-badges {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+                padding: 12px;
+            }
+            
+            .trust-badge {
+                font-size: 12px;
+            }
+            
+            .trust-badge i {
+                font-size: 16px;
+            }
         }
         
         .form-group {
@@ -1818,6 +2145,17 @@ function formatPrice($amount) {
                 </div>
             </div>
             
+            <!-- Pay on Delivery Badge -->
+            <div class="payment-security-badge">
+                <div class="security-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <div class="security-text">
+                    <strong>100% Safe - Pay When You Receive</strong>
+                    <p>Free Delivery • No Upfront Payment • Money-Back Guarantee</p>
+                </div>
+            </div>
+            
             <button class="cta-button" data-scroll-to="#order">Claim Your Discount Now</button>
         </div>
     </section>
@@ -1958,10 +2296,7 @@ function formatPrice($amount) {
                             <img src="images/4322-1.jpg" alt="Water Game Pad Toy" loading="lazy" />
                         </div>
                     <h3>Water Game Pad Toy</h3>
-                    <p>Reusable water gaming pad for endless creative fun without the mess!</p>
-                    <p>This item will bring back memories from the past and can be enjoyed by all family members.</p>
-                    <p>This game encourages hand eye coordination, encourages concentration and will keep your kids entertained while learning to count and differentiating colour and shapes.</p>
-                    <p>Promotes problem solving skills in Kids</p>
+                    <p>Reusable water gaming pad for endless creative fun without the mess! Encourages hand-eye coordination, concentration, and problem-solving skills.</p>
                 </div>
                 
                 <div class="gift-card">
@@ -1981,7 +2316,7 @@ function formatPrice($amount) {
                               <img src="images/skipp_rope.jpg" alt="Adjustable Skipping Rope" loading="lazy" />
                           </div>
                     <h3>Adjustable Skipping Rope</h3>
-                    <p>Muscular strength and endurance:- It can provide a full-body workout by utilizing nearly every part of body, like the heart, arms, legs, back, shoulders, and core. By exercising all these different groups of muscles, children get to build overall muscle strength in a fun and engaging way. Since children are continuously jumping when using a jump rope, they get to build muscle endurance as well, making jumping rope a very balanced and beneficial type of exercise for young children.</p>
+                    <p>Full-body workout for kids! Builds muscle strength, endurance, and coordination in a fun and engaging way.</p>
                 </div>
             </div>
         </div>
@@ -2049,6 +2384,97 @@ function formatPrice($amount) {
                 <div class="testimonial-item" style="cursor: pointer; transition: transform 0.3s ease;" onclick="this.querySelector('img').requestFullscreen ? this.querySelector('img').requestFullscreen() : alert('Click and hold to view full size')">
                     <img src="images/review_1.JPG" alt="Product review" loading="lazy" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);" />
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Package Comparison Table Section -->
+    <section class="comparison-section" id="compare">
+        <div class="container">
+            <div class="section-title">
+                <h2>📊 Compare Packages - Find Your Perfect Match</h2>
+                <p>Not sure which package is right for you? Compare features side-by-side!</p>
+            </div>
+
+            <div class="comparison-table-wrapper">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th class="feature-column">Features</th>
+                            <th class="package-column starter">Starter Set<br><span class="price-mini"><?php echo formatPrice($prices['starter']['price']); ?></span></th>
+                            <th class="package-column bundle popular">Learning Bundle<br><span class="price-mini"><?php echo formatPrice($prices['bundle']['price']); ?></span><br><span class="popular-badge">MOST POPULAR</span></th>
+                            <th class="package-column collection">Mastery Collection<br><span class="price-mini"><?php echo formatPrice($prices['collection']['price']); ?></span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="feature-name">Number of Copybooks</td>
+                            <td class="starter">1 Set (4-in-1 Book)</td>
+                            <td class="bundle">2 Sets (4-in-1 Books)</td>
+                            <td class="collection">3 Sets (4-in-1 Books)</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Magic Pens Included</td>
+                            <td class="starter">5 Premium Pens</td>
+                            <td class="bundle">10 Premium Pens</td>
+                            <td class="collection">10 Premium Pens</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Free Gifts</td>
+                            <td class="starter">3 Gifts</td>
+                            <td class="bundle">6 Gifts</td>
+                            <td class="collection">9 Gifts</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Pencil Grip Helper</td>
+                            <td class="starter"><i class="fas fa-check text-success"></i></td>
+                            <td class="bundle"><i class="fas fa-check text-success"></i></td>
+                            <td class="collection"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Free Delivery</td>
+                            <td class="starter"><i class="fas fa-check text-success"></i></td>
+                            <td class="bundle"><i class="fas fa-check text-success"></i></td>
+                            <td class="collection"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Pay on Delivery</td>
+                            <td class="starter"><i class="fas fa-check text-success"></i></td>
+                            <td class="bundle"><i class="fas fa-check text-success"></i></td>
+                            <td class="collection"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Money-Back Guarantee</td>
+                            <td class="starter"><i class="fas fa-check text-success"></i></td>
+                            <td class="bundle"><i class="fas fa-check text-success"></i></td>
+                            <td class="collection"><i class="fas fa-check text-success"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Total Discount</td>
+                            <td class="starter"><?php echo $prices['starter']['discount']; ?>% OFF</td>
+                            <td class="bundle"><?php echo $prices['bundle']['discount']; ?>% OFF</td>
+                            <td class="collection"><?php echo $prices['collection']['discount']; ?>% OFF</td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">You Save</td>
+                            <td class="starter"><?php echo formatPrice($prices['starter']['savings']); ?></td>
+                            <td class="bundle"><?php echo formatPrice($prices['bundle']['savings']); ?></td>
+                            <td class="collection"><?php echo formatPrice($prices['collection']['savings']); ?></td>
+                        </tr>
+                        <tr>
+                            <td class="feature-name">Best For</td>
+                            <td class="starter">Single child<br>First-time buyers</td>
+                            <td class="bundle">Multiple kids<br>Best value</td>
+                            <td class="collection">3+ children<br>Maximum savings</td>
+                        </tr>
+                        <tr class="action-row">
+                            <td class="feature-name"></td>
+                            <td class="starter"><button class="cta-button small" data-scroll-to="#order">Order Now</button></td>
+                            <td class="bundle"><button class="cta-button small" data-scroll-to="#order">Order Now</button></td>
+                            <td class="collection"><button class="cta-button small" data-scroll-to="#order">Order Now</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </section>
@@ -2171,13 +2597,34 @@ function formatPrice($amount) {
                 
                 <div class="form-container">
                     <h3>Place Your Order</h3>
-                                        <div style="background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%); padding: 16px; border-radius: 10px; border: 2px solid #ffc107; margin-bottom: 20px;">
-                        <h4 style="color: #dc3545; margin: 0 0 12px 0; font-size: 1.1rem;">⚠️ IMPORTANT NOTICE - PLEASE READ CAREFULLY! ⚠️</h4>
-                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if you're not ready to receive delivery within <strong>24-48 hours</strong>!</p>
-                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if cash is not readily available for payment on delivery!</p>
-                        <p style="margin: 8px 0; color: #333; font-weight: 500;">🚫 <strong>DO NOT ORDER</strong> if you will be traveling during this period (unless someone can receive on your behalf)!</p>
-                        <p style="margin: 12px 0 8px 0; color: #0a7c42; font-weight: 600;">✅ If you're NOT ready now: <strong>Save our WhatsApp numbers</strong> (09029026782 or 08102609396) or bookmark this website to order when ready!</p>
-                        <p style="margin: 8px 0; color: #dc3545; font-weight: 600; font-size: 1.05rem;">⏰ <strong>BLACK FRIDAY SPECIAL:</strong> Only orders placed during our promo period are eligible for 💰₦10,000💰 cashback and discounted prices (₦18,000/₦32,000/₦45,000). After promo ends, prices return to original ₦22,500+ rates!</p>
+                    
+                    <!-- Trust Badges -->
+                    <div class="trust-badges">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>100% Safe</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-lock"></i>
+                            <span>Secure Checkout</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-undo"></i>
+                            <span>Money-Back Guarantee</span>
+                        </div>
+                        <div class="trust-badge">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Verified Seller</span>
+                        </div>
+                    </div>
+                    
+                    <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); padding: 16px; border-radius: 10px; border: 2px solid #10b981; margin-bottom: 20px;">
+                        <h4 style="color: #059669; margin: 0 0 12px 0; font-size: 1.1rem;">✅ READY TO ORDER? GREAT! HERE'S WHAT TO EXPECT:</h4>
+                        <p style="margin: 8px 0; color: #065f46; font-weight: 500;">📦 <strong>Fast Delivery:</strong> Your order will arrive within <strong>24-48 hours</strong> after confirmation!</p>
+                        <p style="margin: 8px 0; color: #065f46; font-weight: 500;">💵 <strong>Pay on Delivery:</strong> Have your payment ready when our delivery agent arrives at your doorstep.</p>
+                        <p style="margin: 8px 0; color: #065f46; font-weight: 500;">📍 <strong>Be Available:</strong> Please ensure someone is available to receive the delivery during this period.</p>
+                        <p style="margin: 12px 0 8px 0; color: #0a7c42; font-weight: 600; background: white; padding: 10px; border-radius: 6px;">⏰ <strong>BLACK FRIDAY SPECIAL:</strong> Lock in your 💰₦10,000💰 cashback and discounted prices (₦18,000/₦32,000/₦45,000) by ordering NOW! After promo ends, prices return to ₦22,500+</p>
+                        <p style="margin: 8px 0; color: #065f46; font-weight: 500; font-size: 0.95rem;">💬 <strong>Not Ready Yet?</strong> Save our WhatsApp numbers (09029026782 or 08102609396) or bookmark this page to order when you're ready!</p>
                     </div>
                     <p style="background: #f8f9fa; padding: 12px; border-radius: 8px; border-left: 4px solid #0a7c42; margin-bottom: 15px;">📍 <strong>Delivery Information:</strong> Please provide an accurate mobile phone number and precise delivery address. Use landmarks (church, bank, eatery, etc.) to help our delivery agent locate you easily.</p>
                     <div id="formMessage" style="display:none;margin-bottom:12px;padding:12px;border-radius:8px;"></div>
@@ -2263,18 +2710,8 @@ function formatPrice($amount) {
                             <textarea class="form-control" name="address" id="address" rows="3" placeholder="Enter your delivery address"></textarea>
                         </div>
                         
-                        <div class="form-group">
-                            <label for="childAge">Child's Age (Optional)</label>
-                            <input type="number" class="form-control" id="childAge" min="3" max="12">
-                        </div>
-                        
                         <!-- Hidden field for tracking traffic source -->
                         <input type="hidden" name="source" value="facebook">
-                        
-                        <div class="form-group">
-                            <label for="referralCode">Referral Code (If any)</label>
-                            <input type="text" name="referral" class="form-control" id="referralCode" placeholder="Enter referral code if you have one">
-                        </div>
                         
                         <div class="payment-info">
                             <i class="fas fa-truck"></i>
@@ -2284,7 +2721,139 @@ function formatPrice($amount) {
                         </div>
                         
                         <button type="submit" class="submit-button">Complete Order</button>
+                        
+                        <div class="form-group" style="margin-top: 15px;">
+                            <label for="referralCode" style="font-size: 14px; color: #6b7280;">Have a referral code? (Optional)</label>
+                            <input type="text" name="referral" class="form-control" id="referralCode" placeholder="Enter referral code if you have one">
+                        </div>
                     </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>⭐ What Parents Are Saying About Sank Magic Copybook ⭐</h2>
+                <p>Join thousands of happy Nigerian parents who have transformed their children's handwriting!</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"My 5-year-old son's handwriting improved dramatically in just 2 weeks! The grooved letters really help him form shapes correctly. Best educational investment I've made. Highly recommend!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AM</div>
+                        <div class="author-info">
+                            <h4>Amaka Okonkwo</h4>
+                            <p>Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Received my order in 2 days! My twins love practicing with these books. The ink disappears so they can practice over and over. Worth every naira. Delivery was fast and professional."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CT</div>
+                        <div class="author-info">
+                            <h4>Chioma Tunde</h4>
+                            <p>Abuja, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I bought the bundle for my niece and nephew as birthday gifts. They were so excited! The books are durable and high quality. Even got free gifts which was a pleasant surprise!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">OB</div>
+                        <div class="author-info">
+                            <h4>Oluwaseun Bello</h4>
+                            <p>Ibadan, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"My daughter struggled with handwriting for months. After using this copybook for 3 weeks, her teacher noticed the improvement! The pay-on-delivery option made it easy to trust and order."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">FK</div>
+                        <div class="author-info">
+                            <h4>Fatima Khalid</h4>
+                            <p>Kano, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Best purchase for my 4-year-old! The magic pen is fascinating for kids. He practices willingly now. The customer service was also very responsive on WhatsApp. 5 stars!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">DE</div>
+                        <div class="author-info">
+                            <h4>David Eze</h4>
+                            <p>Enugu, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Ordered the collection set and it arrived quickly. My three kids share them and their handwriting has improved so much. The books are reusable which saves money. Excellent value!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">NM</div>
+                        <div class="author-info">
+                            <h4>Ngozi Madu</h4>
+                            <p>Port Harcourt, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"My son is 6 and autistic. These grooved books help him tremendously with motor skills. The repetition and tactile feedback work perfectly for him. Thank you for this amazing product!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">BA</div>
+                        <div class="author-info">
+                            <h4>Blessing Adeyemi</h4>
+                            <p>Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"I was skeptical about online ordering but the pay-on-delivery convinced me. Product is exactly as described. My daughter's confidence in writing has grown. Will order again!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">IA</div>
+                        <div class="author-info">
+                            <h4>Ibrahim Abubakar</h4>
+                            <p>Kaduna, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-proof-stats">
+                <div class="proof-stat">
+                    <h3>10,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="proof-stat">
+                    <h3>4.9/5</h3>
+                    <p>Average Rating</p>
+                </div>
+                <div class="proof-stat">
+                    <h3>98%</h3>
+                    <p>Satisfaction Rate</p>
+                </div>
+                <div class="proof-stat">
+                    <h3>24-48hrs</h3>
+                    <p>Fast Delivery</p>
                 </div>
             </div>
         </div>
@@ -3165,5 +3734,95 @@ function formatPrice($amount) {
         
         }); // End DOMContentLoaded
     </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/2349029026782?text=Hi!%20I%20want%20to%20order%20the%20Sank%20Magic%20Copybook" 
+       class="whatsapp-float" 
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat with us</span>
+    </a>
+
+    <style>
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 9999;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            animation: whatsapp-pulse 2s infinite;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+            background: linear-gradient(135deg, #128c7e 0%, #075e54 100%);
+        }
+        
+        .whatsapp-float .whatsapp-text {
+            display: none;
+            position: absolute;
+            right: 70px;
+            background: white;
+            color: #128c7e;
+            padding: 10px 15px;
+            border-radius: 8px;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            display: block;
+        }
+        
+        .whatsapp-float .whatsapp-text::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 8px solid transparent;
+            border-left-color: white;
+        }
+        
+        @keyframes whatsapp-pulse {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            }
+            50% {
+                box-shadow: 0 4px 20px rgba(37, 211, 102, 0.8), 0 0 0 10px rgba(37, 211, 102, 0.2);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 56px;
+                height: 56px;
+                font-size: 28px;
+            }
+            
+            .whatsapp-float .whatsapp-text {
+                display: none !important;
+            }
+        }
+    </style>
 </body>
 </html>

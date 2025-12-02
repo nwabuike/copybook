@@ -61,6 +61,28 @@ try {
         }
     }
     
+    // Get Facebook Marketplace stats
+    $fbMpSql = "SELECT 
+                COUNT(*) as total_orders,
+                GROUP_CONCAT(pack) as packages
+              FROM orders 
+              WHERE source = 'facebook-marketplace' 
+              AND DATE(created_at) BETWEEN ? AND ?";
+    
+    $stmt = $conn->prepare($fbMpSql);
+    $stmt->bind_param('ss', $start_date, $end_date);
+    $stmt->execute();
+    $fbMpResult = $stmt->get_result()->fetch_assoc();
+    
+    // Calculate Facebook Marketplace revenue
+    $fbMpRevenue = 0;
+    if ($fbMpResult['packages']) {
+        $packages = explode(',', $fbMpResult['packages']);
+        foreach ($packages as $pack) {
+            $fbMpRevenue += $prices[$pack] ?? 0;
+        }
+    }
+    
     // Get recent orders
     $ordersSql = "SELECT id, fullname, pack, source, created_at 
                   FROM orders 
@@ -92,6 +114,12 @@ try {
                 'orders' => (int)$ttResult['total_orders'],
                 'revenue' => $ttRevenue,
                 'avg_order' => $ttResult['total_orders'] > 0 ? round($ttRevenue / $ttResult['total_orders'], 2) : 0,
+                'conversion_rate' => 0 // Placeholder - needs page view tracking
+            ],
+            'facebook-marketplace' => [
+                'orders' => (int)$fbMpResult['total_orders'],
+                'revenue' => $fbMpRevenue,
+                'avg_order' => $fbMpResult['total_orders'] > 0 ? round($fbMpRevenue / $fbMpResult['total_orders'], 2) : 0,
                 'conversion_rate' => 0 // Placeholder - needs page view tracking
             ]
         ],

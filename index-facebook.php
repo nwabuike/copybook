@@ -62,7 +62,7 @@ function formatPrice($amount) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary SEO Meta Tags -->
-    <title>Buy Sank Magic Copybook for Kids | TikTok Special | Reusable 4-in-1 Handwriting Practice Book Nigeria</title>
+    <title>Buy Sank Magic Copybook for Kids | Facebook Marketplace | Reusable 4-in-1 Handwriting Practice Book Nigeria</title>
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -2711,7 +2711,7 @@ function formatPrice($amount) {
                         </div>
                         
                         <!-- Hidden field for tracking traffic source -->
-                        <input type="hidden" name="source" value="tiktok">
+                        <input type="hidden" name="source" value="facebook-marketplace">
                         
                         <div class="payment-info">
                             <i class="fas fa-truck"></i>
@@ -3161,7 +3161,7 @@ function formatPrice($amount) {
             fd.append('address', document.getElementById('address').value || '');
             fd.append('state', document.getElementById('state').value || '');
             // Facebook traffic source
-            fd.append('source', 'tiktok');
+            fd.append('source', 'facebook-marketplace');
 
             console.log('Submitting order...', {name: fullName, pack: document.getElementById('package').value});
             showFormMessage('Processing your order — please wait...', 'info');
